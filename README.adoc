@@ -1,0 +1,36 @@
+= Ruby library for NISO STS and ISOSTS
+
+== Purpose
+
+The `sts` Ruby gem allows you to work with NISO STS (0.2+) and ISOSTS documents.
+
+NOTE: This is a work-in-progress.
+
+This library now parses the reference
+https://www.iso.org/schema/nisosts/v0.2/doc/tbx/examples/tbx-examples.html[TBX-ISO-TML version 1.1 sample file]
+in the NISO STS format (`tbx-nisosts-0.2.xml`).
+
+== Library
+
+=== Usage
+
+The following code parses a NISO STS XML document.
+
+[source,ruby]
+----
+require 'sts'
+doc = IO.read('spec/fixtures/tbx-nisosts-0.2.xml')
+sts = Sts::NisoSts::Standard.from_xml(doc)
+puts sts.to_xml(pretty: true)
+# => STS file round-tripped
+----
+
+== Credits
+
+This gem is developed, maintained and funded by
+https://www.ribose.com[Ribose Inc.]
+
+== License
+
+The gem is available as open source under the terms of the
+https://opensource.org/licenses/BSD-2-Clause[2-Clause BSD License].
