@@ -12,4 +12,5 @@ module Sts
 end
 
 require_relative "sts/tbx_iso_tml"
+require_relative "sts/mapper"
 require_relative "sts/niso_sts"

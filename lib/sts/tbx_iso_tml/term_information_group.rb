@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 require_relative "term"
 require_relative "part_of_speech"
@@ -12,9 +12,10 @@ require_relative "term_type"
 
 module Sts
   module TbxIsoTml
-    class TermInformationGroup < Shale::Mapper
+    class TermInformationGroup < Sts::Mapper
       attribute :term, Term
       attribute :pos, PartOfSpeech
+      attribute :id, Shale::Type::String
       attribute :usage_note, Shale::Type::String
       attribute :normative_authorization, NormativeAuthorization
       attribute :geographical_usage, GeographicalUsage
@@ -26,6 +27,8 @@ module Sts
       xml do
         root "tig"
         namespace "urn:iso:std:iso:30042:ed-1", "tbx"
+
+        map_attribute "id", to: :id
 
         map_element "term", to: :term
         map_element "partOfSpeech", to: :pos

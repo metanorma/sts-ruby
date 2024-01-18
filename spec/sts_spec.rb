@@ -8,6 +8,7 @@ RSpec.describe Sts do
   let(:tbx_example_file) do
     File.join(fixtures_path, "tbx-nisosts-0.2.xml")
   end
+
   let(:tbx_example_file_formatted) do
     File.join(fixtures_path, "tbx-nisosts-0.2-formatted.xml")
   end
@@ -17,9 +18,9 @@ RSpec.describe Sts do
     Sts::NisoSts::Standard.from_xml(doc)
   end
 
-  xit "round-trips TBX-ISO-TML example file" do
+  it "round-trips TBX-ISO-TML example file" do
     doc = File.read(tbx_example_file_formatted)
-    generated = Sts::NisoSts::Standard.from_xml(doc).to_xml(pretty: true)
+    generated = Sts::NisoSts::Standard.from_xml(doc).to_xml(pretty: true, declaration: true)
     # puts generated
     expect(generated).to be_equivalent_to(doc)
   end
