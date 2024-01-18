@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 require_relative "lang_set"
 require_relative "external_graphic"
 
 module Sts
   module TbxIsoTml
-    class TermEntry < Shale::Mapper
+    class TermEntry < Sts::Mapper
       attribute :id, Shale::Type::String
       attribute :lang_set, LangSet, collection: true
       attribute :x_graphic, ExternalGraphic, collection: true
