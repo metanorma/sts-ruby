@@ -22,8 +22,8 @@ Gem::Specification.new do |spec|
   spec.metadata["bug_tracker_uri"] = "#{spec.homepage}/issues"
 
   # Specify which files should be added to the gem when it is released.
-  spec.files         = all_files_in_git
-                       .reject { |f| f.match(%r{\A(?:test|spec|features|bin|\.)/}) }
+  spec.files = all_files_in_git
+    .reject { |f| f.match(%r{\A(?:test|spec|features|bin|\.)/}) }
 
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
@@ -32,10 +32,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency "nokogiri"
   spec.add_dependency "shale"
   # spec.add_dependency "thor"
-
-  spec.add_development_dependency "pry", "~> 0.14.0"
-  spec.add_development_dependency "rake", "~> 13.0"
-  spec.add_development_dependency "rspec", "~> 3.10"
-  # spec.add_development_dependency "rubocop"
-  spec.add_development_dependency "equivalent-xml", "~> 0.6"
 end

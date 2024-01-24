@@ -14,11 +14,11 @@ module Sts
       xml do
         root "std-iden"
 
-        map_element 'originator', to: :originator
-        map_element 'doc-type', to: :doc_type
-        map_element 'doc-number', to: :doc_number
-        map_element 'edition', to: :edition
-        map_element 'version', to: :version
+        map_element "originator", to: :originator
+        map_element "doc-type", to: :doc_type
+        map_element "doc-number", to: :doc_number
+        map_element "edition", to: :edition
+        map_element "version", to: :version
       end
     end
   end

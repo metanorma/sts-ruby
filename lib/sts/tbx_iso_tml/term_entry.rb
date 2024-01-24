@@ -20,7 +20,6 @@ module Sts
         map_element "langSet", to: :lang_set
         map_element "xGraphic", to: :x_graphic
       end
-
     end
   end
 end
