@@ -2,8 +2,8 @@
 
 require "sts"
 
-require 'rspec/matchers'
-require 'equivalent-xml'
+require "rspec/matchers"
+require "equivalent-xml"
 Bundler.require(:development)
 
 Dir["./spec/support/**/*.rb"].sort.each { |file| require file }

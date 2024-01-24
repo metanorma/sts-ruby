@@ -14,11 +14,11 @@ module Sts
       xml do
         root "doc-iden"
 
-        map_element 'sdo', to: :sdo
-        map_element 'proj-id', to: :proj_id
-        map_element 'language', to: :language
-        map_element 'release-version', to: :release_version
-        map_element 'urn', to: :urn
+        map_element "sdo", to: :sdo
+        map_element "proj-id", to: :proj_id
+        map_element "language", to: :language
+        map_element "release-version", to: :release_version
+        map_element "urn", to: :urn
       end
     end
   end
