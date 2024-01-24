@@ -5,7 +5,9 @@ module Sts
   end
 end
 
+require_relative "tbx_iso_tml/caption"
 require_relative "tbx_iso_tml/definition"
+require_relative "tbx_iso_tml/entailed_term"
 require_relative "tbx_iso_tml/example"
 require_relative "tbx_iso_tml/external_graphic"
 require_relative "tbx_iso_tml/external_source"
@@ -17,6 +19,12 @@ require_relative "tbx_iso_tml/note"
 require_relative "tbx_iso_tml/part_of_speech"
 require_relative "tbx_iso_tml/see"
 require_relative "tbx_iso_tml/source"
+require_relative "tbx_iso_tml/table_wrap"
+require_relative "tbx_iso_tml/table_wrap_foot"
+require_relative "tbx_iso_tml/tbody"
+require_relative "tbx_iso_tml/tr"
+require_relative "tbx_iso_tml/th"
+require_relative "tbx_iso_tml/td"
 require_relative "tbx_iso_tml/term"
 require_relative "tbx_iso_tml/term_entry"
 require_relative "tbx_iso_tml/term_information_group"
