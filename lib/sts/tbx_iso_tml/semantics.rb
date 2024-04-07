@@ -2,7 +2,6 @@
 
 require_relative "../mapper"
 
-require_relative "semantics"
 require_relative "mrow"
 require_relative "munder"
 
