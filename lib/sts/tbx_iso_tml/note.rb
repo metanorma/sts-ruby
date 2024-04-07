@@ -34,7 +34,8 @@ module Sts
         map_element "std", to: :std, namespace: nil, prefix: nil
         map_element "sup", to: :sup, namespace: nil, prefix: nil
         map_element "italic", to: :italic, namespace: nil, prefix: nil
-        map_element "math", to: :math, namespace: "http://www.w3.org/1998/Math/MathML", prefix: "mml"
+        map_element "math", to: :math,
+                            namespace: "http://www.w3.org/1998/Math/MathML", prefix: "mml"
       end
     end
   end

@@ -20,7 +20,8 @@ RSpec.describe Sts do
 
   it "round-trips TBX-ISO-TML example file" do
     doc = File.read(tbx_example_file_formatted)
-    generated = Sts::NisoSts::Standard.from_xml(doc).to_xml(pretty: true, declaration: true)
+    generated = Sts::NisoSts::Standard.from_xml(doc).to_xml(pretty: true,
+                                                            declaration: true)
     # puts generated
     expect(generated).to be_equivalent_to(doc)
   end

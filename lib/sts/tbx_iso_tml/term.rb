@@ -23,7 +23,8 @@ module Sts
         map_attribute "script", to: :script
         map_element "italic", to: :italic, namespace: nil, prefix: nil
         map_element "sub", to: :sub, namespace: nil, prefix: nil
-        map_element "math", to: :math, namespace: "http://www.w3.org/1998/Math/MathML", prefix: "mml"
+        map_element "math", to: :math,
+                            namespace: "http://www.w3.org/1998/Math/MathML", prefix: "mml"
         map_content to: :value
       end
     end

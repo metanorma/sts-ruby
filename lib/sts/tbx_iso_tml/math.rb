@@ -18,9 +18,9 @@ module Sts
         root "math"
         namespace "http://www.w3.org/1998/Math/MathML", "mml"
 
-        map_element "mrow", to: :mrow#, render_nil: true
+        map_element "mrow", to: :mrow # , render_nil: true
         map_element "semantics", to: :semantics
-        map_element "mo", to: :mo#, render_nil: true
+        map_element "mo", to: :mo # , render_nil: true
 
         map_content to: :content
         map_attribute "display", to: :display
