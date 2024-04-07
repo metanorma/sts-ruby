@@ -1,3 +1,4 @@
+# rubocop:disable AllCops
 
 require "shale"
 
@@ -434,3 +435,6 @@ module Sts
     end
   end
 end
+
+# rubocop:enable AllCops
+
