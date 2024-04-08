@@ -14,6 +14,7 @@ require_relative "../mapper"
 module Sts
   module TbxIsoTml
     class Note < Sts::Mapper
+      attribute :id, Shale::Type::String
       attribute :value, Shale::Type::String
       attribute :table_wrap, Sts::TbxIsoTml::TableWrap
       attribute :entailed_term, EntailedTerm
@@ -27,6 +28,7 @@ module Sts
         root "note"
         namespace "urn:iso:std:iso:30042:ed-1", "tbx"
 
+        map_attribute "id", to: :id
         map_content to: :value
         map_element "entailedTerm", to: :entailed_term
         map_element "list", to: :list, namespace: nil, prefix: nil
