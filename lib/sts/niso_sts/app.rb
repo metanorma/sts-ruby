@@ -14,7 +14,6 @@ module Sts
   module NisoSts
     class Title < Sts::Mapper; end
     class ReferenceList < Sts::Mapper; end
-    class Sts::TbxIsoTml::TableWrap < Shale::Mapper; end
 
     class App < Sts::Mapper
       # attribute :app, Sts::TbxIsoTml::App, collection: true

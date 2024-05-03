@@ -39,7 +39,8 @@ module Sts
         map_element "italic", to: :italic, namespace: nil, prefix: nil
         map_element "xref", to: :xref, namespace: nil, prefix: nil
         map_element "math", to: :math,
-                            namespace: "http://www.w3.org/1998/Math/MathML", prefix: "mml"
+                            namespace: "http://www.w3.org/1998/Math/MathML",
+                            prefix: "mml"
       end
     end
   end
