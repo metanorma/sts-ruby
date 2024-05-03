@@ -12,9 +12,13 @@ require_relative "term_information_group"
 
 module Sts
   module TbxIsoTml
+    class Definition < Sts::Mapper; end
+    class Note < Sts::Mapper; end
+    class Caption < Shale::Mapper; end
+
     class LangSet < Sts::Mapper
       attribute :lang, Shale::Type::String
-      attribute :definition, Definition, collection: true
+      attribute :definition, Sts::TbxIsoTml::Definition, collection: true
       attribute :note, Note, collection: true
       attribute :example, Example, collection: true
       attribute :tig, TermInformationGroup, collection: true

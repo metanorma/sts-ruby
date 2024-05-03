@@ -4,6 +4,7 @@ require "shale"
 
 require_relative "caption"
 require_relative "graphic"
+require_relative "def_list"
 
 # <fig id="fig-1" orientation="portrait">
 #   <label>Figure 1</label>
@@ -13,10 +14,13 @@ require_relative "graphic"
 
 module Sts
   module NisoSts
+    class Caption < Shale::Mapper; end
+
     class Figure < Shale::Mapper
       attribute :id, Shale::Type::String
       attribute :orientation, Shale::Type::String
       attribute :caption, Caption
+      attribute :def_list, DefList
       attribute :label, Shale::Type::String
       attribute :graphic, Graphic, collection: true
 
@@ -29,6 +33,7 @@ module Sts
         map_element "label", to: :label
         map_element "caption", to: :caption
         map_element "graphic", to: :graphic
+        map_element "def-list", to: :def_list
       end
     end
   end

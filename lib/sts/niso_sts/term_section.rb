@@ -4,6 +4,7 @@ require "shale"
 
 require_relative "../tbx_iso_tml"
 require_relative "term_display"
+require_relative "../tbx_iso_tml/term_entry"
 
 module Sts
   module NisoSts
@@ -11,7 +12,7 @@ module Sts
       attribute :id, Shale::Type::String
       attribute :sec_type, Shale::Type::String
       attribute :label, Shale::Type::String
-      attribute :term_entry, TbxIsoTml::TermEntry # , collection: true
+      attribute :term_entry, Sts::TbxIsoTml::TermEntry # , collection: true
       attribute :term_display, TermDisplay # , collection: true
 
       xml do

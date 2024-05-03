@@ -91,6 +91,8 @@ module Sts
 
         element.instance_variable_get(:@node)&.children&.each do |nokogiri_node|
           if nokogiri_node.name == "text"
+            next unless content_mapping
+
             content_value = get_content_value(content_mapping, nokogiri_node, only, except, delegates, instance)
             instance.all_content << ["content", content_value]
             next

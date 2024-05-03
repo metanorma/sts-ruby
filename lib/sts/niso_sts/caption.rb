@@ -1,6 +1,8 @@
 require "shale"
 
 require_relative "paragraph"
+require_relative "title"
+require_relative "non_normative_note"
 
 # <caption>
 #   <title>Overview of risk assessment/risk reduction</title>
@@ -27,14 +29,16 @@ require_relative "paragraph"
 module Sts
   module NisoSts
     class Caption < Shale::Mapper
-      attribute :title, Shale::Type::String
+      attribute :title, Title
       attribute :paragraphs, Paragraph, collection: true
+      attribute :non_normative_note, NonNormativeNote, collection: true
 
       xml do
         root "caption"
 
         map_element "p", to: :paragraphs
-        map_attribute "title", to: :title
+        map_element "non-normative-note", to: :non_normative_note
+        map_element "title", to: :title
       end
     end
   end
