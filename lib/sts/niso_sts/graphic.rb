@@ -1,4 +1,4 @@
-require "shale"
+require_relative "../mapper"
 
 require_relative "object_id"
 
@@ -12,7 +12,7 @@ require_relative "object_id"
 
 module Sts
   module NisoSts
-    class Graphic < Shale::Mapper
+    class Graphic < Sts::Mapper
       attribute :href, Shale::Type::String
       attribute :object_id, ObjectId, collection: true
 

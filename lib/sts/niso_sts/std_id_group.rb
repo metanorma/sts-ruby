@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 require_relative "std_id"
 
 module Sts
   module NisoSts
-    class StdIdGroup < Shale::Mapper
+    class StdIdGroup < Sts::Mapper
       attribute :std_id, StdId, collection: true
 
       xml do

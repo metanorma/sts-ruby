@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 require_relative "paragraph"
 
 module Sts
   module NisoSts
-    class MetaNote < Shale::Mapper
+    class MetaNote < Sts::Mapper
       attribute :id, Shale::Type::String
       attribute :content_type, Shale::Type::String
       attribute :p, Paragraph, collection: true

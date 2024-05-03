@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 module Sts
   module NisoSts
-    class PageCount < Shale::Mapper
+    class PageCount < Sts::Mapper
       attribute :count, Shale::Type::Integer
 
       xml do

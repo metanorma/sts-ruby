@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 module Sts
   module TbxIsoTml
-    class PartOfSpeech < Shale::Mapper
+    class PartOfSpeech < Sts::Mapper
       # TODO: can be `noun`, `verb`, `adj`, `adv`
       attribute :value, Shale::Type::String
 

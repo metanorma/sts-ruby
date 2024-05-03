@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 require_relative "def"
 require_relative "../tbx_iso_tml/term"
 
 module Sts
   module NisoSts
-    class DefItem < Shale::Mapper
+    class DefItem < Sts::Mapper
       attribute :specific_use, Shale::Type::String
       attribute :term, TbxIsoTml::Term
       attribute :definition, Def

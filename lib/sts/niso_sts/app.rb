@@ -16,7 +16,6 @@ module Sts
     class ReferenceList < Sts::Mapper; end
 
     class App < Sts::Mapper
-      # attribute :app, Sts::TbxIsoTml::App, collection: true
       attribute :id, Shale::Type::String
       attribute :content_type, Shale::Type::String
       attribute :label, Shale::Type::String

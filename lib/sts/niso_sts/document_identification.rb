@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 module Sts
   module NisoSts
-    class DocumentIdentification < Shale::Mapper
+    class DocumentIdentification < Sts::Mapper
       attribute :sdo, Shale::Type::String
       attribute :proj_id, Shale::Type::String
       attribute :language, Shale::Type::String

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 module Sts
   module TbxIsoTml
-    class ExternalSource < Shale::Mapper
+    class ExternalSource < Sts::Mapper
       attribute :target, Shale::Type::String
       attribute :value, Shale::Type::String
 

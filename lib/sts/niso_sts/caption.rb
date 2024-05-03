@@ -1,4 +1,4 @@
-require "shale"
+require_relative "../mapper"
 
 require_relative "paragraph"
 require_relative "title"
@@ -30,7 +30,7 @@ require_relative "non_normative_note"
 
 module Sts
   module NisoSts
-    class Caption < Shale::Mapper
+    class Caption < Sts::Mapper
       attribute :title, Title
       attribute :paragraphs, Paragraph, collection: true
       attribute :non_normative_note, NonNormativeNote, collection: true

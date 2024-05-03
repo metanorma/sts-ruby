@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 module Sts
   module TbxIsoTml
-    class NamedContent < Shale::Mapper
+    class NamedContent < Sts::Mapper
       attribute :content_type, Shale::Type::String
       attribute :content, Shale::Type::String
 

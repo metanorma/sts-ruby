@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 require_relative "title_wrap"
 require_relative "document_identification"
 require_relative "standard_identification"
@@ -9,7 +9,7 @@ require_relative "page_count"
 
 module Sts
   module NisoSts
-    class MetadataIso < Shale::Mapper
+    class MetadataIso < Sts::Mapper
       attribute :title_wrap, TitleWrap
       attribute :content_language, Shale::Type::String
       attribute :std_ident, StandardIdentification

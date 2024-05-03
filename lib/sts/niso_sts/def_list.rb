@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 require_relative "def_item"
 
 module Sts
   module NisoSts
-    class DefList < Shale::Mapper
+    class DefList < Sts::Mapper
       attribute :title, Shale::Type::String
       attribute :specific_use, Shale::Type::String
       attribute :list_type, Shale::Type::String

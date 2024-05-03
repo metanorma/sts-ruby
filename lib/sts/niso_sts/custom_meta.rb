@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 module Sts
   module NisoSts
-    class CustomMeta < Shale::Mapper
+    class CustomMeta < Sts::Mapper
       attribute :lang, Shale::Type::String
       attribute :meta_name, Shale::Type::String
       attribute :meta_value, Shale::Type::String

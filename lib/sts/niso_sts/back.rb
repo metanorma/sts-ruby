@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 require_relative "reference_list"
 require_relative "section"
@@ -9,7 +9,7 @@ require_relative "fn_group"
 
 module Sts
   module NisoSts
-    class Back < Shale::Mapper
+    class Back < Sts::Mapper
       attribute :ref_list, ReferenceList
       attribute :app_group, AppGroup
       attribute :sec, Section

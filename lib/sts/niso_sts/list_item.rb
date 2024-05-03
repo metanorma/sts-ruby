@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "shale"
-
 require_relative "../mapper"
 require_relative "list"
 
@@ -10,7 +8,7 @@ module Sts
     class Paragraph < Sts::Mapper; end
     class List < Sts::Mapper; end
 
-    class ListItem < Shale::Mapper
+    class ListItem < Sts::Mapper
       attribute :label, Shale::Type::String
       attribute :p, Sts::NisoSts::Paragraph
       attribute :list, List

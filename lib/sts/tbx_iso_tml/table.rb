@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 require_relative "col"
 require_relative "thead"
@@ -8,7 +8,7 @@ require_relative "tbody"
 
 module Sts
   module TbxIsoTml
-    class Table < Shale::Mapper
+    class Table < Sts::Mapper
       attribute :col, Sts::TbxIsoTml::Col, collection: true
       attribute :thead, Sts::TbxIsoTml::Thead
       attribute :tbody, Sts::TbxIsoTml::Tbody

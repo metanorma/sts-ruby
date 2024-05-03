@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 module Sts
   module TbxIsoTml
-    class GeographicalUsage < Shale::Mapper
+    class GeographicalUsage < Sts::Mapper
       attribute :value, Shale::Type::String
 
       xml do

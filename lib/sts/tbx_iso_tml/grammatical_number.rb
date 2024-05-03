@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 module Sts
   module TbxIsoTml
-    class GrammaticalNumber < Shale::Mapper
+    class GrammaticalNumber < Sts::Mapper
       # TODO: can be singular | plural
       attribute :value, Shale::Type::String
 

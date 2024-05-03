@@ -4,11 +4,11 @@
 # <object-id pub-id-type="publisher-id">fig-1</object-id>
 # rubocop:enable Layout/LineLength
 
-require "shale"
+require_relative "../mapper"
 
 module Sts
   module NisoSts
-    class ObjectId < Shale::Mapper
+    class ObjectId < Sts::Mapper
       attribute :pub_id_type, Shale::Type::String
       attribute :content, Shale::Type::String
 

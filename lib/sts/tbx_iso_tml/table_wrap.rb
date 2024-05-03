@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
-# require_relative "caption"
 require_relative "table"
 require_relative "table_wrap_foot"
 
@@ -10,7 +9,7 @@ require_relative "../niso_sts/caption"
 
 module Sts
   module TbxIsoTml
-    class TableWrap < Shale::Mapper
+    class TableWrap < Sts::Mapper
       attribute :id, Shale::Type::String
       attribute :orientation, Shale::Type::String
       attribute :label, Shale::Type::String
