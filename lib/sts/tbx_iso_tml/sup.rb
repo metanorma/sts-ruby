@@ -7,6 +7,8 @@ require_relative "xref"
 
 module Sts
   module TbxIsoTml
+    class Xref < Sts::Mapper; end
+
     class Sup < Sts::Mapper
       attribute :value, Shale::Type::String
       attribute :xref, Xref

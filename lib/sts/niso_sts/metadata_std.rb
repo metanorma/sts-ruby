@@ -45,8 +45,8 @@ module Sts
         map_element "pub-date", to: :pub_date
         map_element "release-date", to: :release_date
         map_element "release-version", to: :release_version
-        map_element "comm-ref", to: :comm_ref
-        map_element "secretariat", to: :secretariat
+        map_element "comm-ref", to: :comm_ref, render_nil: true
+        map_element "secretariat", to: :secretariat, render_nil: true
         map_element "page-count", to: :page_count
         map_element "ics", to: :ics
         map_element "std-xref", to: :std_xref

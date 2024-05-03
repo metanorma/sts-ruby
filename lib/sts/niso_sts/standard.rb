@@ -8,12 +8,15 @@ require_relative "back"
 
 module Sts
   module NisoSts
-    class Standard < Shale::Mapper
+    class Standard < Sts::Mapper
       attribute :front, Front
       attribute :body, Body
       attribute :back, Back
       attribute :id, Shale::Type::String
       attribute :lang, Shale::Type::String
+      attribute :mml, Shale::Type::String
+      attribute :tbx, Shale::Type::String
+      attribute :xlink, Shale::Type::String
 
       xml do
         root "standard"
