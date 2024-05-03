@@ -9,3 +9,4 @@ AllCops:
   NewCops: enable
   Exclude:
     - 'lib/sts/mapper.rb'
+    - 'vendor/**/*'
