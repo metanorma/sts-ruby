@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 module Sts
   module NisoSts
-    class StdCrossReference < Shale::Mapper
+    class StdCrossReference < Sts::Mapper
       attribute :type, Shale::Type::String
       attribute :std_ref, StandardRef, collection: true
 

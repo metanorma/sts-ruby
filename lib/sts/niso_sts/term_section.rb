@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 require_relative "../tbx_iso_tml"
 require_relative "term_display"
@@ -8,7 +8,7 @@ require_relative "../tbx_iso_tml/term_entry"
 
 module Sts
   module NisoSts
-    class TermSection < Shale::Mapper
+    class TermSection < Sts::Mapper
       attribute :id, Shale::Type::String
       attribute :sec_type, Shale::Type::String
       attribute :label, Shale::Type::String

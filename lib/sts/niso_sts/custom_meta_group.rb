@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 require_relative "custom_meta"
 
 module Sts
   module NisoSts
-    class CustomMetaGroup < Shale::Mapper
+    class CustomMetaGroup < Sts::Mapper
       attribute :custom_meta, CustomMeta, collection: true
 
       xml do

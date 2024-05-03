@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 require_relative "paragraph"
 require_relative "list"
@@ -15,7 +15,7 @@ require_relative "../tbx_iso_tml/table_wrap"
 
 module Sts
   module TbxIsoTml
-    class TableWrap < Shale::Mapper; end
+    class TableWrap < Sts::Mapper; end
   end
 end
 

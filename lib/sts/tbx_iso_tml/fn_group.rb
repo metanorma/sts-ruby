@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 require_relative "fn"
 
 module Sts
   module TbxIsoTml
-    class FnGroup < Shale::Mapper
+    class FnGroup < Sts::Mapper
       attribute :fn, Sts::TbxIsoTml::Fn, collection: true
 
       xml do

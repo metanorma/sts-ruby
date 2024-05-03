@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 module Sts
   module TbxIsoTml
-    class GrammaticalGender < Shale::Mapper
+    class GrammaticalGender < Sts::Mapper
       # TODO: can be masculine, feminine, singular
       attribute :value, Shale::Type::String
 

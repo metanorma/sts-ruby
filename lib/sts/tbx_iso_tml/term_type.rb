@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 module Sts
   module TbxIsoTml
-    class TermType < Shale::Mapper
+    class TermType < Sts::Mapper
       # TODO: can be:
       # - acronym
       # - abbreviation

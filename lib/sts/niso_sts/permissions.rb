@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 module Sts
   module NisoSts
-    class Permissions < Shale::Mapper
+    class Permissions < Sts::Mapper
       attribute :copyright_statement, Shale::Type::String
       attribute :copyright_year, Shale::Type::String
       attribute :copyright_holder, Shale::Type::String

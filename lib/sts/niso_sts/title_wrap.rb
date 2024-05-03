@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 require_relative "reference_list"
 
 module Sts
   module NisoSts
-    class TitleWrap < Shale::Mapper
+    class TitleWrap < Sts::Mapper
       attribute :intro, Shale::Type::String
       attribute :main, Shale::Type::String
       attribute :full, Shale::Type::String

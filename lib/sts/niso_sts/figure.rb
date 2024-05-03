@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 require_relative "caption"
 require_relative "graphic"
@@ -14,9 +14,9 @@ require_relative "def_list"
 
 module Sts
   module NisoSts
-    class Caption < Shale::Mapper; end
+    class Caption < Sts::Mapper; end
 
-    class Figure < Shale::Mapper
+    class Figure < Sts::Mapper
       attribute :id, Shale::Type::String
       attribute :orientation, Shale::Type::String
       attribute :caption, Caption

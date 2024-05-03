@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 require_relative "metadata_iso"
 require_relative "metadata_std"
@@ -9,7 +9,7 @@ module Sts
   module NisoSts
     class Section < Sts::Mapper; end
 
-    class Front < Shale::Mapper
+    class Front < Sts::Mapper
       attribute :iso_meta, MetadataIso
       attribute :std_meta, MetadataStd
       attribute :sec, Section, collection: true

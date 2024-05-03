@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 require_relative "paragraph"
 require_relative "non_normative_note"
 
 module Sts
   module NisoSts
-    class TermDisplay < Shale::Mapper
+    class TermDisplay < Sts::Mapper
       attribute :p, Paragraph, collection: true
       attribute :non_normative_note, NonNormativeNote, collection: true
 

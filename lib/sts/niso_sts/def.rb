@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 require_relative "paragraph"
 
 module Sts
   module NisoSts
-    class Def < Shale::Mapper
+    class Def < Sts::Mapper
       attribute :paragraph, Paragraph
 
       xml do

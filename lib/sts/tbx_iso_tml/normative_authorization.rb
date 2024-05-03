@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 module Sts
   module TbxIsoTml
-    class NormativeAuthorization < Shale::Mapper
+    class NormativeAuthorization < Sts::Mapper
       # TODO: can be: admittedTerm, preferredTerm, deprecatedTerm
       attribute :value, Shale::Type::String
 

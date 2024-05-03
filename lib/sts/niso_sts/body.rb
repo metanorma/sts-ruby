@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require "shale"
+require_relative "../mapper"
 
 require_relative "section"
 
 module Sts
   module NisoSts
-    class Body < Shale::Mapper
+    class Body < Sts::Mapper
       attribute :sec, Section, collection: true
 
       xml do

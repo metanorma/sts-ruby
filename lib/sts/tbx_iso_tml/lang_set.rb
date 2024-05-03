@@ -14,7 +14,7 @@ module Sts
   module TbxIsoTml
     class Definition < Sts::Mapper; end
     class Note < Sts::Mapper; end
-    class Caption < Shale::Mapper; end
+    class Caption < Sts::Mapper; end
 
     class LangSet < Sts::Mapper
       attribute :lang, Shale::Type::String
