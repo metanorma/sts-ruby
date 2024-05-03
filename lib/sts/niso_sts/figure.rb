@@ -38,4 +38,3 @@ module Sts
     end
   end
 end
-

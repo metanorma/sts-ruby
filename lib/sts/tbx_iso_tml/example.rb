@@ -24,7 +24,9 @@ module Sts
         map_attribute "id", to: :id
 
         map_element "entailedTerm", to: :entailed_term
-        map_element "inline-formula", to: :inline_formula, namespace: nil, prefix: nil
+        map_element "inline-formula", to: :inline_formula,
+                                      namespace: nil,
+                                      prefix: nil
       end
     end
   end

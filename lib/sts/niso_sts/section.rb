@@ -13,7 +13,11 @@ require_relative "title"
 
 require_relative "../tbx_iso_tml/table_wrap"
 
-class Sts::TbxIsoTml::TableWrap < Shale::Mapper; end
+module Sts
+  module TbxIsoTml
+    class TableWrap < Shale::Mapper; end
+  end
+end
 
 module Sts
   module NisoSts

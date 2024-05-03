@@ -23,7 +23,9 @@ module Sts
         map_attribute "std-id", to: :std_id
         map_element "std-ref", to: :std_ref, namespace: nil, prefix: nil
         map_element "title", to: :title, namespace: nil, prefix: nil
-        map_element "std-id-group", to: :std_id_group, namespace: nil, prefix: nil
+        map_element "std-id-group", to: :std_id_group,
+                                    namespace: nil,
+                                    prefix: nil
         map_element "xref", to: :xref
 
         map_content to: :content

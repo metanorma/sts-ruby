@@ -29,14 +29,19 @@ module Sts
 
         map_attribute "id", to: :id
         map_attribute "script", to: :script
-        map_element "inline-formula", to: :inline_formula, namespace: nil, prefix: nil
-        map_element "named-content", to: :named_content, namespace: nil, prefix: nil
+        map_element "inline-formula", to: :inline_formula,
+                                      namespace: nil,
+                                      prefix: nil
+        map_element "named-content", to: :named_content,
+                                     namespace: nil,
+                                     prefix: nil
         map_element "italic", to: :italic, namespace: nil, prefix: nil
         map_element "bold", to: :bold, namespace: nil, prefix: nil
         map_element "sub", to: :sub, namespace: nil, prefix: nil
         map_element "xref", to: :xref, namespace: nil, prefix: nil
         map_element "math", to: :math,
-                            namespace: "http://www.w3.org/1998/Math/MathML", prefix: "mml"
+                            namespace: "http://www.w3.org/1998/Math/MathML",
+                            prefix: "mml"
         map_content to: :value
       end
     end
