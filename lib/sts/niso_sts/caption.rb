@@ -4,7 +4,7 @@ require_relative "paragraph"
 require_relative "title"
 require_relative "non_normative_note"
 
-# rubocop:disable Metrics/LineLength
+# rubocop:disable Layout/LineLength
 # <caption>
 #   <title>Overview of risk assessment/risk reduction</title>
 #   <p><def-list list-type="footnotes">
@@ -26,7 +26,7 @@ require_relative "non_normative_note"
 #       </def-item>
 #     </def-list></p>
 # </caption>
-# rubocop:enable Metrics/LineLength
+# rubocop:enable Layout/LineLength
 
 module Sts
   module NisoSts
