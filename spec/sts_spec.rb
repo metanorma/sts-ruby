@@ -17,6 +17,10 @@ RSpec.describe Sts do
     File.join(fixtures_path, "ISO_13849-1_2008-12_en_TBX.xml")
   end
 
+  let(:din_iso_sts_example_file_formatted) do
+    File.join(fixtures_path, "DIN_EN_ISO_13849-1_2008-12_en_TBX.xml")
+  end
+
   it "parses TBX-ISO-TML example file" do
     doc = File.read(tbx_example_file)
     Sts::NisoSts::Standard.from_xml(doc)
@@ -42,6 +46,23 @@ RSpec.describe Sts do
   it "round-trips ISO 13849-1:2008-12 file" do
     doc = File.read(iso_sts_example_file_formatted)
     parsed = Sts::NisoSts::Standard.from_xml(doc)
+    generated = parsed.to_xml(
+      pretty: true,
+      declaration: true,
+      encoding: "utf-8",
+    )
+    # puts generated
+    expect(generated).to be_equivalent_to(doc)
+  end
+
+  it "parses DIN EN ISO 13849-1:2008-12 file" do
+    doc = File.read(din_iso_sts_example_file_formatted)
+    Sts::NisoSts::Adoption.from_xml(doc)
+  end
+
+  it "round-trips DIN EN ISO 13849-1:2008-12 file" do
+    doc = File.read(din_iso_sts_example_file_formatted)
+    parsed = Sts::NisoSts::Adoption.from_xml(doc)
     generated = parsed.to_xml(
       pretty: true,
       declaration: true,
