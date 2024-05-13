@@ -42,7 +42,7 @@ module Sts
         map_attribute "sec-type", to: :type
         map_attribute "specific-use", to: :specific_use
 
-        map_element "label", to: :label
+        map_element "label", to: :label, render_nil: true
         map_element "title", to: :title
         map_element "p", to: :paragraphs
         map_element "sec", to: :sec

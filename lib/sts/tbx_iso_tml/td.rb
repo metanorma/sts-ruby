@@ -24,7 +24,7 @@ module Sts
       attribute :colspan, Shale::Type::String
       attribute :rowspan, Shale::Type::String
       attribute :valign, Shale::Type::String
-      attribute :inline_formula, Sts::NisoSts::InlineFormula
+      attribute :inline_formula, Sts::NisoSts::InlineFormula, collection: true
       attribute :non_normative_note, Sts::NisoSts::NonNormativeNote
       attribute :list, Sts::NisoSts::List
       attribute :xref, Xref
