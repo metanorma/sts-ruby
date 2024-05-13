@@ -75,9 +75,9 @@ RSpec.describe Sts do
     # compare_c14n_xml(generated, doc)
   end
 
-  def compare_c14n_xml(a, b)
-    g = Nokogiri::XML(a) { |config| config.strict }.canonicalize
-    r = Nokogiri::XML(b) { |config| config.strict }.canonicalize
+  def compare_c14n_xml(generated, actual)
+    g = Nokogiri::XML(generated, &:strict).canonicalize
+    r = Nokogiri::XML(actual, &:strict).canonicalize
     expect(g).to eq(r)
   end
 end
