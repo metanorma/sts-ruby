@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="../../sts4i-tools/schematron/NISOSTS_lib.sch" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <adoption xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:tbx="urn:iso:std:iso:30042:ed-1" xmlns:xlink="http://www.w3.org/1999/xlink" xml:lang="en">
   <adoption-front>
