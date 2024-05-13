@@ -9,17 +9,21 @@ require_relative "def_list"
 require_relative "non_normative_note"
 require_relative "non_normative_example"
 require_relative "reference_standard"
+require_relative "ext_link"
+require_relative "../tbx_iso_tml/entailed_term"
 require_relative "../tbx_iso_tml/xref"
 
 module Sts
   module NisoSts
     class NonNormativeNote < Sts::Mapper; end
+    class ReferenceStandard < Sts::Mapper; end
 
     class Paragraph < Sts::Mapper
       attribute :id, Shale::Type::String
       attribute :text, Shale::Type::String
       attribute :italic, Shale::Type::String
       attribute :bold, Shale::Type::String
+      attribute :uri, Shale::Type::String
       attribute :list, Sts::NisoSts::List
       attribute :def_list, DefList
       attribute :non_normative_note, NonNormativeNote
@@ -28,6 +32,8 @@ module Sts
       attribute :disp_formula, Sts::NisoSts::DisplayFormula, collection: true
       attribute :xref, TbxIsoTml::Xref
       attribute :std, ReferenceStandard
+      attribute :ext_link, ExtLink
+      attribute :entailed_term, Sts::TbxIsoTml::EntailedTerm
 
       xml do
         root "p"
@@ -42,6 +48,11 @@ module Sts
         map_element "non-normative-example", to: :non_normative_example
         map_element "inline-formula", to: :inline_formula
         map_element "disp-formula", to: :disp_formula
+        map_element "ext-link", to: :ext_link
+        map_element "entailedTerm", to: :entailed_term,
+                                    namespace: "urn:iso:std:iso:30042:ed-1",
+                                    prefix: "tbx"
+        map_element "uri", to: :uri
         map_element "std", to: :std, namespace: nil, prefix: nil
         map_element "xref", to: :xref, namespace: nil, prefix: nil
       end

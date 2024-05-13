@@ -10,12 +10,15 @@ require_relative "../niso_sts/inline_formula"
 require_relative "../niso_sts/non_normative_note"
 require_relative "../niso_sts/graphic"
 require_relative "../niso_sts/def_list"
+require_relative "../niso_sts/paragraph"
 
 module Sts
   module TbxIsoTml
     class Td < Sts::Mapper
       attribute :content, Shale::Type::String
       attribute :align, Shale::Type::String
+      attribute :scope, Shale::Type::String
+      attribute :style, Shale::Type::String
       attribute :bold, Bold
       attribute :italic, Italic
       attribute :content_type, Shale::Type::String
@@ -31,6 +34,7 @@ module Sts
       attribute :std, Sts::NisoSts::ReferenceStandard
       attribute :graphic, Sts::NisoSts::Graphic
       attribute :def_list, Sts::NisoSts::DefList
+      attribute :paragraph, Sts::NisoSts::Paragraph
 
       xml do
         root "tr"
@@ -38,6 +42,8 @@ module Sts
         map_content to: :content
 
         map_attribute "align", to: :align
+        map_attribute "scope", to: :scope
+        map_attribute "style", to: :style
         map_attribute "content-type", to: :content_type
         map_attribute "char", to: :char
         map_attribute "charoff", to: :charoff
@@ -54,6 +60,7 @@ module Sts
         map_element "non-normative-note", to: :non_normative_note
         map_element "graphic", to: :graphic
         map_element "def-list", to: :def_list
+        map_element "p", to: :paragraph
       end
     end
   end

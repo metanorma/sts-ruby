@@ -2,6 +2,7 @@
 
 require_relative "../mapper"
 require_relative "list"
+require_relative "non_normative_example"
 
 module Sts
   module NisoSts
@@ -10,15 +11,17 @@ module Sts
 
     class ListItem < Sts::Mapper
       attribute :label, Shale::Type::String
-      attribute :p, Sts::NisoSts::Paragraph
       attribute :list, List
+      attribute :non_normative_example, NonNormativeExample
+      attribute :p, Sts::NisoSts::Paragraph
 
       xml do
         root "list-item"
 
         map_element :label, to: :label
-        map_element :p, to: :p
         map_element :list, to: :list
+        map_element "non-normative-example", to: :non_normative_example
+        map_element :p, to: :p
       end
     end
   end

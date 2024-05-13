@@ -14,6 +14,8 @@ module Sts
       attribute :content, Shale::Type::String
       attribute :colspan, Shale::Type::String
       attribute :align, Shale::Type::String
+      attribute :scope, Shale::Type::String
+      attribute :style, Shale::Type::String
       attribute :rowspan, Shale::Type::String
       attribute :break, Shale::Type::String
       attribute :content_type, Shale::Type::String
@@ -32,6 +34,8 @@ module Sts
         map_content to: :content
         map_attribute "colspan", to: :colspan
         map_attribute "align", to: :align
+        map_attribute "scope", to: :scope
+        map_attribute "style", to: :style
         map_attribute "rowspan", to: :rowspan
         map_attribute "content-type", to: :content_type
         map_attribute "char", to: :char
