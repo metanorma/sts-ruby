@@ -35,7 +35,9 @@ module Sts
 
       xml do
         root "std-meta"
+
         map_attribute "id", to: :id
+
         map_element "title-wrap", to: :title_wrap
         map_element "content-language", to: :content_language
         map_element "std-ident", to: :std_ident

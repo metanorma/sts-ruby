@@ -10,6 +10,7 @@ require_relative "non_normative_note"
 require_relative "non_normative_example"
 require_relative "figure"
 require_relative "title"
+require_relative "section_array"
 
 require_relative "../tbx_iso_tml/table_wrap"
 
@@ -23,6 +24,7 @@ module Sts
       attribute :label, Shale::Type::String
       attribute :title, Title
       attribute :type, Shale::Type::String
+      attribute :array, SectionArray
       attribute :paragraphs, Paragraph, collection: true
       attribute :list, List, collection: true
       attribute :term_sec, TermSection, collection: true
@@ -51,6 +53,7 @@ module Sts
         map_element "figure", to: :figures
         map_element "fig", to: :fig
         map_element "ref-list", to: :ref_list
+        map_element "array", to: :array
         map_element "table-wrap", to: :table_wrap
         map_element "non-normative-note", to: :non_normative_note
         map_element "non-normative-example", to: :non_normative_example

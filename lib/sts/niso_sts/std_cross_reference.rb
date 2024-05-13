@@ -9,7 +9,8 @@ module Sts
       attribute :std_ref, StandardRef, collection: true
 
       xml do
-        root "iso-meta"
+        root "std-xref"
+
         map_attribute "type", to: :type
         map_element "std-ref", to: :std_ref
       end

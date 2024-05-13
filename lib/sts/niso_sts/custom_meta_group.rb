@@ -11,6 +11,7 @@ module Sts
 
       xml do
         root "custom-meta-group"
+
         map_element "custom-meta", to: :custom_meta
       end
     end

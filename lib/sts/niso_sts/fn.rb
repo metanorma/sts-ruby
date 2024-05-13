@@ -2,13 +2,14 @@
 
 require_relative "../mapper"
 
+require_relative "label"
 require_relative "paragraph"
 
 module Sts
   module NisoSts
     class Fn < Sts::Mapper
       attribute :id, Shale::Type::String
-      attribute :label, Shale::Type::String
+      attribute :label, Label
       attribute :paragraph, Paragraph
 
       xml do

@@ -10,6 +10,7 @@ module Sts
     class TableWrap < Sts::Mapper
       attribute :id, Shale::Type::String
       attribute :orientation, Shale::Type::String
+      attribute :position, Shale::Type::String
       attribute :label, Shale::Type::String
       attribute :table, Sts::TbxIsoTml::Table, collection: true
       attribute :table_wrap_foot, Sts::TbxIsoTml::TableWrapFoot
@@ -23,6 +24,8 @@ module Sts
 
         map_attribute "id", to: :id
         map_attribute "orientation", to: :orientation
+        map_attribute "position", to: :position
+
         map_element "label", to: :label
         map_element "caption", to: :caption
         map_element "table", to: :table
