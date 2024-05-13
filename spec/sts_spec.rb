@@ -18,7 +18,7 @@ RSpec.describe Sts do
   end
 
   let(:din_iso_sts_example_file_formatted) do
-    File.join(fixtures_path, "DIN_EN_ISO_13849-1_2008-12_en_TBX.xml")
+    File.join(fixtures_path, "DIN_EN_ISO_13849-1_2008-12_en_TBX.c14n.xml")
   end
 
   it "parses TBX-ISO-TML example file" do
@@ -53,6 +53,7 @@ RSpec.describe Sts do
     )
     # puts generated
     expect(generated).to be_equivalent_to(doc)
+    # compare_c14n_xml(generated, doc)
   end
 
   it "parses DIN EN ISO 13849-1:2008-12 file" do
@@ -68,7 +69,15 @@ RSpec.describe Sts do
       declaration: true,
       encoding: "utf-8",
     )
+
     # puts generated
     expect(generated).to be_equivalent_to(doc)
+    # compare_c14n_xml(generated, doc)
+  end
+
+  def compare_c14n_xml(a, b)
+    g = Nokogiri::XML(a) { |config| config.strict }.canonicalize
+    r = Nokogiri::XML(b) { |config| config.strict }.canonicalize
+    expect(g).to eq(r)
   end
 end
