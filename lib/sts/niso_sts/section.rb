@@ -14,12 +14,6 @@ require_relative "title"
 require_relative "../tbx_iso_tml/table_wrap"
 
 module Sts
-  module TbxIsoTml
-    class TableWrap < Sts::Mapper; end
-  end
-end
-
-module Sts
   module NisoSts
     class Title < Sts::Mapper; end
 
@@ -39,7 +33,7 @@ module Sts
       attribute :figures, Figure, collection: true
       attribute :fig, Figure, collection: true
 
-      attribute :table_wrap, Sts::TbxIsoTml::TableWrap, collection: true
+      attribute :table_wrap, ::Sts::TbxIsoTml::TableWrap, collection: true
 
       xml do
         root "sec"
