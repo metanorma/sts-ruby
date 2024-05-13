@@ -5,17 +5,18 @@ require_relative "../mapper"
 require_relative "table"
 require_relative "table_wrap_foot"
 
-require_relative "../niso_sts/caption"
-
 module Sts
   module TbxIsoTml
     class TableWrap < Sts::Mapper
       attribute :id, Shale::Type::String
       attribute :orientation, Shale::Type::String
       attribute :label, Shale::Type::String
-      attribute :caption, Sts::NisoSts::Caption
       attribute :table, Sts::TbxIsoTml::Table, collection: true
       attribute :table_wrap_foot, Sts::TbxIsoTml::TableWrapFoot
+
+      # TODO: This require will cause a loop when defined in header
+      require_relative "../niso_sts/caption"
+      attribute :caption, Sts::NisoSts::Caption
 
       xml do
         root "table-wrap"

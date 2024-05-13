@@ -4,11 +4,10 @@ require_relative "../mapper"
 
 require_relative "metadata_iso"
 require_relative "metadata_std"
+require_relative "section"
 
 module Sts
   module NisoSts
-    class Section < Sts::Mapper; end
-
     class Front < Sts::Mapper
       attribute :iso_meta, MetadataIso
       attribute :std_meta, MetadataStd
