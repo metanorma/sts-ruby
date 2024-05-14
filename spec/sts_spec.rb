@@ -35,7 +35,7 @@ RSpec.describe Sts do
       encoding: "utf-8",
     )
 
-    compare_c14n_xml(generated, doc)
+    expect(generated).to be_analogous_with(doc)
   end
 
   it "parses ISO 13849-1:2008-12 file" do
@@ -52,7 +52,7 @@ RSpec.describe Sts do
       encoding: "utf-8",
     )
 
-    compare_c14n_xml(generated, doc)
+    expect(generated).to be_analogous_with(doc)
   end
 
   it "parses DIN EN ISO 13849-1:2008-12 file" do
@@ -69,12 +69,6 @@ RSpec.describe Sts do
       encoding: "utf-8",
     )
 
-    compare_c14n_xml(generated, doc)
-  end
-
-  def compare_c14n_xml(input, output)
-    g = Xml::C14n.format(input)
-    r = Xml::C14n.format(output)
-    expect(r).to eq(g)
+    expect(generated).to be_analogous_with(doc)
   end
 end
