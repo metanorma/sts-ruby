@@ -16,3 +16,5 @@ gem "rubocop", "~> 1.21"
 gem "rubocop-performance", "~> 1.19"
 
 gem "equivalent-xml", "~> 0.6"
+
+gem "xml-c14n"
