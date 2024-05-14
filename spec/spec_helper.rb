@@ -3,7 +3,7 @@
 require "sts"
 
 require "rspec/matchers"
-require "equivalent-xml"
+require "xml-c14n"
 Bundler.require(:development)
 
 Dir["./spec/support/**/*.rb"].sort.each { |file| require file }

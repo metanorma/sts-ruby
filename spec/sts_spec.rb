@@ -34,8 +34,8 @@ RSpec.describe Sts do
       declaration: true,
       encoding: "utf-8",
     )
-    # puts generated
-    expect(generated).to be_equivalent_to(doc)
+
+    compare_c14n_xml(generated, doc)
   end
 
   it "parses ISO 13849-1:2008-12 file" do
@@ -51,9 +51,8 @@ RSpec.describe Sts do
       declaration: true,
       encoding: "utf-8",
     )
-    # puts generated
-    expect(generated).to be_equivalent_to(doc)
-    # compare_c14n_xml(generated, doc)
+
+    compare_c14n_xml(generated, doc)
   end
 
   it "parses DIN EN ISO 13849-1:2008-12 file" do
@@ -70,14 +69,12 @@ RSpec.describe Sts do
       encoding: "utf-8",
     )
 
-    # puts generated
-    expect(generated).to be_equivalent_to(doc)
-    # compare_c14n_xml(generated, doc)
+    compare_c14n_xml(generated, doc)
   end
 
-  def compare_c14n_xml(generated, actual)
-    g = Nokogiri::XML(generated, &:strict).canonicalize
-    r = Nokogiri::XML(actual, &:strict).canonicalize
-    expect(g).to eq(r)
+  def compare_c14n_xml(input, output)
+    g = Xml::C14n.format(input)
+    r = Xml::C14n.format(output)
+    expect(r).to eq(g)
   end
 end
