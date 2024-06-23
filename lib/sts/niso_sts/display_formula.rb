@@ -9,7 +9,7 @@ module Sts
   module NisoSts
     class DisplayFormula < Sts::Mapper
       attribute :id, Shale::Type::String
-      attribute :label, Shale::Type::String
+      attribute :label, Label
       attribute :math, TbxIsoTml::Math
 
       xml do

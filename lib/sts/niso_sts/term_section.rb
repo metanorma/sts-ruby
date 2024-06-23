@@ -11,7 +11,7 @@ module Sts
     class TermSection < Sts::Mapper
       attribute :id, Shale::Type::String
       attribute :sec_type, Shale::Type::String
-      attribute :label, Shale::Type::String
+      attribute :label, Label
       attribute :term_entry, Sts::TbxIsoTml::TermEntry # , collection: true
       attribute :term_display, TermDisplay # , collection: true
 

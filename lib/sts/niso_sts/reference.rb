@@ -10,7 +10,7 @@ module Sts
     class Reference < Sts::Mapper
       attribute :content_type, Shale::Type::String
       attribute :id, Shale::Type::String
-      attribute :label, Shale::Type::String
+      attribute :label, Label
       attribute :mixed_citation, MixedCitation
       attribute :std, ReferenceStandard, collection: true
 

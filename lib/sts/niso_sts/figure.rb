@@ -21,7 +21,7 @@ module Sts
       attribute :orientation, Shale::Type::String
       attribute :caption, Caption
       attribute :def_list, DefList
-      attribute :label, Shale::Type::String
+      attribute :label, Label
       attribute :graphic, Graphic, collection: true
 
       xml do

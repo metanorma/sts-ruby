@@ -18,7 +18,7 @@ module Sts
     class App < Sts::Mapper
       attribute :id, Shale::Type::String
       attribute :content_type, Shale::Type::String
-      attribute :label, Shale::Type::String
+      attribute :label, Label
       attribute :annex_type, Shale::Type::String
       attribute :title, Title
       attribute :fig, Figure, collection: true
