@@ -10,7 +10,7 @@ module Sts
       attribute :id, Shale::Type::String
       attribute :content_type, Shale::Type::String
       attribute :p, Paragraph
-      attribute :label, Shale::Type::String
+      attribute :label, Label
 
       xml do
         root "non-normative-note"

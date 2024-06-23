@@ -21,7 +21,7 @@ module Sts
     class Section < Sts::Mapper
       attribute :id, Shale::Type::String
       attribute :specific_use, Shale::Type::String
-      attribute :label, Shale::Type::String
+      attribute :label, Label
       attribute :title, Title
       attribute :type, Shale::Type::String
       attribute :array, SectionArray

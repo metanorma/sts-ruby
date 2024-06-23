@@ -11,7 +11,7 @@ module Sts
     class NonNormativeExample < Sts::Mapper
       attribute :id, Shale::Type::String
       attribute :p, Paragraph
-      attribute :label, Shale::Type::String
+      attribute :label, Label
 
       xml do
         root "non-normative-example"

@@ -10,7 +10,7 @@ module Sts
     class List < Sts::Mapper; end
 
     class ListItem < Sts::Mapper
-      attribute :label, Shale::Type::String
+      attribute :label, Label
       attribute :list, List
       attribute :non_normative_example, NonNormativeExample
       attribute :p, Sts::NisoSts::Paragraph

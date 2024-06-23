@@ -11,7 +11,7 @@ module Sts
       attribute :id, Shale::Type::String
       attribute :specific_use, Shale::Type::String
       attribute :title, Shale::Type::String
-      attribute :label, Shale::Type::String
+      attribute :label, Label
       attribute :ref, Reference, collection: true
 
       xml do
