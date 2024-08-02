@@ -15,29 +15,29 @@ require_relative "../niso_sts/paragraph"
 module Sts
   module TbxIsoTml
     class Td < Sts::Mapper
-      attribute :content, Shale::Type::String
-      attribute :align, Shale::Type::String
-      attribute :scope, Shale::Type::String
-      attribute :style, Shale::Type::String
+      attribute :content, Lutaml::Model::Type::String
+      attribute :align, Lutaml::Model::Type::String
+      attribute :scope, Lutaml::Model::Type::String
+      attribute :style, Lutaml::Model::Type::String
       attribute :bold, Bold
       attribute :italic, Italic
-      attribute :content_type, Shale::Type::String
-      attribute :char, Shale::Type::String
-      attribute :charoff, Shale::Type::String
-      attribute :colspan, Shale::Type::String
-      attribute :rowspan, Shale::Type::String
-      attribute :valign, Shale::Type::String
+      attribute :content_type, Lutaml::Model::Type::String
+      attribute :char, Lutaml::Model::Type::String
+      attribute :charoff, Lutaml::Model::Type::String
+      attribute :colspan, Lutaml::Model::Type::String
+      attribute :rowspan, Lutaml::Model::Type::String
+      attribute :valign, Lutaml::Model::Type::String
       attribute :inline_formula, Sts::NisoSts::InlineFormula, collection: true
-      attribute :non_normative_note, Sts::NisoSts::NonNormativeNote
+      attribute :non_normative_note, Sts::NisoSts::NonNormativeNote, collection: true
       attribute :list, Sts::NisoSts::List
-      attribute :xref, Xref
+      attribute :xref, Xref, collection: true
       attribute :std, Sts::NisoSts::ReferenceStandard
       attribute :graphic, Sts::NisoSts::Graphic
       attribute :def_list, Sts::NisoSts::DefList
       attribute :paragraph, Sts::NisoSts::Paragraph
 
       xml do
-        root "tr"
+        root "td", mixed: true
 
         map_content to: :content
 

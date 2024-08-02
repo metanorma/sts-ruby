@@ -17,7 +17,7 @@ module Sts
     class Caption < Sts::Mapper; end
 
     class LangSet < Sts::Mapper
-      attribute :lang, Shale::Type::String
+      attribute :lang, Lutaml::Model::Type::String
       attribute :definition, Sts::TbxIsoTml::Definition, collection: true
       attribute :note, Note, collection: true
       attribute :example, Example, collection: true
@@ -25,12 +25,12 @@ module Sts
       attribute :see, See, collection: true
       attribute :source, Source, collection: true
       attribute :x_source, ExternalSource, collection: true
-      attribute :cross_reference, Shale::Type::String, collection: true
-      attribute :subject_field, Shale::Type::String
+      attribute :cross_reference, Lutaml::Model::Type::String, collection: true
+      attribute :subject_field, Lutaml::Model::Type::String
       # attribute :x_graphic, ExternalGraphic, collection: true
 
       xml do
-        root "langSet"
+        root "langSet", mixed: true
         namespace "urn:iso:std:iso:30042:ed-1", "tbx"
 
         map_attribute "lang", to: :lang,

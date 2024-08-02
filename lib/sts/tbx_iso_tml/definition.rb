@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "shale"
-
 require_relative "entailed_term"
 require_relative "note"
 require_relative "italic"
@@ -12,17 +10,17 @@ require_relative "../niso_sts/reference_standard"
 module Sts
   module TbxIsoTml
     class Definition < Sts::Mapper
-      attribute :entailed_term, EntailedTerm
+      attribute :entailed_term, EntailedTerm, collection: true
       attribute :note, Note
-      attribute :value, Shale::Type::String
+      attribute :value, Lutaml::Model::Type::String
       attribute :italic, Italic
       attribute :math, Sts::TbxIsoTml::Math
-      attribute :sub, Shale::Type::String
+      attribute :sub, Lutaml::Model::Type::String
       attribute :list, Sts::NisoSts::List, collection: true
       attribute :std, Sts::NisoSts::ReferenceStandard, collection: true
 
       xml do
-        root "definition"
+        root "definition", mixed: true
         namespace "urn:iso:std:iso:30042:ed-1", "tbx"
 
         map_content to: :value

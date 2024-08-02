@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "shale"
-
 require_relative "../mapper"
 require_relative "entailed_term"
 
@@ -10,13 +8,13 @@ require_relative "../niso_sts/inline_formula"
 module Sts
   module TbxIsoTml
     class Example < Sts::Mapper
-      attribute :id, Shale::Type::String
-      attribute :value, Shale::Type::String
-      attribute :entailed_term, EntailedTerm
+      attribute :id, Lutaml::Model::Type::String
+      attribute :value, Lutaml::Model::Type::String
+      attribute :entailed_term, EntailedTerm, collection: true
       attribute :inline_formula, Sts::NisoSts::InlineFormula
 
       xml do
-        root "example"
+        root "example", mixed: true
         namespace "urn:iso:std:iso:30042:ed-1", "tbx"
 
         map_content to: :value

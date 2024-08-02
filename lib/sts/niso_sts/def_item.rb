@@ -8,7 +8,7 @@ require_relative "../tbx_iso_tml/term"
 module Sts
   module NisoSts
     class DefItem < Sts::Mapper
-      attribute :specific_use, Shale::Type::String
+      attribute :specific_use, Lutaml::Model::Type::String
       attribute :term, TbxIsoTml::Term
       attribute :definition, Def
 

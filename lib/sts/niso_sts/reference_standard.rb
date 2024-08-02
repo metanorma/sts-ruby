@@ -9,17 +9,17 @@ require_relative "../tbx_iso_tml/xref"
 module Sts
   module NisoSts
     class ReferenceStandard < Sts::Mapper
-      attribute :type, Shale::Type::String
-      attribute :std_id, Shale::Type::String
-      attribute :content, Shale::Type::String
+      attribute :type, Lutaml::Model::Type::String
+      attribute :std_id, Lutaml::Model::Type::String
+      attribute :content, Lutaml::Model::Type::String
       attribute :std_ref, StandardRef
-      attribute :title, Shale::Type::String
+      attribute :title, Lutaml::Model::Type::String
       attribute :fn, Fn, collection: true
       attribute :std_id_group, StdIdGroup, collection: true
       attribute :xref, Sts::TbxIsoTml::Xref, collection: true
 
       xml do
-        root "std"
+        root "std", mixed: true
 
         map_attribute "type", to: :type
         map_attribute "std-id", to: :std_id

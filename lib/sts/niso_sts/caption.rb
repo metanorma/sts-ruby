@@ -36,7 +36,7 @@ module Sts
       attribute :non_normative_note, NonNormativeNote, collection: true
 
       xml do
-        root "caption"
+        root "caption", mixed: true
 
         map_element "p", to: :paragraphs
         map_element "non-normative-note", to: :non_normative_note

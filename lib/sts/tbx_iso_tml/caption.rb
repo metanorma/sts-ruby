@@ -5,7 +5,7 @@ require_relative "../mapper"
 module Sts
   module TbxIsoTml
     class Caption < Sts::Mapper
-      attribute :p, Shale::Type::String
+      attribute :p, Lutaml::Model::Type::String
 
       xml do
         root "caption"

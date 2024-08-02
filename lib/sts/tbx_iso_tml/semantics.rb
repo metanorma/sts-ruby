@@ -9,12 +9,13 @@ module Sts
   module TbxIsoTml
     class Semantics < Sts::Mapper
       attribute :mrow, Mrow, collection: true
-      attribute :mo, Shale::Type::String
-      attribute :mtext, Shale::Type::String
+      attribute :mo, Lutaml::Model::Type::String
+      attribute :mtext, Lutaml::Model::Type::String
       attribute :munder, Sts::TbxIsoTml::Munder
+      attribute :content, Lutaml::Model::Type::String
 
       xml do
-        root "math"
+        root "semantics", mixed: true
         namespace "http://www.w3.org/1998/Math/MathML", "mml"
 
         map_element "mrow", to: :mrow

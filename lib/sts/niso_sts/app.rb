@@ -16,10 +16,10 @@ module Sts
     class ReferenceList < Sts::Mapper; end
 
     class App < Sts::Mapper
-      attribute :id, Shale::Type::String
-      attribute :content_type, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
+      attribute :content_type, Lutaml::Model::Type::String
       attribute :label, Label
-      attribute :annex_type, Shale::Type::String
+      attribute :annex_type, Lutaml::Model::Type::String
       attribute :title, Title
       attribute :fig, Figure, collection: true
       attribute :sec, Section, collection: true
@@ -29,7 +29,7 @@ module Sts
       attribute :table_wrap, Sts::TbxIsoTml::TableWrap, collection: true
 
       xml do
-        root "app"
+        root "app", mixed: true
 
         map_attribute "id", to: :id
         map_attribute "content-type", to: :content_type

@@ -10,11 +10,11 @@ module Sts
     class Msup < Sts::Mapper
       attribute :mstyle, Mstyle
       attribute :mrow, Mrow
-      attribute :mi, Shale::Type::String
-      attribute :mn, Shale::Type::String
+      attribute :mi, Lutaml::Model::Type::String
+      attribute :mn, Lutaml::Model::Type::String, collection: true
 
       xml do
-        root "mstyle"
+        root "msup"
         namespace "http://www.w3.org/1998/Math/MathML", "mml"
 
         map_element "mstyle", to: :mstyle

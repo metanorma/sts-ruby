@@ -5,10 +5,10 @@ require_relative "../mapper"
 module Sts
   module TbxIsoTml
     class Col < Sts::Mapper
-      attribute :width, Sts::TbxIsoTml::Col
-      attribute :char, Sts::TbxIsoTml::Col
-      attribute :charoff, Sts::TbxIsoTml::Col
-      attribute :span, Sts::TbxIsoTml::Col
+      attribute :width, Lutaml::Model::Type::String
+      attribute :char, Lutaml::Model::Type::String
+      attribute :charoff, Lutaml::Model::Type::String
+      attribute :span, Lutaml::Model::Type::String
 
       xml do
         root "col"

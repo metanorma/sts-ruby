@@ -5,7 +5,7 @@ require_relative "../mapper"
 module Sts
   module NisoSts
     class StdCrossReference < Sts::Mapper
-      attribute :type, Shale::Type::String
+      attribute :type, Lutaml::Model::Type::String
       attribute :std_ref, StandardRef, collection: true
 
       xml do

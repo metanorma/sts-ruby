@@ -7,7 +7,7 @@ require_relative "../tbx_iso_tml/table"
 module Sts
   module NisoSts
     class SectionArray < Sts::Mapper
-      attribute :id, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
       attribute :table, Sts::TbxIsoTml::Table
 
       xml do

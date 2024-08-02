@@ -14,19 +14,19 @@ require_relative "../niso_sts/reference_standard"
 module Sts
   module TbxIsoTml
     class Note < Sts::Mapper
-      attribute :id, Shale::Type::String
-      attribute :value, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
+      attribute :value, Lutaml::Model::Type::String
       attribute :table_wrap, Sts::TbxIsoTml::TableWrap
-      attribute :entailed_term, EntailedTerm
-      attribute :math, Sts::TbxIsoTml::Math
+      attribute :entailed_term, EntailedTerm, collection: true
+      attribute :math, Sts::TbxIsoTml::Math, collection: true
       attribute :xref, Sts::TbxIsoTml::Xref
       attribute :list, Sts::NisoSts::List
       attribute :std, Sts::NisoSts::ReferenceStandard
       attribute :sup, Sup
-      attribute :italic, Italic
+      attribute :italic, Italic, collection: true
 
       xml do
-        root "note"
+        root "note", mixed: true
         namespace "urn:iso:std:iso:30042:ed-1", "tbx"
 
         map_attribute "id", to: :id

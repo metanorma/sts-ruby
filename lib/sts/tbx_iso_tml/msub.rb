@@ -12,13 +12,13 @@ module Sts
       attribute :mstyle, Mstyle, collection: true
       attribute :mrow, Mrow
       attribute :mspace, Mspace
-      attribute :mo, Shale::Type::String, collection: true
-      attribute :mi, Shale::Type::String, collection: true
-      attribute :mn, Shale::Type::String, collection: true
-      attribute :mtext, Shale::Type::String, collection: true
+      attribute :mo, Lutaml::Model::Type::String, collection: true
+      attribute :mi, Lutaml::Model::Type::String, collection: true
+      attribute :mn, Lutaml::Model::Type::String, collection: true
+      attribute :mtext, Lutaml::Model::Type::String, collection: true
 
       xml do
-        root "mstyle"
+        root "msub", mixed: true
         namespace "http://www.w3.org/1998/Math/MathML", "mml"
 
         map_element "mstyle", to: :mstyle

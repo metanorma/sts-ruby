@@ -5,9 +5,9 @@ require_relative "../mapper"
 module Sts
   module NisoSts
     class CustomMeta < Sts::Mapper
-      attribute :lang, Shale::Type::String
-      attribute :meta_name, Shale::Type::String
-      attribute :meta_value, Shale::Type::String
+      attribute :lang, Lutaml::Model::Type::String
+      attribute :meta_name, Lutaml::Model::Type::String
+      attribute :meta_value, Lutaml::Model::Type::String
 
       xml do
         root "custom-meta"

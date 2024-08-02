@@ -5,14 +5,14 @@ require_relative "../mapper"
 module Sts
   module NisoSts
     class DocumentIdentification < Sts::Mapper
-      attribute :sdo, Shale::Type::String
-      attribute :proj_id, Shale::Type::String
-      attribute :language, Shale::Type::String
-      attribute :release_version, Shale::Type::String
-      attribute :urn, Shale::Type::String
+      attribute :sdo, Lutaml::Model::Type::String
+      attribute :proj_id, Lutaml::Model::Type::String
+      attribute :language, Lutaml::Model::Type::String
+      attribute :release_version, Lutaml::Model::Type::String
+      attribute :urn, Lutaml::Model::Type::String
 
       xml do
-        root "doc-iden"
+        root "doc-ident"
 
         map_element "sdo", to: :sdo
         map_element "proj-id", to: :proj_id

@@ -13,7 +13,7 @@ require_relative "object_id"
 module Sts
   module NisoSts
     class Graphic < Sts::Mapper
-      attribute :href, Shale::Type::String
+      attribute :href, Lutaml::Model::Type::String
       attribute :object_id, ObjectId, collection: true
 
       xml do

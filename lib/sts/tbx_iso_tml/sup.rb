@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "shale"
-
 require_relative "../mapper"
 require_relative "xref"
 
@@ -10,7 +8,7 @@ module Sts
     class Xref < Sts::Mapper; end
 
     class Sup < Sts::Mapper
-      attribute :value, Shale::Type::String
+      attribute :value, Lutaml::Model::Type::String
       attribute :xref, Xref
 
       xml do

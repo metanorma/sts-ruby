@@ -7,9 +7,9 @@ require_relative "def_item"
 module Sts
   module NisoSts
     class DefList < Sts::Mapper
-      attribute :title, Shale::Type::String
-      attribute :specific_use, Shale::Type::String
-      attribute :list_type, Shale::Type::String
+      attribute :title, Lutaml::Model::Type::String
+      attribute :specific_use, Lutaml::Model::Type::String
+      attribute :list_type, Lutaml::Model::Type::String
       attribute :def_item, DefItem, collection: true
       attribute :def_list, DefList
 

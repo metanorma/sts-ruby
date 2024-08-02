@@ -5,7 +5,7 @@ require_relative "../mapper"
 module Sts
   module TbxIsoTml
     class Mspace < Sts::Mapper
-      attribute :width, Shale::Type::String
+      attribute :width, Lutaml::Model::Type::String
 
       xml do
         root "mspace"

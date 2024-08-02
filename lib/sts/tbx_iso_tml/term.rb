@@ -12,20 +12,20 @@ require_relative "../niso_sts/inline_formula"
 module Sts
   module TbxIsoTml
     class Term < Sts::Mapper
-      attribute :id, Shale::Type::String
-      attribute :script, Shale::Type::String
-      attribute :value, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
+      attribute :script, Lutaml::Model::Type::String
+      attribute :value, Lutaml::Model::Type::String
       attribute :italic, Sts::TbxIsoTml::Italic
-      attribute :bold, Shale::Type::String
-      attribute :sub, Shale::Type::String
+      attribute :bold, Lutaml::Model::Type::String
+      attribute :sub, Lutaml::Model::Type::String
       attribute :math, Sts::TbxIsoTml::Math
       attribute :xref, Sts::TbxIsoTml::Xref
-      attribute :inline_formula, Sts::NisoSts::InlineFormula
+      attribute :inline_formula, Sts::NisoSts::InlineFormula, collection: true
       attribute :named_content, Sts::TbxIsoTml::NamedContent
 
       xml do
-        root "term"
-        namespace "urn:iso:std:iso:30042:ed-1", "tbx"
+        root "term", mixed: true
+        # namespace "urn:iso:std:iso:30042:ed-1", "tbx"
 
         map_attribute "id", to: :id
         map_attribute "script", to: :script

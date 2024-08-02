@@ -8,9 +8,9 @@ module Sts
   module TbxIsoTml
     class Tbody < Sts::Mapper
       attribute :tr, Sts::TbxIsoTml::Tr, collection: true
-      attribute :char, Shale::Type::String
-      attribute :charoff, Shale::Type::String
-      attribute :valign, Shale::Type::String
+      attribute :char, Lutaml::Model::Type::String
+      attribute :charoff, Lutaml::Model::Type::String
+      attribute :valign, Lutaml::Model::Type::String
 
       xml do
         root "tbody"

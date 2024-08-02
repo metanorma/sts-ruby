@@ -6,7 +6,7 @@ module Sts
   module TbxIsoTml
     class GrammaticalGender < Sts::Mapper
       # TODO: can be masculine, feminine, singular
-      attribute :value, Shale::Type::String
+      attribute :value, Lutaml::Model::Type::String
 
       xml do
         root "grammaticalGender"

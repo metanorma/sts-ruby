@@ -10,20 +10,20 @@ require_relative "mfrac"
 module Sts
   module TbxIsoTml
     class Mfenced < Sts::Mapper
-      attribute :separators, Shale::Type::String
-      attribute :open, Shale::Type::String
-      attribute :close, Shale::Type::String
-      attribute :mo, Shale::Type::String
-      attribute :mn, Shale::Type::String
-      attribute :mi, Shale::Type::String
-      attribute :mtext, Shale::Type::String
+      attribute :separators, Lutaml::Model::Type::String
+      attribute :open, Lutaml::Model::Type::String
+      attribute :close, Lutaml::Model::Type::String
+      attribute :mo, Lutaml::Model::Type::String, collection: true
+      attribute :mn, Lutaml::Model::Type::String, collection: true
+      attribute :mi, Lutaml::Model::Type::String
+      attribute :mtext, Lutaml::Model::Type::String
       attribute :mspace, Mspace, collection: true
       attribute :msub, Msub, collection: true
       attribute :mstyle, Mstyle, collection: true
       attribute :mfrac, Mfrac, collection: true
 
       xml do
-        root "math"
+        root "mfenced", mixed: true
         namespace "http://www.w3.org/1998/Math/MathML", "mml"
 
         map_attribute "separators", to: :separators

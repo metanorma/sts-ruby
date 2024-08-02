@@ -17,16 +17,16 @@ module Sts
     class Mfenced < Sts::Mapper; end
 
     class Math < Sts::Mapper
-      attribute :id, Shale::Type::String
-      attribute :content, Shale::Type::String
-      attribute :display, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
+      attribute :content, Lutaml::Model::Type::String
+      attribute :display, Lutaml::Model::Type::String
       attribute :mrow, Mrow
-      attribute :msub, Msub
+      attribute :msub, Msub, collection: true
       attribute :msup, Msup
-      attribute :mn, Shale::Type::String
-      attribute :mo, Shale::Type::String
-      attribute :mi, Shale::Type::String
-      attribute :mtext, Shale::Type::String
+      attribute :mn, Lutaml::Model::Type::String, collection: true
+      attribute :mo, Lutaml::Model::Type::String, collection: true
+      attribute :mi, Lutaml::Model::Type::String
+      attribute :mtext, Lutaml::Model::Type::String
       attribute :semantics, Semantics
       attribute :mstyle, Mstyle, collection: true
       attribute :mfenced, Mfenced, collection: true
@@ -35,7 +35,7 @@ module Sts
       attribute :munderover, Munderover, collection: true
 
       xml do
-        root "math"
+        root "math", mixed: true
         namespace "http://www.w3.org/1998/Math/MathML", "mml"
 
         map_attribute "id", to: :id

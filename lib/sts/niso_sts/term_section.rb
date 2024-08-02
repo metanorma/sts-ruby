@@ -9,14 +9,14 @@ require_relative "../tbx_iso_tml/term_entry"
 module Sts
   module NisoSts
     class TermSection < Sts::Mapper
-      attribute :id, Shale::Type::String
-      attribute :sec_type, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
+      attribute :sec_type, Lutaml::Model::Type::String
       attribute :label, Label
       attribute :term_entry, Sts::TbxIsoTml::TermEntry # , collection: true
       attribute :term_display, TermDisplay # , collection: true
 
       xml do
-        root "term-sec"
+        root "term-sec", mixed: true
         map_attribute "id", to: :id
         map_attribute "sec-type", to: :sec_type
 

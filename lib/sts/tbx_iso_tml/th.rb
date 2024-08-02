@@ -11,17 +11,17 @@ require_relative "../niso_sts/inline_formula"
 module Sts
   module TbxIsoTml
     class Th < Sts::Mapper
-      attribute :content, Shale::Type::String
-      attribute :colspan, Shale::Type::String
-      attribute :align, Shale::Type::String
-      attribute :scope, Shale::Type::String
-      attribute :style, Shale::Type::String
-      attribute :rowspan, Shale::Type::String
-      attribute :break, Shale::Type::String
-      attribute :content_type, Shale::Type::String
-      attribute :char, Shale::Type::String
-      attribute :charoff, Shale::Type::String
-      attribute :valign, Shale::Type::String
+      attribute :content, Lutaml::Model::Type::String
+      attribute :colspan, Lutaml::Model::Type::String
+      attribute :align, Lutaml::Model::Type::String
+      attribute :scope, Lutaml::Model::Type::String
+      attribute :style, Lutaml::Model::Type::String
+      attribute :rowspan, Lutaml::Model::Type::String
+      attribute :break, Lutaml::Model::Type::String
+      attribute :content_type, Lutaml::Model::Type::String
+      attribute :char, Lutaml::Model::Type::String
+      attribute :charoff, Lutaml::Model::Type::String
+      attribute :valign, Lutaml::Model::Type::String
       attribute :italic, Italic
       attribute :bold, Bold
       attribute :std, Sts::NisoSts::ReferenceStandard
@@ -29,7 +29,7 @@ module Sts
       attribute :inline_formula, Sts::NisoSts::InlineFormula, collection: true
 
       xml do
-        root "th"
+        root "th", mixed: true
 
         map_content to: :content
         map_attribute "colspan", to: :colspan

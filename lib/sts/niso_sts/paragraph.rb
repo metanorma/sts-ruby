@@ -19,24 +19,24 @@ module Sts
     class ReferenceStandard < Sts::Mapper; end
 
     class Paragraph < Sts::Mapper
-      attribute :id, Shale::Type::String
-      attribute :text, Shale::Type::String
-      attribute :italic, Shale::Type::String
-      attribute :bold, Shale::Type::String
-      attribute :uri, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
+      attribute :text, Lutaml::Model::Type::String
+      attribute :italic, Lutaml::Model::Type::String, collection: true
+      attribute :bold, Lutaml::Model::Type::String, collection: true
+      attribute :uri, Lutaml::Model::Type::String
       attribute :list, Sts::NisoSts::List
       attribute :def_list, DefList
       attribute :non_normative_note, NonNormativeNote
       attribute :non_normative_example, NonNormativeExample
       attribute :inline_formula, Sts::NisoSts::InlineFormula, collection: true
       attribute :disp_formula, Sts::NisoSts::DisplayFormula, collection: true
-      attribute :xref, TbxIsoTml::Xref
-      attribute :std, ReferenceStandard
+      attribute :xref, TbxIsoTml::Xref, collection: true
+      attribute :std, ReferenceStandard, collection: true
       attribute :ext_link, ExtLink
       attribute :entailed_term, Sts::TbxIsoTml::EntailedTerm
 
       xml do
-        root "p"
+        root "p", mixed: true
 
         map_attribute "id", to: :id
         map_content to: :text

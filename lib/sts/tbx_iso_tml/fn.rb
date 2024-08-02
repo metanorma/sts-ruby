@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-require "shale"
-
 require_relative "../niso_sts/paragraph"
 
 module Sts
   module TbxIsoTml
     class Fn < Sts::Mapper
-      attribute :id, Shale::Type::String
-      attribute :label, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
+      attribute :label, Lutaml::Model::Type::String
       attribute :p, Sts::NisoSts::Paragraph
 
       xml do
