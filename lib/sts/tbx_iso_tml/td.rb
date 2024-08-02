@@ -28,7 +28,9 @@ module Sts
       attribute :rowspan, Lutaml::Model::Type::String
       attribute :valign, Lutaml::Model::Type::String
       attribute :inline_formula, Sts::NisoSts::InlineFormula, collection: true
-      attribute :non_normative_note, Sts::NisoSts::NonNormativeNote, collection: true
+      attribute :non_normative_note,
+                Sts::NisoSts::NonNormativeNote,
+                collection: true
       attribute :list, Sts::NisoSts::List
       attribute :xref, Xref, collection: true
       attribute :std, Sts::NisoSts::ReferenceStandard
