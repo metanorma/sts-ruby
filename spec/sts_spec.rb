@@ -35,7 +35,8 @@ RSpec.describe Sts do
       encoding: "utf-8",
     )
 
-    expect(Xml::C14n.format(generated)).to be_analogous_with(Xml::C14n.format(doc))
+    expect(Xml::C14n.format(generated))
+      .to be_analogous_with(Xml::C14n.format(doc))
   end
 
   it "parses ISO 13849-1:2008-12 file" do

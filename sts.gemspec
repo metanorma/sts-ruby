@@ -29,8 +29,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "nokogiri"
   spec.add_dependency "lutaml-model", "~> 0.3.0"
+  spec.add_dependency "nokogiri"
 
   # spec.add_dependency "thor"
+  spec.metadata["rubygems_mfa_required"] = "true"
 end
