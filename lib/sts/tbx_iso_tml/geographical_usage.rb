@@ -5,7 +5,7 @@ require_relative "../mapper"
 module Sts
   module TbxIsoTml
     class GeographicalUsage < Sts::Mapper
-      attribute :value, Shale::Type::String
+      attribute :value, Lutaml::Model::Type::String
 
       xml do
         root "geographicalUsage"

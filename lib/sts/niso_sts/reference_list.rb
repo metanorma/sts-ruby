@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
-require "shale"
-
 require_relative "reference"
 
 module Sts
   module NisoSts
     class ReferenceList < Sts::Mapper
-      attribute :content_type, Shale::Type::String
-      attribute :id, Shale::Type::String
-      attribute :specific_use, Shale::Type::String
-      attribute :title, Shale::Type::String
+      attribute :content_type, Lutaml::Model::Type::String
+      attribute :id, Lutaml::Model::Type::String
+      attribute :specific_use, Lutaml::Model::Type::String
+      attribute :title, Lutaml::Model::Type::String
       attribute :label, Label
       attribute :ref, Reference, collection: true
 

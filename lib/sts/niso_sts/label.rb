@@ -7,7 +7,7 @@ require_relative "../tbx_iso_tml/sup"
 module Sts
   module NisoSts
     class Label < Sts::Mapper
-      attribute :content, Shale::Type::String
+      attribute :content, Lutaml::Model::Type::String
       attribute :sup, Sts::TbxIsoTml::Sup
 
       xml do

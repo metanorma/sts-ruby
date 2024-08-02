@@ -8,12 +8,12 @@ require_relative "external_graphic"
 module Sts
   module TbxIsoTml
     class TermEntry < Sts::Mapper
-      attribute :id, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
       attribute :lang_set, LangSet, collection: true
       attribute :x_graphic, ExternalGraphic, collection: true
 
       xml do
-        root "termEntry"
+        root "termEntry", mixed: true
         namespace "urn:iso:std:iso:30042:ed-1", "tbx"
 
         map_attribute "id", to: :id

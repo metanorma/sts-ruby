@@ -5,9 +5,9 @@ require_relative "../mapper"
 module Sts
   module NisoSts
     class ExtLink < Sts::Mapper
-      attribute :ext_link_type, Shale::Type::String
-      attribute :href, Shale::Type::String
-      attribute :content, Shale::Type::String
+      attribute :ext_link_type, Lutaml::Model::Type::String
+      attribute :href, Lutaml::Model::Type::String
+      attribute :content, Lutaml::Model::Type::String
 
       xml do
         root "ext-link"

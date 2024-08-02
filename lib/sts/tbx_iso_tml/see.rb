@@ -5,8 +5,8 @@ require_relative "../mapper"
 module Sts
   module TbxIsoTml
     class See < Sts::Mapper
-      attribute :script, Shale::Type::String
-      attribute :value, Shale::Type::String
+      attribute :script, Lutaml::Model::Type::String
+      attribute :value, Lutaml::Model::Type::String
 
       xml do
         root "see"

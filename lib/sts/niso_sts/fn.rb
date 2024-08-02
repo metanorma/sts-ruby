@@ -8,7 +8,7 @@ require_relative "paragraph"
 module Sts
   module NisoSts
     class Fn < Sts::Mapper
-      attribute :id, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
       attribute :label, Label
       attribute :paragraph, Paragraph
 

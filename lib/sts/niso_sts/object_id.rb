@@ -9,8 +9,8 @@ require_relative "../mapper"
 module Sts
   module NisoSts
     class ObjectId < Sts::Mapper
-      attribute :pub_id_type, Shale::Type::String
-      attribute :content, Shale::Type::String
+      attribute :pub_id_type, Lutaml::Model::Type::String
+      attribute :content, Lutaml::Model::Type::String
 
       xml do
         root "object-id"

@@ -6,7 +6,7 @@ module Sts
   module TbxIsoTml
     class PartOfSpeech < Sts::Mapper
       # TODO: can be `noun`, `verb`, `adj`, `adv`
-      attribute :value, Shale::Type::String
+      attribute :value, Lutaml::Model::Type::String
 
       xml do
         root "partOfSpeech"

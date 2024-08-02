@@ -9,12 +9,12 @@ module Sts
     class Paragraph < Sts::Mapper; end
 
     class NonNormativeExample < Sts::Mapper
-      attribute :id, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
       attribute :p, Paragraph
       attribute :label, Label
 
       xml do
-        root "non-normative-example"
+        root "non-normative-example", mixed: true
 
         map_attribute "id", to: :id
         map_element "p", to: :p

@@ -8,13 +8,13 @@ module Sts
     class Adoption < Sts::Mapper
       attribute :front, AdoptionFront
       attribute :back, Back
-      attribute :id, Shale::Type::String
-      attribute :lang, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
+      attribute :lang, Lutaml::Model::Type::String
       attribute :adoptions, Adoption, collection: true
       attribute :standard, Standard
 
       xml do
-        root "adoption"
+        root "adoption", mixed: true
 
         map_attribute "id", to: :id
         map_attribute "lang", to: :lang,

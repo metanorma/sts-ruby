@@ -15,17 +15,17 @@ module Sts
     class TermInformationGroup < Sts::Mapper
       attribute :term, Term
       attribute :pos, PartOfSpeech
-      attribute :id, Shale::Type::String
-      attribute :usage_note, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
+      attribute :usage_note, Lutaml::Model::Type::String
       attribute :normative_authorization, NormativeAuthorization
       attribute :geographical_usage, GeographicalUsage
       attribute :grammatical_gender, GrammaticalGender
       attribute :grammatical_number, GrammaticalNumber
-      attribute :pronunciation, Shale::Type::String
+      attribute :pronunciation, Lutaml::Model::Type::String
       attribute :term_type, TermType
 
       xml do
-        root "tig"
+        root "tig", mixed: true
         namespace "urn:iso:std:iso:30042:ed-1", "tbx"
 
         map_attribute "id", to: :id

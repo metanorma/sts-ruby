@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
-require "shale"
-
 require_relative "reference_standard"
 require_relative "mixed_citation"
 
 module Sts
   module NisoSts
     class Reference < Sts::Mapper
-      attribute :content_type, Shale::Type::String
-      attribute :id, Shale::Type::String
+      attribute :content_type, Lutaml::Model::Type::String
+      attribute :id, Lutaml::Model::Type::String
       attribute :label, Label
       attribute :mixed_citation, MixedCitation
       attribute :std, ReferenceStandard, collection: true

@@ -5,7 +5,7 @@ require_relative "../mapper"
 module Sts
   module NisoSts
     class PageCount < Sts::Mapper
-      attribute :count, Shale::Type::Integer
+      attribute :count, Lutaml::Model::Type::Integer
 
       xml do
         root "page-count"

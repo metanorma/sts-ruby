@@ -5,8 +5,8 @@ require_relative "../mapper"
 module Sts
   module NisoSts
     class MetaDate < Sts::Mapper
-      attribute :content, Shale::Type::String
-      attribute :type, Shale::Type::String
+      attribute :content, Lutaml::Model::Type::String
+      attribute :type, Lutaml::Model::Type::String
 
       xml do
         root "meta-date"

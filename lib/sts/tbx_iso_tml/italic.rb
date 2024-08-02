@@ -5,11 +5,11 @@ require_relative "../mapper"
 module Sts
   module TbxIsoTml
     class Italic < Sts::Mapper
-      attribute :value, Shale::Type::String
-      attribute :sub, Shale::Type::String
+      attribute :value, Lutaml::Model::Type::String
+      attribute :sub, Lutaml::Model::Type::String
 
       xml do
-        root "italic"
+        root "italic", mixed: true
         namespace nil, nil
 
         map_content to: :value

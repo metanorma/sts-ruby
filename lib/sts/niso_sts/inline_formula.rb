@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "shale"
-
 require_relative "../mapper"
 require_relative "../tbx_iso_tml/math"
 

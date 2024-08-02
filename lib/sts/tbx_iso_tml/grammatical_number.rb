@@ -6,7 +6,7 @@ module Sts
   module TbxIsoTml
     class GrammaticalNumber < Sts::Mapper
       # TODO: can be singular | plural
-      attribute :value, Shale::Type::String
+      attribute :value, Lutaml::Model::Type::String
 
       xml do
         root "grammaticalNumber"

@@ -14,7 +14,7 @@ module Sts
       # - symbol
       # - variant
 
-      attribute :value, Shale::Type::String
+      attribute :value, Lutaml::Model::Type::String
 
       xml do
         root "termType"

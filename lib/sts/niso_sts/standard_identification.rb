@@ -7,16 +7,16 @@ require_relative "std_id_group"
 module Sts
   module NisoSts
     class StandardIdentification < Sts::Mapper
-      attribute :originator, Shale::Type::String
-      attribute :doc_type, Shale::Type::String
-      attribute :doc_number, Shale::Type::String
-      attribute :edition, Shale::Type::String
-      attribute :version, Shale::Type::String
-      attribute :part_number, Shale::Type::String
+      attribute :originator, Lutaml::Model::Type::String
+      attribute :doc_type, Lutaml::Model::Type::String
+      attribute :doc_number, Lutaml::Model::Type::String
+      attribute :edition, Lutaml::Model::Type::String
+      attribute :version, Lutaml::Model::Type::String
+      attribute :part_number, Lutaml::Model::Type::String
       attribute :std_id_group, StdIdGroup
 
       xml do
-        root "std-iden"
+        root "std-ident", mixed: true
 
         map_element "originator", to: :originator
         map_element "doc-type", to: :doc_type

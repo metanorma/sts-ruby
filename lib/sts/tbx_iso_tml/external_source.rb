@@ -5,8 +5,8 @@ require_relative "../mapper"
 module Sts
   module TbxIsoTml
     class ExternalSource < Sts::Mapper
-      attribute :target, Shale::Type::String
-      attribute :value, Shale::Type::String
+      attribute :target, Lutaml::Model::Type::String
+      attribute :value, Lutaml::Model::Type::String
 
       xml do
         root "xSource"

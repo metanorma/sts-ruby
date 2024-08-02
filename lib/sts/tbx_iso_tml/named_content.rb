@@ -5,8 +5,8 @@ require_relative "../mapper"
 module Sts
   module TbxIsoTml
     class NamedContent < Sts::Mapper
-      attribute :content_type, Shale::Type::String
-      attribute :content, Shale::Type::String
+      attribute :content_type, Lutaml::Model::Type::String
+      attribute :content, Lutaml::Model::Type::String
 
       xml do
         root "named-content"

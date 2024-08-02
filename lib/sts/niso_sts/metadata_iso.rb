@@ -15,25 +15,25 @@ require_relative "title_wrap"
 module Sts
   module NisoSts
     class MetadataIso < Sts::Mapper
-      attribute :comm_ref, Shale::Type::String
-      attribute :content_language, Shale::Type::String
+      attribute :comm_ref, Lutaml::Model::Type::String
+      attribute :content_language, Lutaml::Model::Type::String
       attribute :custom_meta_group, CustomMetaGroup
       attribute :doc_ident, DocumentIdentification
-      attribute :doc_ref, Shale::Type::String
-      attribute :ics, Shale::Type::String
+      attribute :doc_ref, Lutaml::Model::Type::String
+      attribute :ics, Lutaml::Model::Type::String
       attribute :meta_date, MetaDate
       attribute :page_count, PageCount
       attribute :permissions, Permissions
-      attribute :pub_date, Shale::Type::String
-      attribute :release_date, Shale::Type::String
-      attribute :secretariat, Shale::Type::String
+      attribute :pub_date, Lutaml::Model::Type::String
+      attribute :release_date, Lutaml::Model::Type::String
+      attribute :secretariat, Lutaml::Model::Type::String
       attribute :std_ident, StandardIdentification
       attribute :std_ref, StandardRef
       attribute :std_xref, StdCrossReference
       attribute :title_wrap, TitleWrap
 
       xml do
-        root "iso-meta"
+        root "iso-meta", mixed: true
 
         map_element "comm-ref", to: :comm_ref
         map_element "content-language", to: :content_language

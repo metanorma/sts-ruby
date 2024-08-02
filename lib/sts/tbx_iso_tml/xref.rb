@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
-require "shale"
-
 require_relative "../mapper"
 require_relative "sup"
 
 module Sts
   module TbxIsoTml
     class Xref < Sts::Mapper
-      attribute :ref_type, Shale::Type::String
-      attribute :rid, Shale::Type::String
-      attribute :value, Shale::Type::String
+      attribute :ref_type, Lutaml::Model::Type::String
+      attribute :rid, Lutaml::Model::Type::String
+      attribute :value, Lutaml::Model::Type::String
       attribute :sup, Sup
 
       xml do

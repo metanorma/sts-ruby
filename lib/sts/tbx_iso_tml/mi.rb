@@ -6,7 +6,7 @@ require_relative "mstyle"
 module Sts
   module TbxIsoTml
     class Mi < Sts::Mapper
-      attribute :content, Shale::Type::String
+      attribute :content, Lutaml::Model::Type::String
 
       xml do
         root "mi"

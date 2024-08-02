@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 require_relative "sts/version"
-require "shale"
-require "shale/adapter/nokogiri"
+require "lutaml/model"
+require "lutaml/model/xml_adapter/nokogiri_adapter"
 
 module Sts
-  Shale.xml_adapter = Shale::Adapter::Nokogiri
+  Lutaml::Model::Config.configure do |config|
+    config.xml_adapter = Lutaml::Model::XmlAdapter::NokogiriDocument
+  end
 
   class Error < StandardError; end
   # Your code goes here...

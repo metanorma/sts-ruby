@@ -10,7 +10,7 @@ module Sts
       attribute :mrow, Mrow, collection: true
 
       xml do
-        root "math"
+        root "munder"
         namespace "http://www.w3.org/1998/Math/MathML", "mml"
 
         map_element "mrow", to: :mrow

@@ -6,7 +6,7 @@ module Sts
   module TbxIsoTml
     class NormativeAuthorization < Sts::Mapper
       # TODO: can be: admittedTerm, preferredTerm, deprecatedTerm
-      attribute :value, Shale::Type::String
+      attribute :value, Lutaml::Model::Type::String
 
       xml do
         root "normativeAuthorization"

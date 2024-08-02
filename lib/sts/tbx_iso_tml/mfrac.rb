@@ -11,13 +11,13 @@ module Sts
     class Mfrac < Sts::Mapper
       attribute :mrow, Mrow, collection: true
       attribute :mstyle, Mstyle, collection: true
-      attribute :bevelled, Shale::Type::String
-      attribute :linethickness, Shale::Type::String
-      attribute :mn, Shale::Type::String
-      attribute :mtext, Shale::Type::String
+      attribute :bevelled, Lutaml::Model::Type::String
+      attribute :linethickness, Lutaml::Model::Type::String
+      attribute :mn, Lutaml::Model::Type::String, collection: true
+      attribute :mtext, Lutaml::Model::Type::String, collection: true
 
       xml do
-        root "math"
+        root "mfrac", mixed: true
         namespace "http://www.w3.org/1998/Math/MathML", "mml"
 
         map_attribute "bevelled", to: :bevelled

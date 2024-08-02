@@ -14,27 +14,27 @@ require_relative "permissions"
 module Sts
   module NisoSts
     class MetadataStd < Sts::Mapper
-      attribute :id, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
       attribute :title_wrap, TitleWrap, collection: true
-      attribute :content_language, Shale::Type::String
+      attribute :content_language, Lutaml::Model::Type::String
       attribute :std_ident, StandardIdentification
       attribute :doc_ident, DocumentIdentification
       attribute :std_ref, StandardRef, collection: true
-      attribute :doc_ref, Shale::Type::String
-      attribute :pub_date, Shale::Type::String
-      attribute :release_date, Shale::Type::String
-      attribute :release_version, Shale::Type::String
-      attribute :comm_ref, Shale::Type::String
-      attribute :secretariat, Shale::Type::String
+      attribute :doc_ref, Lutaml::Model::Type::String
+      attribute :pub_date, Lutaml::Model::Type::String
+      attribute :release_date, Lutaml::Model::Type::String
+      attribute :release_version, Lutaml::Model::Type::String
+      attribute :comm_ref, Lutaml::Model::Type::String
+      attribute :secretariat, Lutaml::Model::Type::String
       attribute :page_count, PageCount
-      attribute :ics, Shale::Type::String
+      attribute :ics, Lutaml::Model::Type::String
       attribute :std_xref, StdCrossReference
       attribute :permissions, Permissions
       attribute :meta_note, MetaNote, collection: true
       attribute :custom_meta_group, CustomMetaGroup, collection: true
 
       xml do
-        root "std-meta"
+        root "std-meta", mixed: true
 
         map_attribute "id", to: :id
 

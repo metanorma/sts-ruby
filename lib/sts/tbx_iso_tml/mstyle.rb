@@ -6,15 +6,15 @@ require_relative "mspace"
 module Sts
   module TbxIsoTml
     class Mstyle < Sts::Mapper
-      attribute :mathvariant, Shale::Type::String
+      attribute :mathvariant, Lutaml::Model::Type::String
       attribute :mstyle, Mstyle
-      attribute :mspace, Mspace
-      attribute :mi, Shale::Type::String, collection: true
-      attribute :mn, Shale::Type::String, collection: true
-      attribute :mo, Shale::Type::String, collection: true
+      attribute :mspace, Mspace, collection: true
+      attribute :mi, Lutaml::Model::Type::String, collection: true
+      attribute :mn, Lutaml::Model::Type::String, collection: true
+      attribute :mo, Lutaml::Model::Type::String, collection: true
 
       xml do
-        root "math"
+        root "mstyle", mixed: true
         namespace "http://www.w3.org/1998/Math/MathML", "mml"
 
         map_attribute "mathvariant", to: :mathvariant

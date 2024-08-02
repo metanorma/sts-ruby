@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "shale"
-
 require_relative "front"
 require_relative "body"
 require_relative "back"
@@ -12,11 +10,11 @@ module Sts
       attribute :front, Front
       attribute :body, Body
       attribute :back, Back
-      attribute :id, Shale::Type::String
-      attribute :lang, Shale::Type::String
-      attribute :mml, Shale::Type::String
-      attribute :tbx, Shale::Type::String
-      attribute :xlink, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
+      attribute :lang, Lutaml::Model::Type::String
+      attribute :mml, Lutaml::Model::Type::String
+      attribute :tbx, Lutaml::Model::Type::String
+      attribute :xlink, Lutaml::Model::Type::String
 
       xml do
         root "standard"

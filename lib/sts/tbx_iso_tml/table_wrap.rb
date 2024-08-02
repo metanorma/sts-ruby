@@ -8,10 +8,10 @@ require_relative "table_wrap_foot"
 module Sts
   module TbxIsoTml
     class TableWrap < Sts::Mapper
-      attribute :id, Shale::Type::String
-      attribute :orientation, Shale::Type::String
-      attribute :position, Shale::Type::String
-      attribute :label, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
+      attribute :orientation, Lutaml::Model::Type::String
+      attribute :position, Lutaml::Model::Type::String
+      attribute :label, Lutaml::Model::Type::String
       attribute :table, Sts::TbxIsoTml::Table, collection: true
       attribute :table_wrap_foot, Sts::TbxIsoTml::TableWrapFoot
 

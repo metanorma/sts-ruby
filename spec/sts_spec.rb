@@ -35,7 +35,7 @@ RSpec.describe Sts do
       encoding: "utf-8",
     )
 
-    expect(generated).to be_analogous_with(doc)
+    expect(Xml::C14n.format(generated)).to be_analogous_with(Xml::C14n.format(doc))
   end
 
   it "parses ISO 13849-1:2008-12 file" do
@@ -46,6 +46,7 @@ RSpec.describe Sts do
   it "round-trips ISO 13849-1:2008-12 file" do
     doc = File.read(iso_sts_example_file_formatted)
     parsed = Sts::NisoSts::Standard.from_xml(doc)
+
     generated = parsed.to_xml(
       pretty: true,
       declaration: true,
@@ -66,7 +67,7 @@ RSpec.describe Sts do
     generated = parsed.to_xml(
       pretty: true,
       declaration: true,
-      encoding: "utf-8",
+      encoding: "UTF-8",
     )
 
     expect(generated).to be_analogous_with(doc)

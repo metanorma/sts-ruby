@@ -5,7 +5,7 @@ require_relative "../mapper"
 module Sts
   module TbxIsoTml
     class ExternalGraphic < Sts::Mapper
-      attribute :target, Shale::Type::String
+      attribute :target, Lutaml::Model::Type::String
 
       xml do
         root "xGraphic"

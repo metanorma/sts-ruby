@@ -17,15 +17,15 @@ module Sts
     class Caption < Sts::Mapper; end
 
     class Figure < Sts::Mapper
-      attribute :id, Shale::Type::String
-      attribute :orientation, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
+      attribute :orientation, Lutaml::Model::Type::String
       attribute :caption, Caption
       attribute :def_list, DefList
       attribute :label, Label
       attribute :graphic, Graphic, collection: true
 
       xml do
-        root "fig"
+        root "fig", mixed: true
 
         map_attribute "id", to: :id
         map_attribute "orientation", to: :orientation

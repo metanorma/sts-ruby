@@ -7,13 +7,14 @@ require_relative "paragraph"
 module Sts
   module NisoSts
     class MetaNote < Sts::Mapper
-      attribute :id, Shale::Type::String
-      attribute :content_type, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
+      attribute :content_type, Lutaml::Model::Type::String
       attribute :p, Paragraph, collection: true
-      attribute :title, Shale::Type::String
+      attribute :title, Lutaml::Model::Type::String
 
       xml do
-        root "meta-note"
+        root "meta-note", mixed: true
+
         map_attribute "id", to: :id
         map_attribute "content-type", to: :content_type
         map_element "p", to: :p

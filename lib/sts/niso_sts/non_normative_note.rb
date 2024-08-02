@@ -7,13 +7,13 @@ require_relative "paragraph"
 module Sts
   module NisoSts
     class NonNormativeNote < Sts::Mapper
-      attribute :id, Shale::Type::String
-      attribute :content_type, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
+      attribute :content_type, Lutaml::Model::Type::String
       attribute :p, Paragraph
       attribute :label, Label
 
       xml do
-        root "non-normative-note"
+        root "non-normative-note", mixed: true
 
         map_attribute "content-type", to: :content_type
         map_attribute "id", to: :id

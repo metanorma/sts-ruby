@@ -19,11 +19,11 @@ module Sts
     class Title < Sts::Mapper; end
 
     class Section < Sts::Mapper
-      attribute :id, Shale::Type::String
-      attribute :specific_use, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
+      attribute :specific_use, Lutaml::Model::Type::String
       attribute :label, Label
       attribute :title, Title
-      attribute :type, Shale::Type::String
+      attribute :type, Lutaml::Model::Type::String
       attribute :array, SectionArray
       attribute :paragraphs, Paragraph, collection: true
       attribute :list, List, collection: true
@@ -38,13 +38,13 @@ module Sts
       attribute :table_wrap, ::Sts::TbxIsoTml::TableWrap, collection: true
 
       xml do
-        root "sec"
+        root "sec", mixed: true
 
         map_attribute "id", to: :id
         map_attribute "sec-type", to: :type
         map_attribute "specific-use", to: :specific_use
 
-        map_element "label", to: :label, render_nil: true
+        map_element "label", to: :label
         map_element "title", to: :title
         map_element "p", to: :paragraphs
         map_element "sec", to: :sec

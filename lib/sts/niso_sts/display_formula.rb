@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-require "shale"
-
 require_relative "../mapper"
 require_relative "../tbx_iso_tml/math"
 
 module Sts
   module NisoSts
     class DisplayFormula < Sts::Mapper
-      attribute :id, Shale::Type::String
+      attribute :id, Lutaml::Model::Type::String
       attribute :label, Label
       attribute :math, TbxIsoTml::Math
 
