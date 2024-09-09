@@ -6,10 +6,11 @@ require "lutaml/model/xml_adapter/nokogiri_adapter"
 
 module Sts
   Lutaml::Model::Config.configure do |config|
-    config.xml_adapter = Lutaml::Model::XmlAdapter::NokogiriDocument
+    config.xml_adapter = Lutaml::Model::XmlAdapter::NokogiriAdapter
   end
 
   class Error < StandardError; end
+
   # Your code goes here...
 end
 
