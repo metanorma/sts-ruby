@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 require_relative "../tbx_iso_tml/math"
 
 module Sts
   module NisoSts
-    class InlineFormula < Sts::Mapper
+    class InlineFormula < Lutaml::Model::Serializable
       attribute :math, TbxIsoTml::Math
 
       xml do

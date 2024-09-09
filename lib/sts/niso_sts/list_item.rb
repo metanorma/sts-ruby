@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 require_relative "list"
 require_relative "non_normative_example"
 
 module Sts
   module NisoSts
-    class Paragraph < Sts::Mapper; end
-    class List < Sts::Mapper; end
+    class Paragraph < Lutaml::Model::Serializable; end
+    class List < Lutaml::Model::Serializable; end
 
-    class ListItem < Sts::Mapper
+    class ListItem < Lutaml::Model::Serializable
       attribute :label, Label
       attribute :list, List
       attribute :non_normative_example, NonNormativeExample

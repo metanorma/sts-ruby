@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 module Sts
   module NisoSts
-    class PageCount < Sts::Mapper
+    class PageCount < Lutaml::Model::Serializable
       attribute :count, Lutaml::Model::Type::Integer
 
       xml do

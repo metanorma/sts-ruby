@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "../tbx_iso_tml"
 require_relative "term_display"
@@ -8,7 +8,7 @@ require_relative "../tbx_iso_tml/term_entry"
 
 module Sts
   module NisoSts
-    class TermSection < Sts::Mapper
+    class TermSection < Lutaml::Model::Serializable
       attribute :id, Lutaml::Model::Type::String
       attribute :sec_type, Lutaml::Model::Type::String
       attribute :label, Label

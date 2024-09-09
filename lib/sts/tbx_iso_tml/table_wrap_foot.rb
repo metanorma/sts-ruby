@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "fn_group"
 
 module Sts
   module TbxIsoTml
-    class TableWrapFoot < Sts::Mapper
+    class TableWrapFoot < Lutaml::Model::Serializable
       attribute :fn_group, Sts::TbxIsoTml::FnGroup
 
       xml do

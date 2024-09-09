@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 require_relative "xref"
 
 module Sts
   module TbxIsoTml
-    class Xref < Sts::Mapper; end
+    class Xref < Lutaml::Model::Serializable; end
 
-    class Sup < Sts::Mapper
+    class Sup < Lutaml::Model::Serializable
       attribute :value, Lutaml::Model::Type::String
       attribute :xref, Xref
 

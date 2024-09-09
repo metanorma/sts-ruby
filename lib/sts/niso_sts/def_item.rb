@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "def"
 require_relative "../tbx_iso_tml/term"
 
 module Sts
   module NisoSts
-    class DefItem < Sts::Mapper
+    class DefItem < Lutaml::Model::Serializable
       attribute :specific_use, Lutaml::Model::Type::String
       attribute :term, TbxIsoTml::Term
       attribute :definition, Def

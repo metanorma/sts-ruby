@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 module Sts
   module TbxIsoTml
-    class TermType < Sts::Mapper
+    class TermType < Lutaml::Model::Serializable
       attribute :value, Lutaml::Model::Type::String,
         values: %w[acronym abbreviation equation formula fullForm symbol variant]
 

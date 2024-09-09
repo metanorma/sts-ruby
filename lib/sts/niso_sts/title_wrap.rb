@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "reference_list"
 require_relative "reference_standard"
 
 module Sts
   module NisoSts
-    class TitleFull < Sts::Mapper
+    class TitleFull < Lutaml::Model::Serializable
       attribute :content, Lutaml::Model::Type::String
       attribute :std, ReferenceStandard
 
@@ -28,7 +28,7 @@ module Sts
       end
     end
 
-    class TitleWrap < Sts::Mapper
+    class TitleWrap < Lutaml::Model::Serializable
       attribute :intro, Lutaml::Model::Type::String
       attribute :main, Lutaml::Model::Type::String
       attribute :full, TitleFull

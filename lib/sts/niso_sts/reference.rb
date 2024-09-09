@@ -5,7 +5,7 @@ require_relative "mixed_citation"
 
 module Sts
   module NisoSts
-    class Reference < Sts::Mapper
+    class Reference < Lutaml::Model::Serializable
       attribute :content_type, Lutaml::Model::Type::String
       attribute :id, Lutaml::Model::Type::String
       attribute :label, Label

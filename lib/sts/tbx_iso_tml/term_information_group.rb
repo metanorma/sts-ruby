@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "term"
 require_relative "part_of_speech"
@@ -12,7 +12,7 @@ require_relative "term_type"
 
 module Sts
   module TbxIsoTml
-    class TermInformationGroup < Sts::Mapper
+    class TermInformationGroup < Lutaml::Model::Serializable
       attribute :term, Term
       attribute :pos, PartOfSpeech
       attribute :id, Lutaml::Model::Type::String

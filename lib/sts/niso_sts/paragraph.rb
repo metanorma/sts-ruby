@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "list"
 require_relative "inline_formula"
@@ -15,10 +15,10 @@ require_relative "../tbx_iso_tml/xref"
 
 module Sts
   module NisoSts
-    class NonNormativeNote < Sts::Mapper; end
-    class ReferenceStandard < Sts::Mapper; end
+    class NonNormativeNote < Lutaml::Model::Serializable; end
+    class ReferenceStandard < Lutaml::Model::Serializable; end
 
-    class Paragraph < Sts::Mapper
+    class Paragraph < Lutaml::Model::Serializable
       attribute :id, Lutaml::Model::Type::String
       attribute :text, Lutaml::Model::Type::String
       attribute :italic, Lutaml::Model::Type::String, collection: true

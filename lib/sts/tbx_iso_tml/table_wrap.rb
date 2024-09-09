@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "table"
 require_relative "table_wrap_foot"
 
 module Sts
   module TbxIsoTml
-    class TableWrap < Sts::Mapper
+    class TableWrap < Lutaml::Model::Serializable
       attribute :id, Lutaml::Model::Type::String
       attribute :orientation, Lutaml::Model::Type::String
       attribute :position, Lutaml::Model::Type::String

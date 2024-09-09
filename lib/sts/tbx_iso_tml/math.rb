@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "semantics"
 require_relative "mrow"
@@ -14,9 +14,9 @@ require_relative "munderover"
 
 module Sts
   module TbxIsoTml
-    class Mfenced < Sts::Mapper; end
+    class Mfenced < Lutaml::Model::Serializable; end
 
-    class Math < Sts::Mapper
+    class Math < Lutaml::Model::Serializable
       attribute :id, Lutaml::Model::Type::String
       attribute :content, Lutaml::Model::Type::String
       attribute :display, Lutaml::Model::Type::String

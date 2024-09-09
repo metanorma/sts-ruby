@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "mrow"
 require_relative "munder"
 
 module Sts
   module TbxIsoTml
-    class Semantics < Sts::Mapper
+    class Semantics < Lutaml::Model::Serializable
       attribute :mrow, Mrow, collection: true
       attribute :mo, Lutaml::Model::Type::String
       attribute :mtext, Lutaml::Model::Type::String

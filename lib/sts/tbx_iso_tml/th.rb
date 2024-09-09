@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "bold"
 require_relative "italic"
@@ -11,7 +11,7 @@ require_relative "../niso_sts/inline_formula"
 
 module Sts
   module TbxIsoTml
-    class Th < Sts::Mapper
+    class Th < Lutaml::Model::Serializable
       attribute :content, Lutaml::Model::Type::String
       attribute :colspan, Lutaml::Model::Type::String
       attribute :align, Lutaml::Model::Type::String

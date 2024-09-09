@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "lang_set"
 require_relative "external_graphic"
 
 module Sts
   module TbxIsoTml
-    class TermEntry < Sts::Mapper
+    class TermEntry < Lutaml::Model::Serializable
       attribute :id, Lutaml::Model::Type::String
       attribute :lang_set, LangSet, collection: true
       attribute :x_graphic, ExternalGraphic, collection: true

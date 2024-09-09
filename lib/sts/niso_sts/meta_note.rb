@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "paragraph"
 
 module Sts
   module NisoSts
-    class MetaNote < Sts::Mapper
+    class MetaNote < Lutaml::Model::Serializable
       attribute :id, Lutaml::Model::Type::String
       attribute :content_type, Lutaml::Model::Type::String
       attribute :p, Paragraph, collection: true

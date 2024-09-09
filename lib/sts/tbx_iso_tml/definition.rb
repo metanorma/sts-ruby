@@ -9,7 +9,7 @@ require_relative "../niso_sts/reference_standard"
 
 module Sts
   module TbxIsoTml
-    class Definition < Sts::Mapper
+    class Definition < Lutaml::Model::Serializable
       attribute :entailed_term, EntailedTerm, collection: true
       attribute :note, Note
       attribute :value, Lutaml::Model::Type::String

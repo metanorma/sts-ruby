@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "custom_meta"
 
 module Sts
   module NisoSts
-    class CustomMetaGroup < Sts::Mapper
+    class CustomMetaGroup < Lutaml::Model::Serializable
       attribute :custom_meta, CustomMeta, collection: true
 
       xml do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "mstyle"
 require_relative "mrow"
@@ -8,7 +8,7 @@ require_relative "mspace"
 
 module Sts
   module TbxIsoTml
-    class Msub < Sts::Mapper
+    class Msub < Lutaml::Model::Serializable
       attribute :mstyle, Mstyle, collection: true
       attribute :mrow, Mrow
       attribute :mspace, Mspace

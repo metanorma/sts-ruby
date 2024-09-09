@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 module Sts
   module TbxIsoTml
-    class GrammaticalGender < Sts::Mapper
+    class GrammaticalGender < Lutaml::Model::Serializable
       attribute :value, Lutaml::Model::Type::String,
         values: %w[masculine feminine neuter]
 

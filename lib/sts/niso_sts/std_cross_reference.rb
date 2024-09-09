@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 module Sts
   module NisoSts
-    class StdCrossReference < Sts::Mapper
+    class StdCrossReference < Lutaml::Model::Serializable
       attribute :type, Lutaml::Model::Type::String
       attribute :std_ref, StandardRef, collection: true
 

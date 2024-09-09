@@ -1,13 +1,13 @@
 # frozen_striing_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "ext_link"
 require_relative "reference_standard"
 
 module Sts
   module NisoSts
-    class MixedCitation < Sts::Mapper
+    class MixedCitation < Lutaml::Model::Serializable
       attribute :content, Lutaml::Model::Type::String
       attribute :bold, Lutaml::Model::Type::String
       attribute :italic, Lutaml::Model::Type::String

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require_relative "list_item"
-require_relative "../mapper"
+require "lutaml/model"
 
 module Sts
   module NisoSts
-    class List < Sts::Mapper
+    class List < Lutaml::Model::Serializable
       attribute :text, Lutaml::Model::Type::String
       attribute :list_type, Lutaml::Model::Type::String
       attribute :list_item, ListItem, collection: true
