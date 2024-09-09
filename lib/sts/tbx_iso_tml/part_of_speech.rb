@@ -6,7 +6,7 @@ module Sts
   module TbxIsoTml
     class PartOfSpeech < Lutaml::Model::Serializable
       attribute :value, Lutaml::Model::Type::String,
-        values: %w[noun verb adj adv]
+                values: %w[noun verb adj adv]
 
       xml do
         root "partOfSpeech"

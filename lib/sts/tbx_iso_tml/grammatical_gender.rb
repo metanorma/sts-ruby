@@ -6,7 +6,7 @@ module Sts
   module TbxIsoTml
     class GrammaticalGender < Lutaml::Model::Serializable
       attribute :value, Lutaml::Model::Type::String,
-        values: %w[masculine feminine neuter]
+                values: %w[masculine feminine neuter]
 
       xml do
         root "grammaticalGender"

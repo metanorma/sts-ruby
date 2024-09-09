@@ -6,7 +6,7 @@ module Sts
   module TbxIsoTml
     class GrammaticalNumber < Lutaml::Model::Serializable
       attribute :value, Lutaml::Model::Type::String,
-        values: %w[singular plural]
+                values: %w[singular plural]
 
       xml do
         root "grammaticalNumber"
