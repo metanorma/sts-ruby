@@ -5,16 +5,8 @@ require_relative "../mapper"
 module Sts
   module TbxIsoTml
     class TermType < Sts::Mapper
-      # TODO: can be:
-      # - acronym
-      # - abbreviation
-      # - equation
-      # - formula
-      # - fullForm
-      # - symbol
-      # - variant
-
-      attribute :value, Lutaml::Model::Type::String
+      attribute :value, Lutaml::Model::Type::String,
+        values: %w[acronym abbreviation equation formula fullForm symbol variant]
 
       xml do
         root "termType"

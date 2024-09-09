@@ -5,8 +5,8 @@ require_relative "../mapper"
 module Sts
   module TbxIsoTml
     class GrammaticalGender < Sts::Mapper
-      # TODO: can be masculine, feminine, singular
-      attribute :value, Lutaml::Model::Type::String
+      attribute :value, Lutaml::Model::Type::String,
+        values: %w[masculine feminine neuter]
 
       xml do
         root "grammaticalGender"

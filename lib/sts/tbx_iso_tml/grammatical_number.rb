@@ -5,8 +5,8 @@ require_relative "../mapper"
 module Sts
   module TbxIsoTml
     class GrammaticalNumber < Sts::Mapper
-      # TODO: can be singular | plural
-      attribute :value, Lutaml::Model::Type::String
+      attribute :value, Lutaml::Model::Type::String,
+        values: %w[singular plural]
 
       xml do
         root "grammaticalNumber"
