@@ -6,7 +6,7 @@ module Sts
   module TbxIsoTml
     class TermType < Lutaml::Model::Serializable
       attribute :value, Lutaml::Model::Type::String,
-        values: %w[acronym abbreviation equation formula fullForm symbol variant]
+                values: %w[acronym abbreviation equation formula fullForm symbol variant]
 
       xml do
         root "termType"

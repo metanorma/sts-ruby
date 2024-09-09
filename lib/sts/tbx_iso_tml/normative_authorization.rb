@@ -6,7 +6,7 @@ module Sts
   module TbxIsoTml
     class NormativeAuthorization < Lutaml::Model::Serializable
       attribute :value, Lutaml::Model::Type::String,
-        values: %w[admittedTerm preferredTerm deprecatedTerm]
+                values: %w[admittedTerm preferredTerm deprecatedTerm]
 
       xml do
         root "normativeAuthorization"
