@@ -2,8 +2,9 @@
 
 require_relative "../mapper"
 
-require_relative "italic"
 require_relative "bold"
+require_relative "italic"
+require_relative "table_break"
 require_relative "xref"
 require_relative "../niso_sts/reference_standard"
 require_relative "../niso_sts/inline_formula"
@@ -17,7 +18,7 @@ module Sts
       attribute :scope, Lutaml::Model::Type::String
       attribute :style, Lutaml::Model::Type::String
       attribute :rowspan, Lutaml::Model::Type::String
-      attribute :break, Lutaml::Model::Type::String
+      attribute :break, TableBreak
       attribute :content_type, Lutaml::Model::Type::String
       attribute :char, Lutaml::Model::Type::String
       attribute :charoff, Lutaml::Model::Type::String
@@ -42,7 +43,7 @@ module Sts
         map_attribute "charoff", to: :charoff
         map_attribute "valign", to: :valign
 
-        map_element "break", to: :break, render_nil: true
+        map_element "break", to: :break
         map_element "italic", to: :italic
         map_element "bold", to: :bold
         map_element "std", to: :std
