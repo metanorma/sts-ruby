@@ -5,8 +5,8 @@ require_relative "../mapper"
 module Sts
   module TbxIsoTml
     class PartOfSpeech < Sts::Mapper
-      # TODO: can be `noun`, `verb`, `adj`, `adv`
-      attribute :value, Lutaml::Model::Type::String
+      attribute :value, Lutaml::Model::Type::String,
+        values: %w[noun verb adj adv]
 
       xml do
         root "partOfSpeech"

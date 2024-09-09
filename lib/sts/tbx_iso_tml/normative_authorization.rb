@@ -5,8 +5,8 @@ require_relative "../mapper"
 module Sts
   module TbxIsoTml
     class NormativeAuthorization < Sts::Mapper
-      # TODO: can be: admittedTerm, preferredTerm, deprecatedTerm
-      attribute :value, Lutaml::Model::Type::String
+      attribute :value, Lutaml::Model::Type::String,
+        values: %w[admittedTerm preferredTerm deprecatedTerm]
 
       xml do
         root "normativeAuthorization"
