@@ -6,7 +6,7 @@ require_relative "back"
 
 module Sts
   module NisoSts
-    class Standard < Sts::Mapper
+    class Standard < Lutaml::Model::Serializable
       attribute :front, Front
       attribute :body, Body
       attribute :back, Back

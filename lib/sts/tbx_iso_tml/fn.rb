@@ -4,7 +4,7 @@ require_relative "../niso_sts/paragraph"
 
 module Sts
   module TbxIsoTml
-    class Fn < Sts::Mapper
+    class Fn < Lutaml::Model::Serializable
       attribute :id, Lutaml::Model::Type::String
       attribute :label, Lutaml::Model::Type::String
       attribute :p, Sts::NisoSts::Paragraph

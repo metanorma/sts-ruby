@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "custom_meta_group"
 require_relative "document_identification"
@@ -14,7 +14,7 @@ require_relative "title_wrap"
 
 module Sts
   module NisoSts
-    class MetadataIso < Sts::Mapper
+    class MetadataIso < Lutaml::Model::Serializable
       attribute :comm_ref, Lutaml::Model::Type::String
       attribute :content_language, Lutaml::Model::Type::String
       attribute :custom_meta_group, CustomMetaGroup

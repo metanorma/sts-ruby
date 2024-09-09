@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 require_relative "standard_ref"
 require_relative "std_id_group"
 require_relative "fn"
@@ -8,7 +8,7 @@ require_relative "../tbx_iso_tml/xref"
 
 module Sts
   module NisoSts
-    class ReferenceStandard < Sts::Mapper
+    class ReferenceStandard < Lutaml::Model::Serializable
       attribute :type, Lutaml::Model::Type::String
       attribute :std_id, Lutaml::Model::Type::String
       attribute :content, Lutaml::Model::Type::String

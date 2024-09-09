@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 require_relative "entailed_term"
 
 require_relative "../niso_sts/inline_formula"
 
 module Sts
   module TbxIsoTml
-    class Example < Sts::Mapper
+    class Example < Lutaml::Model::Serializable
       attribute :id, Lutaml::Model::Type::String
       attribute :value, Lutaml::Model::Type::String
       attribute :entailed_term, EntailedTerm, collection: true

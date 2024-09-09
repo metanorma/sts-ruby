@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 module Sts
   module NisoSts
-    class Permissions < Sts::Mapper
+    class Permissions < Lutaml::Model::Serializable
       attribute :copyright_statement, Lutaml::Model::Type::String
       attribute :copyright_year, Lutaml::Model::Type::String
       attribute :copyright_holder, Lutaml::Model::Type::String

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "col"
 require_relative "thead"
@@ -8,7 +8,7 @@ require_relative "tbody"
 
 module Sts
   module TbxIsoTml
-    class Table < Sts::Mapper
+    class Table < Lutaml::Model::Serializable
       attribute :col, Sts::TbxIsoTml::Col, collection: true
       attribute :thead, Sts::TbxIsoTml::Thead
       attribute :tbody, Sts::TbxIsoTml::Tbody

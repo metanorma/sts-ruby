@@ -5,7 +5,7 @@ require_relative "adoption_front"
 
 module Sts
   module NisoSts
-    class Adoption < Sts::Mapper
+    class Adoption < Lutaml::Model::Serializable
       attribute :front, AdoptionFront
       attribute :back, Back
       attribute :id, Lutaml::Model::Type::String

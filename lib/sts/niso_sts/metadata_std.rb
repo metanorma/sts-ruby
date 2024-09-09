@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 require_relative "title_wrap"
 require_relative "document_identification"
 require_relative "standard_identification"
@@ -13,7 +13,7 @@ require_relative "permissions"
 
 module Sts
   module NisoSts
-    class MetadataStd < Sts::Mapper
+    class MetadataStd < Lutaml::Model::Serializable
       attribute :id, Lutaml::Model::Type::String
       attribute :title_wrap, TitleWrap, collection: true
       attribute :content_language, Lutaml::Model::Type::String

@@ -1,4 +1,4 @@
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "object_id"
 
@@ -12,7 +12,7 @@ require_relative "object_id"
 
 module Sts
   module NisoSts
-    class Graphic < Sts::Mapper
+    class Graphic < Lutaml::Model::Serializable
       attribute :href, Lutaml::Model::Type::String
       attribute :object_id, ObjectId, collection: true
 

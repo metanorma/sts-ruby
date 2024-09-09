@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "paragraph"
 require_relative "non_normative_note"
 
 module Sts
   module NisoSts
-    class TermDisplay < Sts::Mapper
+    class TermDisplay < Lutaml::Model::Serializable
       attribute :p, Paragraph, collection: true
       attribute :non_normative_note, NonNormativeNote, collection: true
 

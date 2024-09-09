@@ -4,7 +4,7 @@ require_relative "reference"
 
 module Sts
   module NisoSts
-    class ReferenceList < Sts::Mapper
+    class ReferenceList < Lutaml::Model::Serializable
       attribute :content_type, Lutaml::Model::Type::String
       attribute :id, Lutaml::Model::Type::String
       attribute :specific_use, Lutaml::Model::Type::String

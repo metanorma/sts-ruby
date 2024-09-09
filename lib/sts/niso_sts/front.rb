@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "metadata_iso"
 require_relative "metadata_std"
@@ -8,7 +8,7 @@ require_relative "section"
 
 module Sts
   module NisoSts
-    class Front < Sts::Mapper
+    class Front < Lutaml::Model::Serializable
       attribute :iso_meta, MetadataIso
       attribute :std_meta, MetadataStd
       attribute :sec, Section, collection: true

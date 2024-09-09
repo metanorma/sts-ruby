@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 module Sts
   module TbxIsoTml
-    class ExternalGraphic < Sts::Mapper
+    class ExternalGraphic < Lutaml::Model::Serializable
       attribute :target, Lutaml::Model::Type::String
 
       xml do

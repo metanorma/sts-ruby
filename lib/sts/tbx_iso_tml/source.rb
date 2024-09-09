@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require_relative "italic"
-require_relative "../mapper"
+require "lutaml/model"
 
 module Sts
   module TbxIsoTml
-    class Source < Sts::Mapper
+    class Source < Lutaml::Model::Serializable
       attribute :value, Lutaml::Model::Type::String
       attribute :italic, Italic
 

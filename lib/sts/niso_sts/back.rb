@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "reference_list"
 require_relative "section"
@@ -9,7 +9,7 @@ require_relative "fn_group"
 
 module Sts
   module NisoSts
-    class Back < Sts::Mapper
+    class Back < Lutaml::Model::Serializable
       attribute :ref_list, ReferenceList
       attribute :app_group, AppGroup
       attribute :sec, Section

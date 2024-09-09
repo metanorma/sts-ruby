@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 require_relative "mspace"
 
 module Sts
   module TbxIsoTml
-    class Mstyle < Sts::Mapper
+    class Mstyle < Lutaml::Model::Serializable
       attribute :mathvariant, Lutaml::Model::Type::String
       attribute :mstyle, Mstyle
       attribute :mspace, Mspace, collection: true

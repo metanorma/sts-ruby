@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "label"
 require_relative "paragraph"
 
 module Sts
   module NisoSts
-    class Fn < Sts::Mapper
+    class Fn < Lutaml::Model::Serializable
       attribute :id, Lutaml::Model::Type::String
       attribute :label, Label
       attribute :paragraph, Paragraph

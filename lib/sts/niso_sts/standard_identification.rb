@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "std_id_group"
 
 module Sts
   module NisoSts
-    class StandardIdentification < Sts::Mapper
+    class StandardIdentification < Lutaml::Model::Serializable
       attribute :originator, Lutaml::Model::Type::String
       attribute :doc_type, Lutaml::Model::Type::String
       attribute :doc_number, Lutaml::Model::Type::String

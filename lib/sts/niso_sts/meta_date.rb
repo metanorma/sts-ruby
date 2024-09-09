@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 module Sts
   module NisoSts
-    class MetaDate < Sts::Mapper
+    class MetaDate < Lutaml::Model::Serializable
       attribute :content, Lutaml::Model::Type::String
       attribute :type, Lutaml::Model::Type::String
 

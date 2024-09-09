@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 module Sts
   module TbxIsoTml
-    class PartOfSpeech < Sts::Mapper
+    class PartOfSpeech < Lutaml::Model::Serializable
       attribute :value, Lutaml::Model::Type::String,
         values: %w[noun verb adj adv]
 

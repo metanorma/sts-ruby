@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "section"
 require_relative "title"
@@ -12,10 +12,10 @@ require_relative "../tbx_iso_tml/table_wrap"
 
 module Sts
   module NisoSts
-    class Title < Sts::Mapper; end
-    class ReferenceList < Sts::Mapper; end
+    class Title < Lutaml::Model::Serializable; end
+    class ReferenceList < Lutaml::Model::Serializable; end
 
-    class App < Sts::Mapper
+    class App < Lutaml::Model::Serializable
       attribute :id, Lutaml::Model::Type::String
       attribute :content_type, Lutaml::Model::Type::String
       attribute :label, Label

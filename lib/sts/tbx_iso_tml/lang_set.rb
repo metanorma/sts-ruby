@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "note"
 require_relative "example"
@@ -12,11 +12,11 @@ require_relative "term_information_group"
 
 module Sts
   module TbxIsoTml
-    class Definition < Sts::Mapper; end
-    class Note < Sts::Mapper; end
-    class Caption < Sts::Mapper; end
+    class Definition < Lutaml::Model::Serializable; end
+    class Note < Lutaml::Model::Serializable; end
+    class Caption < Lutaml::Model::Serializable; end
 
-    class LangSet < Sts::Mapper
+    class LangSet < Lutaml::Model::Serializable
       attribute :lang, Lutaml::Model::Type::String
       attribute :definition, Sts::TbxIsoTml::Definition, collection: true
       attribute :note, Note, collection: true

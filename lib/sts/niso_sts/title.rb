@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "section"
 require_relative "inline_formula"
 
 module Sts
   module NisoSts
-    class Title < Sts::Mapper
+    class Title < Lutaml::Model::Serializable
       attribute :content, Lutaml::Model::Type::String
       attribute :inline_formula, Sts::NisoSts::InlineFormula, collection: true
 

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 module Sts
   module TbxIsoTml
-    class NamedContent < Sts::Mapper
+    class NamedContent < Lutaml::Model::Serializable
       attribute :content_type, Lutaml::Model::Type::String
       attribute :content, Lutaml::Model::Type::String
 

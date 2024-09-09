@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "caption"
 require_relative "graphic"
@@ -14,9 +14,9 @@ require_relative "def_list"
 
 module Sts
   module NisoSts
-    class Caption < Sts::Mapper; end
+    class Caption < Lutaml::Model::Serializable; end
 
-    class Figure < Sts::Mapper
+    class Figure < Lutaml::Model::Serializable
       attribute :id, Lutaml::Model::Type::String
       attribute :orientation, Lutaml::Model::Type::String
       attribute :caption, Caption

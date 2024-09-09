@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "table_wrap"
 require_relative "entailed_term"
@@ -13,7 +13,7 @@ require_relative "../niso_sts/reference_standard"
 
 module Sts
   module TbxIsoTml
-    class Note < Sts::Mapper
+    class Note < Lutaml::Model::Serializable
       attribute :id, Lutaml::Model::Type::String
       attribute :value, Lutaml::Model::Type::String
       attribute :table_wrap, Sts::TbxIsoTml::TableWrap

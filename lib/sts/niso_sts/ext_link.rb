@@ -1,10 +1,10 @@
 # frozen_striing_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 module Sts
   module NisoSts
-    class ExtLink < Sts::Mapper
+    class ExtLink < Lutaml::Model::Serializable
       attribute :ext_link_type, Lutaml::Model::Type::String
       attribute :href, Lutaml::Model::Type::String
       attribute :content, Lutaml::Model::Type::String

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 module Sts
   module NisoSts
-    class StandardRef < Sts::Mapper
+    class StandardRef < Lutaml::Model::Serializable
       attribute :type, Lutaml::Model::Type::String
       attribute :value, Lutaml::Model::Type::String
 

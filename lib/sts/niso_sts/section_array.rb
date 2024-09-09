@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 require_relative "../tbx_iso_tml/table"
 
 module Sts
   module NisoSts
-    class SectionArray < Sts::Mapper
+    class SectionArray < Lutaml::Model::Serializable
       attribute :id, Lutaml::Model::Type::String
       attribute :table, Sts::TbxIsoTml::Table
 

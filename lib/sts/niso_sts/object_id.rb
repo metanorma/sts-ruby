@@ -4,11 +4,11 @@
 # <object-id pub-id-type="publisher-id">fig-1</object-id>
 # rubocop:enable Layout/LineLength
 
-require_relative "../mapper"
+require "lutaml/model"
 
 module Sts
   module NisoSts
-    class ObjectId < Sts::Mapper
+    class ObjectId < Lutaml::Model::Serializable
       attribute :pub_id_type, Lutaml::Model::Type::String
       attribute :content, Lutaml::Model::Type::String
 

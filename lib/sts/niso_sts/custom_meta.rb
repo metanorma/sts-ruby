@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative "../mapper"
+require "lutaml/model"
 
 module Sts
   module NisoSts
-    class CustomMeta < Sts::Mapper
+    class CustomMeta < Lutaml::Model::Serializable
       attribute :lang, Lutaml::Model::Type::String
       attribute :meta_name, Lutaml::Model::Type::String
       attribute :meta_value, Lutaml::Model::Type::String
