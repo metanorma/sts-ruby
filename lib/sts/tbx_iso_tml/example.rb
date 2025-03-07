@@ -8,8 +8,8 @@ require_relative "../niso_sts/inline_formula"
 module Sts
   module TbxIsoTml
     class Example < Lutaml::Model::Serializable
-      attribute :id, Lutaml::Model::Type::String
-      attribute :value, Lutaml::Model::Type::String
+      attribute :id, :string
+      attribute :value, :string
       attribute :entailed_term, EntailedTerm, collection: true
       attribute :inline_formula, Sts::NisoSts::InlineFormula
 

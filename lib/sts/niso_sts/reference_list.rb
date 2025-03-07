@@ -5,10 +5,10 @@ require_relative "reference"
 module Sts
   module NisoSts
     class ReferenceList < Lutaml::Model::Serializable
-      attribute :content_type, Lutaml::Model::Type::String
-      attribute :id, Lutaml::Model::Type::String
-      attribute :specific_use, Lutaml::Model::Type::String
-      attribute :title, Lutaml::Model::Type::String
+      attribute :content_type, :string
+      attribute :id, :string
+      attribute :specific_use, :string
+      attribute :title, :string
       attribute :label, Label
       attribute :ref, Reference, collection: true
 

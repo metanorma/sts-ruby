@@ -6,7 +6,7 @@ require "lutaml/model"
 module Sts
   module TbxIsoTml
     class Source < Lutaml::Model::Serializable
-      attribute :value, Lutaml::Model::Type::String
+      attribute :value, :string
       attribute :italic, Italic
 
       xml do

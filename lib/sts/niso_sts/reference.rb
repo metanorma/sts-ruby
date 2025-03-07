@@ -6,8 +6,8 @@ require_relative "mixed_citation"
 module Sts
   module NisoSts
     class Reference < Lutaml::Model::Serializable
-      attribute :content_type, Lutaml::Model::Type::String
-      attribute :id, Lutaml::Model::Type::String
+      attribute :content_type, :string
+      attribute :id, :string
       attribute :label, Label
       attribute :mixed_citation, MixedCitation
       attribute :std, ReferenceStandard, collection: true

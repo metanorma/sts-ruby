@@ -5,7 +5,7 @@ require "lutaml/model"
 module Sts
   module TbxIsoTml
     class PartOfSpeech < Lutaml::Model::Serializable
-      attribute :value, Lutaml::Model::Type::String,
+      attribute :value, :string,
                 values: %w[noun verb adj adv]
 
       xml do

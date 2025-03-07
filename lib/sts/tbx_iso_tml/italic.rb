@@ -5,8 +5,8 @@ require "lutaml/model"
 module Sts
   module TbxIsoTml
     class Italic < Lutaml::Model::Serializable
-      attribute :value, Lutaml::Model::Type::String
-      attribute :sub, Lutaml::Model::Type::String
+      attribute :value, :string
+      attribute :sub, :string
 
       xml do
         root "italic", mixed: true

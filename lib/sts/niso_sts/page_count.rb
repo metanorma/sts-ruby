@@ -5,7 +5,7 @@ require "lutaml/model"
 module Sts
   module NisoSts
     class PageCount < Lutaml::Model::Serializable
-      attribute :count, Lutaml::Model::Type::Integer
+      attribute :count, :integer
 
       xml do
         root "page-count"

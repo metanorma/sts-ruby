@@ -17,7 +17,7 @@ module Sts
     class Caption < Lutaml::Model::Serializable; end
 
     class LangSet < Lutaml::Model::Serializable
-      attribute :lang, Lutaml::Model::Type::String
+      attribute :lang, :string
       attribute :definition, Sts::TbxIsoTml::Definition, collection: true
       attribute :note, Note, collection: true
       attribute :example, Example, collection: true
@@ -25,8 +25,8 @@ module Sts
       attribute :see, See, collection: true
       attribute :source, Source, collection: true
       attribute :x_source, ExternalSource, collection: true
-      attribute :cross_reference, Lutaml::Model::Type::String, collection: true
-      attribute :subject_field, Lutaml::Model::Type::String
+      attribute :cross_reference, :string, collection: true
+      attribute :subject_field, :string
       # attribute :x_graphic, ExternalGraphic, collection: true
 
       xml do

@@ -5,7 +5,7 @@ require "lutaml/model"
 module Sts
   module NisoSts
     class StdCrossReference < Lutaml::Model::Serializable
-      attribute :type, Lutaml::Model::Type::String
+      attribute :type, :string
       attribute :std_ref, StandardRef, collection: true
 
       xml do

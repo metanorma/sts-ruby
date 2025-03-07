@@ -8,7 +8,7 @@ require_relative "../tbx_iso_tml/term"
 module Sts
   module NisoSts
     class DefItem < Lutaml::Model::Serializable
-      attribute :specific_use, Lutaml::Model::Type::String
+      attribute :specific_use, :string
       attribute :term, TbxIsoTml::Term
       attribute :definition, Def
 

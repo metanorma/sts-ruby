@@ -5,7 +5,7 @@ require "lutaml/model"
 module Sts
   module TbxIsoTml
     class Bold < Lutaml::Model::Serializable
-      attribute :value, Lutaml::Model::Type::String
+      attribute :value, :string
 
       xml do
         root "bold"

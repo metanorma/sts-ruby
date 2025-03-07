@@ -6,12 +6,12 @@ require_relative "mspace"
 module Sts
   module TbxIsoTml
     class Mstyle < Lutaml::Model::Serializable
-      attribute :mathvariant, Lutaml::Model::Type::String
+      attribute :mathvariant, :string
       attribute :mstyle, Mstyle
       attribute :mspace, Mspace, collection: true
-      attribute :mi, Lutaml::Model::Type::String, collection: true
-      attribute :mn, Lutaml::Model::Type::String, collection: true
-      attribute :mo, Lutaml::Model::Type::String, collection: true
+      attribute :mi, :string, collection: true
+      attribute :mn, :string, collection: true
+      attribute :mo, :string, collection: true
 
       xml do
         root "mstyle", mixed: true

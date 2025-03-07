@@ -8,7 +8,7 @@ require_relative "external_graphic"
 module Sts
   module TbxIsoTml
     class TermEntry < Lutaml::Model::Serializable
-      attribute :id, Lutaml::Model::Type::String
+      attribute :id, :string
       attribute :lang_set, LangSet, collection: true
       attribute :x_graphic, ExternalGraphic, collection: true
 

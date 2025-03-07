@@ -9,11 +9,11 @@ require_relative "../tbx_iso_tml/xref"
 module Sts
   module NisoSts
     class ReferenceStandard < Lutaml::Model::Serializable
-      attribute :type, Lutaml::Model::Type::String
-      attribute :std_id, Lutaml::Model::Type::String
-      attribute :content, Lutaml::Model::Type::String
+      attribute :type, :string
+      attribute :std_id, :string
+      attribute :content, :string
       attribute :std_ref, StandardRef
-      attribute :title, Lutaml::Model::Type::String
+      attribute :title, :string
       attribute :fn, Fn, collection: true
       attribute :std_id_group, StdIdGroup, collection: true
       attribute :xref, Sts::TbxIsoTml::Xref, collection: true

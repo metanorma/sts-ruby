@@ -5,7 +5,7 @@ require "lutaml/model"
 module Sts
   module TbxIsoTml
     class Mspace < Lutaml::Model::Serializable
-      attribute :width, Lutaml::Model::Type::String
+      attribute :width, :string
 
       xml do
         root "mspace"

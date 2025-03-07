@@ -5,8 +5,8 @@ require "lutaml/model"
 module Sts
   module TbxIsoTml
     class ExternalSource < Lutaml::Model::Serializable
-      attribute :target, Lutaml::Model::Type::String
-      attribute :value, Lutaml::Model::Type::String
+      attribute :target, :string
+      attribute :value, :string
 
       xml do
         root "xSource"

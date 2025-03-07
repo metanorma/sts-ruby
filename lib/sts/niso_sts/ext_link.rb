@@ -5,9 +5,9 @@ require "lutaml/model"
 module Sts
   module NisoSts
     class ExtLink < Lutaml::Model::Serializable
-      attribute :ext_link_type, Lutaml::Model::Type::String
-      attribute :href, Lutaml::Model::Type::String
-      attribute :content, Lutaml::Model::Type::String
+      attribute :ext_link_type, :string
+      attribute :href, :string
+      attribute :content, :string
 
       xml do
         root "ext-link"

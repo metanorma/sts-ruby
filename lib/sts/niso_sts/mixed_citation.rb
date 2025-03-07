@@ -8,10 +8,10 @@ require_relative "reference_standard"
 module Sts
   module NisoSts
     class MixedCitation < Lutaml::Model::Serializable
-      attribute :content, Lutaml::Model::Type::String
-      attribute :bold, Lutaml::Model::Type::String
-      attribute :italic, Lutaml::Model::Type::String
-      attribute :publication_type, Lutaml::Model::Type::String
+      attribute :content, :string
+      attribute :bold, :string
+      attribute :italic, :string
+      attribute :publication_type, :string
       attribute :std, ReferenceStandard, collection: true
       attribute :ext_link, ExtLink
 

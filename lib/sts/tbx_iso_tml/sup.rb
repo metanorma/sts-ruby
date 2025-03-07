@@ -8,7 +8,7 @@ module Sts
     class Xref < Lutaml::Model::Serializable; end
 
     class Sup < Lutaml::Model::Serializable
-      attribute :value, Lutaml::Model::Type::String
+      attribute :value, :string
       attribute :xref, Xref
 
       xml do

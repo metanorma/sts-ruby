@@ -5,7 +5,7 @@ require "lutaml/model"
 module Sts
   module TbxIsoTml
     class GrammaticalNumber < Lutaml::Model::Serializable
-      attribute :value, Lutaml::Model::Type::String,
+      attribute :value, :string,
                 values: %w[singular plural]
 
       xml do

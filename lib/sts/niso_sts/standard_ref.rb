@@ -5,8 +5,8 @@ require "lutaml/model"
 module Sts
   module NisoSts
     class StandardRef < Lutaml::Model::Serializable
-      attribute :type, Lutaml::Model::Type::String
-      attribute :value, Lutaml::Model::Type::String
+      attribute :type, :string
+      attribute :value, :string
 
       xml do
         root "std-ref"

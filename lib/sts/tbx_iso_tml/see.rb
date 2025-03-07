@@ -5,8 +5,8 @@ require "lutaml/model"
 module Sts
   module TbxIsoTml
     class See < Lutaml::Model::Serializable
-      attribute :script, Lutaml::Model::Type::String
-      attribute :value, Lutaml::Model::Type::String
+      attribute :script, :string
+      attribute :value, :string
 
       xml do
         root "see"

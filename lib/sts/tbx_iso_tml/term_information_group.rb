@@ -15,13 +15,13 @@ module Sts
     class TermInformationGroup < Lutaml::Model::Serializable
       attribute :term, Term
       attribute :pos, PartOfSpeech
-      attribute :id, Lutaml::Model::Type::String
-      attribute :usage_note, Lutaml::Model::Type::String
+      attribute :id, :string
+      attribute :usage_note, :string
       attribute :normative_authorization, NormativeAuthorization
       attribute :geographical_usage, GeographicalUsage
       attribute :grammatical_gender, GrammaticalGender
       attribute :grammatical_number, GrammaticalNumber
-      attribute :pronunciation, Lutaml::Model::Type::String
+      attribute :pronunciation, :string
       attribute :term_type, TermType
 
       xml do

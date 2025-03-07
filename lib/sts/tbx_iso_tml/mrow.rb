@@ -11,11 +11,11 @@ require_relative "mfenced"
 module Sts
   module TbxIsoTml
     class Mrow < Lutaml::Model::Serializable
-      attribute :content, Lutaml::Model::Type::String
-      attribute :mo, Lutaml::Model::Type::String, collection: true
-      attribute :mi, Lutaml::Model::Type::String, collection: true
-      attribute :mn, Lutaml::Model::Type::String, collection: true
-      attribute :mtext, Lutaml::Model::Type::String, collection: true
+      attribute :content, :string
+      attribute :mo, :string, collection: true
+      attribute :mi, :string, collection: true
+      attribute :mn, :string, collection: true
+      attribute :mtext, :string, collection: true
       attribute :mrow, Mrow
       attribute :mfrac, Mfrac, collection: true
       attribute :mstyle, Mstyle, collection: true

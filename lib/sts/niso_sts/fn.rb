@@ -8,7 +8,7 @@ require_relative "paragraph"
 module Sts
   module NisoSts
     class Fn < Lutaml::Model::Serializable
-      attribute :id, Lutaml::Model::Type::String
+      attribute :id, :string
       attribute :label, Label
       attribute :paragraph, Paragraph
 

@@ -5,10 +5,10 @@ require "lutaml/model"
 module Sts
   module NisoSts
     class StdId < Lutaml::Model::Serializable
-      attribute :std_id_link_type, Lutaml::Model::Type::String
-      attribute :std_id_type, Lutaml::Model::Type::String
-      attribute :specific_use, Lutaml::Model::Type::String
-      attribute :content, Lutaml::Model::Type::String
+      attribute :std_id_link_type, :string
+      attribute :std_id_type, :string
+      attribute :specific_use, :string
+      attribute :content, :string
 
       xml do
         root "std-id"

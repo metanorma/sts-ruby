@@ -19,11 +19,11 @@ module Sts
     class ReferenceStandard < Lutaml::Model::Serializable; end
 
     class Paragraph < Lutaml::Model::Serializable
-      attribute :id, Lutaml::Model::Type::String
-      attribute :text, Lutaml::Model::Type::String
-      attribute :italic, Lutaml::Model::Type::String, collection: true
-      attribute :bold, Lutaml::Model::Type::String, collection: true
-      attribute :uri, Lutaml::Model::Type::String
+      attribute :id, :string
+      attribute :text, :string
+      attribute :italic, :string, collection: true
+      attribute :bold, :string, collection: true
+      attribute :uri, :string
       attribute :list, Sts::NisoSts::List
       attribute :def_list, DefList
       attribute :non_normative_note, NonNormativeNote

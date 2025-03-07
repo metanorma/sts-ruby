@@ -9,10 +9,10 @@ module Sts
   module TbxIsoTml
     class Semantics < Lutaml::Model::Serializable
       attribute :mrow, Mrow, collection: true
-      attribute :mo, Lutaml::Model::Type::String
-      attribute :mtext, Lutaml::Model::Type::String
+      attribute :mo, :string
+      attribute :mtext, :string
       attribute :munder, Sts::TbxIsoTml::Munder
-      attribute :content, Lutaml::Model::Type::String
+      attribute :content, :string
 
       xml do
         root "semantics", mixed: true

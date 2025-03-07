@@ -5,7 +5,7 @@ require "lutaml/model"
 module Sts
   module TbxIsoTml
     class Caption < Lutaml::Model::Serializable
-      attribute :p, Lutaml::Model::Type::String
+      attribute :p, :string
 
       xml do
         root "caption"

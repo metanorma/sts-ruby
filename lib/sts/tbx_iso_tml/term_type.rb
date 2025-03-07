@@ -5,7 +5,7 @@ require "lutaml/model"
 module Sts
   module TbxIsoTml
     class TermType < Lutaml::Model::Serializable
-      attribute :value, Lutaml::Model::Type::String,
+      attribute :value, :string,
                 values: %w[acronym abbreviation equation formula fullForm symbol variant]
 
       xml do

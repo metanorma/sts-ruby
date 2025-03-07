@@ -14,20 +14,20 @@ require_relative "permissions"
 module Sts
   module NisoSts
     class MetadataStd < Lutaml::Model::Serializable
-      attribute :id, Lutaml::Model::Type::String
+      attribute :id, :string
       attribute :title_wrap, TitleWrap, collection: true
-      attribute :content_language, Lutaml::Model::Type::String
+      attribute :content_language, :string
       attribute :std_ident, StandardIdentification
       attribute :doc_ident, DocumentIdentification
       attribute :std_ref, StandardRef, collection: true
-      attribute :doc_ref, Lutaml::Model::Type::String
-      attribute :pub_date, Lutaml::Model::Type::String
-      attribute :release_date, Lutaml::Model::Type::String
-      attribute :release_version, Lutaml::Model::Type::String
-      attribute :comm_ref, Lutaml::Model::Type::String
-      attribute :secretariat, Lutaml::Model::Type::String
+      attribute :doc_ref, :string
+      attribute :pub_date, :string
+      attribute :release_date, :string
+      attribute :release_version, :string
+      attribute :comm_ref, :string
+      attribute :secretariat, :string
       attribute :page_count, PageCount
-      attribute :ics, Lutaml::Model::Type::String
+      attribute :ics, :string
       attribute :std_xref, StdCrossReference
       attribute :permissions, Permissions
       attribute :meta_note, MetaNote, collection: true

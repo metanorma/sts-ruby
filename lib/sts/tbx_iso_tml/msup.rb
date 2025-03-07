@@ -10,8 +10,8 @@ module Sts
     class Msup < Lutaml::Model::Serializable
       attribute :mstyle, Mstyle
       attribute :mrow, Mrow
-      attribute :mi, Lutaml::Model::Type::String
-      attribute :mn, Lutaml::Model::Type::String, collection: true
+      attribute :mi, :string
+      attribute :mn, :string, collection: true
 
       xml do
         root "msup"

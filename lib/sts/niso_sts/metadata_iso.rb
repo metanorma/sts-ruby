@@ -15,18 +15,18 @@ require_relative "title_wrap"
 module Sts
   module NisoSts
     class MetadataIso < Lutaml::Model::Serializable
-      attribute :comm_ref, Lutaml::Model::Type::String
-      attribute :content_language, Lutaml::Model::Type::String
+      attribute :comm_ref, :string
+      attribute :content_language, :string
       attribute :custom_meta_group, CustomMetaGroup
       attribute :doc_ident, DocumentIdentification
-      attribute :doc_ref, Lutaml::Model::Type::String
-      attribute :ics, Lutaml::Model::Type::String
+      attribute :doc_ref, :string
+      attribute :ics, :string
       attribute :meta_date, MetaDate
       attribute :page_count, PageCount
       attribute :permissions, Permissions
-      attribute :pub_date, Lutaml::Model::Type::String
-      attribute :release_date, Lutaml::Model::Type::String
-      attribute :secretariat, Lutaml::Model::Type::String
+      attribute :pub_date, :string
+      attribute :release_date, :string
+      attribute :secretariat, :string
       attribute :std_ident, StandardIdentification
       attribute :std_ref, StandardRef
       attribute :std_xref, StdCrossReference

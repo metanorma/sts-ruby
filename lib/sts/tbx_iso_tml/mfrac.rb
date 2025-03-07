@@ -11,10 +11,10 @@ module Sts
     class Mfrac < Lutaml::Model::Serializable
       attribute :mrow, Mrow, collection: true
       attribute :mstyle, Mstyle, collection: true
-      attribute :bevelled, Lutaml::Model::Type::String
-      attribute :linethickness, Lutaml::Model::Type::String
-      attribute :mn, Lutaml::Model::Type::String, collection: true
-      attribute :mtext, Lutaml::Model::Type::String, collection: true
+      attribute :bevelled, :string
+      attribute :linethickness, :string
+      attribute :mn, :string, collection: true
+      attribute :mtext, :string, collection: true
 
       xml do
         root "mfrac", mixed: true

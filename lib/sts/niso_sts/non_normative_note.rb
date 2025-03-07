@@ -7,8 +7,8 @@ require_relative "paragraph"
 module Sts
   module NisoSts
     class NonNormativeNote < Lutaml::Model::Serializable
-      attribute :id, Lutaml::Model::Type::String
-      attribute :content_type, Lutaml::Model::Type::String
+      attribute :id, :string
+      attribute :content_type, :string
       attribute :p, Paragraph
       attribute :label, Label
 

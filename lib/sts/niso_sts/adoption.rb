@@ -8,8 +8,8 @@ module Sts
     class Adoption < Lutaml::Model::Serializable
       attribute :front, AdoptionFront
       attribute :back, Back
-      attribute :id, Lutaml::Model::Type::String
-      attribute :lang, Lutaml::Model::Type::String
+      attribute :id, :string
+      attribute :lang, :string
       attribute :adoptions, Adoption, collection: true
       attribute :standard, Standard
 

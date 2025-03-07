@@ -5,9 +5,9 @@ require "lutaml/model"
 module Sts
   module NisoSts
     class CustomMeta < Lutaml::Model::Serializable
-      attribute :lang, Lutaml::Model::Type::String
-      attribute :meta_name, Lutaml::Model::Type::String
-      attribute :meta_value, Lutaml::Model::Type::String
+      attribute :lang, :string
+      attribute :meta_name, :string
+      attribute :meta_value, :string
 
       xml do
         root "custom-meta"

@@ -9,8 +9,8 @@ require_relative "../tbx_iso_tml/term_entry"
 module Sts
   module NisoSts
     class TermSection < Lutaml::Model::Serializable
-      attribute :id, Lutaml::Model::Type::String
-      attribute :sec_type, Lutaml::Model::Type::String
+      attribute :id, :string
+      attribute :sec_type, :string
       attribute :label, Label
       attribute :term_entry, Sts::TbxIsoTml::TermEntry # , collection: true
       attribute :term_display, TermDisplay # , collection: true

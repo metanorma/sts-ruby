@@ -17,16 +17,16 @@ module Sts
     class Mfenced < Lutaml::Model::Serializable; end
 
     class Math < Lutaml::Model::Serializable
-      attribute :id, Lutaml::Model::Type::String
-      attribute :content, Lutaml::Model::Type::String
-      attribute :display, Lutaml::Model::Type::String
+      attribute :id, :string
+      attribute :content, :string
+      attribute :display, :string
       attribute :mrow, Mrow
       attribute :msub, Msub, collection: true
       attribute :msup, Msup
-      attribute :mn, Lutaml::Model::Type::String, collection: true
-      attribute :mo, Lutaml::Model::Type::String, collection: true
-      attribute :mi, Lutaml::Model::Type::String
-      attribute :mtext, Lutaml::Model::Type::String
+      attribute :mn, :string, collection: true
+      attribute :mo, :string, collection: true
+      attribute :mi, :string
+      attribute :mtext, :string
       attribute :semantics, Semantics
       attribute :mstyle, Mstyle, collection: true
       attribute :mfenced, Mfenced, collection: true

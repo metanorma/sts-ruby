@@ -12,10 +12,10 @@ module Sts
     class Definition < Lutaml::Model::Serializable
       attribute :entailed_term, EntailedTerm, collection: true
       attribute :note, Note
-      attribute :value, Lutaml::Model::Type::String
+      attribute :value, :string
       attribute :italic, Italic
       attribute :math, Sts::TbxIsoTml::Math
-      attribute :sub, Lutaml::Model::Type::String
+      attribute :sub, :string
       attribute :list, Sts::NisoSts::List, collection: true
       attribute :std, Sts::NisoSts::ReferenceStandard, collection: true
 

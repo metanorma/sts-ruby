@@ -5,8 +5,8 @@ require "lutaml/model"
 module Sts
   module NisoSts
     class MetaDate < Lutaml::Model::Serializable
-      attribute :content, Lutaml::Model::Type::String
-      attribute :type, Lutaml::Model::Type::String
+      attribute :content, :string
+      attribute :type, :string
 
       xml do
         root "meta-date"

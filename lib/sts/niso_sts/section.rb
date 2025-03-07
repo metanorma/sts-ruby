@@ -19,11 +19,11 @@ module Sts
     class Title < Lutaml::Model::Serializable; end
 
     class Section < Lutaml::Model::Serializable
-      attribute :id, Lutaml::Model::Type::String
-      attribute :specific_use, Lutaml::Model::Type::String
+      attribute :id, :string
+      attribute :specific_use, :string
       attribute :label, Label
       attribute :title, Title
-      attribute :type, Lutaml::Model::Type::String
+      attribute :type, :string
       attribute :array, SectionArray
       attribute :paragraphs, Paragraph, collection: true
       attribute :list, List, collection: true

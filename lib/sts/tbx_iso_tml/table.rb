@@ -12,10 +12,10 @@ module Sts
       attribute :col, Sts::TbxIsoTml::Col, collection: true
       attribute :thead, Sts::TbxIsoTml::Thead
       attribute :tbody, Sts::TbxIsoTml::Tbody
-      attribute :border, Lutaml::Model::Type::String
-      attribute :rules, Lutaml::Model::Type::String
-      attribute :frame, Lutaml::Model::Type::String
-      attribute :width, Lutaml::Model::Type::String
+      attribute :border, :string
+      attribute :rules, :string
+      attribute :frame, :string
+      attribute :width, :string
 
       xml do
         root "table"

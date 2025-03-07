@@ -8,9 +8,9 @@ module Sts
   module TbxIsoTml
     class Thead < Lutaml::Model::Serializable
       attribute :tr, Sts::TbxIsoTml::Tr, collection: true
-      attribute :char, Lutaml::Model::Type::String
-      attribute :charoff, Lutaml::Model::Type::String
-      attribute :valign, Lutaml::Model::Type::String
+      attribute :char, :string
+      attribute :charoff, :string
+      attribute :valign, :string
 
       xml do
         root "thead"

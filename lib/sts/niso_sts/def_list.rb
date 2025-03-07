@@ -7,9 +7,9 @@ require_relative "def_item"
 module Sts
   module NisoSts
     class DefList < Lutaml::Model::Serializable
-      attribute :title, Lutaml::Model::Type::String
-      attribute :specific_use, Lutaml::Model::Type::String
-      attribute :list_type, Lutaml::Model::Type::String
+      attribute :title, :string
+      attribute :specific_use, :string
+      attribute :list_type, :string
       attribute :def_item, DefItem, collection: true
       attribute :def_list, DefList
 

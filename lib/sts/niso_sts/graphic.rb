@@ -13,7 +13,7 @@ require_relative "object_id"
 module Sts
   module NisoSts
     class Graphic < Lutaml::Model::Serializable
-      attribute :href, Lutaml::Model::Type::String
+      attribute :href, :string
       attribute :object_id, ObjectId, collection: true
 
       xml do

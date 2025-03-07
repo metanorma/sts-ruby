@@ -9,7 +9,7 @@ module Sts
     class Paragraph < Lutaml::Model::Serializable; end
 
     class NonNormativeExample < Lutaml::Model::Serializable
-      attribute :id, Lutaml::Model::Type::String
+      attribute :id, :string
       attribute :p, Paragraph
       attribute :label, Label
 

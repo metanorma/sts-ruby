@@ -7,8 +7,8 @@ require_relative "mrow"
 module Sts
   module TbxIsoTml
     class Munderover < Lutaml::Model::Serializable
-      attribute :mo, Lutaml::Model::Type::String
-      attribute :mi, Lutaml::Model::Type::String
+      attribute :mo, :string
+      attribute :mi, :string
       attribute :mrow, Mrow, collection: true
 
       xml do

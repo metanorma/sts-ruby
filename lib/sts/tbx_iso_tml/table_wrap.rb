@@ -8,10 +8,10 @@ require_relative "table_wrap_foot"
 module Sts
   module TbxIsoTml
     class TableWrap < Lutaml::Model::Serializable
-      attribute :id, Lutaml::Model::Type::String
-      attribute :orientation, Lutaml::Model::Type::String
-      attribute :position, Lutaml::Model::Type::String
-      attribute :label, Lutaml::Model::Type::String
+      attribute :id, :string
+      attribute :orientation, :string
+      attribute :position, :string
+      attribute :label, :string
       attribute :table, Sts::TbxIsoTml::Table, collection: true
       attribute :table_wrap_foot, Sts::TbxIsoTml::TableWrapFoot
 

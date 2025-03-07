@@ -7,10 +7,10 @@ require_relative "paragraph"
 module Sts
   module NisoSts
     class MetaNote < Lutaml::Model::Serializable
-      attribute :id, Lutaml::Model::Type::String
-      attribute :content_type, Lutaml::Model::Type::String
+      attribute :id, :string
+      attribute :content_type, :string
       attribute :p, Paragraph, collection: true
-      attribute :title, Lutaml::Model::Type::String
+      attribute :title, :string
 
       xml do
         root "meta-note", mixed: true

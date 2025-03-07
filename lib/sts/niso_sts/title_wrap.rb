@@ -8,7 +8,7 @@ require_relative "reference_standard"
 module Sts
   module NisoSts
     class TitleFull < Lutaml::Model::Serializable
-      attribute :content, Lutaml::Model::Type::String
+      attribute :content, :string
       attribute :std, ReferenceStandard
 
       xml do
@@ -29,11 +29,11 @@ module Sts
     end
 
     class TitleWrap < Lutaml::Model::Serializable
-      attribute :intro, Lutaml::Model::Type::String
-      attribute :main, Lutaml::Model::Type::String
+      attribute :intro, :string
+      attribute :main, :string
       attribute :full, TitleFull
       attribute :compl, TitleCompl
-      attribute :lang, Lutaml::Model::Type::String
+      attribute :lang, :string
 
       xml do
         root "title-wrap", mixed: true

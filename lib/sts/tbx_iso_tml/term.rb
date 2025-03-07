@@ -12,12 +12,12 @@ require_relative "../niso_sts/inline_formula"
 module Sts
   module TbxIsoTml
     class Term < Lutaml::Model::Serializable
-      attribute :id, Lutaml::Model::Type::String
-      attribute :script, Lutaml::Model::Type::String
-      attribute :value, Lutaml::Model::Type::String
+      attribute :id, :string
+      attribute :script, :string
+      attribute :value, :string
       attribute :italic, Sts::TbxIsoTml::Italic
-      attribute :bold, Lutaml::Model::Type::String
-      attribute :sub, Lutaml::Model::Type::String
+      attribute :bold, :string
+      attribute :sub, :string
       attribute :math, Sts::TbxIsoTml::Math
       attribute :xref, Sts::TbxIsoTml::Xref
       attribute :inline_formula, Sts::NisoSts::InlineFormula, collection: true

@@ -6,7 +6,7 @@ require_relative "../tbx_iso_tml/math"
 module Sts
   module NisoSts
     class DisplayFormula < Lutaml::Model::Serializable
-      attribute :id, Lutaml::Model::Type::String
+      attribute :id, :string
       attribute :label, Label
       attribute :math, TbxIsoTml::Math
 

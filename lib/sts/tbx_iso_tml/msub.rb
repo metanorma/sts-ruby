@@ -12,10 +12,10 @@ module Sts
       attribute :mstyle, Mstyle, collection: true
       attribute :mrow, Mrow
       attribute :mspace, Mspace
-      attribute :mo, Lutaml::Model::Type::String, collection: true
-      attribute :mi, Lutaml::Model::Type::String, collection: true
-      attribute :mn, Lutaml::Model::Type::String, collection: true
-      attribute :mtext, Lutaml::Model::Type::String, collection: true
+      attribute :mo, :string, collection: true
+      attribute :mi, :string, collection: true
+      attribute :mn, :string, collection: true
+      attribute :mtext, :string, collection: true
 
       xml do
         root "msub", mixed: true

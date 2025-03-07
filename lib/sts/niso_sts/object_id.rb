@@ -9,8 +9,8 @@ require "lutaml/model"
 module Sts
   module NisoSts
     class ObjectId < Lutaml::Model::Serializable
-      attribute :pub_id_type, Lutaml::Model::Type::String
-      attribute :content, Lutaml::Model::Type::String
+      attribute :pub_id_type, :string
+      attribute :content, :string
 
       xml do
         root "object-id"

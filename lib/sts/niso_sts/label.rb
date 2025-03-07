@@ -7,7 +7,7 @@ require_relative "../tbx_iso_tml/sup"
 module Sts
   module NisoSts
     class Label < Lutaml::Model::Serializable
-      attribute :content, Lutaml::Model::Type::String
+      attribute :content, :string
       attribute :sup, Sts::TbxIsoTml::Sup
 
       xml do

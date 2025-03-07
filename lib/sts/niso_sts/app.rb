@@ -16,10 +16,10 @@ module Sts
     class ReferenceList < Lutaml::Model::Serializable; end
 
     class App < Lutaml::Model::Serializable
-      attribute :id, Lutaml::Model::Type::String
-      attribute :content_type, Lutaml::Model::Type::String
+      attribute :id, :string
+      attribute :content_type, :string
       attribute :label, Label
-      attribute :annex_type, Lutaml::Model::Type::String
+      attribute :annex_type, :string
       attribute :title, Title
       attribute :fig, Figure, collection: true
       attribute :sec, Section, collection: true

@@ -17,8 +17,8 @@ module Sts
     class Caption < Lutaml::Model::Serializable; end
 
     class Figure < Lutaml::Model::Serializable
-      attribute :id, Lutaml::Model::Type::String
-      attribute :orientation, Lutaml::Model::Type::String
+      attribute :id, :string
+      attribute :orientation, :string
       attribute :caption, Caption
       attribute :def_list, DefList
       attribute :label, Label

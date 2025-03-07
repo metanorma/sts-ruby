@@ -15,18 +15,18 @@ require_relative "../niso_sts/paragraph"
 module Sts
   module TbxIsoTml
     class Td < Lutaml::Model::Serializable
-      attribute :content, Lutaml::Model::Type::String
-      attribute :align, Lutaml::Model::Type::String
-      attribute :scope, Lutaml::Model::Type::String
-      attribute :style, Lutaml::Model::Type::String
+      attribute :content, :string
+      attribute :align, :string
+      attribute :scope, :string
+      attribute :style, :string
       attribute :bold, Bold
       attribute :italic, Italic
-      attribute :content_type, Lutaml::Model::Type::String
-      attribute :char, Lutaml::Model::Type::String
-      attribute :charoff, Lutaml::Model::Type::String
-      attribute :colspan, Lutaml::Model::Type::String
-      attribute :rowspan, Lutaml::Model::Type::String
-      attribute :valign, Lutaml::Model::Type::String
+      attribute :content_type, :string
+      attribute :char, :string
+      attribute :charoff, :string
+      attribute :colspan, :string
+      attribute :rowspan, :string
+      attribute :valign, :string
       attribute :inline_formula, Sts::NisoSts::InlineFormula, collection: true
       attribute :non_normative_note,
                 Sts::NisoSts::NonNormativeNote,

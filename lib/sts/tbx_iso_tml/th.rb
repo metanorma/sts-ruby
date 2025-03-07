@@ -12,17 +12,17 @@ require_relative "../niso_sts/inline_formula"
 module Sts
   module TbxIsoTml
     class Th < Lutaml::Model::Serializable
-      attribute :content, Lutaml::Model::Type::String
-      attribute :colspan, Lutaml::Model::Type::String
-      attribute :align, Lutaml::Model::Type::String
-      attribute :scope, Lutaml::Model::Type::String
-      attribute :style, Lutaml::Model::Type::String
-      attribute :rowspan, Lutaml::Model::Type::String
+      attribute :content, :string
+      attribute :colspan, :string
+      attribute :align, :string
+      attribute :scope, :string
+      attribute :style, :string
+      attribute :rowspan, :string
       attribute :break, TableBreak
-      attribute :content_type, Lutaml::Model::Type::String
-      attribute :char, Lutaml::Model::Type::String
-      attribute :charoff, Lutaml::Model::Type::String
-      attribute :valign, Lutaml::Model::Type::String
+      attribute :content_type, :string
+      attribute :char, :string
+      attribute :charoff, :string
+      attribute :valign, :string
       attribute :italic, Italic
       attribute :bold, Bold
       attribute :std, Sts::NisoSts::ReferenceStandard

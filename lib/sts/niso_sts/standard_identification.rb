@@ -7,12 +7,12 @@ require_relative "std_id_group"
 module Sts
   module NisoSts
     class StandardIdentification < Lutaml::Model::Serializable
-      attribute :originator, Lutaml::Model::Type::String
-      attribute :doc_type, Lutaml::Model::Type::String
-      attribute :doc_number, Lutaml::Model::Type::String
-      attribute :edition, Lutaml::Model::Type::String
-      attribute :version, Lutaml::Model::Type::String
-      attribute :part_number, Lutaml::Model::Type::String
+      attribute :originator, :string
+      attribute :doc_type, :string
+      attribute :doc_number, :string
+      attribute :edition, :string
+      attribute :version, :string
+      attribute :part_number, :string
       attribute :std_id_group, StdIdGroup
 
       xml do

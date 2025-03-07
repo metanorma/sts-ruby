@@ -5,9 +5,9 @@ require "lutaml/model"
 module Sts
   module NisoSts
     class Permissions < Lutaml::Model::Serializable
-      attribute :copyright_statement, Lutaml::Model::Type::String
-      attribute :copyright_year, Lutaml::Model::Type::String
-      attribute :copyright_holder, Lutaml::Model::Type::String
+      attribute :copyright_statement, :string
+      attribute :copyright_year, :string
+      attribute :copyright_holder, :string
 
       xml do
         root "permissions"

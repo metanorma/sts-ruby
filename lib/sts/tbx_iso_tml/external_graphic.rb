@@ -5,7 +5,7 @@ require "lutaml/model"
 module Sts
   module TbxIsoTml
     class ExternalGraphic < Lutaml::Model::Serializable
-      attribute :target, Lutaml::Model::Type::String
+      attribute :target, :string
 
       xml do
         root "xGraphic"

@@ -5,10 +5,10 @@ require "lutaml/model"
 module Sts
   module TbxIsoTml
     class EntailedTerm < Lutaml::Model::Serializable
-      attribute :target, Lutaml::Model::Type::String
-      attribute :xtarget, Lutaml::Model::Type::String
-      attribute :lang, Lutaml::Model::Type::String
-      attribute :value, Lutaml::Model::Type::String
+      attribute :target, :string
+      attribute :xtarget, :string
+      attribute :lang, :string
+      attribute :value, :string
 
       xml do
         root "entailedTerm"

@@ -5,10 +5,10 @@ require "lutaml/model"
 module Sts
   module TbxIsoTml
     class Col < Lutaml::Model::Serializable
-      attribute :width, Lutaml::Model::Type::String
-      attribute :char, Lutaml::Model::Type::String
-      attribute :charoff, Lutaml::Model::Type::String
-      attribute :span, Lutaml::Model::Type::String
+      attribute :width, :string
+      attribute :char, :string
+      attribute :charoff, :string
+      attribute :span, :string
 
       xml do
         root "col"

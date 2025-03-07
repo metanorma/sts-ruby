@@ -10,13 +10,13 @@ require_relative "mfrac"
 module Sts
   module TbxIsoTml
     class Mfenced < Lutaml::Model::Serializable
-      attribute :separators, Lutaml::Model::Type::String
-      attribute :open, Lutaml::Model::Type::String
-      attribute :close, Lutaml::Model::Type::String
-      attribute :mo, Lutaml::Model::Type::String, collection: true
-      attribute :mn, Lutaml::Model::Type::String, collection: true
-      attribute :mi, Lutaml::Model::Type::String
-      attribute :mtext, Lutaml::Model::Type::String
+      attribute :separators, :string
+      attribute :open, :string
+      attribute :close, :string
+      attribute :mo, :string, collection: true
+      attribute :mn, :string, collection: true
+      attribute :mi, :string
+      attribute :mtext, :string
       attribute :mspace, Mspace, collection: true
       attribute :msub, Msub, collection: true
       attribute :mstyle, Mstyle, collection: true

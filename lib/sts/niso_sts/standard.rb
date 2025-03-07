@@ -10,11 +10,11 @@ module Sts
       attribute :front, Front
       attribute :body, Body
       attribute :back, Back
-      attribute :id, Lutaml::Model::Type::String
-      attribute :lang, Lutaml::Model::Type::String
-      attribute :mml, Lutaml::Model::Type::String
-      attribute :tbx, Lutaml::Model::Type::String
-      attribute :xlink, Lutaml::Model::Type::String
+      attribute :id, :string
+      attribute :lang, :string
+      attribute :mml, :string
+      attribute :tbx, :string
+      attribute :xlink, :string
 
       xml do
         root "standard"

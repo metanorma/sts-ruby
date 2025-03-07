@@ -6,7 +6,7 @@ require_relative "mstyle"
 module Sts
   module TbxIsoTml
     class Mi < Lutaml::Model::Serializable
-      attribute :content, Lutaml::Model::Type::String
+      attribute :content, :string
 
       xml do
         root "mi"
