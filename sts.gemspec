@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "bigdecimal"
-  spec.add_dependency "lutaml-model", "~> 0.3.0"
+  spec.add_dependency "lutaml-model", "~> 0.7"
   spec.add_dependency "nokogiri"
 
   # spec.add_dependency "thor"
