@@ -6,7 +6,6 @@ source "https://rubygems.org"
 gemspec
 
 gem "equivalent-xml"
-gem "lutaml-model", github: "lutaml/lutaml-model", branch: "main"
 gem "pry"
 gem "rake"
 gem "rspec"
