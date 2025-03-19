@@ -99,6 +99,7 @@ Metrics/BlockLength:
   CountComments: true
   Max: 25
   Exclude:
+  - "**/*.gemspec"
   - spec/**/*
 Metrics/CyclomaticComplexity:
   Description: A complexity metric that is strongly correlated to the number of test
