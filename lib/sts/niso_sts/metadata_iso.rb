@@ -35,7 +35,8 @@ module Sts
       xml do
         root "iso-meta", mixed: true
 
-        map_element "comm-ref", to: :comm_ref, value_map: { to: { empty: :empty } }
+        map_element "comm-ref", to: :comm_ref,
+                                value_map: { to: { empty: :empty } }
         map_element "content-language", to: :content_language
         map_element "custom-meta-group", to: :custom_meta_group
         map_element "doc-ident", to: :doc_ident
