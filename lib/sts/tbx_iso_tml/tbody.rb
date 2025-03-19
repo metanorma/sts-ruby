@@ -15,7 +15,7 @@ module Sts
       xml do
         root "tbody"
 
-        map_attribute "char", to: :char
+        map_attribute "char", to: :char, value_map: { to: { empty: :empty } }
         map_attribute "charoff", to: :charoff
         map_attribute "valign", to: :valign
 
