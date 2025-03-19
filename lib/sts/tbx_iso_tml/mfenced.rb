@@ -26,7 +26,7 @@ module Sts
         root "mfenced", mixed: true
         namespace "http://www.w3.org/1998/Math/MathML", "mml"
 
-        map_attribute "separators", to: :separators
+        map_attribute "separators", to: :separators, value_map: { to: { empty: :empty } }
         map_attribute "open", to: :open
         map_attribute "close", to: :close
 

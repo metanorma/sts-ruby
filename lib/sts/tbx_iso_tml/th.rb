@@ -39,7 +39,7 @@ module Sts
         map_attribute "style", to: :style
         map_attribute "rowspan", to: :rowspan
         map_attribute "content-type", to: :content_type
-        map_attribute "char", to: :char
+        map_attribute "char", to: :char, value_map: { to: { empty: :empty } }
         map_attribute "charoff", to: :charoff
         map_attribute "valign", to: :valign
 
