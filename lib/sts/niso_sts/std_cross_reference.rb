@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
 module Sts
   module NisoSts
     class StdCrossReference < Lutaml::Model::Serializable
       attribute :type, :string
-      attribute :std_ref, StandardRef, collection: true
+      attribute :std_ref, ::Sts::NisoSts::StandardRef, collection: true
 
       xml do
-        root "std-xref"
+        element "std-xref"
 
         map_attribute "type", to: :type
         map_element "std-ref", to: :std_ref

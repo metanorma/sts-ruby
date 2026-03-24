@@ -1,9 +1,5 @@
 # frozen_striing_literal: true
 
-require "lutaml/model"
-
-require_relative "ext_link"
-require_relative "reference_standard"
 
 module Sts
   module NisoSts
@@ -12,11 +8,12 @@ module Sts
       attribute :bold, :string
       attribute :italic, :string
       attribute :publication_type, :string
-      attribute :std, ReferenceStandard, collection: true
-      attribute :ext_link, ExtLink
+      attribute :std, ::Sts::NisoSts::ReferenceStandard, collection: true
+      attribute :ext_link, ::Sts::NisoSts::ExtLink
 
       xml do
-        root "mixed-citation", mixed: true
+        element "mixed-citation"
+        mixed_content
 
         map_content to: :content
 

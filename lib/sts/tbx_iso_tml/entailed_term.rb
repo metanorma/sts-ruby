@@ -1,24 +1,20 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
 module Sts
   module TbxIsoTml
     class EntailedTerm < Lutaml::Model::Serializable
       attribute :target, :string
       attribute :xtarget, :string
-      attribute :lang, :string
+      attribute :lang, Lutaml::Xml::W3c::XmlLangType
       attribute :value, :string
 
       xml do
-        root "entailedTerm"
-        namespace "urn:iso:std:iso:30042:ed-1", "tbx"
+        element "entailedTerm"
+        namespace ::Sts::Namespaces::TbxNamespace
 
-        map_attribute :target, to: :target
-        map_attribute :xtarget, to: :xtarget
-        map_attribute :lang, to: :lang,
-                             namespace: "http://www.w3.org/XML/1998/namespace",
-                             prefix: "xml"
+        map_attribute "target", to: :target
+        map_attribute "xtarget", to: :xtarget
+        map_attribute "lang", to: :lang
         map_content to: :value
       end
     end

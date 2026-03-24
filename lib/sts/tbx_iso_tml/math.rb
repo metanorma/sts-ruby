@@ -1,42 +1,31 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "semantics"
-require_relative "mrow"
-require_relative "msub"
-require_relative "msup"
-require_relative "mstyle"
-require_relative "mspace"
-require_relative "mfrac"
-require_relative "mfenced"
-require_relative "munderover"
 
 module Sts
   module TbxIsoTml
-    class Mfenced < Lutaml::Model::Serializable; end
 
     class Math < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :content, :string
       attribute :display, :string
-      attribute :mrow, Mrow
-      attribute :msub, Msub, collection: true
-      attribute :msup, Msup
+      attribute :mrow, ::Sts::TbxIsoTml::Mrow
+      attribute :msub, ::Sts::TbxIsoTml::Msub, collection: true
+      attribute :msup, ::Sts::TbxIsoTml::Msup
       attribute :mn, :string, collection: true
       attribute :mo, :string, collection: true
       attribute :mi, :string
       attribute :mtext, :string
-      attribute :semantics, Semantics
-      attribute :mstyle, Mstyle, collection: true
-      attribute :mfenced, Mfenced, collection: true
-      attribute :mspace, Mspace, collection: true
-      attribute :mfrac, Mfrac, collection: true
-      attribute :munderover, Munderover, collection: true
+      attribute :semantics, ::Sts::TbxIsoTml::Semantics
+      attribute :mstyle, ::Sts::TbxIsoTml::Mstyle, collection: true
+      attribute :mfenced, ::Sts::TbxIsoTml::Mfenced, collection: true
+      attribute :mspace, ::Sts::TbxIsoTml::Mspace, collection: true
+      attribute :mfrac, ::Sts::TbxIsoTml::Mfrac, collection: true
+      attribute :munderover, ::Sts::TbxIsoTml::Munderover, collection: true
 
       xml do
-        root "math", mixed: true
-        namespace "http://www.w3.org/1998/Math/MathML", "mml"
+        element "math"
+        mixed_content
+        namespace ::Sts::Namespaces::MathmlNamespace
 
         map_attribute "id", to: :id
 

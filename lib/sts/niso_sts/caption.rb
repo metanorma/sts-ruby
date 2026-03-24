@@ -1,8 +1,3 @@
-require "lutaml/model"
-
-require_relative "paragraph"
-require_relative "title"
-require_relative "non_normative_note"
 
 # rubocop:disable Layout/LineLength
 # <caption>
@@ -31,12 +26,13 @@ require_relative "non_normative_note"
 module Sts
   module NisoSts
     class Caption < Lutaml::Model::Serializable
-      attribute :title, Title
-      attribute :paragraphs, Paragraph, collection: true
-      attribute :non_normative_note, NonNormativeNote, collection: true
+      attribute :title, ::Sts::NisoSts::Title
+      attribute :paragraphs, ::Sts::NisoSts::Paragraph, collection: true
+      attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote, collection: true
 
       xml do
-        root "caption", mixed: true
+        element "caption"
+        mixed_content
 
         map_element "p", to: :paragraphs
         map_element "non-normative-note", to: :non_normative_note

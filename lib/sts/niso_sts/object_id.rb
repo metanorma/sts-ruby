@@ -4,8 +4,6 @@
 # <object-id pub-id-type="publisher-id">fig-1</object-id>
 # rubocop:enable Layout/LineLength
 
-require "lutaml/model"
-
 module Sts
   module NisoSts
     class ObjectId < Lutaml::Model::Serializable
@@ -13,7 +11,7 @@ module Sts
       attribute :content, :string
 
       xml do
-        root "object-id"
+        element "object-id"
 
         map_attribute "pub-id-type", to: :pub_id_type
         map_content to: :content

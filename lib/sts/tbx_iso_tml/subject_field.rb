@@ -1,18 +1,17 @@
 # frozen_string_literal: true
 
+
 module Sts
   module TbxIsoTml
-    class Italic < Lutaml::Model::Serializable
+    class SubjectField < Lutaml::Model::Serializable
       attribute :value, :string
-      attribute :sub, :string
 
       xml do
-        element "italic"
+        element "subjectField"
         mixed_content
-        namespace nil, nil
+        namespace ::Sts::Namespaces::TbxNamespace
 
         map_content to: :value
-        map_element "sub", to: :sub
       end
     end
   end

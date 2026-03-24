@@ -1,44 +1,32 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
 
-require_relative "paragraph"
-require_relative "list"
-require_relative "term_section"
-require_relative "reference_list"
-require_relative "non_normative_note"
-require_relative "non_normative_example"
-require_relative "figure"
-require_relative "title"
-require_relative "section_array"
-
-require_relative "../tbx_iso_tml/table_wrap"
 
 module Sts
   module NisoSts
-    class Title < Lutaml::Model::Serializable; end
 
     class Section < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :specific_use, :string
-      attribute :label, Label
-      attribute :title, Title
+      attribute :label, ::Sts::NisoSts::Label
+      attribute :title, ::Sts::NisoSts::Title
       attribute :type, :string
-      attribute :array, SectionArray
-      attribute :paragraphs, Paragraph, collection: true
-      attribute :list, List, collection: true
-      attribute :term_sec, TermSection, collection: true
-      attribute :ref_list, ReferenceList, collection: true
-      attribute :non_normative_note, NonNormativeNote, collection: true
-      attribute :non_normative_example, NonNormativeExample, collection: true
-      attribute :sec, Section, collection: true
-      attribute :figures, Figure, collection: true
-      attribute :fig, Figure, collection: true
+      attribute :array, ::Sts::NisoSts::SectionArray
+      attribute :paragraphs, ::Sts::NisoSts::Paragraph, collection: true
+      attribute :list, ::Sts::NisoSts::List, collection: true
+      attribute :term_sec, ::Sts::NisoSts::TermSection, collection: true
+      attribute :ref_list, ::Sts::NisoSts::ReferenceList, collection: true
+      attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote, collection: true
+      attribute :non_normative_example, ::Sts::NisoSts::NonNormativeExample, collection: true
+      attribute :sec, ::Sts::NisoSts::Section, collection: true
+      attribute :figures, ::Sts::NisoSts::Figure, collection: true
+      attribute :fig, ::Sts::NisoSts::Figure, collection: true
 
       attribute :table_wrap, ::Sts::TbxIsoTml::TableWrap, collection: true
 
       xml do
-        root "sec", mixed: true
+        element "sec"
+        mixed_content
 
         map_attribute "id", to: :id
         map_attribute "sec-type", to: :type

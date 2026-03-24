@@ -5,10 +5,12 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in sts.gemspec
 gemspec
 
-gem "equivalent-xml"
+gem "canon"
+gem "lutaml-model", github: "lutaml/lutaml-model", branch: "main"
 gem "pry"
 gem "rake"
 gem "rspec"
 gem "rubocop"
 gem "rubocop-performance"
-gem "xml-c14n"
+gem "rubocop-rake"
+gem "rubocop-rspec"

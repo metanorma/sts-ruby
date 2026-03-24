@@ -1,20 +1,17 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "paragraph"
 
 module Sts
   module NisoSts
-    class Paragraph < Lutaml::Model::Serializable; end
 
     class NonNormativeExample < Lutaml::Model::Serializable
       attribute :id, :string
-      attribute :p, Paragraph
-      attribute :label, Label
+      attribute :p, ::Sts::NisoSts::Paragraph
+      attribute :label, ::Sts::NisoSts::Label
 
       xml do
-        root "non-normative-example", mixed: true
+        element "non-normative-example"
+        mixed_content
 
         map_attribute "id", to: :id
         map_element "p", to: :p

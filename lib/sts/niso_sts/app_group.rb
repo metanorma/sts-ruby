@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "app"
 
 module Sts
   module NisoSts
@@ -10,7 +7,7 @@ module Sts
       attribute :app, Sts::NisoSts::App, collection: true
 
       xml do
-        root "app-group"
+        element "app-group"
 
         map_element "app", to: :app
       end

@@ -1,32 +1,24 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "term"
-require_relative "part_of_speech"
-require_relative "normative_authorization"
-require_relative "geographical_usage"
-require_relative "grammatical_gender"
-require_relative "grammatical_number"
-require_relative "term_type"
 
 module Sts
   module TbxIsoTml
     class TermInformationGroup < Lutaml::Model::Serializable
-      attribute :term, Term
-      attribute :pos, PartOfSpeech
+      attribute :term, ::Sts::TbxIsoTml::Term
+      attribute :pos, ::Sts::TbxIsoTml::PartOfSpeech
       attribute :id, :string
       attribute :usage_note, :string
-      attribute :normative_authorization, NormativeAuthorization
-      attribute :geographical_usage, GeographicalUsage
-      attribute :grammatical_gender, GrammaticalGender
-      attribute :grammatical_number, GrammaticalNumber
-      attribute :pronunciation, :string
-      attribute :term_type, TermType
+      attribute :normative_authorization, ::Sts::TbxIsoTml::NormativeAuthorization
+      attribute :geographical_usage, ::Sts::TbxIsoTml::GeographicalUsage
+      attribute :grammatical_gender, ::Sts::TbxIsoTml::GrammaticalGender
+      attribute :grammatical_number, ::Sts::TbxIsoTml::GrammaticalNumber
+      attribute :pronunciation, ::Sts::TbxIsoTml::Pronunciation
+      attribute :term_type, ::Sts::TbxIsoTml::TermType
 
       xml do
-        root "tig", mixed: true
-        namespace "urn:iso:std:iso:30042:ed-1", "tbx"
+        element "tig"
+        mixed_content
+        namespace ::Sts::Namespaces::TbxNamespace
 
         map_attribute "id", to: :id
 

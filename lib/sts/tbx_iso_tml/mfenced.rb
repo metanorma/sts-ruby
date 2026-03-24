@@ -1,11 +1,5 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "mspace"
-require_relative "msub"
-require_relative "mstyle"
-require_relative "mfrac"
 
 module Sts
   module TbxIsoTml
@@ -17,14 +11,15 @@ module Sts
       attribute :mn, :string, collection: true
       attribute :mi, :string
       attribute :mtext, :string
-      attribute :mspace, Mspace, collection: true
-      attribute :msub, Msub, collection: true
-      attribute :mstyle, Mstyle, collection: true
-      attribute :mfrac, Mfrac, collection: true
+      attribute :mspace, ::Sts::TbxIsoTml::Mspace, collection: true
+      attribute :msub, ::Sts::TbxIsoTml::Msub, collection: true
+      attribute :mstyle, ::Sts::TbxIsoTml::Mstyle, collection: true
+      attribute :mfrac, ::Sts::TbxIsoTml::Mfrac, collection: true
 
       xml do
-        root "mfenced", mixed: true
-        namespace "http://www.w3.org/1998/Math/MathML", "mml"
+        element "mfenced"
+        mixed_content
+        namespace ::Sts::Namespaces::MathmlNamespace
 
         map_attribute "separators", to: :separators,
                                     value_map: { to: { empty: :empty } }

@@ -1,35 +1,25 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "section"
-require_relative "title"
-require_relative "paragraph"
-require_relative "non_normative_note"
-require_relative "figure"
-require_relative "reference_list"
-require_relative "../tbx_iso_tml/table_wrap"
 
 module Sts
   module NisoSts
-    class Title < Lutaml::Model::Serializable; end
-    class ReferenceList < Lutaml::Model::Serializable; end
 
     class App < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :content_type, :string
-      attribute :label, Label
+      attribute :label, ::Sts::NisoSts::Label
       attribute :annex_type, :string
-      attribute :title, Title
-      attribute :fig, Figure, collection: true
-      attribute :sec, Section, collection: true
-      attribute :paragraph, Paragraph, collection: true
-      attribute :ref_list, ReferenceList, collection: true
-      attribute :non_normative_note, NonNormativeNote, collection: true
-      attribute :table_wrap, Sts::TbxIsoTml::TableWrap, collection: true
+      attribute :title, ::Sts::NisoSts::Title
+      attribute :fig, ::Sts::NisoSts::Figure, collection: true
+      attribute :sec, ::Sts::NisoSts::Section, collection: true
+      attribute :paragraph, ::Sts::NisoSts::Paragraph, collection: true
+      attribute :ref_list, ::Sts::NisoSts::ReferenceList, collection: true
+      attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote, collection: true
+      attribute :table_wrap, ::Sts::TbxIsoTml::TableWrap, collection: true
 
       xml do
-        root "app", mixed: true
+        element "app"
+        mixed_content
 
         map_attribute "id", to: :id
         map_attribute "content-type", to: :content_type

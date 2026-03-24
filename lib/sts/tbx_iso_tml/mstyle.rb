@@ -1,21 +1,21 @@
 # frozen_string_literal: true
 
 require "lutaml/model"
-require_relative "mspace"
 
 module Sts
   module TbxIsoTml
     class Mstyle < Lutaml::Model::Serializable
       attribute :mathvariant, :string
-      attribute :mstyle, Mstyle
-      attribute :mspace, Mspace, collection: true
+      attribute :mstyle, ::Sts::TbxIsoTml::Mstyle
+      attribute :mspace, ::Sts::TbxIsoTml::Mspace, collection: true
       attribute :mi, :string, collection: true
       attribute :mn, :string, collection: true
       attribute :mo, :string, collection: true
 
       xml do
-        root "mstyle", mixed: true
-        namespace "http://www.w3.org/1998/Math/MathML", "mml"
+        element "mstyle"
+        mixed_content
+        namespace ::Sts::Namespaces::MathmlNamespace
 
         map_attribute "mathvariant", to: :mathvariant
         map_element "mi", to: :mi

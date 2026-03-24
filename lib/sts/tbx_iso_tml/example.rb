@@ -1,30 +1,27 @@
 # frozen_string_literal: true
 
 require "lutaml/model"
-require_relative "entailed_term"
 
-require_relative "../niso_sts/inline_formula"
 
 module Sts
   module TbxIsoTml
     class Example < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :value, :string
-      attribute :entailed_term, EntailedTerm, collection: true
-      attribute :inline_formula, Sts::NisoSts::InlineFormula
+      attribute :entailed_term, ::Sts::TbxIsoTml::EntailedTerm, collection: true
+      attribute :inline_formula, ::Sts::NisoSts::InlineFormula
 
       xml do
-        root "example", mixed: true
-        namespace "urn:iso:std:iso:30042:ed-1", "tbx"
+        element "example"
+        mixed_content
+        namespace ::Sts::Namespaces::TbxNamespace
 
         map_content to: :value
 
         map_attribute "id", to: :id
 
         map_element "entailedTerm", to: :entailed_term
-        map_element "inline-formula", to: :inline_formula,
-                                      namespace: nil,
-                                      prefix: nil
+        map_element "inline-formula", to: :inline_formula
       end
     end
   end

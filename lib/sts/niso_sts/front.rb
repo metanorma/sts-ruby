@@ -1,20 +1,15 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "metadata_iso"
-require_relative "metadata_std"
-require_relative "section"
 
 module Sts
   module NisoSts
     class Front < Lutaml::Model::Serializable
-      attribute :iso_meta, MetadataIso
-      attribute :std_meta, MetadataStd
-      attribute :sec, Section, collection: true
+      attribute :iso_meta, ::Sts::NisoSts::MetadataIso
+      attribute :std_meta, ::Sts::NisoSts::MetadataStd
+      attribute :sec, ::Sts::NisoSts::Section, collection: true
 
       xml do
-        root "front"
+        element "front"
         map_element "iso-meta", to: :iso_meta
         map_element "std-meta", to: :std_meta
         map_element "sec", to: :sec

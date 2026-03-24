@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "section"
-require_relative "inline_formula"
 
 module Sts
   module NisoSts
@@ -12,7 +8,8 @@ module Sts
       attribute :inline_formula, Sts::NisoSts::InlineFormula, collection: true
 
       xml do
-        root "title", mixed: true
+        element "title"
+        mixed_content
 
         map_content to: :content
         map_element "inline-formula", to: :inline_formula

@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
 module Sts
   module TbxIsoTml
     class ExternalGraphic < Lutaml::Model::Serializable
       attribute :target, :string
 
       xml do
-        root "xGraphic"
-        namespace "urn:iso:std:iso:30042:ed-1", "tbx"
+        element "xGraphic"
+        namespace ::Sts::Namespaces::TbxNamespace
 
         map_attribute "xtarget", to: :target
       end
