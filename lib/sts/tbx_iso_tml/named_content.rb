@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
 module Sts
   module TbxIsoTml
     class NamedContent < Lutaml::Model::Serializable
@@ -9,7 +7,7 @@ module Sts
       attribute :content, :string
 
       xml do
-        root "named-content"
+        element "named-content"
 
         map_attribute "content-type", to: :content_type
 

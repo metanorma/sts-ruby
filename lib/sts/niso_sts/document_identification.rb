@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
 module Sts
   module NisoSts
     class DocumentIdentification < Lutaml::Model::Serializable
@@ -12,7 +10,7 @@ module Sts
       attribute :urn, :string
 
       xml do
-        root "doc-ident"
+        element "doc-ident"
 
         map_element "sdo", to: :sdo
         map_element "proj-id", to: :proj_id

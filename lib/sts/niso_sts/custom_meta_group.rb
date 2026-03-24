@@ -1,16 +1,13 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "custom_meta"
 
 module Sts
   module NisoSts
     class CustomMetaGroup < Lutaml::Model::Serializable
-      attribute :custom_meta, CustomMeta, collection: true
+      attribute :custom_meta, ::Sts::NisoSts::CustomMeta, collection: true
 
       xml do
-        root "custom-meta-group"
+        element "custom-meta-group"
 
         map_element "custom-meta", to: :custom_meta
       end

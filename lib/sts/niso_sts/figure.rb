@@ -1,10 +1,5 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "caption"
-require_relative "graphic"
-require_relative "def_list"
 
 # <fig id="fig-1" orientation="portrait">
 #   <label>Figure 1</label>
@@ -14,18 +9,18 @@ require_relative "def_list"
 
 module Sts
   module NisoSts
-    class Caption < Lutaml::Model::Serializable; end
 
     class Figure < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :orientation, :string
-      attribute :caption, Caption
-      attribute :def_list, DefList
-      attribute :label, Label
-      attribute :graphic, Graphic, collection: true
+      attribute :caption, ::Sts::NisoSts::Caption
+      attribute :def_list, ::Sts::NisoSts::DefList
+      attribute :label, ::Sts::NisoSts::Label
+      attribute :graphic, ::Sts::NisoSts::Graphic, collection: true
 
       xml do
-        root "fig", mixed: true
+        element "fig"
+        mixed_content
 
         map_attribute "id", to: :id
         map_attribute "orientation", to: :orientation

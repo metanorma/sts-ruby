@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
 module Sts
   module TbxIsoTml
     class GrammaticalGender < Lutaml::Model::Serializable
@@ -9,8 +7,8 @@ module Sts
                 values: %w[masculine feminine neuter]
 
       xml do
-        root "grammaticalGender"
-        namespace "urn:iso:std:iso:30042:ed-1", "tbx"
+        element "grammaticalGender"
+        namespace ::Sts::Namespaces::TbxNamespace
 
         map_attribute "value", to: :value
       end

@@ -1,19 +1,15 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "label"
-require_relative "paragraph"
 
 module Sts
   module NisoSts
     class Fn < Lutaml::Model::Serializable
       attribute :id, :string
-      attribute :label, Label
-      attribute :paragraph, Paragraph
+      attribute :label, ::Sts::NisoSts::Label
+      attribute :paragraph, ::Sts::NisoSts::Paragraph
 
       xml do
-        root "fn"
+        element "fn"
 
         map_attribute "id", to: :id
 

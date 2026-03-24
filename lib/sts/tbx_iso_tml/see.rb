@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
 module Sts
   module TbxIsoTml
     class See < Lutaml::Model::Serializable
@@ -9,8 +7,8 @@ module Sts
       attribute :value, :string
 
       xml do
-        root "see"
-        namespace "urn:iso:std:iso:30042:ed-1", "tbx"
+        element "see"
+        namespace ::Sts::Namespaces::TbxNamespace
 
         map_attribute "script", to: :script
         map_content to: :value

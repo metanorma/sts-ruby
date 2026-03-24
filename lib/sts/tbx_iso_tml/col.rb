@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
 module Sts
   module TbxIsoTml
     class Col < Lutaml::Model::Serializable
@@ -11,7 +9,7 @@ module Sts
       attribute :span, :string
 
       xml do
-        root "col"
+        element "col"
 
         map_attribute "width", to: :width
         map_attribute "char", to: :char, value_map: { to: { empty: :empty } }

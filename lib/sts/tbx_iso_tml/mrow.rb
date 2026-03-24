@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
 require "lutaml/model"
-require_relative "mfrac"
-require_relative "mstyle"
-require_relative "msub"
-require_relative "msup"
-require_relative "mspace"
-require_relative "mfenced"
 
 module Sts
   module TbxIsoTml
@@ -16,17 +10,18 @@ module Sts
       attribute :mi, :string, collection: true
       attribute :mn, :string, collection: true
       attribute :mtext, :string, collection: true
-      attribute :mrow, Mrow
-      attribute :mfrac, Mfrac, collection: true
-      attribute :mstyle, Mstyle, collection: true
-      attribute :msub, Msub, collection: true
-      attribute :msup, Msup
-      attribute :mfenced, Mfenced, collection: true
-      attribute :mspace, Mspace, collection: true
+      attribute :mrow, ::Sts::TbxIsoTml::Mrow
+      attribute :mfrac, ::Sts::TbxIsoTml::Mfrac, collection: true
+      attribute :mstyle, ::Sts::TbxIsoTml::Mstyle, collection: true
+      attribute :msub, ::Sts::TbxIsoTml::Msub, collection: true
+      attribute :msup, ::Sts::TbxIsoTml::Msup
+      attribute :mfenced, ::Sts::TbxIsoTml::Mfenced, collection: true
+      attribute :mspace, ::Sts::TbxIsoTml::Mspace, collection: true
 
       xml do
-        root "mrow", mixed: true
-        namespace "http://www.w3.org/1998/Math/MathML", "mml"
+        element "mrow"
+        mixed_content
+        namespace ::Sts::Namespaces::MathmlNamespace
 
         map_element "mo", to: :mo
         map_element "mi", to: :mi

@@ -1,19 +1,17 @@
 # frozen_string_literal: true
 
-require_relative "reference_standard"
-require_relative "mixed_citation"
 
 module Sts
   module NisoSts
     class Reference < Lutaml::Model::Serializable
       attribute :content_type, :string
       attribute :id, :string
-      attribute :label, Label
-      attribute :mixed_citation, MixedCitation
-      attribute :std, ReferenceStandard, collection: true
+      attribute :label, ::Sts::NisoSts::Label
+      attribute :mixed_citation, ::Sts::NisoSts::MixedCitation
+      attribute :std, ::Sts::NisoSts::ReferenceStandard, collection: true
 
       xml do
-        root "ref"
+        element "ref"
         map_attribute "content-type", to: :content_type
         map_attribute "id", to: :id
         map_element "label", to: :label

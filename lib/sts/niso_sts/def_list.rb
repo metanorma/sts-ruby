@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "def_item"
 
 module Sts
   module NisoSts
@@ -10,11 +7,11 @@ module Sts
       attribute :title, :string
       attribute :specific_use, :string
       attribute :list_type, :string
-      attribute :def_item, DefItem, collection: true
-      attribute :def_list, DefList
+      attribute :def_item, ::Sts::NisoSts::DefItem, collection: true
+      attribute :def_list, ::Sts::NisoSts::DefList
 
       xml do
-        root "def-list"
+        element "def-list"
 
         map_attribute "list-type", to: :list_type
         map_attribute "specific-use", to: :specific_use

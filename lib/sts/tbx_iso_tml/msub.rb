@@ -1,25 +1,21 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "mstyle"
-require_relative "mrow"
-require_relative "mspace"
 
 module Sts
   module TbxIsoTml
     class Msub < Lutaml::Model::Serializable
-      attribute :mstyle, Mstyle, collection: true
-      attribute :mrow, Mrow
-      attribute :mspace, Mspace
+      attribute :mstyle, ::Sts::TbxIsoTml::Mstyle, collection: true
+      attribute :mrow, ::Sts::TbxIsoTml::Mrow
+      attribute :mspace, ::Sts::TbxIsoTml::Mspace
       attribute :mo, :string, collection: true
       attribute :mi, :string, collection: true
       attribute :mn, :string, collection: true
       attribute :mtext, :string, collection: true
 
       xml do
-        root "msub", mixed: true
-        namespace "http://www.w3.org/1998/Math/MathML", "mml"
+        element "msub"
+        mixed_content
+        namespace ::Sts::Namespaces::MathmlNamespace
 
         map_element "mstyle", to: :mstyle
         map_element "mo", to: :mo

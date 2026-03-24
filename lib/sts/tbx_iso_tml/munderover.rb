@@ -1,19 +1,17 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "mrow"
 
 module Sts
   module TbxIsoTml
     class Munderover < Lutaml::Model::Serializable
       attribute :mo, :string
       attribute :mi, :string
-      attribute :mrow, Mrow, collection: true
+      attribute :mrow, ::Sts::TbxIsoTml::Mrow, collection: true
 
       xml do
-        root "munderover", mixed: true
-        namespace "http://www.w3.org/1998/Math/MathML", "mml"
+        element "munderover"
+        mixed_content
+        namespace ::Sts::Namespaces::MathmlNamespace
 
         map_element "mo", to: :mo
         map_element "mi", to: :mi

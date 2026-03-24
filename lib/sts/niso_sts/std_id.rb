@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
 module Sts
   module NisoSts
     class StdId < Lutaml::Model::Serializable
@@ -11,7 +9,7 @@ module Sts
       attribute :content, :string
 
       xml do
-        root "std-id"
+        element "std-id"
 
         map_attribute "std-id-link-type", to: :std_id_link_type
         map_attribute "std-id-type", to: :std_id_type

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "lutaml/model"
-require_relative "mstyle"
 
 module Sts
   module TbxIsoTml
@@ -9,8 +8,8 @@ module Sts
       attribute :content, :string
 
       xml do
-        root "mi"
-        namespace "http://www.w3.org/1998/Math/MathML", "mml"
+        element "mi"
+        namespace ::Sts::Namespaces::MathmlNamespace
 
         map_content to: :content
       end

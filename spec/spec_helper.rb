@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require "sts"
-
 require "rspec/matchers"
-require "xml-c14n"
+require "canon"
+
 Bundler.require(:development)
 
 Dir["./spec/support/**/*.rb"].sort.each { |file| require file }
@@ -18,4 +18,9 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+end
+
+require "lutaml/model"
+Lutaml::Model::Config.configure do |config|
+  config.xml_adapter_type = :nokogiri
 end

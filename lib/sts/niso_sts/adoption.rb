@@ -1,25 +1,22 @@
 # frozen_string_literal: true
 
-require_relative "standard"
-require_relative "adoption_front"
 
 module Sts
   module NisoSts
     class Adoption < Lutaml::Model::Serializable
-      attribute :front, AdoptionFront
-      attribute :back, Back
+      attribute :front, ::Sts::NisoSts::AdoptionFront
+      attribute :back, ::Sts::NisoSts::Back
       attribute :id, :string
-      attribute :lang, :string
-      attribute :adoptions, Adoption, collection: true
-      attribute :standard, Standard
+      attribute :lang, Lutaml::Xml::W3c::XmlLangType
+      attribute :adoptions, ::Sts::NisoSts::Adoption, collection: true
+      attribute :standard, ::Sts::NisoSts::Standard
 
       xml do
-        root "adoption", mixed: true
+        element "adoption"
+        mixed_content
 
         map_attribute "id", to: :id
-        map_attribute "lang", to: :lang,
-                              namespace: "http://www.w3.org/XML/1998/namespace",
-                              prefix: "xml"
+        map_attribute "lang", to: :lang
         map_element "adoption-front", to: :front
         map_element "back", to: :back
         map_element "adoption", to: :adoptions

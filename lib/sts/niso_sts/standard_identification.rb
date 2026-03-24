@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "std_id_group"
 
 module Sts
   module NisoSts
@@ -13,10 +10,11 @@ module Sts
       attribute :edition, :string
       attribute :version, :string
       attribute :part_number, :string
-      attribute :std_id_group, StdIdGroup
+      attribute :std_id_group, ::Sts::NisoSts::StdIdGroup
 
       xml do
-        root "std-ident", mixed: true
+        element "std-ident"
+        mixed_content
 
         map_element "originator", to: :originator
         map_element "doc-type", to: :doc_type

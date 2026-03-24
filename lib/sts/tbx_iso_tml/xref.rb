@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "lutaml/model"
-require_relative "sup"
 
 module Sts
   module TbxIsoTml
@@ -9,10 +8,10 @@ module Sts
       attribute :ref_type, :string
       attribute :rid, :string
       attribute :value, :string
-      attribute :sup, Sup
+      attribute :sup, ::Sts::TbxIsoTml::Sup
 
       xml do
-        root "xref"
+        element "xref"
 
         map_attribute "ref-type", to: :ref_type
         map_attribute "rid", to: :rid

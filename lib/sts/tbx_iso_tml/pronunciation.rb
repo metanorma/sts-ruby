@@ -2,11 +2,11 @@
 
 module Sts
   module TbxIsoTml
-    class GeographicalUsage < Lutaml::Model::Serializable
+    class Pronunciation < Lutaml::Model::Serializable
       attribute :value, :string
 
       xml do
-        element "geographicalUsage"
+        element "pronunciation"
         namespace ::Sts::Namespaces::TbxNamespace
 
         map_content to: :value

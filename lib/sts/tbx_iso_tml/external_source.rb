@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
 module Sts
   module TbxIsoTml
     class ExternalSource < Lutaml::Model::Serializable
@@ -9,8 +7,8 @@ module Sts
       attribute :value, :string
 
       xml do
-        root "xSource"
-        namespace "urn:iso:std:iso:30042:ed-1", "tbx"
+        element "xSource"
+        namespace ::Sts::Namespaces::TbxNamespace
 
         map_attribute "xtarget", to: :target
         map_content to: :value

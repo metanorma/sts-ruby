@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "../tbx_iso_tml/sup"
 
 module Sts
   module NisoSts
@@ -11,7 +8,7 @@ module Sts
       attribute :sup, Sts::TbxIsoTml::Sup
 
       xml do
-        root "label"
+        element "label"
 
         map_content to: :content
         map_element "sup", to: :sup

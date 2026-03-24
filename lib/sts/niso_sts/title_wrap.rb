@@ -1,45 +1,41 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "reference_list"
-require_relative "reference_standard"
 
 module Sts
   module NisoSts
     class TitleFull < Lutaml::Model::Serializable
       attribute :content, :string
-      attribute :std, ReferenceStandard
+      attribute :std, ::Sts::NisoSts::ReferenceStandard
 
       xml do
-        root "full", mixed: true
+        element "full"
+        mixed_content
 
         map_content to: :content
-        map_element "std", to: :std, namespace: nil, prefix: nil
+        map_element "std", to: :std
       end
     end
 
     class TitleCompl < TitleFull
       xml do
-        root "compl"
+        element "compl"
 
         map_content to: :content
-        map_element "std", to: :std, namespace: nil, prefix: nil
+        map_element "std", to: :std
       end
     end
 
     class TitleWrap < Lutaml::Model::Serializable
       attribute :intro, :string
       attribute :main, :string
-      attribute :full, TitleFull
-      attribute :compl, TitleCompl
-      attribute :lang, :string
+      attribute :full, ::Sts::NisoSts::TitleFull
+      attribute :compl, ::Sts::NisoSts::TitleCompl
+      attribute :lang, Lutaml::Xml::W3c::XmlLangType
 
       xml do
-        root "title-wrap", mixed: true
-        map_attribute "lang", to: :lang,
-                              namespace: "http://www.w3.org/XML/1998/namespace",
-                              prefix: "xml"
+        element "title-wrap"
+        mixed_content
+        map_attribute "lang", to: :lang
 
         map_element "intro", to: :intro
         map_element "main", to: :main

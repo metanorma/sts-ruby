@@ -1,6 +1,3 @@
-require "lutaml/model"
-
-require_relative "object_id"
 
 # rubocop:disable Layout/LineLength
 # <graphic xlink:href="e1d18be9.001.gif">
@@ -13,16 +10,14 @@ require_relative "object_id"
 module Sts
   module NisoSts
     class Graphic < Lutaml::Model::Serializable
-      attribute :href, :string
-      attribute :object_id, ObjectId, collection: true
+      attribute :href, :xlink_href
+      attribute :sts_object_id, ::Sts::NisoSts::ObjectId, collection: true
 
       xml do
-        root "graphic"
+        element "graphic"
 
-        map_attribute "href", to: :href,
-                              namespace: "http://www.w3.org/1999/xlink",
-                              prefix: "xlink"
-        map_element "object-id", to: :object_id
+        map_attribute "href", to: :href
+        map_element "object-id", to: :sts_object_id
       end
     end
   end

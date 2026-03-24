@@ -1,39 +1,29 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "custom_meta_group"
-require_relative "document_identification"
-require_relative "meta_date"
-require_relative "page_count"
-require_relative "permissions"
-require_relative "standard_identification"
-require_relative "standard_ref"
-require_relative "std_cross_reference"
-require_relative "title_wrap"
 
 module Sts
   module NisoSts
     class MetadataIso < Lutaml::Model::Serializable
       attribute :comm_ref, :string
       attribute :content_language, :string
-      attribute :custom_meta_group, CustomMetaGroup
-      attribute :doc_ident, DocumentIdentification
+      attribute :custom_meta_group, ::Sts::NisoSts::CustomMetaGroup
+      attribute :doc_ident, ::Sts::NisoSts::DocumentIdentification
       attribute :doc_ref, :string
       attribute :ics, :string
-      attribute :meta_date, MetaDate
-      attribute :page_count, PageCount
-      attribute :permissions, Permissions
+      attribute :meta_date, ::Sts::NisoSts::MetaDate
+      attribute :page_count, ::Sts::NisoSts::PageCount
+      attribute :permissions, ::Sts::NisoSts::Permissions
       attribute :pub_date, :string
       attribute :release_date, :string
       attribute :secretariat, :string
-      attribute :std_ident, StandardIdentification
-      attribute :std_ref, StandardRef
-      attribute :std_xref, StdCrossReference
-      attribute :title_wrap, TitleWrap
+      attribute :std_ident, ::Sts::NisoSts::StandardIdentification
+      attribute :std_ref, ::Sts::NisoSts::StandardRef
+      attribute :std_xref, ::Sts::NisoSts::StdCrossReference
+      attribute :title_wrap, ::Sts::NisoSts::TitleWrap
 
       xml do
-        root "iso-meta", mixed: true
+        element "iso-meta"
+        mixed_content
 
         map_element "comm-ref", to: :comm_ref,
                                 value_map: { to: { empty: :empty } }

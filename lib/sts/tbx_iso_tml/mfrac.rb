@@ -1,24 +1,22 @@
 # frozen_string_literal: true
 
 require "lutaml/model"
-require_relative "mrow"
-require_relative "mstyle"
 
 module Sts
   module TbxIsoTml
-    class Mrow < Lutaml::Model::Serializable; end
 
     class Mfrac < Lutaml::Model::Serializable
-      attribute :mrow, Mrow, collection: true
-      attribute :mstyle, Mstyle, collection: true
+      attribute :mrow, ::Sts::TbxIsoTml::Mrow, collection: true
+      attribute :mstyle, ::Sts::TbxIsoTml::Mstyle, collection: true
       attribute :bevelled, :string
       attribute :linethickness, :string
       attribute :mn, :string, collection: true
       attribute :mtext, :string, collection: true
 
       xml do
-        root "mfrac", mixed: true
-        namespace "http://www.w3.org/1998/Math/MathML", "mml"
+        element "mfrac"
+        mixed_content
+        namespace ::Sts::Namespaces::MathmlNamespace
 
         map_attribute "bevelled", to: :bevelled
         map_attribute "linethickness", to: :linethickness

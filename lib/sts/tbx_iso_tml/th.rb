@@ -1,13 +1,5 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
-require_relative "bold"
-require_relative "italic"
-require_relative "table_break"
-require_relative "xref"
-require_relative "../niso_sts/reference_standard"
-require_relative "../niso_sts/inline_formula"
 
 module Sts
   module TbxIsoTml
@@ -18,19 +10,20 @@ module Sts
       attribute :scope, :string
       attribute :style, :string
       attribute :rowspan, :string
-      attribute :break, TableBreak
+      attribute :break, ::Sts::TbxIsoTml::TableBreak
       attribute :content_type, :string
       attribute :char, :string
       attribute :charoff, :string
       attribute :valign, :string
-      attribute :italic, Italic
-      attribute :bold, Bold
-      attribute :std, Sts::NisoSts::ReferenceStandard
-      attribute :xref, Xref
-      attribute :inline_formula, Sts::NisoSts::InlineFormula, collection: true
+      attribute :italic, ::Sts::TbxIsoTml::Italic
+      attribute :bold, ::Sts::TbxIsoTml::Bold
+      attribute :std, ::Sts::NisoSts::ReferenceStandard
+      attribute :xref, ::Sts::TbxIsoTml::Xref
+      attribute :inline_formula, ::Sts::NisoSts::InlineFormula, collection: true
 
       xml do
-        root "th", mixed: true
+        element "th"
+        mixed_content
 
         map_content to: :content
         map_attribute "colspan", to: :colspan

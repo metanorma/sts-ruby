@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
 module Sts
   module TbxIsoTml
     class Caption < Lutaml::Model::Serializable
       attribute :p, :string
 
       xml do
-        root "caption"
+        element "caption"
 
         map_element "p", to: :p
       end

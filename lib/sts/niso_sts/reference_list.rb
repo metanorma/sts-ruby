@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "reference"
 
 module Sts
   module NisoSts
@@ -9,11 +8,11 @@ module Sts
       attribute :id, :string
       attribute :specific_use, :string
       attribute :title, :string
-      attribute :label, Label
-      attribute :ref, Reference, collection: true
+      attribute :label, ::Sts::NisoSts::Label
+      attribute :ref, ::Sts::NisoSts::Reference, collection: true
 
       xml do
-        root "ref-list"
+        element "ref-list"
 
         map_attribute "content-type", to: :content_type
         map_attribute "id", to: :id

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
 module Sts
   module NisoSts
     class Permissions < Lutaml::Model::Serializable
@@ -10,7 +8,7 @@ module Sts
       attribute :copyright_holder, :string
 
       xml do
-        root "permissions"
+        element "permissions"
         map_element "copyright-statement", to: :copyright_statement
         map_element "copyright-year", to: :copyright_year
         map_element "copyright-holder", to: :copyright_holder
