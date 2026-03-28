@@ -5,7 +5,7 @@ module Sts
   module NisoSts
     class DefItem < Lutaml::Model::Serializable
       attribute :specific_use, :string
-      attribute :term, ::Sts::TbxIsoTml::Term
+      attribute :term, ::Sts::NisoSts::Term
       attribute :definition, ::Sts::NisoSts::Def
 
       xml do

@@ -8,7 +8,7 @@ module Sts
       attribute :label, ::Sts::NisoSts::Label
       attribute :list, ::Sts::NisoSts::List
       attribute :non_normative_example, ::Sts::NisoSts::NonNormativeExample
-      attribute :p, ::Sts::NisoSts::Paragraph
+      attribute :p, ::Sts::NisoSts::Paragraph, collection: true
 
       xml do
         element "list-item"
