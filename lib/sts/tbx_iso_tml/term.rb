@@ -14,7 +14,6 @@ module Sts
       attribute :math, ::Sts::TbxIsoTml::Math
       attribute :xref, ::Sts::TbxIsoTml::Xref
       attribute :inline_formula, ::Sts::NisoSts::InlineFormula, collection: true
-      attribute :named_content, ::Sts::TbxIsoTml::NamedContent
 
       xml do
         element "term"
@@ -24,7 +23,6 @@ module Sts
         map_attribute "id", to: :id
         map_attribute "script", to: :script
         map_element "inline-formula", to: :inline_formula
-        map_element "named-content", to: :named_content
         map_element "italic", to: :italic
         map_element "bold", to: :bold
         map_element "sub", to: :sub

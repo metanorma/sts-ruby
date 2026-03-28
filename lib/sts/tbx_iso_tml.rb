@@ -29,7 +29,6 @@ module Sts
     autoload :Msup, "#{__dir__}/tbx_iso_tml/msup"
     autoload :Munder, "#{__dir__}/tbx_iso_tml/munder"
     autoload :Munderover, "#{__dir__}/tbx_iso_tml/munderover"
-    autoload :NamedContent, "#{__dir__}/tbx_iso_tml/named_content"
     autoload :NormativeAuthorization, "#{__dir__}/tbx_iso_tml/normative_authorization"
     autoload :Note, "#{__dir__}/tbx_iso_tml/note"
     autoload :PartOfSpeech, "#{__dir__}/tbx_iso_tml/part_of_speech"
