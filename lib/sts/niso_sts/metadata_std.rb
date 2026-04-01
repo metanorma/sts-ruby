@@ -22,7 +22,8 @@ module Sts
       attribute :std_xref, ::Sts::NisoSts::StdCrossReference
       attribute :permissions, ::Sts::NisoSts::Permissions
       attribute :meta_note, ::Sts::NisoSts::MetaNote, collection: true
-      attribute :custom_meta_group, ::Sts::NisoSts::CustomMetaGroup, collection: true
+      attribute :custom_meta_group, ::Sts::NisoSts::CustomMetaGroup,
+                collection: true
 
       xml do
         element "std-meta"

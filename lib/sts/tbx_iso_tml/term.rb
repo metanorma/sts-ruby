@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-
-
 module Sts
   module TbxIsoTml
     class Term < Lutaml::Model::Serializable

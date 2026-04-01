@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 module Sts
   module TbxIsoTml
     class FnGroup < Lutaml::Model::Serializable

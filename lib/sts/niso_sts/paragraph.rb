@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-
 module Sts
   module NisoSts
-
     class Paragraph < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :text, :string

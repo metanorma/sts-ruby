@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 module Sts
   module TbxIsoTml
     class LangSet < Lutaml::Model::Serializable
@@ -12,7 +11,8 @@ module Sts
       attribute :see, ::Sts::TbxIsoTml::See, collection: true
       attribute :source, ::Sts::TbxIsoTml::Source, collection: true
       attribute :x_source, ::Sts::TbxIsoTml::ExternalSource, collection: true
-      attribute :cross_reference, ::Sts::TbxIsoTml::CrossReference, collection: true
+      attribute :cross_reference, ::Sts::TbxIsoTml::CrossReference,
+                collection: true
       attribute :subject_field, ::Sts::TbxIsoTml::SubjectField, collection: true
       # attribute :x_graphic, ::Sts::TbxIsoTml::ExternalGraphic, collection: true
 

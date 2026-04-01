@@ -19,9 +19,12 @@ module Sts
       attribute :std, ::Sts::NisoSts::ReferenceStandard, collection: true
       attribute :ext_link, ::Sts::NisoSts::ExtLink
       attribute :entailed_term, ::Sts::TbxIsoTml::EntailedTerm
-      attribute :specific_use, :string, values: ["abbreviation", "acronym", "equation", "formula", "fullForm", "symbol", "variant"]
-      attribute :term_status, :string, values: ["admitted", "non-preferred", "preferred"], collection: true
-      attribute :term_type, :string, values: ["abbreviation", "acronym", "equation", "formula", "fullForm", "symbol", "variant"]
+      attribute :specific_use, :string,
+                values: ["abbreviation", "acronym", "equation", "formula", "fullForm", "symbol", "variant"]
+      attribute :term_status, :string,
+                values: ["admitted", "non-preferred", "preferred"], collection: true
+      attribute :term_type, :string,
+                values: ["abbreviation", "acronym", "equation", "formula", "fullForm", "symbol", "variant"]
       attribute :vocab, :string
       attribute :vocab_identifier, :string
       attribute :vocab_term, :string

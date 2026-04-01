@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-
 module Sts
   module NisoSts
-
     class App < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :content_type, :string
@@ -14,7 +12,8 @@ module Sts
       attribute :sec, ::Sts::NisoSts::Section, collection: true
       attribute :paragraph, ::Sts::NisoSts::Paragraph, collection: true
       attribute :ref_list, ::Sts::NisoSts::ReferenceList, collection: true
-      attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote, collection: true
+      attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote,
+                collection: true
       attribute :table_wrap, ::Sts::TbxIsoTml::TableWrap, collection: true
 
       xml do

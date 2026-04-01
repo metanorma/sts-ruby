@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 module Sts
   module NisoSts
     class Standard < Lutaml::Model::Serializable
@@ -18,7 +17,7 @@ module Sts
         namespace_scope [
           ::Sts::Namespaces::MathmlNamespace,
           ::Sts::Namespaces::TbxNamespace,
-          ::Lutaml::Xml::W3c::XlinkNamespace
+          ::Lutaml::Xml::W3c::XlinkNamespace,
         ]
 
         map_attribute "id", to: :id

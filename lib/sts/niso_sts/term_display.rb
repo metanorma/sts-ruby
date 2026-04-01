@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-
 module Sts
   module NisoSts
     class TermDisplay < Lutaml::Model::Serializable
       attribute :p, ::Sts::NisoSts::Paragraph, collection: true
-      attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote, collection: true
+      attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote,
+                collection: true
 
       xml do
         element "term-display"

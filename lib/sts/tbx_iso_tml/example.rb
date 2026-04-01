@@ -2,7 +2,6 @@
 
 require "lutaml/model"
 
-
 module Sts
   module TbxIsoTml
     class Example < Lutaml::Model::Serializable
