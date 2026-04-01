@@ -1,4 +1,3 @@
-
 # rubocop:disable Layout/LineLength
 # <graphic xlink:href="e1d18be9.001.gif">
 #   <object-id pub-id-type="fpi">+//ISO 9070/RA::A00007::GE::DIN German Institute for

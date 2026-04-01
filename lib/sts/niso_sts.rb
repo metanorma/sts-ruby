@@ -15,7 +15,8 @@ module Sts
     autoload :DefItem, "#{__dir__}/niso_sts/def_item"
     autoload :DefList, "#{__dir__}/niso_sts/def_list"
     autoload :DisplayFormula, "#{__dir__}/niso_sts/display_formula"
-    autoload :DocumentIdentification, "#{__dir__}/niso_sts/document_identification"
+    autoload :DocumentIdentification,
+             "#{__dir__}/niso_sts/document_identification"
     autoload :ExtLink, "#{__dir__}/niso_sts/ext_link"
     autoload :Figure, "#{__dir__}/niso_sts/figure"
     autoload :Fn, "#{__dir__}/niso_sts/fn"
@@ -44,7 +45,8 @@ module Sts
     autoload :Section, "#{__dir__}/niso_sts/section"
     autoload :SectionArray, "#{__dir__}/niso_sts/section_array"
     autoload :Standard, "#{__dir__}/niso_sts/standard"
-    autoload :StandardIdentification, "#{__dir__}/niso_sts/standard_identification"
+    autoload :StandardIdentification,
+             "#{__dir__}/niso_sts/standard_identification"
     autoload :StandardRef, "#{__dir__}/niso_sts/standard_ref"
     autoload :StdCrossReference, "#{__dir__}/niso_sts/std_cross_reference"
     autoload :StdId, "#{__dir__}/niso_sts/std_id"

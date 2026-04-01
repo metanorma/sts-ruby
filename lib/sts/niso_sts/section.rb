@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
-
-
 module Sts
   module NisoSts
-
     class Section < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :specific_use, :string
@@ -16,8 +13,10 @@ module Sts
       attribute :list, ::Sts::NisoSts::List, collection: true
       attribute :term_sec, ::Sts::NisoSts::TermSection, collection: true
       attribute :ref_list, ::Sts::NisoSts::ReferenceList, collection: true
-      attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote, collection: true
-      attribute :non_normative_example, ::Sts::NisoSts::NonNormativeExample, collection: true
+      attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote,
+                collection: true
+      attribute :non_normative_example, ::Sts::NisoSts::NonNormativeExample,
+                collection: true
       attribute :sec, ::Sts::NisoSts::Section, collection: true
       attribute :figures, ::Sts::NisoSts::Figure, collection: true
       attribute :fig, ::Sts::NisoSts::Figure, collection: true

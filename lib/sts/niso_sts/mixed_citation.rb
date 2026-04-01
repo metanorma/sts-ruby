@@ -1,6 +1,5 @@
 # frozen_striing_literal: true
 
-
 module Sts
   module NisoSts
     class MixedCitation < Lutaml::Model::Serializable

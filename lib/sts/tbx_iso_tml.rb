@@ -29,7 +29,8 @@ module Sts
     autoload :Msup, "#{__dir__}/tbx_iso_tml/msup"
     autoload :Munder, "#{__dir__}/tbx_iso_tml/munder"
     autoload :Munderover, "#{__dir__}/tbx_iso_tml/munderover"
-    autoload :NormativeAuthorization, "#{__dir__}/tbx_iso_tml/normative_authorization"
+    autoload :NormativeAuthorization,
+             "#{__dir__}/tbx_iso_tml/normative_authorization"
     autoload :Note, "#{__dir__}/tbx_iso_tml/note"
     autoload :PartOfSpeech, "#{__dir__}/tbx_iso_tml/part_of_speech"
     autoload :Pronunciation, "#{__dir__}/tbx_iso_tml/pronunciation"
@@ -46,7 +47,8 @@ module Sts
     autoload :Td, "#{__dir__}/tbx_iso_tml/td"
     autoload :Term, "#{__dir__}/tbx_iso_tml/term"
     autoload :TermEntry, "#{__dir__}/tbx_iso_tml/term_entry"
-    autoload :TermInformationGroup, "#{__dir__}/tbx_iso_tml/term_information_group"
+    autoload :TermInformationGroup,
+             "#{__dir__}/tbx_iso_tml/term_information_group"
     autoload :TermType, "#{__dir__}/tbx_iso_tml/term_type"
     autoload :Th, "#{__dir__}/tbx_iso_tml/th"
     autoload :Thead, "#{__dir__}/tbx_iso_tml/thead"

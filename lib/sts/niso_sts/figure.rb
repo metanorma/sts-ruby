@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 # <fig id="fig-1" orientation="portrait">
 #   <label>Figure 1</label>
 #   <caption...>
@@ -9,7 +8,6 @@
 
 module Sts
   module NisoSts
-
     class Figure < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :orientation, :string

@@ -4,7 +4,6 @@ require "lutaml/model"
 
 module Sts
   module TbxIsoTml
-
     class Mfrac < Lutaml::Model::Serializable
       attribute :mrow, ::Sts::TbxIsoTml::Mrow, collection: true
       attribute :mstyle, ::Sts::TbxIsoTml::Mstyle, collection: true

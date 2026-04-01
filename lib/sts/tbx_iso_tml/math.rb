@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-
 module Sts
   module TbxIsoTml
-
     class Math < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :content, :string

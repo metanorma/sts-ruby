@@ -1,4 +1,3 @@
-
 # rubocop:disable Layout/LineLength
 # <caption>
 #   <title>Overview of risk assessment/risk reduction</title>
@@ -28,7 +27,8 @@ module Sts
     class Caption < Lutaml::Model::Serializable
       attribute :title, ::Sts::NisoSts::Title
       attribute :paragraphs, ::Sts::NisoSts::Paragraph, collection: true
-      attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote, collection: true
+      attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote,
+                collection: true
 
       xml do
         element "caption"

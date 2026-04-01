@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-
 module Sts
   module NisoSts
-
     class NonNormativeExample < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :p, ::Sts::NisoSts::Paragraph
