@@ -7,8 +7,8 @@ module Sts
       attribute :align, :string
       attribute :scope, :string
       attribute :style, :string
-      attribute :bold, Bold
-      attribute :italic, Italic
+      attribute :bold, ::Sts::TbxIsoTml::Bold
+      attribute :italic, ::Sts::TbxIsoTml::Italic
       attribute :content_type, :string
       attribute :char, :string
       attribute :charoff, :string
@@ -20,7 +20,7 @@ module Sts
                 ::Sts::NisoSts::NonNormativeNote,
                 collection: true
       attribute :list, ::Sts::NisoSts::List
-      attribute :xref, Xref, collection: true
+      attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
       attribute :std, ::Sts::NisoSts::ReferenceStandard
       attribute :graphic, ::Sts::NisoSts::Graphic
       attribute :def_list, ::Sts::NisoSts::DefList
