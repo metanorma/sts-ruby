@@ -1,19 +1,12 @@
-# Priority B: Implement Missing XSD Elements
+# Priority B: Missing XSD Elements
 
 ## Issue
 
-Elements defined in the NISO STS XSD that are not currently implemented in the Ruby library.
+Elements defined in the NISO STS XSD that were not implemented in the Ruby library.
 
 ## Investigation Results
 
-### index-term
-Defined in XSD at line 2806 of `NISO-STS-extended-1-mathml3-elements.xsd`. Uses `index-term-model` group which contains:
-- `term` element
-- nested `index-term` (optional)
-- `see` and `see-also` elements
-
-### Elements NOT in Current Fixtures
-Searched all 6 test fixture files - **none contain**:
+Searched all 6 test fixture files - **none contain** any of the potentially missing elements:
 - `index-term` or `index-term-range-end`
 - `glyph`, `kbd`, `option`, `seq`, `term-span`, `stream`
 
@@ -21,23 +14,21 @@ These elements exist in the XSD schema definition but are not used in actual XML
 
 ## Conclusion
 
-**Deferred - Not Currently Needed**
+**Not Currently Needed**
 
-These elements can be implemented when/if they are needed. The current implementation works for all test fixtures.
+The current implementation works for all test fixtures. These elements can be implemented when/if they are needed.
 
-## If Needed Later
+## Implementation (If Needed Later)
 
-Create:
-- `lib/sts/niso_sts/index_term.rb`
-- `lib/sts/niso_sts/index_term_range_end.rb`
-
-And add autoloads to `lib/sts/niso_sts.rb`.
+1. Create `lib/sts/niso_sts/index_term.rb` with proper structure based on XSD
+2. Create `lib/sts/niso_sts/index_term_range_end.rb` if needed
+3. Add autoloads to `lib/sts/niso_sts.rb`
 
 ## Status
 
-- [x] Search XSD for index-term-model group definition
-- [x] Verify which elements are actually needed
-- [x] **Conclusion: Not needed for current fixtures - deferred**
+- [x] Searched XSD for index-term-model group definition
+- [x] Verified which elements are actually needed
+- [x] **Conclusion: Not needed for current fixtures**
 
 ---
 **Priority B is effectively complete - no action needed.**
