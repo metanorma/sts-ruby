@@ -58,14 +58,16 @@ RSpec.describe Sts::NisoSts do
     end
 
     it "parses Contrib from xml" do
-      xml = "<contrib contrib-type=\"author\"><name><surname>Smith</surname></name></contrib>"
+      xml = "<contrib contrib-type=\"author\">" \
+            "<name><surname>Smith</surname></name></contrib>"
       contrib = Sts::NisoSts::Contrib.from_xml(xml)
       expect(contrib.contrib_type).to eq("author")
       expect(contrib.name).to be_a(Sts::NisoSts::Name)
     end
 
     it "parses ElementCitation from xml" do
-      xml = '<element-citation publication-type="journal"><source>J Test</source></element-citation>'
+      xml = '<element-citation publication-type="journal">' \
+            "<source>J Test</source></element-citation>"
       citation = Sts::NisoSts::ElementCitation.from_xml(xml)
       expect(citation.publication_type).to eq("journal")
       expect(citation.source.content).to eq("J Test")
@@ -166,5 +168,4 @@ RSpec.describe Sts::NisoSts do
       expect(xml).to include('start_date="2024-01-01"')
     end
   end
-
 end
