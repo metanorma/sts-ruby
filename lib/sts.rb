@@ -8,5 +8,4 @@ module Sts
   autoload :NisoSts, "#{__dir__}/sts/niso_sts"
   autoload :VERSION, "#{__dir__}/sts/version"
   autoload :TbxIsoTml, "#{__dir__}/sts/tbx_iso_tml"
-  autoload :MmlContent, "#{__dir__}/sts/niso_sts/mml_content"
 end
