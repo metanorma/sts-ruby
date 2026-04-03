@@ -4,8 +4,8 @@ module Sts
   module NisoSts
     class Prefix < Lutaml::Model::Serializable
       attribute :content, :string
-      attribute :bold, :string, collection: true
-      attribute :italic, :string, collection: true
+      attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
+      attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
 
       xml do
         element "prefix"

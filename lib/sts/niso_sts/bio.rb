@@ -5,8 +5,8 @@ module Sts
     class Bio < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :content, :string
-      attribute :bold, :string, collection: true
-      attribute :italic, :string, collection: true
+      attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
+      attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
       attribute :paragraph, ::Sts::NisoSts::Paragraph, collection: true
 
       xml do
