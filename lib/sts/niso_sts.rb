@@ -285,5 +285,6 @@ module Sts
     autoload :WordCount, "#{__dir__}/niso_sts/word_count"
     autoload :Year, "#{__dir__}/niso_sts/year"
     autoload :Xi, "#{__dir__}/niso_sts/xi/xi"
+    autoload :MmlContent, "#{__dir__}/niso_sts/mml_content"
   end
 end
