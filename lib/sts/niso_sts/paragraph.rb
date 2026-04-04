@@ -5,8 +5,8 @@ module Sts
     class Paragraph < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :text, :string
-      attribute :italic, :string, collection: true
-      attribute :bold, :string, collection: true
+      attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
+      attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
       attribute :uri, :string
       attribute :list, ::Sts::NisoSts::List
       attribute :def_list, ::Sts::NisoSts::DefList

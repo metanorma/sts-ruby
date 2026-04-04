@@ -6,8 +6,8 @@ module Sts
     class MixedCitation < Lutaml::Model::Serializable
       attribute :content, :string
       attribute :publication_type, :string
-      attribute :bold, :string, collection: true
-      attribute :italic, :string, collection: true
+      attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
+      attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
       attribute :std, ::Sts::NisoSts::ReferenceStandard, collection: true
       attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
       attribute :person_group, ::Sts::NisoSts::PersonGroup, collection: true

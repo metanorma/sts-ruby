@@ -5,8 +5,8 @@ module Sts
     class Role < Lutaml::Model::Serializable
       attribute :content_type, :string
       attribute :content, :string
-      attribute :bold, :string, collection: true
-      attribute :italic, :string, collection: true
+      attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
+      attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
 
       xml do
         element "role"
