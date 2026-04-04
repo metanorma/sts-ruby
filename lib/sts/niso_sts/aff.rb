@@ -8,8 +8,8 @@ module Sts
       attribute :content_type, :string
       attribute :specific_use, :string
       attribute :xml_lang, :string
-      attribute :bold, :string, collection: true
-      attribute :italic, :string, collection: true
+      attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
+      attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
       attribute :institution_wrap, ::Sts::NisoSts::InstitutionWrap
       attribute :institution, ::Sts::NisoSts::Institution, collection: true
       attribute :addr_line, ::Sts::NisoSts::AddrLine
