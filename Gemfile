@@ -7,7 +7,6 @@ gemspec
 
 gem "canon"
 gem "lutaml-model", github: "lutaml/lutaml-model", branch: "main"
-gem "pry"
 gem "rake"
 gem "rspec"
 gem "rubocop"
