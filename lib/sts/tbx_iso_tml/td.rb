@@ -15,6 +15,10 @@ module Sts
       attribute :colspan, :string
       attribute :rowspan, :string
       attribute :valign, :string
+      attribute :abbr, :string
+      attribute :axis, :string
+      attribute :headers, :string
+      attribute :id, :string
       attribute :inline_formula, ::Sts::NisoSts::InlineFormula, collection: true
       attribute :non_normative_note,
                 ::Sts::NisoSts::NonNormativeNote,
@@ -25,8 +29,9 @@ module Sts
       attribute :graphic, ::Sts::NisoSts::Graphic
       attribute :def_list, ::Sts::NisoSts::DefList
       attribute :paragraph, ::Sts::NisoSts::Paragraph
+      attribute :fn, ::Sts::TbxIsoTml::Fn
 
-      xml do
+      xml do # rubocop:disable Metrics/BlockLength
         element "td"
         mixed_content
 
@@ -41,6 +46,10 @@ module Sts
         map_attribute "colspan", to: :colspan
         map_attribute "rowspan", to: :rowspan
         map_attribute "valign", to: :valign
+        map_attribute "abbr", to: :abbr
+        map_attribute "axis", to: :axis
+        map_attribute "headers", to: :headers
+        map_attribute "id", to: :id
 
         map_element "italic", to: :italic
         map_element "bold", to: :bold
@@ -52,6 +61,7 @@ module Sts
         map_element "graphic", to: :graphic
         map_element "def-list", to: :def_list
         map_element "p", to: :paragraph
+        map_element "fn", to: :fn
       end
     end
   end

@@ -14,11 +14,17 @@ module Sts
       attribute :char, :string
       attribute :charoff, :string
       attribute :valign, :string
+      attribute :abbr, :string
+      attribute :axis, :string
+      attribute :headers, :string
+      attribute :id, :string
       attribute :italic, ::Sts::TbxIsoTml::Italic
       attribute :bold, ::Sts::TbxIsoTml::Bold
       attribute :std, ::Sts::NisoSts::ReferenceStandard
       attribute :xref, ::Sts::TbxIsoTml::Xref
       attribute :inline_formula, ::Sts::NisoSts::InlineFormula, collection: true
+      attribute :paragraph, ::Sts::NisoSts::Paragraph
+      attribute :fn, ::Sts::TbxIsoTml::Fn
 
       xml do
         element "th"
@@ -34,6 +40,10 @@ module Sts
         map_attribute "char", to: :char, value_map: { to: { empty: :empty } }
         map_attribute "charoff", to: :charoff
         map_attribute "valign", to: :valign
+        map_attribute "abbr", to: :abbr
+        map_attribute "axis", to: :axis
+        map_attribute "headers", to: :headers
+        map_attribute "id", to: :id
 
         map_element "break", to: :break
         map_element "italic", to: :italic
@@ -41,6 +51,8 @@ module Sts
         map_element "std", to: :std
         map_element "xref", to: :xref
         map_element "inline-formula", to: :inline_formula
+        map_element "p", to: :paragraph
+        map_element "fn", to: :fn
       end
     end
   end

@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "bigdecimal"
   spec.add_dependency "lutaml-model", "~> 0.8.0"
-  spec.add_dependency "nokogiri"
+  spec.add_dependency "mml", "~> 2.3.1"
 
   # spec.add_dependency "thor"
   spec.metadata["rubygems_mfa_required"] = "true"

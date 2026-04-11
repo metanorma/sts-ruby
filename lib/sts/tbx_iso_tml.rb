@@ -52,6 +52,8 @@ module Sts
     autoload :TermType, "#{__dir__}/tbx_iso_tml/term_type"
     autoload :Th, "#{__dir__}/tbx_iso_tml/th"
     autoload :Thead, "#{__dir__}/tbx_iso_tml/thead"
+    autoload :Tfoot, "#{__dir__}/tbx_iso_tml/tfoot"
+    autoload :Colgroup, "#{__dir__}/tbx_iso_tml/colgroup"
     autoload :Tr, "#{__dir__}/tbx_iso_tml/tr"
     autoload :Xref, "#{__dir__}/tbx_iso_tml/xref"
   end

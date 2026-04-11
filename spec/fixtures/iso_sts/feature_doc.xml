@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE standard SYSTEM "../../src/dtd/ISOSTS.dtd">
+<standard xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:tbx="urn:iso:std:iso:30042:ed-1">
+    <front>
+        <iso-meta>
+            <title-wrap>
+                <main/>
+                <full/>
+            </title-wrap>
+            <doc-ident>
+                <sdo/>
+                <proj-id/>
+                <language/>
+                <release-version/>
+            </doc-ident>
+            <std-ident>
+                <originator/>
+                <doc-type/>
+                <doc-number/>
+                <edition/>
+                <version/>
+            </std-ident>
+            <content-language/>
+            <std-ref/>
+            <doc-ref/>
+            <release-date/>
+            <comm-ref/>
+            <secretariat/>
+            <page-count count="0"/>
+            <permissions>
+                <copyright-statement>All rights reserved</copyright-statement>
+                <copyright-year>2009</copyright-year>
+                <copyright-holder>ISO</copyright-holder>
+            </permissions>
+            <permissions>
+                <copyright-statement>All rights reserved</copyright-statement>
+                <copyright-holder>ANFIA</copyright-holder>
+                <copyright-holder>FIEV</copyright-holder>
+                <copyright-holder>SMMT</copyright-holder>
+                <copyright-holder>VDA</copyright-holder>
+                <copyright-holder>Chrysler</copyright-holder>
+                <copyright-holder>Ford Motor Company</copyright-holder>
+                <copyright-holder>General Motors Corp.</copyright-holder>
+            </permissions>
+            <permissions>
+                <copyright-statement>All rights reserved</copyright-statement>
+                <copyright-holder>PSA Peugeot Citroën</copyright-holder>
+                <copyright-holder>Renault</copyright-holder>
+            </permissions>
+        </iso-meta>
+    </front>
+    <body>
+        <!-- Example where a list is to be used outside a p element -->
+        <sec id="iso_10002_2004_sec_A">
+            <title>List outside p (see ISO 10002:2004, Annex A)</title>
+            <p>The steps below identify key areas, with suggestions for action in each.</p>
+            <list list-type="bullet">
+                <list-item>
+                    <label>—</label>
+                    <p>Be open to complaints: have a simple sign on show, or a paragraph on company
+                        invoices, saying (see 4.2), for example:</p>
+                    <p>“Your satisfaction is important to us, please tell us if you are not
+                        satisfied — we'd like to put it right”.</p>
+                </list-item>
+            </list>
+        </sec>
+        <!-- section without a title -->
+        <sec id="iso_10002_2004_sec_8.6.1">
+            <label>8.6.1</label>
+            <title/>
+            <p>Top management of the organization should review the complaints-handling process on a
+                regular basis in order</p>
+            <list>
+                <list-item>
+                    <label>—</label>
+                    <p>to ensure its continuing suitability, adequacy, effectiveness and
+                        efficiency,</p>
+                </list-item>
+                <list-item>
+                    <label>—</label>
+                    <p>to identify and address instances of nonconformity with health, safety,
+                        environmental, customer, regulatory and other legal requirements,</p>
+                </list-item>
+                <list-item>
+                    <label>—</label>
+                    <p>to identify and correct product deficiencies,</p>
+                </list-item>
+                <list-item>
+                    <label>—</label>
+                    <p>to identify and correct process deficiencies,</p>
+                </list-item>
+                <list-item>
+                    <label>—</label>
+                    <p>to assess opportunities for improvement and the need for changes to the
+                        complaints-handling process and products offered, and</p>
+                </list-item>
+                <list-item>
+                    <label>—</label>
+                    <p>to evaluate potential changes to the complaints-handling policy and
+                        objectives.</p>
+                </list-item>
+            </list>
+        </sec>
+        <!-- formula with related index -->
+        <sec id="iso_2631-1_1997_en_sec_6.3.1">
+            <label>6.3.1</label>
+            <title>The running r.m.s. method</title>
+            <p>The running r.m.s. evaluation method takes into account occasional shocks and
+                transient vibration by use of a short integration time constant. The vibration
+                magnitude is defined as a maximum transient vibration value (MTW9, given as the
+                maximum in time of a<sub>w</sub>(<italic>t</italic><sub>0</sub>), defined by:</p>
+            <disp-formula id="formula_2">
+                <label>(2)</label>
+                <mml:math id="mml_1"/>
+            </disp-formula>
+            <table-wrap content-type="formula-index">
+                <caption>
+                    <title>where</title>
+                </caption>
+                <table>
+                    <tr>
+                        <td>aw(t)</td>
+                        <td>is the instantaneous frequency-weighted acceleration;</td>
+                    </tr>
+                    <tr>
+                        <td>[UTF-8 code point or mml]</td>
+                        <td>is the integration time for running averaging;</td>
+                    </tr>
+                    <tr>
+                        <td>t</td>
+                        <td>is the time (integration variable);</td>
+                    </tr>
+                    <tr>
+                        <td>t0</td>
+                        <td>is the time of observation (instantaneous time).</td>
+                    </tr>
+                </table>
+            </table-wrap>
+        </sec>
+        <!-- reference to standard where the standard has 2 alternative references -->
+        <sec id="iso-iec_8825-5_2008_en_sec_2.1">
+            <label>2.1</label>
+            <title>Identical Recommendations | International Standards</title>
+            <non-normative-note>
+                <label>NOTE —</label>
+                <p>The complete set of ASN.1 Recommendations | International Standards are listed
+                    below, as they can all be applicable in particular uses of this Recommendation |
+                    International Standard. Where these are not directly referenced in the body of
+                    this Recommendation | International Standard, a † symbol is added to the
+                    reference.</p>
+            </non-normative-note>
+            <ref-list>
+                <ref>
+                    <label>—</label>
+                    <std><std-ref>ITU-T Recommendation X.680 (2008) | ISO/IEC 8824-1:2008</std-ref>,
+                            <title>Information technology – Abstract Syntax Notation One (ASN.1):
+                            Specification of basic notation.</title></std>
+                </ref>
+                <ref>
+                    <label>—</label>
+                    <std><std-ref>ITU-T Recommendation X.681 (2008) | ISO/IEC 8824-2:2008</std-ref>,
+                            <title>Information technology – Abstract Syntax Notation One (ASN.1):
+                            Specification of basic notation.</title>†</std>
+                </ref>
+            </ref-list>
+        </sec>
+        <!-- mixed-citation and non-normative-note in ref-list -->
+        <sec id="iso-iec_8825-5_2008_en_sec_2.2">
+            <label>2.2</label>
+            <title>Additional references</title>
+            <ref-list>
+                <ref>
+                    <label>—</label>
+                    <mixed-citation>W3C XML 1.0:2000, <italic>Extensible Markup Language (XML) 1.0
+                            (Second Edition), W3C Recommendation, Copyright © [6 October 2000] World
+                            Wide Web Consortium, (Massachusetts Institute of Technology, Institut
+                            National de Recherche en Informatique et en Automatique, Keio
+                            University),
+                            <uri>http://www.w3.org/TR/2000/REC-xml-20001006</uri>.</italic></mixed-citation>
+                </ref>
+                <ref>
+                    <label>—</label>
+                    <std><std-ref>ITU-T Recommendation X.681 (2008) | ISO/IEC 8824-2:2008</std-ref>,
+                            <title>Information technology – Abstract Syntax Notation One (ASN.1):
+                            Specification of basic notation.</title>†</std>
+                </ref>
+                <ref>
+                    <label>—</label>
+                    <mixed-citation>W3C XML Schema:2001, <italic>XML Schema Part 2: Datatypes, W3C
+                            Recommendation, Copyright © [2 May 2001] World Wide Web Consortium,
+                            (Massachusetts Institute of Technology, Institut National de Recherche
+                            en Informatique et en Automatique, Keio University),
+                            http://www.w3.org/TR/2001/RECxmlschema-
+                        2-20010502.</italic></mixed-citation>
+                    <non-normative-note>
+                        <label>NOTE – </label>
+                        <p>When the reference "W3C XML Schema" is used in this Recommendation |
+                            International Standard, it refers to W3C XML Schema Part 1 and W3C XML
+                            Schema Part 2.</p>
+                    </non-normative-note>
+                </ref>
+                <ref>
+                    <!-- use std when the reference is to a standard (not only ISO standards) 
+                         and the form is "reference, title"
+                    -->
+                    <std><std-ref>IETF RFC 2396 (1998)</std-ref>, <title>Uniform Resource
+                            Identifiers (URI): Generic Syntax.</title></std>
+                </ref>
+            </ref-list>
+        </sec>
+        <!-- list of abbreviations using array -->
+        <sec id="iso-iec_8825-5_2008_en_sec_4">
+            <label>4</label>
+            <title>Abbreviations</title>
+            <p>For the purposes of this Recommendation | International Standard, the following
+                abbreviations apply:</p>
+            <array>
+                <table>
+                    <tr>
+                        <td>ASN.1</td>
+                        <td> Abstract Syntax Notation One </td>
+                    </tr>
+                    <tr>
+                        <td>BER</td>
+                        <td> (ASN.1) Basic Encoding Rules </td>
+                    </tr>
+                    <tr>
+                        <td>DER</td>
+                        <td> (ASN.1) Distinguished Encoding Rules </td>
+                    </tr>
+                    <tr>
+                        <td>PER</td>
+                        <td> (ASN.1) Packed Encoding Rules </td>
+                    </tr>
+                    <tr>
+                        <td>URI</td>
+                        <td> (IETF) Uniform Resource Identifier </td>
+                    </tr>
+                    <tr>
+                        <td>XER</td>
+                        <td> (ASN.1) XML Encoding Rules </td>
+                    </tr>
+                    <tr>
+                        <td>XML</td>
+                        <td> (W3C) Extensible Markup Language </td>
+                    </tr>
+                    <tr>
+                        <td>XSD</td>
+                        <td> (W3C) XML Schema </td>
+                    </tr>
+                </table>
+            </array>
+        </sec>
+        <!-- sections without title and use of styled-content -->
+        <sec id="iso-iec_8825-5_2008_en_sec_5">
+            <title>Notation</title>
+            <sec id="iso-iec_8825-5_2008_en_sec_5.1">
+                <label>5.1</label>
+                <title/>
+                <p>This Recommendation | International Standard references the notation defined by
+                    ITU-T Rec. X.680 | ISO/IEC 8824-1, ITU-T Rec. X.682 | ISO/IEC 8824-3, W3C XML
+                    1.0 and W3C XML Schema.</p>
+            </sec>
+            <sec id="iso-iec_8825-5_2008_en_sec_5.2">
+                <label>5.2</label>
+                <title/>
+                <p>When it is necessary in the body of this Recommendation | International Standard
+                    to specify, either formally or in examples, the assignment of XER encoding
+                    instructions, the type prefix notation is generally used (but see 6.3 and 6.4).
+                    In Annex A, an XER encoding control section is used.</p>
+            </sec>
+            <sec id="iso-iec_8825-5_2008_en_sec_5.3">
+                <label>5.3</label>
+                <title/>
+                <p>In this Recommendation | International Standard, <styled-content
+                        style="font-weight: bold; font-family: Courier, monospace">bold
+                        Courier</styled-content> is used for ASN.1 notation and <styled-content
+                        style="font-weight: bold; font-family: Arial, sans-serif">bold
+                        Arial</styled-content> is used for XSD notation and for XSD terms and
+                    concepts.</p>
+            </sec>
+            <sec id="iso-iec_8825-5_2008_en_sec_5.4">
+                <label>5.4</label>
+                <title/>
+                <p>The XSD Schemas used in the examples in this Recommendation | International
+                    Standard use the prefix xsd: to identify the XSD namespace.</p>
+            </sec>
+        </sec>
+        <!-- formatted source code
+             NOTE: styled-content is only used because the formatting was mentioned earlier in the document 
+                   (see above example)
+        -->
+        <sec id="iso-iec_8825-5_2008_en_sec_B.3">
+            <label>B.3</label>
+            <title/>
+            <p>The XSD module for the Version 2 mapping is:</p>
+            <preformat preformat-type="code">
+            <styled-content style="font-weight: bold; font-family: Courier, monospace">
+                XSD {joint-iso-itu-t asn1(1) specification(0) modules(0) xsd-module(2) version2(2)}
+                "/ASN.1/Specification/Modules/XSD-Module/Version2"
+                DEFINITIONS
+                AUTOMATIC TAGS ::=
+                BEGIN
+                <italic>/* xsd:anySimpleType */</italic>
+                
+                AnySimpleType ::= XMLCompatibleString
+                
+                <italic>/* xsd:anyType */</italic>
+                
+                AnyType ::= SEQUENCE {
+                    embed-values SEQUENCE OF String,
+                    attr SEQUENCE
+                        (CONSTRAINED BY {
+                            <italic>/* Each item shall conform to the "AnyAttributeFormat" specified
+                               in ITU-T Rec. X.693 | ISO/IEC 8825-4, clause 18 */</italic> } ) OF String,
+                    elem-list SEQUENCE OF elem String
+                        (CONSTRAINED BY {
+                            <italic>/* Shall conform to the "AnyElementFormat" specified
+                               in ITU-T Rec. X.693 | ISO/IEC 8825-4, clause 19 */</italic> } ) }
+                    (CONSTRAINED BY {
+                    <italic>/* Shall conform to ITU-T Rec. X.693 | ISO/IEC 8825-4, clause 25 */</italic> } )
+                
+                AnyType-nillable ::= SEQUENCE {
+                    embed-values SEQUENCE OF String,
+                    attr SEQUENCE
+                        (CONSTRAINED BY {
+                            <italic>/* Each item shall conform to the "AnyAttributeFormat" specified
+                               in ITU-T Rec. X.693 | ISO/IEC 8825-4, clause 18 */</italic> } ) OF String,
+                    content SEQUENCE {
+                        elem-list SEQUENCE OF elem String
+                            (CONSTRAINED BY {
+                                <italic>/* Shall conform to the "AnyElementFormat" specified
+                                   in ITU-T Rec. X.693 | ISO/IEC 8825-4, clause 19 */</italic> } )
+                    } OPTIONAL }
+                    (CONSTRAINED BY {
+                                 <italic>/* Shall conform to ITU-T Rec. X.693 | ISO/IEC 8825-4, clause 25
+                    */</italic> } )
+            </styled-content>
+            </preformat>
+        </sec>
+        <sec id="iso-iec_20001-1_2011_en_sec_intro">
+            <title>Introduction</title>
+            <p>For the purposes of research on service management standards, users are encouraged to
+                share their views on ISO/IEC 20000-1 and their priorities for changes to the rest of
+                the ISO/IEC 20000 series. Click on the link below to take part in the online
+                survey.</p>
+            <p><styled-content style="text-alilgnment: center"><ext-link
+                        xlink:href="http://www.surveymonkey.com/s/20000-1">ISO/IEC 20000-1 online
+                        survey</ext-link></styled-content></p>
+        </sec>
+        <sec id="iso_10993-1_2009_en_sec_4.5">
+            <label>4.5</label>
+            <fig id="iso_10993-1_2009_en_fig_1">
+                <label>Figure 1</label>
+                <caption>
+                    <title>Summary of the systematic approach to a biological evaluation of medical
+                        devices as part of a risk management process</title>
+                </caption>
+                <p/>
+                <graphic xlink:href="iso_10993-1_2009_en_fig_1"/>
+                <fn>
+                    <label><sup>a</sup></label>
+                    <p>This process only applies to those medical devices that contact the patient's
+                        body directly or indirectly.</p>
+                </fn>
+            </fig>
+        </sec>
+        <term-sec>
+            <label>3.28</label>
+            <tbx:termEntry>
+                <tbx:langSet xml:lang="en">
+                    <tbx:tig>
+                        <tbx:term>medical device</tbx:term>
+                        <tbx:partOfSpeech value="noun"/>
+                    </tbx:tig>
+                </tbx:langSet>
+            </tbx:termEntry>
+        </term-sec>
+        <sec>
+            <label>1.2.3</label>
+            <def-list list-type="formula-index">
+                <label>where</label>
+                <def-item>
+                    <term><mml:math/></term>
+                    <def>
+                        <p>
+                            <def-list>
+                                <label>in which</label>
+                                <def-item>
+                                    <term><mml:math/></term>
+                                    <def>
+                                        <p>is in the mean-time average</p>
+                                    </def>
+                                </def-item>
+                            </def-list>
+                        </p>
+                    </def>
+                </def-item>
+                <def-item>
+                    <term>S1</term>
+                    <def>
+                        <p>is the area</p>
+                    </def>
+                </def-item>
+            </def-list>
+            <list list-content="formula-index">
+                <label>where</label>
+                <list-item><p><mml:math></mml:math></p></list-item>
+                <list-item>
+                    <list>
+                        <label>in which</label>
+                        <list-item><label><inline-formula><mml:math></mml:math></inline-formula></label><p>is the mean ...</p></list-item>
+                    </list>
+                </list-item>
+                <list-item><label>S1</label><p>is the area ...</p></list-item>
+            </list>
+            <disp-formula><preformat></preformat></disp-formula>
+        </sec>
+    </body>
+    <back>
+        <app-group>
+            <app id="iso-iec_17021_2011_en_sec_F">
+                <label>Annex F</label>
+                <annex-type>(informative)</annex-type>
+                <title>Considerations for the audit programme, scope or plan</title>
+                <non-normative-note>
+                    <label>IMPORTANT — </label>
+                    <p>This annex is informative and not intended to be applied as requirements.</p>
+                </non-normative-note>
+            </app>
+            <app id="iso-iec_8825-6_2008_en_sec_A">
+                <label>Annex A</label>
+                <title>Example of the application of PER EIs using prefixed encoding instructions<break/>
+                    <styled-content style-type="normal">(This annex does not form an integral part
+                        of this Recommendation | International Standard)</styled-content></title>
+                <sec id="iso-iec_8825-6_2008_en_sec_A.1">
+                    <label>A.1</label>
+                    <p>This annex contains an example of the use of prefixed PER EIs to produce a
+                        variation of the PER encodings for the types in a module.</p>
+                </sec>
+            </app>
+        </app-group>
+        <ref-list content-type="bibl" id="iso_9001_2008_ru_sec_bibl">
+            <title>Библиография</title>
+            <ref>
+                <label>[19]</label>
+                <mixed-citation>Принципы менеджмента качества <xref ref-type="fn"
+                        rid="iso_9001_2008_ru_fn_28.2"><sup>2)</sup></xref>, ISO,
+                    2001</mixed-citation>
+            </ref>
+            <ref>
+                <label>[20]</label>
+                <mixed-citation>ISO 9000 — Выбор и применение <xref ref-type="fn"
+                        rid="iso_9001_2008_ru_fn_28.2"><sup>2)</sup></xref>, ISO,
+                    2008</mixed-citation>
+            </ref>
+            <ref content-type="standard" id="ref_23">
+                <label>[23]</label>
+                <mixed-citation>Ссылки на web сайты:<break/>
+                    <uri>http://www.iso.org</uri><break/>
+                    <uri>http://www.tc176.org</uri><break/>
+                    <uri>http://www.iso.org/tc176/sc2</uri><break/>
+                    <uri>http://www.iso.org/tc176/ISO9001AuditingPracticesGroup</uri></mixed-citation>
+            </ref>
+        </ref-list>
+        <sec>
+            <title/>
+        </sec>
+        <ref-list content-type="bibl" id="sec_bibl">
+            <title>Bibliography</title>
+            <ref-list>
+                <title>ISO publications ...</title>
+                <ref>
+                    <label>[1]</label>
+                    <std>...</std>
+                </ref>
+                <ref>
+                    <label>[2]</label>
+                    <std>...</std>
+                </ref>
+            </ref-list>
+            <ref-list>
+                <title>IEC publications ...</title>
+                <ref>
+                    <label>[50]</label>
+                    <std>...</std>
+                </ref>
+                <ref>
+                    <label>[51]</label>
+                    <std>...</std>
+                </ref>
+            </ref-list>
+        </ref-list>
+        <fn-group>
+            <fn id="iso_9001_2008_ru_fn_28.2">
+                <label>2)</label>
+                <p>Доступен на web сайте: <uri>http://www.iso.org</uri>.</p>
+            </fn>
+        </fn-group>
+    </back>
+</standard>

@@ -2,27 +2,193 @@
 
 == Purpose
 
-The `sts` Ruby gem allows you to work with NISO STS (0.2+) and ISOSTS documents.
+The `sts` Ruby gem allows you to work with NISO STS and ISOSTS documents -- two related XML formats for technical standards documents.
 
-NOTE: This is a work-in-progress.
+* **NISO STS** (NISO Z39.96) -- The standardized NISO format for journal and article publishing
+* **ISOSTS** -- The internal precursor format to NISO STS, used by ISO before NISO standardization. ISOSTS adopts TBX (ISO 30042) for terminology markup.
 
-This library now parses the reference
-https://www.iso.org/schema/nisosts/v0.2/doc/tbx/examples/tbx-examples.html[TBX-ISO-TML version 1.1 sample file]
-in the NISO STS format (`tbx-nisosts-0.2.xml`).
+[NOTE]
+This is a work-in-progress.
+
+== Formats Compared
+
+[cols="2,1,1"]
+|===
+| Aspect | NISO STS | ISOSTS
+
+| Standard
+| NISO Z39.96 (NISO standard)
+| Internal format (pre-NISO standardization)
+
+| History
+| Standardized version
+| Original internal format, predates NISO STS
+
+| Root element
+| `<article>`, `<book>`
+| `<standard>`
+
+| Metadata
+| `article-meta`, `journal-meta`
+| `iso-meta`, `reg-meta`, `nat-meta`
+
+| MathML version
+| 3+ (via mml gem)
+| 2 (custom Ruby implementation)
+
+| Math elements
+| `mml:math` + `tex-math`
+| `mml:math` only
+
+| Terminology
+| Inline TBX elements
+| `term-sec` with `tbx:termEntry`
+
+| Standards references
+| Mixed in `ref-list`
+| Dedicated `std`/`std-ref` elements
+
+| Module tree
+| `Sts::NisoSts::*`
+| `Sts::IsoSts::*`
+|===
+
+Despite sharing the same JATS ancestry, the two formats have incompatible content models. Elements with the same XML name (e.g., `p`, `sec`, `disp-formula`) may have different permitted children and attributes. They are implemented as completely separate Ruby class trees.
 
 == Library
 
-=== Usage
+=== Usage: NISO STS
 
 The following code parses a NISO STS XML document.
 
 [source,ruby]
 ----
 require 'sts'
+
 doc = IO.read('spec/fixtures/tbx-nisosts-0.2.xml')
 sts = Sts::NisoSts::Standard.from_xml(doc)
 puts sts.to_xml(pretty: true)
-# => STS file round-tripped
+# => NISO STS file round-tripped
+----
+
+==== NISO STS API
+
+[source,ruby]
+----
+# Parse
+sts = Sts::NisoSts::Standard.from_xml(xml_string)
+
+# Access elements
+sts.front.article_meta.title_wrap.main
+sts.body.sec.first.label
+
+# Serialize back
+sts.to_xml
+sts.to_xml(pretty: true)
+
+# Check document type
+sts.class.name # => "Sts::NisoSts::Standard"
+----
+
+==== NISO STS root classes
+
+* `Sts::NisoSts::Standard` -- Book or article root
+* `Sts::NisoSts::Front` -- Front matter (`article-meta`, `journal-meta`)
+* `Sts::NisoSts::Body` -- Document body
+* `Sts::NisoSts::Back` -- Back matter (references, footnotes)
+
+=== Usage: ISOSTS
+
+ISOSTS uses `<standard>` as the root element and includes MathML 2 for formulae. It adopts TBX (ISO 30042) for terminology sections.
+
+[source,ruby]
+----
+require 'sts'
+
+doc = IO.read('spec/fixtures/iso_sts/feature_doc.xml')
+sts = Sts::IsoSts::Standard.from_xml(doc)
+puts sts.to_xml(pretty: true)
+# => ISOSTS file round-tripped
+----
+
+==== ISOSTS API
+
+[source,ruby]
+----
+# Parse
+sts = Sts::IsoSts::Standard.from_xml(xml_string)
+
+# Access elements
+sts.front.iso_meta.title_wrap.main
+sts.front.iso_meta.std_ident.doc_number
+sts.body.term_sec.first.term_entry.lang_set.first.term
+
+# Serialize back
+sts.to_xml
+sts.to_xml(pretty: true)
+
+# Check document type
+sts.class.name # => "Sts::IsoSts::Standard"
+----
+
+==== ISOSTS root classes
+
+* `Sts::IsoSts::Standard` -- Standard document root (`<standard>`)
+* `Sts::IsoSts::Front` -- Front matter (`iso-meta`, `reg-meta`, `nat-meta`)
+* `Sts::IsoSts::Body` -- Document body (includes `term-sec` for terminology)
+* `Sts::IsoSts::Back` -- Back matter (annexes, references, footnotes)
+
+==== ISOSTS MathML 2
+
+ISOSTS uses MathML 2 (not MathML 3+ like NISO STS). A custom Ruby implementation is provided in `Sts::IsoSts::Mathml2::*`:
+
+[source,ruby]
+----
+# Access MathML 2 content
+disp_formula = sts.body.sec.first.disp_formula
+math = disp_formula.math  # => Sts::IsoSts::Mathml2::Math
+
+# MathML 2 elements
+math.id          # => "mml_1"
+math.display     # => "block" or "inline"
+
+# Serialized as mml:math
+math.to_xml      # => <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" ...>
+----
+
+Available MathML 2 elements: `Math`, `Mrow`, `Mi`, `Mn`, `Mo`, `Mtext`, `Mspace`, `Msub`, `Msup`, `Msubsup`, `Mfrac`, `Msqrt`, `Mroot`, `Mstyle`, `Menclose`, `Mpadded`, `Mphantom`, `Mtable`, `Mtr`, `Mtd`, `Mlabeledtr`, `Mfenced`, `Semantics`, `Annotation`, `AnnotationXml`
+
+==== ISOSTS TBX Terminology
+
+ISOSTS uses TBX (TermBase eXchange, ISO 30042) for terminology sections via `term-sec`:
+
+[source,ruby]
+----
+# Access terminology entries
+term_sec = sts.body.term_sec.first
+term_entry = term_sec.term_entry
+
+term_entry.lang_set.each do |lang_set|
+  puts lang_set.xml_lang        # => "en"
+  puts lang_set.tig.first.term # => "medical device"
+end
+----
+
+TBX elements reuse `Sts::TbxIsoTml::*` classes.
+
+=== TBX Integration
+
+Both NISO STS and ISOSTS support TBX (TermBase eXchange, ISO 30042) for terminology markup. The TBX elements are in the `Sts::TbxIsoTml` module:
+
+[source,ruby]
+----
+require 'sts'
+
+# NISO STS with TBX
+sts = Sts::NisoSts::Standard.from_xml(xml_with_tbx)
+
+# ISOSTS with TBX
+sts = Sts::IsoSts::Standard.from_xml(xml_with_tbx)
 ----
 
 == Credits
