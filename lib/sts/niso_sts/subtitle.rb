@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class Subtitle < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "subtitle"
         mixed_content

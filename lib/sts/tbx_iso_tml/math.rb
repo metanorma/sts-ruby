@@ -4,7 +4,7 @@ module Sts
   module TbxIsoTml
     class Math < Lutaml::Model::Serializable
       attribute :id, :string
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :display, :string
       attribute :mrow, ::Sts::TbxIsoTml::Mrow
       attribute :msub, ::Sts::TbxIsoTml::Msub, collection: true

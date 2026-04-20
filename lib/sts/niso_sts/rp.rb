@@ -3,7 +3,7 @@
 module Sts
   module NisoSts
     class Rp < Lutaml::Model::Serializable
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :id, :string
 
       xml do

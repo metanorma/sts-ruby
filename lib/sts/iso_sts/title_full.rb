@@ -3,7 +3,7 @@
 module Sts
   module IsoSts
     class TitleFull < Lutaml::Model::Serializable
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold
       attribute :italic, ::Sts::IsoSts::Italic
       attribute :xref, ::Sts::TbxIsoTml::Xref

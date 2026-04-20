@@ -5,8 +5,7 @@ module Sts
     class FundingStatement < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :rid, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "funding-statement"
         mixed_content

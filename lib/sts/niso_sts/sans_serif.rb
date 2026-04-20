@@ -6,8 +6,7 @@ module Sts
       attribute :id, :string
       attribute :specific_use, :string
       attribute :toggle, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "sans-serif"
         mixed_content

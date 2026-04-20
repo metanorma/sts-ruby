@@ -7,8 +7,7 @@ module Sts
       attribute :kwd_group_type, :string
       attribute :xml_lang, :string
       attribute :specific_use, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "unstructured-kwd-group"
         mixed_content

@@ -8,8 +8,7 @@ module Sts
       class Math < Lutaml::Model::Serializable
         attribute :id, :string
         attribute :display, :string
-        attribute :content, :string
-
+        attribute :content, :string, collection: true
         xml do
           namespace ::Sts::Namespaces::MathmlNamespace
           element "math"

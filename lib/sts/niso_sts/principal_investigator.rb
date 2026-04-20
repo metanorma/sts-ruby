@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class PrincipalInvestigator < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "principal-investigator"
         mixed_content

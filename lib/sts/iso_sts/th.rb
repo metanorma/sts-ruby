@@ -16,7 +16,7 @@ module Sts
       attribute :char, :string
       attribute :charoff, :string
       attribute :valign, :string
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :paragraph, ::Sts::IsoSts::Paragraph, collection: true
       attribute :fig, ::Sts::IsoSts::Fig
       attribute :graphic, ::Sts::IsoSts::Graphic

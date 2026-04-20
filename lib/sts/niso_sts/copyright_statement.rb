@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class CopyrightStatement < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "copyright-statement"
         mixed_content

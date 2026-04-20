@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class ProjId < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "proj-id"
         mixed_content

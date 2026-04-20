@@ -7,8 +7,7 @@ module Sts
       attribute :id, :string
       attribute :kwd_part_type, :string
       attribute :value, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "compound-kwd-part"
         mixed_content

@@ -7,8 +7,7 @@ module Sts
       attribute :content_type, :string
       attribute :specific_use, :string
       attribute :xml_lang, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "author-comment"
         mixed_content

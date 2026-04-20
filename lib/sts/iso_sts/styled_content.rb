@@ -8,7 +8,7 @@ module Sts
       attribute :alt, :string
       attribute :specific_use, :string
       attribute :xml_lang, :string
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold, collection: true
       attribute :italic, ::Sts::IsoSts::Italic, collection: true
       attribute :sub, ::Sts::NisoSts::Sub

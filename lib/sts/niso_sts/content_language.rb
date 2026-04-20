@@ -3,7 +3,7 @@
 module Sts
   module NisoSts
     class ContentLanguage < Lutaml::Model::Serializable
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :lang, :string
       attribute :specific_use, :string
 

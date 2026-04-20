@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class Originator < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "originator"
         mixed_content

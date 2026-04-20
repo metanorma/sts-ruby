@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class OpenAccess < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "open-access"
         mixed_content

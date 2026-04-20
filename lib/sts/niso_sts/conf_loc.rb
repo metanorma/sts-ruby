@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class ConfLoc < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "conf-loc"
         mixed_content

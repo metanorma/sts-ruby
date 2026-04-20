@@ -6,7 +6,7 @@ module Sts
   module TbxIsoTml
     class Example < Lutaml::Model::Serializable
       attribute :id, :string
-      attribute :value, :string
+      attribute :value, :string, collection: true
       attribute :entailed_term, ::Sts::TbxIsoTml::EntailedTerm, collection: true
       attribute :inline_formula, ::Sts::NisoSts::InlineFormula
 

@@ -3,8 +3,7 @@
 module Sts
   module IsoSts
     class Edition < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "edition"
         mixed_content

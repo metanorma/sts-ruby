@@ -3,7 +3,7 @@
 module Sts
   module NisoSts
     class Title < Lutaml::Model::Serializable
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :inline_formula, Sts::NisoSts::InlineFormula, collection: true
 
       xml do

@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class TermSource < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "term-source"
         mixed_content

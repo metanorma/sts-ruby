@@ -4,7 +4,7 @@ module Sts
   module NisoSts
     class Aff < Lutaml::Model::Serializable
       attribute :id, :string
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :content_type, :string
       attribute :specific_use, :string
       attribute :xml_lang, :string

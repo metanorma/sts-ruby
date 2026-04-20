@@ -3,7 +3,7 @@
 module Sts
   module NisoSts
     class SelfUri < Lutaml::Model::Serializable
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :href, :xlink_href
       attribute :content_type, :string
       attribute :language, :string

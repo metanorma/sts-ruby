@@ -3,7 +3,7 @@
 module Sts
   module IsoSts
     class CopyrightHolder < Lutaml::Model::Serializable
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :sub, ::Sts::NisoSts::Sub
       attribute :sup, ::Sts::NisoSts::Sup
 

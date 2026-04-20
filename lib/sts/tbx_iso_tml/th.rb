@@ -3,7 +3,7 @@
 module Sts
   module TbxIsoTml
     class Th < Lutaml::Model::Serializable
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :colspan, :string
       attribute :align, :string
       attribute :scope, :string

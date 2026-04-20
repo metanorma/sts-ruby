@@ -10,7 +10,7 @@ module Sts
       attribute :xml_lang, :string
       attribute :preformat_type, :string
       attribute :originator, :string
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold
       attribute :italic, ::Sts::IsoSts::Italic
       attribute :ext_link, ::Sts::NisoSts::ExtLink

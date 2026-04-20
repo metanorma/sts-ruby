@@ -3,8 +3,7 @@
 module Sts
   module TbxIsoTml
     class CrossReference < Lutaml::Model::Serializable
-      attribute :value, :string
-
+      attribute :value, :string, collection: true
       xml do
         element "crossReference"
         mixed_content

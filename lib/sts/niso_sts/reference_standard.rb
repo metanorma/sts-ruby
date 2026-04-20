@@ -7,7 +7,7 @@ module Sts
     class ReferenceStandard < Lutaml::Model::Serializable
       attribute :type, :string
       attribute :std_id, :string
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :std_ref, ::Sts::NisoSts::StandardRef
       attribute :title, :string
       attribute :fn, ::Sts::NisoSts::Fn, collection: true

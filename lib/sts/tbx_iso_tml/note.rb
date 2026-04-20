@@ -4,7 +4,7 @@ module Sts
   module TbxIsoTml
     class Note < Lutaml::Model::Serializable
       attribute :id, :string
-      attribute :value, :string
+      attribute :value, :string, collection: true
       attribute :table_wrap, ::Sts::TbxIsoTml::TableWrap
       attribute :entailed_term, ::Sts::TbxIsoTml::EntailedTerm, collection: true
       attribute :math, ::Sts::TbxIsoTml::Math, collection: true

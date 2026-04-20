@@ -3,7 +3,7 @@
 module Sts
   module NisoSts
     class Rt < Lutaml::Model::Serializable
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :content_type, :string
       attribute :id, :string
       attribute :specific_use, :string

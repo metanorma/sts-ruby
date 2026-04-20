@@ -9,7 +9,7 @@ module Sts
       attribute :xml_lang, :string
       attribute :originator, :string
       attribute :style_type, :string
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold
       attribute :italic, ::Sts::IsoSts::Italic
       attribute :xref, ::Sts::TbxIsoTml::Xref

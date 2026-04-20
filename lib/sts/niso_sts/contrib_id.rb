@@ -5,8 +5,7 @@ module Sts
     class ContribId < Lutaml::Model::Serializable
       attribute :contrib_id_type, :string
       attribute :authenticated, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "contrib-id"
         mixed_content

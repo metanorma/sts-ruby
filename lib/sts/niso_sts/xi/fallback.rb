@@ -4,8 +4,7 @@ module Sts
   module NisoSts
     module Xi
       class Fallback < Lutaml::Model::Serializable
-        attribute :content, :string
-
+        attribute :content, :string, collection: true
         xml do
           element "xi:fallback"
           mixed_content

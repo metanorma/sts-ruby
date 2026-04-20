@@ -14,8 +14,7 @@ module Sts
       attribute :xlink_actuate, :string
       attribute :xlink_show, :string
       attribute :xlink_title, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "inline-supplementary-material"
         mixed_content

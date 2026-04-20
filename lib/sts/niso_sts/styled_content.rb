@@ -8,8 +8,7 @@ module Sts
       attribute :toggle, :string
       attribute :specific_use, :string
       attribute :lang, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "styled-content"
         mixed_content

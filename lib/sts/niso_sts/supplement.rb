@@ -7,8 +7,7 @@ module Sts
       attribute :suppl_type, :string
       attribute :suppl_version, :string
       attribute :xml_lang, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "supplement"
         mixed_content

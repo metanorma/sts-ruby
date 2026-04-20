@@ -5,8 +5,7 @@ module Sts
     class Product < Lutaml::Model::Serializable
       attribute :product_type, :string
       attribute :xlink_href, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "product"
         mixed_content

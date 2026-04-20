@@ -3,7 +3,7 @@
 module Sts
   module IsoSts
     class Language < Lutaml::Model::Serializable
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :lang, :string
       attribute :specific_use, :string
 

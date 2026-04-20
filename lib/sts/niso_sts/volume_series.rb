@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class VolumeSeries < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "volume-series"
         mixed_content

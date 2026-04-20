@@ -7,8 +7,7 @@ module Sts
       attribute :mo, :string
       attribute :mtext, :string
       attribute :munder, ::Sts::TbxIsoTml::Munder
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "semantics"
         mixed_content

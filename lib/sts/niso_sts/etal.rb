@@ -3,7 +3,7 @@
 module Sts
   module NisoSts
     class Etal < Lutaml::Model::Serializable
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :id, :string
       attribute :specific_use, :string
       attribute :xml_lang, :string

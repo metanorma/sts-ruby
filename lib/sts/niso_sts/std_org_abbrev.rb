@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class StdOrgAbbrev < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "std-org-abbrev"
         mixed_content

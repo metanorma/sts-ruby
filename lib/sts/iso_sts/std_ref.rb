@@ -12,8 +12,7 @@ module Sts
       attribute :suppl_type, ::Sts::NisoSts::SupplType
       attribute :suppl_number, ::Sts::NisoSts::SupplNumber
       attribute :year, ::Sts::NisoSts::Year
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "std-ref"
         mixed_content

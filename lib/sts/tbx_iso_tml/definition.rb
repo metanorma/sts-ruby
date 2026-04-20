@@ -5,7 +5,7 @@ module Sts
     class Definition < Lutaml::Model::Serializable
       attribute :entailed_term, ::Sts::TbxIsoTml::EntailedTerm, collection: true
       attribute :note, ::Sts::TbxIsoTml::Note
-      attribute :value, :string
+      attribute :value, :string, collection: true
       attribute :italic, ::Sts::TbxIsoTml::Italic
       attribute :math, ::Sts::TbxIsoTml::Math
       attribute :sub, :string

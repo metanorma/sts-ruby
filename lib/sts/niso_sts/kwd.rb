@@ -8,8 +8,7 @@ module Sts
       attribute :kwd_type, :string
       attribute :xml_lang, :string
       attribute :specific_use, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "kwd"
         mixed_content

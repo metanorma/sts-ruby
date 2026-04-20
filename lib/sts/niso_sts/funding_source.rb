@@ -8,8 +8,7 @@ module Sts
       attribute :funder_id, :string
       attribute :institution_id_type, :string
       attribute :xlink_href, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "funding-source"
         mixed_content

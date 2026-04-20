@@ -3,7 +3,7 @@
 module Sts
   module NisoSts
     class TitleFull < Lutaml::Model::Serializable
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :std, ::Sts::NisoSts::ReferenceStandard
 
       xml do

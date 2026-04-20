@@ -6,7 +6,7 @@ module Sts
       attribute :id, :string
       attribute :xml_lang, :string
       attribute :specific_use, :string
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :label, ::Sts::NisoSts::Label
 
       xml do
