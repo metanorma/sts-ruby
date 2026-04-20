@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class IcsDesc < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "ics-desc"
         mixed_content

@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class ChemStruct < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "chem-struct"
         mixed_content

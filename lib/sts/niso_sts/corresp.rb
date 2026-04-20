@@ -5,8 +5,7 @@ module Sts
     class Corresp < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :xml_lang, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "corresp"
         mixed_content

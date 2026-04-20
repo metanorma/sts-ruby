@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class VerseLine < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "verse-line"
         mixed_content

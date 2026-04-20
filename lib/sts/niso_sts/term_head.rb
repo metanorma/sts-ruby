@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class TermHead < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "term-head"
         mixed_content

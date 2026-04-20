@@ -4,7 +4,7 @@ module Sts
   module NisoSts
     module Ali
       class LicenseRef < Lutaml::Model::Serializable
-        attribute :content, :string
+        attribute :content, :string, collection: true
         attribute :content_type, :string
         attribute :id, :string
         attribute :specific_use, :string

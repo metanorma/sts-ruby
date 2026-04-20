@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class ConfSponsor < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "conf-sponsor"
         mixed_content

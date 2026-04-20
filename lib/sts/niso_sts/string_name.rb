@@ -5,7 +5,7 @@ module Sts
     class StringName < Lutaml::Model::Serializable
       attribute :name_style, :string
       attribute :content_type, :string
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
       attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
 

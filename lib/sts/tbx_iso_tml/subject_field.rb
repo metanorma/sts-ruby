@@ -3,8 +3,7 @@
 module Sts
   module TbxIsoTml
     class SubjectField < Lutaml::Model::Serializable
-      attribute :value, :string
-
+      attribute :value, :string, collection: true
       xml do
         element "subjectField"
         mixed_content

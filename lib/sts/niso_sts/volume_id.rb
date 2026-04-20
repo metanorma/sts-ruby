@@ -6,8 +6,7 @@ module Sts
       attribute :content_type, :string
       attribute :specific_use, :string
       attribute :pub_id_type, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "volume-id"
         mixed_content

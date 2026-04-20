@@ -5,7 +5,7 @@ require "lutaml/model"
 module Sts
   module TbxIsoTml
     class Mrow < Lutaml::Model::Serializable
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :mo, :string, collection: true
       attribute :mi, :string, collection: true
       attribute :mn, :string, collection: true

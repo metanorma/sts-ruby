@@ -7,8 +7,7 @@ module Sts
       attribute :content_type, :string
       attribute :rationale, :string
       attribute :specific_use, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "milestone-start"
         mixed_content

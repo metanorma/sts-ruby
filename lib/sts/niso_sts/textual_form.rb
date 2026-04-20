@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class TextualForm < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "textual-form"
         mixed_content

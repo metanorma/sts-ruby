@@ -3,8 +3,7 @@
 module Sts
   module IsoSts
     class ReleaseDate < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "release-date"
         mixed_content

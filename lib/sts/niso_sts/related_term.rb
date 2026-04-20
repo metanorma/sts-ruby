@@ -4,8 +4,7 @@ module Sts
   module NisoSts
     class RelatedTerm < Lutaml::Model::Serializable
       attribute :related_term_type, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "related-term"
         mixed_content

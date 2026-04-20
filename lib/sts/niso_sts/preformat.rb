@@ -8,8 +8,7 @@ module Sts
       attribute :preformat_type, :string
       attribute :xml_space, :string
       attribute :language, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "preformat"
         mixed_content

@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class ReleaseVersionId < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "release-version-id"
         mixed_content

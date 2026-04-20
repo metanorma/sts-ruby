@@ -4,8 +4,7 @@ module Sts
   module NisoSts
     class Size < Lutaml::Model::Serializable
       attribute :units, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "size"
         mixed_content

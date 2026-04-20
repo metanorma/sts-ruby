@@ -3,8 +3,7 @@
 module Sts
   module IsoSts
     class Sup < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "sup"
         mixed_content

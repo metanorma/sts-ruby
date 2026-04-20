@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class PartOfSpeech < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "part-of-speech"
         mixed_content

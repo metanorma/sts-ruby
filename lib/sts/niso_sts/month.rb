@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class Month < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "month"
         mixed_content

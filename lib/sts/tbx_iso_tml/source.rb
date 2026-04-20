@@ -3,7 +3,7 @@
 module Sts
   module TbxIsoTml
     class Source < Lutaml::Model::Serializable
-      attribute :value, :string
+      attribute :value, :string, collection: true
       attribute :italic, ::Sts::TbxIsoTml::Italic
 
       xml do

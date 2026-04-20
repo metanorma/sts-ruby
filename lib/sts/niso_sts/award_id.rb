@@ -5,8 +5,7 @@ module Sts
     class AwardId < Lutaml::Model::Serializable
       attribute :award_id_type, :string
       attribute :rid, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "award-id"
         mixed_content

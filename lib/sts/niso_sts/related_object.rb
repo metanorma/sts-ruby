@@ -3,7 +3,7 @@
 module Sts
   module NisoSts
     class RelatedObject < Lutaml::Model::Serializable
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :ext_link_type, :string
       attribute :href, :xlink_href
       attribute :id, :string

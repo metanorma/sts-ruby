@@ -7,7 +7,7 @@ module Sts
       attribute :id, :string
       attribute :specific_use, :string
       attribute :xml_lang, :string
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold
       attribute :italic, ::Sts::IsoSts::Italic
       attribute :sub, ::Sts::NisoSts::Sub

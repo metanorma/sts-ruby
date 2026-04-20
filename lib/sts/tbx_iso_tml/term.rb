@@ -5,7 +5,7 @@ module Sts
     class Term < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :script, :string
-      attribute :value, :string
+      attribute :value, :string, collection: true
       attribute :italic, ::Sts::TbxIsoTml::Italic
       attribute :bold, :string
       attribute :sub, :string

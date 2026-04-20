@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class StdOrgLoc < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "std-org-loc"
         mixed_content

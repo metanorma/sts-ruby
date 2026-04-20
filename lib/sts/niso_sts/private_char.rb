@@ -6,8 +6,7 @@ module Sts
       attribute :description, :string
       attribute :name, :string
       attribute :specific_use, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "private-char"
         mixed_content

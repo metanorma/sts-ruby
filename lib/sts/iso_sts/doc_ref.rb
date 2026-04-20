@@ -3,8 +3,7 @@
 module Sts
   module IsoSts
     class DocRef < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "doc-ref"
         mixed_content

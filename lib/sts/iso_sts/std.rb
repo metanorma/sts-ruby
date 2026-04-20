@@ -15,8 +15,7 @@ module Sts
       attribute :bold, ::Sts::IsoSts::Bold
       attribute :italic, ::Sts::IsoSts::Italic
       attribute :named_content, ::Sts::NisoSts::NamedContent
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "std"
         mixed_content

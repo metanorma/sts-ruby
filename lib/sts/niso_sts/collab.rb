@@ -3,7 +3,7 @@
 module Sts
   module NisoSts
     class Collab < Lutaml::Model::Serializable
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :content_type, :string
       attribute :specific_use, :string
       attribute :xml_lang, :string

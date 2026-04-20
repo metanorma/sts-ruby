@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class StringConf < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "string-conf"
         mixed_content

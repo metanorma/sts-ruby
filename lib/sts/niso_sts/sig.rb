@@ -4,8 +4,7 @@ module Sts
   module NisoSts
     class Sig < Lutaml::Model::Serializable
       attribute :graphic, ::Sts::NisoSts::Graphic
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "sig"
         mixed_content

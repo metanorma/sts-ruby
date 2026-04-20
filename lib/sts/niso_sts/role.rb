@@ -4,7 +4,7 @@ module Sts
   module NisoSts
     class Role < Lutaml::Model::Serializable
       attribute :content_type, :string
-      attribute :content, :string
+      attribute :content, :string, collection: true
       attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
       attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
 

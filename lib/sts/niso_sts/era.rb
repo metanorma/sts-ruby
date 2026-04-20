@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class Era < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "era"
         mixed_content

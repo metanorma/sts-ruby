@@ -5,8 +5,7 @@ module Sts
     class Sup < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :specific_use, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "sup"
         mixed_content

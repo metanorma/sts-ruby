@@ -3,8 +3,7 @@
 module Sts
   module NisoSts
     class PartNumber < Lutaml::Model::Serializable
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "part-number"
         mixed_content

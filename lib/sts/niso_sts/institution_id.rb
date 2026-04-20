@@ -4,8 +4,7 @@ module Sts
   module NisoSts
     class InstitutionId < Lutaml::Model::Serializable
       attribute :institution_id_type, :string
-      attribute :content, :string
-
+      attribute :content, :string, collection: true
       xml do
         element "institution-id"
         mixed_content
