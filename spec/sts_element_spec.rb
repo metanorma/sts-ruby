@@ -70,7 +70,7 @@ RSpec.describe Sts::NisoSts do
             "<source>J Test</source></element-citation>"
       citation = Sts::NisoSts::ElementCitation.from_xml(xml)
       expect(citation.publication_type).to eq("journal")
-      expect(citation.source.content).to eq("J Test")
+      expect(citation.source.content).to eq(["J Test"])
     end
 
     it "round-trips Contrib through xml" do
