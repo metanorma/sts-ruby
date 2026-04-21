@@ -9,7 +9,6 @@ module Sts
       xml do
         element "italic"
         mixed_content
-        namespace nil, nil
 
         map_content to: :value
         map_element "sub", to: :sub

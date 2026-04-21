@@ -7,7 +7,6 @@ module Sts
 
       xml do
         element "bold"
-        namespace nil, nil
 
         map_content to: :value
       end
