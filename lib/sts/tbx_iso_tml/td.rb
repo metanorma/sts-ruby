@@ -7,8 +7,8 @@ module Sts
       attribute :align, :string
       attribute :scope, :string
       attribute :style, :string
-      attribute :bold, ::Sts::TbxIsoTml::Bold
-      attribute :italic, ::Sts::TbxIsoTml::Italic
+      attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
+      attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
       attribute :content_type, :string
       attribute :char, :string
       attribute :charoff, :string
@@ -23,13 +23,19 @@ module Sts
       attribute :non_normative_note,
                 ::Sts::NisoSts::NonNormativeNote,
                 collection: true
-      attribute :list, ::Sts::NisoSts::List
+      attribute :list, ::Sts::NisoSts::List, collection: true
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
-      attribute :std, ::Sts::NisoSts::ReferenceStandard
-      attribute :graphic, ::Sts::NisoSts::Graphic
-      attribute :def_list, ::Sts::NisoSts::DefList
-      attribute :paragraph, ::Sts::NisoSts::Paragraph
-      attribute :fn, ::Sts::TbxIsoTml::Fn
+      attribute :std, ::Sts::NisoSts::ReferenceStandard, collection: true
+      attribute :graphic, ::Sts::NisoSts::Graphic, collection: true
+      attribute :def_list, ::Sts::NisoSts::DefList, collection: true
+      attribute :paragraph, ::Sts::NisoSts::Paragraph, collection: true
+      attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
+      attribute :styled_content, ::Sts::NisoSts::StyledContent, collection: true
+      attribute :monospace, ::Sts::NisoSts::Monospace, collection: true
+      attribute :underline, ::Sts::NisoSts::Underline, collection: true
+      attribute :sup, ::Sts::NisoSts::Sup, collection: true
+      attribute :sub, ::Sts::NisoSts::Sub, collection: true
+      attribute :break, ::Sts::TbxIsoTml::TableBreak
 
       xml do # rubocop:disable Metrics/BlockLength
         element "td"
@@ -62,6 +68,12 @@ module Sts
         map_element "def-list", to: :def_list
         map_element "p", to: :paragraph
         map_element "fn", to: :fn
+        map_element "styled-content", to: :styled_content
+        map_element "monospace", to: :monospace
+        map_element "underline", to: :underline
+        map_element "sup", to: :sup
+        map_element "sub", to: :sub
+        map_element "break", to: :break
       end
     end
   end

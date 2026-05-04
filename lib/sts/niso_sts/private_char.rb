@@ -6,15 +6,13 @@ module Sts
       attribute :description, :string
       attribute :name, :string
       attribute :specific_use, :string
-      attribute :content, :string, collection: true
       xml do
         element "private-char"
-        mixed_content
+        ordered
 
         map_attribute "description", to: :description
         map_attribute "name", to: :name
         map_attribute "specific-use", to: :specific_use
-        map_content to: :content
       end
     end
   end

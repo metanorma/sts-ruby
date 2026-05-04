@@ -2,10 +2,9 @@
 
 module Sts
   module NisoSts
-    class FloatsGroup < Lutaml::Model::Serializable
+    class Break < Lutaml::Model::Serializable
       xml do
-        element "floats-group"
-        ordered
+        element "break"
       end
     end
   end

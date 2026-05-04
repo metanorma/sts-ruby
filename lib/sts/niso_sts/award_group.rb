@@ -12,6 +12,7 @@ module Sts
 
       xml do
         element "award-group"
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "award-type", to: :award_type

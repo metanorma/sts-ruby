@@ -5,10 +5,11 @@ module Sts
     class Fn < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :label, ::Sts::NisoSts::Label
-      attribute :paragraph, ::Sts::NisoSts::Paragraph
+      attribute :paragraph, ::Sts::NisoSts::Paragraph, collection: true
 
       xml do
         element "fn"
+        ordered
 
         map_attribute "id", to: :id
 

@@ -13,6 +13,7 @@ module Sts
 
       xml do
         element "def"
+        ordered
 
         map_attribute "rid", to: :rid
         map_attribute "id", to: :id

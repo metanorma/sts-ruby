@@ -29,6 +29,7 @@ module Sts
 
       xml do
         element "reg-meta"
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "originator", to: :originator

@@ -20,6 +20,7 @@ module Sts
 
       xml do
         element "def-list"
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "list-type", to: :list_type

@@ -8,6 +8,7 @@ module Sts
       attribute :year, :string
       attribute :era, :string
       attribute :season, :string
+      attribute :content, :string
       attribute :date_type, :string
       attribute :iso_8601_date, :string
       attribute :publication_format, :string
@@ -16,6 +17,7 @@ module Sts
         element "pub-date"
 
         map_attribute "date-type", to: :date_type
+        map_content to: :content
         map_attribute "iso-8601-date", to: :iso_8601_date
         map_attribute "publication-format", to: :publication_format
         map_element "day", to: :day

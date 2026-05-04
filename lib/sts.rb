@@ -2,6 +2,15 @@
 
 require "lutaml/model"
 
+# Moxml strips whitespace-only text nodes between elements in its Nokogiri
+# adapter's `children` method. This breaks mixed content round-tripping where
+# spaces between inline elements are significant (e.g., "<b>A</b> <b>B</b>").
+# Override to preserve all text nodes.
+Moxml::Adapter::Nokogiri.singleton_class.alias_method(:_orig_children, :children)
+Moxml::Adapter::Nokogiri.define_singleton_method(:children) do |node|
+  node.children
+end
+
 module Sts
   autoload :IsoSts, "#{__dir__}/sts/iso_sts"
   autoload :Mathml, "#{__dir__}/sts/mathml"

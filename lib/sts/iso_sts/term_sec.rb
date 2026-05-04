@@ -24,6 +24,7 @@ module Sts
 
       xml do
         element "term-sec"
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "lang", to: :xml_lang

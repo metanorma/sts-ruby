@@ -11,6 +11,7 @@ module Sts
 
       xml do
         element "subj-group"
+        ordered
 
         map_attribute "subj-group-type", to: :subj_group_type
         map_attribute "xml:lang", to: :xml_lang

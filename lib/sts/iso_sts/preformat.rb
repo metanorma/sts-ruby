@@ -11,11 +11,12 @@ module Sts
       attribute :preformat_type, :string
       attribute :originator, :string
       attribute :content, :string, collection: true
-      attribute :bold, ::Sts::IsoSts::Bold
-      attribute :italic, ::Sts::IsoSts::Italic
-      attribute :ext_link, ::Sts::NisoSts::ExtLink
-      attribute :uri, ::Sts::NisoSts::Uri
-      attribute :styled_content, ::Sts::IsoSts::StyledContent
+      attribute :bold, ::Sts::IsoSts::Bold, collection: true
+      attribute :italic, ::Sts::IsoSts::Italic, collection: true
+      attribute :underline, ::Sts::NisoSts::Underline, collection: true
+      attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
+      attribute :uri, ::Sts::NisoSts::Uri, collection: true
+      attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
 
       xml do
         element "preformat"

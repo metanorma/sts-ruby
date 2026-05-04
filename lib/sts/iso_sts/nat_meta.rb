@@ -27,6 +27,7 @@ module Sts
 
       xml do
         element "nat-meta"
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "originator", to: :originator

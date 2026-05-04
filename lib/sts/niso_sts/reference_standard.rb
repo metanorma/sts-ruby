@@ -13,6 +13,7 @@ module Sts
       attribute :fn, ::Sts::NisoSts::Fn, collection: true
       attribute :std_id_group, ::Sts::NisoSts::StdIdGroup, collection: true
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
+      attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
 
       xml do
         element "std"
@@ -26,6 +27,7 @@ module Sts
         map_element "title", to: :title
         map_element "std-id-group", to: :std_id_group
         map_element "xref", to: :xref
+        map_element "bold", to: :bold
 
         map_content to: :content
       end

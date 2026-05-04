@@ -13,6 +13,7 @@ module Sts
 
       xml do
         element "table-wrap-foot"
+        ordered
 
         map_element "fn-group", to: :fn_group
         map_element "attrib", to: :attrib

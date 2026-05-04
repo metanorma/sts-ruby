@@ -28,6 +28,7 @@ module Sts
 
       xml do
         element "fig"
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "position", to: :position

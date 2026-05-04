@@ -14,6 +14,7 @@ module Sts
 
       xml do
         element "table-wrap-foot"
+        ordered
 
         map_element "title", to: :title
         map_element "p", to: :paragraph

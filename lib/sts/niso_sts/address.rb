@@ -14,6 +14,7 @@ module Sts
 
       xml do
         element "address"
+        ordered
 
         map_element "addr-line", to: :addr_line
         map_element "city", to: :city

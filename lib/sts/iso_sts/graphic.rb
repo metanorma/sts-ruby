@@ -19,6 +19,7 @@ module Sts
 
       xml do
         element "graphic"
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "position", to: :position

@@ -14,7 +14,7 @@ module Sts
 
       xml do
         element "notes"
-        mixed_content
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "notes-type", to: :notes_type

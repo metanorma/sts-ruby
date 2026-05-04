@@ -9,6 +9,7 @@ module Sts
 
       xml do
         element "custom-meta"
+        ordered
 
         map_attribute "lang", to: :lang
         map_element "meta-name", to: :meta_name

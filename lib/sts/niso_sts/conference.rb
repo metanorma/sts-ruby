@@ -14,6 +14,7 @@ module Sts
 
       xml do
         element "conference"
+        ordered
 
         map_element "conf-date", to: :conf_date
         map_element "conf-name", to: :conf_name

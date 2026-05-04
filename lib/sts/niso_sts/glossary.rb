@@ -15,7 +15,7 @@ module Sts
 
       xml do
         element "glossary"
-        mixed_content
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "xml:lang", to: :xml_lang

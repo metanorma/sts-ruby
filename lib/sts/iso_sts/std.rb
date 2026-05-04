@@ -8,12 +8,12 @@ module Sts
       attribute :content_type, :string
       attribute :specific_use, :string
       attribute :xml_lang, :string
-      attribute :std_ref, ::Sts::IsoSts::StdRef
+      attribute :std_ref, ::Sts::IsoSts::StdRef, collection: true
       attribute :title, ::Sts::IsoSts::Title
       attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
-      attribute :xref, ::Sts::TbxIsoTml::Xref
-      attribute :bold, ::Sts::IsoSts::Bold
-      attribute :italic, ::Sts::IsoSts::Italic
+      attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
+      attribute :bold, ::Sts::IsoSts::Bold, collection: true
+      attribute :italic, ::Sts::IsoSts::Italic, collection: true
       attribute :named_content, ::Sts::NisoSts::NamedContent
       attribute :content, :string, collection: true
       xml do

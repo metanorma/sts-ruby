@@ -15,6 +15,7 @@ module Sts
 
       xml do
         element "std-ident"
+        ordered
 
         map_element "originator", to: :originator
         map_element "doc-type", to: :doc_type

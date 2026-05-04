@@ -10,6 +10,7 @@ module Sts
 
       xml do
         element "front"
+        ordered
 
         map_element "iso-meta", to: :iso_meta
         map_element "reg-meta", to: :reg_meta

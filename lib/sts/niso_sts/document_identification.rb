@@ -11,6 +11,7 @@ module Sts
 
       xml do
         element "doc-ident"
+        ordered
 
         map_element "sdo", to: :sdo
         map_element "proj-id", to: :proj_id

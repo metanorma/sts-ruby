@@ -4,8 +4,10 @@
 module Sts
   module NisoSts
     class MixedCitation < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content, :string, collection: true
       attribute :publication_type, :string
+      attribute :xlink_type, :string
       attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
       attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
       attribute :std, ::Sts::NisoSts::ReferenceStandard, collection: true
@@ -56,13 +58,24 @@ module Sts
       attribute :institution, ::Sts::NisoSts::Institution, collection: true
       attribute :publisher, ::Sts::NisoSts::Publisher
       attribute :price, :string
+      attribute :year, ::Sts::NisoSts::Year, collection: true
+      attribute :fn, ::Sts::NisoSts::Fn, collection: true
+      attribute :sc, ::Sts::NisoSts::Sc, collection: true
+      attribute :sup, ::Sts::NisoSts::Sup, collection: true
+      attribute :sub, ::Sts::NisoSts::Sub, collection: true
+      attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
+      attribute :uri, ::Sts::NisoSts::Uri, collection: true
+      attribute :underline, ::Sts::NisoSts::Underline, collection: true
+      attribute :break, ::Sts::NisoSts::Break, collection: true
 
       xml do
         element "mixed-citation"
         mixed_content
 
         map_content to: :content
+        map_attribute "id", to: :id
         map_attribute "publication-type", to: :publication_type
+        map_attribute "xlink:type", to: :xlink_type
 
         map_element "bold", to: :bold
         map_element "italic", to: :italic
@@ -114,6 +127,15 @@ module Sts
         map_element "institution", to: :institution
         map_element "publisher", to: :publisher
         map_element "price", to: :price
+        map_element "year", to: :year
+        map_element "fn", to: :fn
+        map_element "sc", to: :sc
+        map_element "sup", to: :sup
+        map_element "sub", to: :sub
+        map_element "xref", to: :xref
+        map_element "uri", to: :uri
+        map_element "underline", to: :underline
+        map_element "break", to: :break
       end
     end
   end

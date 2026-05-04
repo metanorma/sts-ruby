@@ -10,6 +10,7 @@ module Sts
 
       xml do
         element "funding-group"
+        ordered
 
         map_attribute "id", to: :id
 

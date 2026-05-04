@@ -22,7 +22,7 @@ module Sts
 
       xml do
         element "iso-meta"
-        mixed_content
+        ordered
 
         map_element "comm-ref", to: :comm_ref,
                                 value_map: { to: { empty: :empty } }

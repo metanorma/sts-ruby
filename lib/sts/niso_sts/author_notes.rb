@@ -14,7 +14,7 @@ module Sts
 
       xml do
         element "author-notes"
-        mixed_content
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "xml:lang", to: :xml_lang

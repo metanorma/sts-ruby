@@ -33,9 +33,14 @@ module Sts
       attribute :uri, ::Sts::NisoSts::Uri, collection: true
       attribute :sec, ::Sts::IsoSts::Sec, collection: true
       attribute :term_sec, ::Sts::IsoSts::TermSec, collection: true
+      attribute :disp_quote, ::Sts::NisoSts::DispQuote, collection: true
+      attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
+      attribute :editing_instruction, ::Sts::NisoSts::EditingInstruction,
+                collection: true
 
       xml do # rubocop:disable Metrics/BlockLength
         element "sec"
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "lang", to: :xml_lang
@@ -66,6 +71,9 @@ module Sts
         map_element "uri", to: :uri
         map_element "sec", to: :sec
         map_element "term-sec", to: :term_sec
+        map_element "disp-quote", to: :disp_quote
+        map_element "fn", to: :fn
+        map_element "editing-instruction", to: :editing_instruction
       end
     end
   end

@@ -22,6 +22,7 @@ module Sts
 
       xml do
         element "nat-meta"
+        ordered
 
         map_element "title-wrap", to: :title_wrap
         map_element "std-ident", to: :std_ident

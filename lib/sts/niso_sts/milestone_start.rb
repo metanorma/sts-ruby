@@ -7,16 +7,14 @@ module Sts
       attribute :content_type, :string
       attribute :rationale, :string
       attribute :specific_use, :string
-      attribute :content, :string, collection: true
       xml do
         element "milestone-start"
-        mixed_content
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "content-type", to: :content_type
         map_attribute "rationale", to: :rationale
         map_attribute "specific-use", to: :specific_use
-        map_content to: :content
       end
     end
   end

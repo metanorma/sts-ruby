@@ -6,7 +6,8 @@ source "https://rubygems.org"
 gemspec
 
 gem "canon"
-gem "lutaml-model", github: "lutaml/lutaml-model", branch: "main"
+gem "lutaml-model", git: "https://github.com/lutaml/lutaml-model.git",
+                 branch: "fix/attribute-order-preservation"
 gem "rake"
 gem "rspec"
 gem "rubocop"

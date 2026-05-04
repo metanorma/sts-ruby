@@ -9,6 +9,7 @@ module Sts
 
       xml do
         element "term-display"
+        ordered
 
         map_element "p", to: :p
         map_element "non-normative-note", to: :non_normative_note

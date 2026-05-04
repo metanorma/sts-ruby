@@ -16,6 +16,8 @@ module Sts
       attribute :non_normative_example, ::Sts::IsoSts::NonNormativeExample
       attribute :styled_content, ::Sts::IsoSts::StyledContent
       attribute :preformat, ::Sts::IsoSts::Preformat
+      attribute :graphic, ::Sts::IsoSts::Graphic, collection: true
+      attribute :tex_math, ::Sts::NisoSts::TexMath
 
       xml do
         element "disp-formula"
@@ -34,6 +36,8 @@ module Sts
         map_element "non-normative-example", to: :non_normative_example
         map_element "styled-content", to: :styled_content
         map_element "preformat", to: :preformat
+        map_element "graphic", to: :graphic
+        map_element "tex-math", to: :tex_math
       end
     end
   end
