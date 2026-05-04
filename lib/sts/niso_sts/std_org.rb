@@ -12,6 +12,7 @@ module Sts
 
       xml do
         element "std-org"
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "std-org-type", to: :std_org_type

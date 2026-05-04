@@ -11,21 +11,21 @@ module Sts
       attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold, collection: true
       attribute :italic, ::Sts::IsoSts::Italic, collection: true
-      attribute :sub, ::Sts::NisoSts::Sub
-      attribute :sup, ::Sts::NisoSts::Sup
-      attribute :xref, ::Sts::TbxIsoTml::Xref
-      attribute :ext_link, ::Sts::NisoSts::ExtLink
-      attribute :uri, ::Sts::NisoSts::Uri
-      attribute :inline_formula, ::Sts::IsoSts::InlineFormula
-      attribute :disp_formula, ::Sts::IsoSts::DispFormula
-      attribute :std, ::Sts::IsoSts::Std
-      attribute :named_content, ::Sts::NisoSts::NamedContent
-      attribute :monospace, ::Sts::NisoSts::Monospace
-      attribute :sc, ::Sts::NisoSts::Sc
-      attribute :strike, ::Sts::NisoSts::Strike
-      attribute :underline, ::Sts::NisoSts::Underline
-      attribute :ruby, ::Sts::NisoSts::Ruby
-      attribute :break, ::Sts::IsoSts::Break
+      attribute :sub, ::Sts::NisoSts::Sub, collection: true
+      attribute :sup, ::Sts::NisoSts::Sup, collection: true
+      attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
+      attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
+      attribute :uri, ::Sts::NisoSts::Uri, collection: true
+      attribute :inline_formula, ::Sts::IsoSts::InlineFormula, collection: true
+      attribute :disp_formula, ::Sts::IsoSts::DispFormula, collection: true
+      attribute :std, ::Sts::IsoSts::Std, collection: true
+      attribute :named_content, ::Sts::NisoSts::NamedContent, collection: true
+      attribute :monospace, ::Sts::NisoSts::Monospace, collection: true
+      attribute :sc, ::Sts::NisoSts::Sc, collection: true
+      attribute :strike, ::Sts::NisoSts::Strike, collection: true
+      attribute :underline, ::Sts::NisoSts::Underline, collection: true
+      attribute :ruby, ::Sts::NisoSts::Ruby, collection: true
+      attribute :break, ::Sts::IsoSts::Break, collection: true
 
       xml do
         element "styled-content"

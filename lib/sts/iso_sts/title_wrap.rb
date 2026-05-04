@@ -12,6 +12,7 @@ module Sts
 
       xml do
         element "title-wrap"
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "xml:lang", to: :xml_lang

@@ -8,6 +8,7 @@ module Sts
 
       xml do
         element "publisher"
+        ordered
 
         map_element "publisher-name", to: :publisher_name
         map_element "publisher-loc", to: :publisher_loc

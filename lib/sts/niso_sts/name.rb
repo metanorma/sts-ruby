@@ -12,6 +12,7 @@ module Sts
 
       xml do
         element "name"
+        ordered
 
         map_attribute "name-style", to: :name_style
         map_attribute "content-type", to: :content_type

@@ -4,11 +4,12 @@ module Sts
   module TbxIsoTml
     class Fn < Lutaml::Model::Serializable
       attribute :id, :string
-      attribute :label, :string
-      attribute :p, ::Sts::NisoSts::Paragraph
+      attribute :label, ::Sts::NisoSts::Label
+      attribute :p, ::Sts::NisoSts::Paragraph, collection: true
 
       xml do
         element "fn"
+        ordered
 
         map_attribute "id", to: :id
         map_element "label", to: :label

@@ -50,7 +50,7 @@ module Sts
 
       xml do
         element "nlm-citation"
-        mixed_content
+        ordered
 
         map_attribute "citation-type", to: :citation_type
         map_attribute "id", to: :id

@@ -8,6 +8,7 @@ module Sts
 
       xml do
         element "tr"
+        ordered
 
         map_element "th", to: :th
         map_element "td", to: :td

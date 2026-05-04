@@ -21,6 +21,7 @@ module Sts
 
       xml do
         element "std-doc-meta"
+        ordered
 
         map_attribute "id", to: :id
 

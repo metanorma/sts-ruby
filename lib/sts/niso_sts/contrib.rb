@@ -28,6 +28,7 @@ module Sts
 
       xml do
         element "contrib"
+        ordered
 
         map_attribute "contrib-type", to: :contrib_type
         map_attribute "corresp", to: :corresp

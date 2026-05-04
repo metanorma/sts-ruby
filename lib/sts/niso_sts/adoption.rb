@@ -12,7 +12,7 @@ module Sts
 
       xml do
         element "adoption"
-        mixed_content
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "lang", to: :lang

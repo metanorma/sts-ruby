@@ -4,13 +4,17 @@ module Sts
   module IsoSts
     class Title < Lutaml::Model::Serializable
       attribute :content, :string, collection: true
-      attribute :bold, ::Sts::IsoSts::Bold
-      attribute :italic, ::Sts::IsoSts::Italic
-      attribute :sub, ::Sts::NisoSts::Sub
-      attribute :sup, ::Sts::NisoSts::Sup
-      attribute :xref, ::Sts::TbxIsoTml::Xref
-      attribute :break, ::Sts::IsoSts::Break
-      attribute :styled_content, ::Sts::IsoSts::StyledContent
+      attribute :bold, ::Sts::IsoSts::Bold, collection: true
+      attribute :italic, ::Sts::IsoSts::Italic, collection: true
+      attribute :sub, ::Sts::NisoSts::Sub, collection: true
+      attribute :sup, ::Sts::NisoSts::Sup, collection: true
+      attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
+      attribute :break, ::Sts::IsoSts::Break, collection: true
+      attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
+      attribute :monospace, ::Sts::NisoSts::Monospace, collection: true
+      attribute :sc, ::Sts::NisoSts::Sc, collection: true
+      attribute :inline_formula, ::Sts::IsoSts::InlineFormula, collection: true
+      attribute :std, ::Sts::IsoSts::Std, collection: true
 
       xml do
         element "title"
@@ -24,6 +28,10 @@ module Sts
         map_element "xref", to: :xref
         map_element "break", to: :break
         map_element "styled-content", to: :styled_content
+        map_element "monospace", to: :monospace
+        map_element "sc", to: :sc
+        map_element "inline-formula", to: :inline_formula
+        map_element "std", to: :std
       end
     end
   end

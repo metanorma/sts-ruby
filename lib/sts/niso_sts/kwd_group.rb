@@ -17,6 +17,7 @@ module Sts
 
       xml do
         element "kwd-group"
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "kwd-group-type", to: :kwd_group_type

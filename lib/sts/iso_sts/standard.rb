@@ -13,6 +13,12 @@ module Sts
 
       xml do
         element "standard"
+        ordered
+        namespace_scope [
+          ::Sts::Namespaces::MathmlNamespace,
+          ::Sts::Namespaces::TbxNamespace,
+          ::Lutaml::Xml::W3c::XlinkNamespace,
+        ]
         map_attribute "id", to: :id
         map_attribute "lang", to: :lang
         map_attribute "dtd-version", to: :dtd_version

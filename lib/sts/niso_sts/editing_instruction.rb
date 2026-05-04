@@ -6,17 +6,15 @@ module Sts
       attribute :id, :string
       attribute :xml_lang, :string
       attribute :specific_use, :string
-      attribute :content, :string, collection: true
       attribute :label, ::Sts::NisoSts::Label
 
       xml do
         element "editing-instruction"
-        mixed_content
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "xml:lang", to: :xml_lang
         map_attribute "specific-use", to: :specific_use
-        map_content to: :content
         map_element "label", to: :label
       end
     end

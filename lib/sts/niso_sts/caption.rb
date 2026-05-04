@@ -29,14 +29,20 @@ module Sts
       attribute :paragraphs, ::Sts::NisoSts::Paragraph, collection: true
       attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote,
                 collection: true
+      attribute :label, ::Sts::NisoSts::Label
+      attribute :list, ::Sts::NisoSts::List, collection: true
+      attribute :def_list, ::Sts::NisoSts::DefList, collection: true
 
       xml do
         element "caption"
-        mixed_content
+        ordered
 
         map_element "p", to: :paragraphs
         map_element "non-normative-note", to: :non_normative_note
         map_element "title", to: :title
+        map_element "label", to: :label
+        map_element "list", to: :list
+        map_element "def-list", to: :def_list
       end
     end
   end

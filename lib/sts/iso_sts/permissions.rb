@@ -12,6 +12,7 @@ module Sts
 
       xml do
         element "permissions"
+        ordered
 
         map_element "copyright-statement", to: :copyright_statement
         map_element "copyright-year", to: :copyright_year

@@ -12,6 +12,7 @@ module Sts
 
       xml do
         element "date"
+        ordered
 
         map_attribute "date-type", to: :date_type
         map_element "day", to: :day

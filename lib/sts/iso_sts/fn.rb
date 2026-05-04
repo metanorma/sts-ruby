@@ -15,6 +15,7 @@ module Sts
 
       xml do
         element "fn"
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "fn-type", to: :fn_type

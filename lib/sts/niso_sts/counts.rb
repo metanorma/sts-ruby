@@ -12,6 +12,7 @@ module Sts
 
       xml do
         element "counts"
+        ordered
 
         map_element "fig-count", to: :fig_count
         map_element "table-count", to: :table_count

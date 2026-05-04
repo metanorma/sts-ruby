@@ -9,6 +9,7 @@ module Sts
 
       xml do
         element "nested-kwd"
+        ordered
 
         map_element "kwd", to: :kwd
         map_element "kwd-group", to: :kwd_group

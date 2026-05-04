@@ -11,6 +11,7 @@ module Sts
 
       xml do
         element "abstract"
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "abstract-type", to: :abstract_type

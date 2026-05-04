@@ -3,12 +3,9 @@
 module Sts
   module NisoSts
     class Alternatives < Lutaml::Model::Serializable
-      attribute :content, :string, collection: true
       xml do
         element "alternatives"
-        mixed_content
-
-        map_content to: :content
+        ordered
       end
     end
   end

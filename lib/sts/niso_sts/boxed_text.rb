@@ -11,10 +11,12 @@ module Sts
       attribute :caption, ::Sts::NisoSts::Caption
       attribute :label, ::Sts::NisoSts::Label
       attribute :paragraphs, ::Sts::NisoSts::Paragraph, collection: true
+      attribute :preformat, ::Sts::NisoSts::Preformat, collection: true
+      attribute :list, ::Sts::NisoSts::List, collection: true
 
       xml do
         element "boxed-text"
-        mixed_content
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "content-type", to: :content_type
@@ -25,6 +27,8 @@ module Sts
         map_element "caption", to: :caption
         map_element "label", to: :label
         map_element "p", to: :paragraphs
+        map_element "preformat", to: :preformat
+        map_element "list", to: :list
       end
     end
   end

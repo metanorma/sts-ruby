@@ -8,6 +8,7 @@ module Sts
 
       xml do
         element "institution-wrap"
+        ordered
 
         map_element "institution", to: :institution
         map_element "institution-id", to: :institution_id

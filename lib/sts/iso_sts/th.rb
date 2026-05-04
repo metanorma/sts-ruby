@@ -18,20 +18,20 @@ module Sts
       attribute :valign, :string
       attribute :content, :string, collection: true
       attribute :paragraph, ::Sts::IsoSts::Paragraph, collection: true
-      attribute :fig, ::Sts::IsoSts::Fig
-      attribute :graphic, ::Sts::IsoSts::Graphic
-      attribute :disp_formula, ::Sts::IsoSts::DispFormula
-      attribute :list, ::Sts::IsoSts::List
-      attribute :def_list, ::Sts::IsoSts::DefList
-      attribute :math, ::Sts::IsoSts::Mathml2::Math
-      attribute :std, ::Sts::IsoSts::Std
-      attribute :fn, ::Sts::TbxIsoTml::Fn
-      attribute :xref, ::Sts::TbxIsoTml::Xref
-      attribute :bold, ::Sts::IsoSts::Bold
-      attribute :italic, ::Sts::IsoSts::Italic
-      attribute :non_normative_note, ::Sts::IsoSts::NonNormativeNote
-      attribute :non_normative_example, ::Sts::IsoSts::NonNormativeExample
-      attribute :styled_content, ::Sts::IsoSts::StyledContent
+      attribute :fig, ::Sts::IsoSts::Fig, collection: true
+      attribute :graphic, ::Sts::IsoSts::Graphic, collection: true
+      attribute :disp_formula, ::Sts::IsoSts::DispFormula, collection: true
+      attribute :list, ::Sts::IsoSts::List, collection: true
+      attribute :def_list, ::Sts::IsoSts::DefList, collection: true
+      attribute :math, ::Sts::IsoSts::Mathml2::Math, collection: true
+      attribute :std, ::Sts::IsoSts::Std, collection: true
+      attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
+      attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
+      attribute :bold, ::Sts::IsoSts::Bold, collection: true
+      attribute :italic, ::Sts::IsoSts::Italic, collection: true
+      attribute :non_normative_note, ::Sts::IsoSts::NonNormativeNote, collection: true
+      attribute :non_normative_example, ::Sts::IsoSts::NonNormativeExample, collection: true
+      attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
 
       xml do # rubocop:disable Metrics/BlockLength
         element "th"

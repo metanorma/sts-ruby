@@ -8,13 +8,16 @@ module Sts
       attribute :xml_lang, :string
       attribute :label, ::Sts::IsoSts::Label
       attribute :paragraph, ::Sts::IsoSts::Paragraph, collection: true
-      attribute :non_normative_note, ::Sts::IsoSts::NonNormativeNote
-      attribute :non_normative_example, ::Sts::IsoSts::NonNormativeExample
-      attribute :def_list, ::Sts::IsoSts::DefList
-      attribute :list, ::Sts::IsoSts::List
+      attribute :non_normative_note, ::Sts::IsoSts::NonNormativeNote,
+                collection: true
+      attribute :non_normative_example, ::Sts::IsoSts::NonNormativeExample,
+                collection: true
+      attribute :def_list, ::Sts::IsoSts::DefList, collection: true
+      attribute :list, ::Sts::IsoSts::List, collection: true
 
       xml do
         element "list-item"
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "specific-use", to: :specific_use

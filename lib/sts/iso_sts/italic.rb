@@ -6,17 +6,23 @@ module Sts
       attribute :id, :string
       attribute :specific_use, :string
       attribute :content, :string, collection: true
-      attribute :bold, ::Sts::IsoSts::Bold
-      attribute :italic, ::Sts::IsoSts::Italic
-      attribute :sub, ::Sts::NisoSts::Sub
-      attribute :sup, ::Sts::NisoSts::Sup
-      attribute :xref, ::Sts::TbxIsoTml::Xref
-      attribute :ext_link, ::Sts::NisoSts::ExtLink
-      attribute :uri, ::Sts::NisoSts::Uri
-      attribute :inline_formula, ::Sts::IsoSts::InlineFormula
-      attribute :named_content, ::Sts::NisoSts::NamedContent
-      attribute :styled_content, ::Sts::IsoSts::StyledContent
-      attribute :break, ::Sts::IsoSts::Break
+      attribute :bold, ::Sts::IsoSts::Bold, collection: true
+      attribute :italic, ::Sts::IsoSts::Italic, collection: true
+      attribute :sub, ::Sts::NisoSts::Sub, collection: true
+      attribute :sup, ::Sts::NisoSts::Sup, collection: true
+      attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
+      attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
+      attribute :uri, ::Sts::NisoSts::Uri, collection: true
+      attribute :inline_formula, ::Sts::IsoSts::InlineFormula, collection: true
+      attribute :named_content, ::Sts::NisoSts::NamedContent, collection: true
+      attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
+      attribute :break, ::Sts::IsoSts::Break, collection: true
+      attribute :std_ref, ::Sts::IsoSts::StdRef, collection: true
+      attribute :monospace, ::Sts::NisoSts::Monospace, collection: true
+      attribute :sc, ::Sts::NisoSts::Sc, collection: true
+      attribute :strike, ::Sts::NisoSts::Strike, collection: true
+      attribute :underline, ::Sts::NisoSts::Underline, collection: true
+      attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
 
       xml do
         element "italic"
@@ -38,6 +44,12 @@ module Sts
         map_element "named-content", to: :named_content
         map_element "styled-content", to: :styled_content
         map_element "break", to: :break
+        map_element "std-ref", to: :std_ref
+        map_element "monospace", to: :monospace
+        map_element "sc", to: :sc
+        map_element "strike", to: :strike
+        map_element "underline", to: :underline
+        map_element "fn", to: :fn
       end
     end
   end

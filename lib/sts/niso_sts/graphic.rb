@@ -10,12 +10,14 @@ module Sts
   module NisoSts
     class Graphic < Lutaml::Model::Serializable
       attribute :href, :xlink_href
+      attribute :xlink_type, :string
       attribute :sts_object_id, ::Sts::NisoSts::ObjectId, collection: true
 
       xml do
         element "graphic"
 
         map_attribute "href", to: :href
+        map_attribute "xlink:type", to: :xlink_type
         map_element "object-id", to: :sts_object_id
       end
     end

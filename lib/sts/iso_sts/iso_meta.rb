@@ -11,7 +11,7 @@ module Sts
                 collection: true
       attribute :std_ref, ::Sts::IsoSts::StdRef, collection: true
       attribute :doc_ref, ::Sts::IsoSts::DocRef
-      attribute :release_date, ::Sts::IsoSts::ReleaseDate
+      attribute :release_date, ::Sts::IsoSts::ReleaseDate, collection: true
       attribute :comm_ref, ::Sts::IsoSts::CommRef
       attribute :secretariat, ::Sts::IsoSts::Secretariat, collection: true
       attribute :ics, ::Sts::NisoSts::Ics, collection: true
@@ -27,6 +27,7 @@ module Sts
 
       xml do
         element "iso-meta"
+        ordered
 
         map_attribute "id", to: :id
 

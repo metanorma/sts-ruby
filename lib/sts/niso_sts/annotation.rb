@@ -8,17 +8,15 @@ module Sts
       attribute :xml_lang, :string
       attribute :specific_use, :string
       attribute :symbol, :string
-      attribute :content, :string, collection: true
       xml do
         element "annotation"
-        mixed_content
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "content-type", to: :content_type
         map_attribute "xml:lang", to: :xml_lang
         map_attribute "specific-use", to: :specific_use
         map_attribute "symbol", to: :symbol
-        map_content to: :content
       end
     end
   end

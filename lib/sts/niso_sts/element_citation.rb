@@ -50,7 +50,7 @@ module Sts
 
       xml do
         element "element-citation"
-        mixed_content
+        ordered
 
         map_attribute "publication-type", to: :publication_type
         map_attribute "id", to: :id

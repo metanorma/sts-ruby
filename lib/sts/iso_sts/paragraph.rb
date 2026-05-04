@@ -10,29 +10,31 @@ module Sts
       attribute :originator, :string
       attribute :style_type, :string
       attribute :content, :string, collection: true
-      attribute :bold, ::Sts::IsoSts::Bold
-      attribute :italic, ::Sts::IsoSts::Italic
-      attribute :xref, ::Sts::TbxIsoTml::Xref
-      attribute :ext_link, ::Sts::NisoSts::ExtLink
-      attribute :uri, ::Sts::NisoSts::Uri
-      attribute :inline_formula, ::Sts::IsoSts::InlineFormula
-      attribute :disp_formula, ::Sts::IsoSts::DispFormula
-      attribute :std, ::Sts::IsoSts::Std
-      attribute :list, ::Sts::IsoSts::List
-      attribute :def_list, ::Sts::IsoSts::DefList
-      attribute :non_normative_note, ::Sts::IsoSts::NonNormativeNote
-      attribute :non_normative_example, ::Sts::IsoSts::NonNormativeExample
-      attribute :fn, ::Sts::TbxIsoTml::Fn
+      attribute :bold, ::Sts::IsoSts::Bold, collection: true
+      attribute :italic, ::Sts::IsoSts::Italic, collection: true
+      attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
+      attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
+      attribute :uri, ::Sts::NisoSts::Uri, collection: true
+      attribute :inline_formula, ::Sts::IsoSts::InlineFormula, collection: true
+      attribute :disp_formula, ::Sts::IsoSts::DispFormula, collection: true
+      attribute :std, ::Sts::IsoSts::Std, collection: true
+      attribute :list, ::Sts::IsoSts::List, collection: true
+      attribute :def_list, ::Sts::IsoSts::DefList, collection: true
+      attribute :non_normative_note, ::Sts::IsoSts::NonNormativeNote,
+                collection: true
+      attribute :non_normative_example, ::Sts::IsoSts::NonNormativeExample,
+                collection: true
+      attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
       attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
-      attribute :graphic, ::Sts::IsoSts::Graphic
-      attribute :math, ::Sts::IsoSts::Mathml2::Math
-      attribute :break, ::Sts::IsoSts::Break
+      attribute :graphic, ::Sts::IsoSts::Graphic, collection: true
+      attribute :math, ::Sts::IsoSts::Mathml2::Math, collection: true
+      attribute :break, ::Sts::IsoSts::Break, collection: true
       attribute :sub, ::Sts::NisoSts::Sub, collection: true
       attribute :sup, ::Sts::NisoSts::Sup, collection: true
-      attribute :monospace, ::Sts::NisoSts::Monospace
-      attribute :sc, ::Sts::NisoSts::Sc
-      attribute :strike, ::Sts::NisoSts::Strike
-      attribute :underline, ::Sts::NisoSts::Underline
+      attribute :monospace, ::Sts::NisoSts::Monospace, collection: true
+      attribute :sc, ::Sts::NisoSts::Sc, collection: true
+      attribute :strike, ::Sts::NisoSts::Strike, collection: true
+      attribute :underline, ::Sts::NisoSts::Underline, collection: true
 
       xml do # rubocop:disable Metrics/BlockLength
         element "p"

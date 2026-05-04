@@ -25,6 +25,7 @@ module Sts
 
       xml do
         element "table-wrap"
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "position", to: :position

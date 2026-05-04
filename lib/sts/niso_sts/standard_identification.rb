@@ -13,7 +13,7 @@ module Sts
 
       xml do
         element "std-ident"
-        mixed_content
+        ordered
 
         map_element "originator", to: :originator
         map_element "doc-type", to: :doc_type

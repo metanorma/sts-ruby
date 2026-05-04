@@ -5,6 +5,7 @@ module Sts
     class AdoptionFront < Front
       xml do
         element "adoption-front"
+        ordered
         map_element "iso-meta", to: :iso_meta
         map_element "std-meta", to: :std_meta
         map_element "sec", to: :sec

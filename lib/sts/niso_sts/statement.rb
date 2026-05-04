@@ -13,7 +13,7 @@ module Sts
 
       xml do
         element "statement"
-        mixed_content
+        ordered
 
         map_attribute "id", to: :id
         map_attribute "content-type", to: :content_type

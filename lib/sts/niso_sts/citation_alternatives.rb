@@ -9,6 +9,7 @@ module Sts
 
       xml do
         element "citation-alternatives"
+        ordered
 
         map_element "mixed-citation", to: :mixed_citation
         map_element "element-citation", to: :element_citation

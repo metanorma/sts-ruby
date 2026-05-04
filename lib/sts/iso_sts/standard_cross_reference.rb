@@ -10,6 +10,7 @@ module Sts
 
       xml do
         element "std-xref"
+        ordered
 
         map_attribute "type", to: :type
 
