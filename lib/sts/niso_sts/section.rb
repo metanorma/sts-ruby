@@ -8,7 +8,7 @@ module Sts
       attribute :label, ::Sts::NisoSts::Label
       attribute :title, ::Sts::NisoSts::Title
       attribute :type, :string
-      attribute :array, ::Sts::NisoSts::SectionArray
+      attribute :array, ::Sts::NisoSts::SectionArray, collection: true
       attribute :paragraphs, ::Sts::NisoSts::Paragraph, collection: true
       attribute :list, ::Sts::NisoSts::List, collection: true
       attribute :term_sec, ::Sts::NisoSts::TermSection, collection: true

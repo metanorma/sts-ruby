@@ -5,6 +5,7 @@ module Sts
     class ExtLink < Lutaml::Model::Serializable
       attribute :ext_link_type, :string
       attribute :href, :xlink_href
+      attribute :xlink_type, :string
       attribute :content, :string, collection: true
       attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
       attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
@@ -20,6 +21,7 @@ module Sts
 
         map_attribute "ext-link-type", to: :ext_link_type
         map_attribute "href", to: :href
+        map_attribute "xlink:type", to: :xlink_type
 
         map_element "bold", to: :bold
         map_element "italic", to: :italic

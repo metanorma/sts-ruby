@@ -5,8 +5,8 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in sts.gemspec
 gemspec
 
-gem "lutaml-model", "~> 0.8.0"
 gem "canon"
+gem "lutaml-model", "~> 0.8.0"
 gem "rake"
 gem "rspec"
 gem "rubocop"

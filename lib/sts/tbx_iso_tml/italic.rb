@@ -16,6 +16,7 @@ module Sts
       attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
       attribute :fn, ::Sts::NisoSts::Fn, collection: true
       attribute :styled_content, ::Sts::NisoSts::StyledContent, collection: true
+      attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
 
       xml do
         element "italic"
@@ -34,6 +35,7 @@ module Sts
         map_element "ext-link", to: :ext_link
         map_element "fn", to: :fn
         map_element "styled-content", to: :styled_content
+        map_element "italic", to: :italic
       end
     end
   end

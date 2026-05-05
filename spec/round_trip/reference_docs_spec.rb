@@ -11,15 +11,8 @@ REFERENCE_DOCS_PATH = File.expand_path(
 # Files that currently fail round-trip due to model gaps (see TODO.roundtrip.md)
 PENDING_FILES = %w[
   C070908e.xml
-  iso_std_iso_ts_10303-18_ed-1_v1_en.xml
   iso_std_iso_10303-14_ed-1_v1_en.xml
-  iso_std_iso_ts_10303-15_ed-1_v1_en.xml
-  iso_std_iso_ts_10303-17_ed-1_v1_en.xml
-  ISO_10303-23_E.xml
-  ISO_10303-24_2001_en.xml
-  iso_std_iso_10303-28_ed-1_v1_en.xml
   iso_std_iso_10303-22_ed-1_v1_en.xml
-  iso_std_iso_ts_10303-35_ed-1_v1_en.xml
 ].freeze
 
 RSpec.describe "Reference document round-trips" do

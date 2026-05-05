@@ -18,9 +18,10 @@ module Sts
                 collection: true
       attribute :table_wrap, ::Sts::TbxIsoTml::TableWrap, collection: true
       attribute :list, ::Sts::NisoSts::List, collection: true
-      attribute :array, ::Sts::NisoSts::SectionArray
+      attribute :array, ::Sts::NisoSts::SectionArray, collection: true
       attribute :preformat, ::Sts::NisoSts::Preformat, collection: true
       attribute :boxed_text, ::Sts::NisoSts::BoxedText, collection: true
+      attribute :graphic, ::Sts::NisoSts::Graphic, collection: true
 
       xml do
         element "app"
@@ -43,6 +44,7 @@ module Sts
         map_element "array", to: :array
         map_element "preformat", to: :preformat
         map_element "boxed-text", to: :boxed_text
+        map_element "graphic", to: :graphic
       end
     end
   end

@@ -19,7 +19,8 @@ module Sts
       attribute :title, ::Sts::NisoSts::Title
       attribute :paragraph, ::Sts::NisoSts::Paragraph, collection: true
       attribute :alternatives, ::Sts::NisoSts::Alternatives
-      attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote, collection: true
+      attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote,
+                collection: true
       attribute :table_wrap, ::Sts::TbxIsoTml::TableWrap, collection: true
 
       xml do

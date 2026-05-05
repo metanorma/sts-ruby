@@ -6,10 +6,9 @@ require "lutaml/model"
 # adapter's `children` method. This breaks mixed content round-tripping where
 # spaces between inline elements are significant (e.g., "<b>A</b> <b>B</b>").
 # Override to preserve all text nodes.
-Moxml::Adapter::Nokogiri.singleton_class.alias_method(:_orig_children, :children)
-Moxml::Adapter::Nokogiri.define_singleton_method(:children) do |node|
-  node.children
-end
+Moxml::Adapter::Nokogiri.singleton_class.alias_method(:_orig_children,
+                                                      :children)
+Moxml::Adapter::Nokogiri.define_singleton_method(:children, &:children)
 
 module Sts
   autoload :ContentGroups, "#{__dir__}/sts/content_groups/helpers"
