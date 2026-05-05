@@ -10,6 +10,7 @@ module Sts
       attribute :preformat, ::Sts::NisoSts::Preformat, collection: true
       attribute :boxed_text, ::Sts::NisoSts::BoxedText, collection: true
       attribute :graphic, ::Sts::NisoSts::Graphic, collection: true
+      attribute :table_wrap, ::Sts::TbxIsoTml::TableWrap, collection: true
       attribute :non_normative_example, ::Sts::NisoSts::NonNormativeExample,
                 collection: true
 
@@ -24,6 +25,7 @@ module Sts
         map_element "preformat", to: :preformat
         map_element "boxed-text", to: :boxed_text
         map_element "graphic", to: :graphic
+        map_element "table-wrap", to: :table_wrap
         map_element "non-normative-example", to: :non_normative_example
       end
     end

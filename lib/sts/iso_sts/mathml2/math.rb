@@ -18,22 +18,16 @@ module Sts
           map_content to: :content
         end
 
+        MATH_NS = "http://www.w3.org/1998/Math/MathML"
+
         def to_xml(*)
-          if content
-            Nokogiri::XML(content, &:strict).root.to_xml
-          elsif @original_xml
-            @original_xml
-          else
-            %{<math xmlns="#{::Sts::Namespaces::MathmlNamespace.uri}"/>}
-          end
+          @original_xml || %{<math xmlns="#{MATH_NS}"/>}
         end
 
-        MATH_XPATH = ".//*[local-name()='math']"
-        MATH_NS_XPATH = ".//math[@xmlns='http://www.w3.org/1998/Math/MathML']"
-        MATH_ML_XPATH = ".//mml:math"
-
         def self.from_xml(input)
-          doc = Nokogiri::XML(input, &:strict)
+          input_str = input.respond_to?(:read) ? input.read : input.to_s
+
+          doc = parse_with_namespace(input_str)
           math_element = find_math_element(doc)
           return new if math_element.nil?
 
@@ -45,13 +39,21 @@ module Sts
           math
         end
 
+        def self.parse_with_namespace(xml_str)
+          # Detect namespace-prefixed math elements and wrap to resolve prefixes
+          if xml_str.include?("<mml:") || xml_str.match?(/<\w+:math[\s>]/)
+            wrapped = "<wrapper xmlns:mml=\"#{MATH_NS}\">#{xml_str}</wrapper>"
+            Nokogiri::XML(wrapped)
+          else
+            Nokogiri::XML(xml_str)
+          end
+        end
+        private_class_method :parse_with_namespace
+
         def self.find_math_element(doc)
-          doc.at_xpath(MATH_NS_XPATH) ||
-            doc.at_xpath(
-              MATH_ML_XPATH,
-              "mml" => "http://www.w3.org/1998/Math/MathML",
-            ) ||
-            doc.at_xpath(MATH_XPATH)
+          doc.at_xpath("//math[@xmlns='#{MATH_NS}']") ||
+            doc.at_xpath(".//mml:math", "mml" => MATH_NS) ||
+            doc.at_xpath(".//*[local-name()='math']")
         end
         private_class_method :find_math_element
 
