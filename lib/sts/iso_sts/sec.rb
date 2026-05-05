@@ -37,6 +37,7 @@ module Sts
       attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
       attribute :editing_instruction, ::Sts::NisoSts::EditingInstruction,
                 collection: true
+      attribute :boxed_text, ::Sts::NisoSts::BoxedText, collection: true
 
       xml do # rubocop:disable Metrics/BlockLength
         element "sec"
@@ -74,6 +75,7 @@ module Sts
         map_element "disp-quote", to: :disp_quote
         map_element "fn", to: :fn
         map_element "editing-instruction", to: :editing_instruction
+        map_element "boxed-text", to: :boxed_text
       end
     end
   end

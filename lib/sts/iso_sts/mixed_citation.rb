@@ -22,6 +22,18 @@ module Sts
       attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
       attribute :break, ::Sts::IsoSts::Break, collection: true
+      attribute :person_group, ::Sts::NisoSts::PersonGroup, collection: true
+      attribute :collab, ::Sts::NisoSts::Collab, collection: true
+      attribute :year, ::Sts::NisoSts::Year, collection: true
+      attribute :source, ::Sts::NisoSts::Source
+      attribute :article_title, ::Sts::NisoSts::ArticleTitle
+      attribute :volume, ::Sts::NisoSts::Volume
+      attribute :issue, ::Sts::NisoSts::Issue
+      attribute :fpage, ::Sts::NisoSts::Fpage
+      attribute :lpage, ::Sts::NisoSts::Lpage
+      attribute :page_range, ::Sts::NisoSts::PageRange
+      attribute :publisher, ::Sts::NisoSts::Publisher
+      attribute :pub_id, ::Sts::NisoSts::PubId, collection: true
 
       xml do
         element "mixed-citation"
@@ -48,6 +60,18 @@ module Sts
         map_element "fn", to: :fn
         map_element "xref", to: :xref
         map_element "break", to: :break
+        map_element "person-group", to: :person_group
+        map_element "collab", to: :collab
+        map_element "year", to: :year
+        map_element "source", to: :source
+        map_element "article-title", to: :article_title
+        map_element "volume", to: :volume
+        map_element "issue", to: :issue
+        map_element "fpage", to: :fpage
+        map_element "lpage", to: :lpage
+        map_element "page-range", to: :page_range
+        map_element "publisher", to: :publisher
+        map_element "pub-id", to: :pub_id
       end
     end
   end

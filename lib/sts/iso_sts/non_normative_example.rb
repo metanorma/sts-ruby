@@ -9,6 +9,8 @@ module Sts
       attribute :paragraph, ::Sts::IsoSts::Paragraph, collection: true
       attribute :list, ::Sts::IsoSts::List, collection: true
       attribute :def_list, ::Sts::IsoSts::DefList, collection: true
+      attribute :preformat, ::Sts::IsoSts::Preformat, collection: true
+      attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
 
       xml do
         element "non-normative-example"
@@ -21,6 +23,8 @@ module Sts
         map_element "p", to: :paragraph
         map_element "list", to: :list
         map_element "def-list", to: :def_list
+        map_element "preformat", to: :preformat
+        map_element "styled-content", to: :styled_content
       end
     end
   end

@@ -37,6 +37,9 @@ module Sts
       attribute :sub, ::Sts::NisoSts::Sub, collection: true
       attribute :sup, ::Sts::NisoSts::Sup, collection: true
       attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
+      attribute :monospace, ::Sts::NisoSts::Monospace, collection: true
+      attribute :sc, ::Sts::NisoSts::Sc, collection: true
+      attribute :strike, ::Sts::NisoSts::Strike, collection: true
 
       xml do # rubocop:disable Metrics/BlockLength
         element "th"
@@ -78,6 +81,9 @@ module Sts
         map_element "sub", to: :sub
         map_element "sup", to: :sup
         map_element "ext-link", to: :ext_link
+        map_element "monospace", to: :monospace
+        map_element "sc", to: :sc
+        map_element "strike", to: :strike
       end
     end
   end
