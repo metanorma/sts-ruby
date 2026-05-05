@@ -12,6 +12,8 @@ Moxml::Adapter::Nokogiri.define_singleton_method(:children) do |node|
 end
 
 module Sts
+  autoload :ContentGroups, "#{__dir__}/sts/content_groups/helpers"
+  autoload :EnumValues, "#{__dir__}/sts/enum_values"
   autoload :IsoSts, "#{__dir__}/sts/iso_sts"
   autoload :Mathml, "#{__dir__}/sts/mathml"
   autoload :Namespaces, "#{__dir__}/sts/namespaces"
