@@ -35,6 +35,11 @@ module Sts
       attribute :sc, ::Sts::NisoSts::Sc, collection: true
       attribute :strike, ::Sts::NisoSts::Strike, collection: true
       attribute :underline, ::Sts::NisoSts::Underline, collection: true
+      attribute :array, ::Sts::IsoSts::Array, collection: true
+      attribute :fig, ::Sts::IsoSts::Fig, collection: true
+      attribute :table_wrap, ::Sts::TbxIsoTml::TableWrap, collection: true
+      attribute :preformat, ::Sts::IsoSts::Preformat, collection: true
+      attribute :term, ::Sts::TbxIsoTml::Term, collection: true
 
       xml do # rubocop:disable Metrics/BlockLength
         element "p"
@@ -72,6 +77,11 @@ module Sts
         map_element "sc", to: :sc
         map_element "strike", to: :strike
         map_element "underline", to: :underline
+        map_element "array", to: :array
+        map_element "fig", to: :fig
+        map_element "table-wrap", to: :table_wrap
+        map_element "preformat", to: :preformat
+        map_element "term", to: :term
       end
     end
   end

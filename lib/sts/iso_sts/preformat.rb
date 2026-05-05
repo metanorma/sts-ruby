@@ -10,6 +10,7 @@ module Sts
       attribute :xml_lang, :string
       attribute :preformat_type, :string
       attribute :originator, :string
+      attribute :xml_space, :string
       attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold, collection: true
       attribute :italic, ::Sts::IsoSts::Italic, collection: true
@@ -29,6 +30,7 @@ module Sts
         map_attribute "xml:lang", to: :xml_lang
         map_attribute "preformat-type", to: :preformat_type
         map_attribute "originator", to: :originator
+        map_attribute "xml:space", to: :xml_space
 
         map_content to: :content
 

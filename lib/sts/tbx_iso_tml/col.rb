@@ -3,6 +3,9 @@
 module Sts
   module TbxIsoTml
     class Col < Lutaml::Model::Serializable
+      attribute :id, :string
+      attribute :content_type, :string
+      attribute :style, :string
       attribute :width, :string
       attribute :align, :string
       attribute :valign, :string
@@ -13,6 +16,9 @@ module Sts
       xml do
         element "col"
 
+        map_attribute "id", to: :id
+        map_attribute "content-type", to: :content_type
+        map_attribute "style", to: :style
         map_attribute "width", to: :width
         map_attribute "align", to: :align
         map_attribute "valign", to: :valign
