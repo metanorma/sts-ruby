@@ -13,8 +13,10 @@ module Sts
       attribute :styled_content, ::Sts::NisoSts::StyledContent, collection: true
       attribute :list, ::Sts::NisoSts::List, collection: true
       attribute :def_list, ::Sts::NisoSts::DefList, collection: true
-      attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote, collection: true
-      attribute :non_normative_example, ::Sts::NisoSts::NonNormativeExample, collection: true
+      attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote,
+                collection: true
+      attribute :non_normative_example, ::Sts::NisoSts::NonNormativeExample,
+                collection: true
       attribute :inline_formula, ::Sts::NisoSts::InlineFormula, collection: true
       attribute :disp_formula, ::Sts::NisoSts::DisplayFormula, collection: true
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
@@ -30,6 +32,7 @@ module Sts
       attribute :fn, ::Sts::NisoSts::Fn, collection: true
       attribute :graphic, ::Sts::NisoSts::Graphic, collection: true
       attribute :preformat, ::Sts::NisoSts::Preformat, collection: true
+      attribute :array, ::Sts::NisoSts::SectionArray, collection: true
       attribute :overline, ::Sts::NisoSts::Overline, collection: true
 
       xml do
@@ -63,6 +66,7 @@ module Sts
         map_element "fn", to: :fn
         map_element "graphic", to: :graphic
         map_element "preformat", to: :preformat
+        map_element "array", to: :array
         map_element "overline", to: :overline
       end
     end

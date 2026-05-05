@@ -9,6 +9,9 @@ module Sts
       attribute :list, ::Sts::NisoSts::List, collection: true
       attribute :preformat, ::Sts::NisoSts::Preformat, collection: true
       attribute :boxed_text, ::Sts::NisoSts::BoxedText, collection: true
+      attribute :graphic, ::Sts::NisoSts::Graphic, collection: true
+      attribute :non_normative_example, ::Sts::NisoSts::NonNormativeExample,
+                collection: true
 
       xml do
         element "non-normative-example"
@@ -20,6 +23,8 @@ module Sts
         map_element "list", to: :list
         map_element "preformat", to: :preformat
         map_element "boxed-text", to: :boxed_text
+        map_element "graphic", to: :graphic
+        map_element "non-normative-example", to: :non_normative_example
       end
     end
   end

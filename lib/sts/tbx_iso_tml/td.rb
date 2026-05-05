@@ -31,6 +31,7 @@ module Sts
       attribute :paragraph, ::Sts::NisoSts::Paragraph, collection: true
       attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
       attribute :styled_content, ::Sts::NisoSts::StyledContent, collection: true
+      attribute :uri, ::Sts::NisoSts::Uri, collection: true
       attribute :monospace, ::Sts::NisoSts::Monospace, collection: true
       attribute :underline, ::Sts::NisoSts::Underline, collection: true
       attribute :sup, ::Sts::NisoSts::Sup, collection: true
@@ -69,6 +70,7 @@ module Sts
         map_element "p", to: :paragraph
         map_element "fn", to: :fn
         map_element "styled-content", to: :styled_content
+        map_element "uri", to: :uri
         map_element "monospace", to: :monospace
         map_element "underline", to: :underline
         map_element "sup", to: :sup

@@ -29,8 +29,10 @@ module Sts
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
       attribute :bold, ::Sts::IsoSts::Bold, collection: true
       attribute :italic, ::Sts::IsoSts::Italic, collection: true
-      attribute :non_normative_note, ::Sts::IsoSts::NonNormativeNote, collection: true
-      attribute :non_normative_example, ::Sts::IsoSts::NonNormativeExample, collection: true
+      attribute :non_normative_note, ::Sts::IsoSts::NonNormativeNote,
+                collection: true
+      attribute :non_normative_example, ::Sts::IsoSts::NonNormativeExample,
+                collection: true
       attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
       attribute :brk, ::Sts::IsoSts::Break, collection: true
       attribute :underline, ::Sts::NisoSts::Underline, collection: true

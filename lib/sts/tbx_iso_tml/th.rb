@@ -32,7 +32,8 @@ module Sts
       attribute :sub, ::Sts::NisoSts::Sub, collection: true
       attribute :graphic, ::Sts::NisoSts::Graphic, collection: true
       attribute :list, ::Sts::NisoSts::List, collection: true
-      attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote, collection: true
+      attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote,
+                collection: true
       attribute :def_list, ::Sts::NisoSts::DefList, collection: true
       attribute :break, ::Sts::TbxIsoTml::TableBreak
 

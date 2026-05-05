@@ -12,6 +12,7 @@ module Sts
       attribute :content_type, :string
       attribute :originator, :string
       attribute :table, ::Sts::TbxIsoTml::Table, collection: true
+      attribute :graphic, ::Sts::NisoSts::Graphic, collection: true
       attribute :table_wrap_foot, ::Sts::TbxIsoTml::TableWrapFoot
 
       # TODO: This require will cause a loop when defined in header
@@ -32,6 +33,7 @@ module Sts
         map_element "label", to: :label
         map_element "caption", to: :caption
         map_element "table", to: :table
+        map_element "graphic", to: :graphic
         map_element "table-wrap-foot", to: :table_wrap_foot
       end
     end
