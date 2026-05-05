@@ -12,6 +12,8 @@ module Sts
       attribute :mimetype, :string
       attribute :mime_subtype, :string
       attribute :xlink_href, :string
+      attribute :xlink_type, :string
+      attribute :graphic_type, :string
       attribute :label, ::Sts::IsoSts::Label
       attribute :caption, ::Sts::IsoSts::Caption
       attribute :alt_text, ::Sts::NisoSts::AltText
@@ -30,6 +32,8 @@ module Sts
         map_attribute "mimetype", to: :mimetype
         map_attribute "mime-subtype", to: :mime_subtype
         map_attribute "xlink:href", to: :xlink_href
+        map_attribute "xlink:type", to: :xlink_type
+        map_attribute "type", to: :graphic_type
 
         map_element "label", to: :label
         map_element "caption", to: :caption

@@ -32,6 +32,11 @@ module Sts
       attribute :non_normative_note, ::Sts::IsoSts::NonNormativeNote, collection: true
       attribute :non_normative_example, ::Sts::IsoSts::NonNormativeExample, collection: true
       attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
+      attribute :brk, ::Sts::IsoSts::Break, collection: true
+      attribute :underline, ::Sts::NisoSts::Underline, collection: true
+      attribute :sub, ::Sts::NisoSts::Sub, collection: true
+      attribute :sup, ::Sts::NisoSts::Sup, collection: true
+      attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
 
       xml do # rubocop:disable Metrics/BlockLength
         element "th"
@@ -68,6 +73,11 @@ module Sts
         map_element "non-normative-note", to: :non_normative_note
         map_element "non-normative-example", to: :non_normative_example
         map_element "styled-content", to: :styled_content
+        map_element "break", to: :brk
+        map_element "underline", to: :underline
+        map_element "sub", to: :sub
+        map_element "sup", to: :sup
+        map_element "ext-link", to: :ext_link
       end
     end
   end

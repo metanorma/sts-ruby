@@ -3,6 +3,7 @@
 module Sts
   module IsoSts
     class Front < Lutaml::Model::Serializable
+      attribute :std_meta, ::Sts::NisoSts::MetadataStd
       attribute :iso_meta, ::Sts::IsoSts::IsoMeta
       attribute :reg_meta, ::Sts::IsoSts::RegMeta, collection: true
       attribute :nat_meta, ::Sts::IsoSts::NatMeta, collection: true
@@ -12,6 +13,7 @@ module Sts
         element "front"
         ordered
 
+        map_element "std-meta", to: :std_meta
         map_element "iso-meta", to: :iso_meta
         map_element "reg-meta", to: :reg_meta
         map_element "nat-meta", to: :nat_meta
