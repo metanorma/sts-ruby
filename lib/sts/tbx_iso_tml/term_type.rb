@@ -3,6 +3,7 @@
 module Sts
   module TbxIsoTml
     class TermType < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :value, :string,
                 values: %w[acronym abbreviation equation formula fullForm symbol variant]
 
@@ -10,6 +11,7 @@ module Sts
         element "termType"
         namespace ::Sts::Namespaces::TbxNamespace
 
+        map_attribute "id", to: :id
         map_attribute "value", to: :value
       end
     end

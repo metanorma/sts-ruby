@@ -3,6 +3,7 @@
 module Sts
   module TbxIsoTml
     class Mfenced < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :separators, :string
       attribute :open, :string
       attribute :close, :string
@@ -17,6 +18,7 @@ module Sts
 
       xml do
         element "mfenced"
+        map_attribute "id", to: :id
         mixed_content
         namespace ::Sts::Namespaces::MathmlNamespace
 

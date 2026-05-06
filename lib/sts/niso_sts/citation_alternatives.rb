@@ -3,12 +3,14 @@
 module Sts
   module NisoSts
     class CitationAlternatives < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :mixed_citation, ::Sts::NisoSts::MixedCitation
       attribute :element_citation, ::Sts::NisoSts::ElementCitation
       attribute :nlm_citation, ::Sts::NisoSts::NlmCitation
 
       xml do
         element "citation-alternatives"
+        map_attribute "id", to: :id
         ordered
 
         map_element "mixed-citation", to: :mixed_citation

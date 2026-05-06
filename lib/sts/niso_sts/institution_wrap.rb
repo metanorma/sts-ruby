@@ -3,11 +3,13 @@
 module Sts
   module NisoSts
     class InstitutionWrap < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :institution, ::Sts::NisoSts::Institution
       attribute :institution_id, ::Sts::NisoSts::InstitutionId
 
       xml do
         element "institution-wrap"
+        map_attribute "id", to: :id
         ordered
 
         map_element "institution", to: :institution

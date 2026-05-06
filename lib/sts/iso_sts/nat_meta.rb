@@ -8,11 +8,11 @@ module Sts
       attribute :title_wrap, ::Sts::IsoSts::TitleWrap, collection: true
       attribute :doc_ident, ::Sts::IsoSts::DocumentIdentification
       attribute :std_ident, ::Sts::IsoSts::StandardIdentification
-      attribute :content_language, ::Sts::NisoSts::ContentLanguage,
+      attribute :content_language, ::Sts::IsoSts::ContentLanguage,
                 collection: true
-      attribute :std_ref, ::Sts::NisoSts::StandardRef, collection: true
+      attribute :std_ref, ::Sts::IsoSts::StandardRef, collection: true
       attribute :doc_ref, :string
-      attribute :release_date, ::Sts::NisoSts::ReleaseDate
+      attribute :release_date, ::Sts::IsoSts::ReleaseDate
       attribute :comm_ref, :string
       attribute :secretariat, ::Sts::NisoSts::Secretariat, collection: true
       attribute :ics, ::Sts::NisoSts::Ics, collection: true
@@ -22,7 +22,7 @@ module Sts
                 collection: true
       attribute :custom_meta_group, ::Sts::NisoSts::CustomMetaGroup,
                 collection: true
-      attribute :meta_date, ::Sts::NisoSts::MetaDate, collection: true
+      attribute :meta_date, ::Sts::IsoSts::MetaDate, collection: true
       attribute :pub_date, ::Sts::NisoSts::PubDate
 
       xml do

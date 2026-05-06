@@ -1,67 +1,21 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
 require "mml"
 
 module Sts
   module Mathml
-    class Math < Lutaml::Model::Serializable
-      attribute :id, :string
-      attribute :display, :string
-      attribute :math, Mml::V3::Math
-
-      xml do
-        namespace ::Sts::Namespaces::MathmlNamespace
-        element "math"
-        mixed_content
-
-        map_attribute :id, to: :id
-        map_attribute :display, to: :display
-        map_element "math", to: :math
-      end
-
-      def id
-        @id ||= math&.id
-      end
-
-      def id=(value)
-        @id = value
-        math.id = value if math
-      end
-
-      def display
-        @display ||= math&.display
-      end
-
-      def display=(value)
-        @display = value
-        math.display = value if math
-      end
-
-      def method_missing(method_name, *args, &block)
-        if math.respond_to?(method_name)
-          math.send(method_name, *args, &block)
-        else
-          super
-        end
-      end
-
-      def respond_to_missing?(method_name, include_private = false)
-        math.respond_to?(method_name, include_private) || super
-      end
-
-      def to_xml
-        math&.to_xml
-      end
-
-      def self.from_xml(input)
-        parsed = Mml::V3::Math.from_xml(input)
-        math = new
-        math.instance_variable_set(:@math, parsed)
-        math.id = parsed.id
-        math.display = parsed.display
-        math
-      end
+    # Wrapper around Mml::V3::Math for use within Sts document models.
+    #
+    # Mml::V3::Math is the actual serializable model. This class provides
+    # a typed namespace at Sts::Mathml and forwards the small subset of
+    # Mml::V3::Math interface used by Sts elements.
+    #
+    # All Mml element types (mi, mo, mn, mrow, etc.) are used directly
+    # from Mml::V3 — only the root <math> wrapper lives here.
+    class Math
+      # Type alias for callers that prefer the Sts namespace path.
+      # Maps directly to Mml::V3::Math with identical serialization.
+      Root = Mml::V3::Math
     end
   end
 end

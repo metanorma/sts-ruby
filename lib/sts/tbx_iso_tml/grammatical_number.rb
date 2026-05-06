@@ -3,6 +3,7 @@
 module Sts
   module TbxIsoTml
     class GrammaticalNumber < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :value, :string,
                 values: %w[singular plural]
 
@@ -10,6 +11,7 @@ module Sts
         element "grammaticalNumber"
         namespace ::Sts::Namespaces::TbxNamespace
 
+        map_attribute "id", to: :id
         map_attribute "value", to: :value
       end
     end

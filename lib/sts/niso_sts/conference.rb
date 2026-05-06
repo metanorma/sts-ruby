@@ -3,6 +3,7 @@
 module Sts
   module NisoSts
     class Conference < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :conf_date, ::Sts::NisoSts::ConfDate
       attribute :conf_name, ::Sts::NisoSts::ConfName
       attribute :conf_acronym, ::Sts::NisoSts::ConfAcronym
@@ -14,6 +15,7 @@ module Sts
 
       xml do
         element "conference"
+        map_attribute "id", to: :id
         ordered
 
         map_element "conf-date", to: :conf_date

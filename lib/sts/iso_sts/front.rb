@@ -3,6 +3,7 @@
 module Sts
   module IsoSts
     class Front < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :std_meta, ::Sts::NisoSts::MetadataStd
       attribute :iso_meta, ::Sts::IsoSts::IsoMeta
       attribute :reg_meta, ::Sts::IsoSts::RegMeta, collection: true
@@ -11,6 +12,7 @@ module Sts
 
       xml do
         element "front"
+        map_attribute "id", to: :id
         ordered
 
         map_element "std-meta", to: :std_meta

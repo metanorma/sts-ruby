@@ -14,9 +14,9 @@ module Sts
       attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold, collection: true
       attribute :italic, ::Sts::IsoSts::Italic, collection: true
-      attribute :underline, ::Sts::NisoSts::Underline, collection: true
-      attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
-      attribute :uri, ::Sts::NisoSts::Uri, collection: true
+      attribute :underline, ::Sts::IsoSts::Underline, collection: true
+      attribute :ext_link, ::Sts::IsoSts::ExtLink, collection: true
+      attribute :uri, ::Sts::IsoSts::Uri, collection: true
       attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
 
       xml do

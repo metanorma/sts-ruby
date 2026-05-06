@@ -3,6 +3,7 @@
 module Sts
   module NisoSts
     class FundingSource < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :country, :string
       attribute :deposit_funder_name, :string
       attribute :funder_id, :string
@@ -11,6 +12,7 @@ module Sts
       attribute :content, :string, collection: true
       xml do
         element "funding-source"
+        map_attribute "id", to: :id
         mixed_content
 
         map_attribute "country", to: :country

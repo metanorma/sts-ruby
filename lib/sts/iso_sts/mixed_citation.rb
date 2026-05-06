@@ -12,12 +12,12 @@ module Sts
       attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold, collection: true
       attribute :italic, ::Sts::IsoSts::Italic, collection: true
-      attribute :sub, ::Sts::NisoSts::Sub, collection: true
-      attribute :sup, ::Sts::NisoSts::Sup, collection: true
+      attribute :sub, ::Sts::IsoSts::Sub, collection: true
+      attribute :sup, ::Sts::IsoSts::Sup, collection: true
       attribute :std, ::Sts::IsoSts::Std, collection: true
-      attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
-      attribute :uri, ::Sts::NisoSts::Uri, collection: true
-      attribute :named_content, ::Sts::NisoSts::NamedContent, collection: true
+      attribute :ext_link, ::Sts::IsoSts::ExtLink, collection: true
+      attribute :uri, ::Sts::IsoSts::Uri, collection: true
+      attribute :named_content, ::Sts::IsoSts::NamedContent, collection: true
       attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
       attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true

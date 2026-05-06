@@ -3,12 +3,14 @@
 module Sts
   module TbxIsoTml
     class Munderover < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :mo, :string
       attribute :mi, :string
       attribute :mrow, ::Sts::TbxIsoTml::Mrow, collection: true
 
       xml do
         element "munderover"
+        map_attribute "id", to: :id
         mixed_content
         namespace ::Sts::Namespaces::MathmlNamespace
 

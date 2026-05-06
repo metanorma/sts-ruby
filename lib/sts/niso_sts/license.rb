@@ -3,6 +3,7 @@
 module Sts
   module NisoSts
     class License < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :href, :xlink_href
       attribute :lang, Lutaml::Xml::W3c::XmlLangType
       attribute :license_p, ::Sts::NisoSts::LicenseP, collection: true
@@ -10,6 +11,7 @@ module Sts
       xml do
         element "license"
 
+        map_attribute "id", to: :id
         map_attribute "xlink:href", to: :href
         map_attribute "xml:lang", to: :lang
         map_element "license-p", to: :license_p

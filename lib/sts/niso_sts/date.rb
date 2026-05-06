@@ -3,6 +3,7 @@
 module Sts
   module NisoSts
     class Date < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :day, :string
       attribute :month, :string
       attribute :year, :string
@@ -12,6 +13,7 @@ module Sts
 
       xml do
         element "date"
+        map_attribute "id", to: :id
         ordered
 
         map_attribute "date-type", to: :date_type

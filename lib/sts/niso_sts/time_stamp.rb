@@ -3,12 +3,14 @@
 module Sts
   module NisoSts
     class TimeStamp < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content, :string, collection: true
       attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
       attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
 
       xml do
         element "time-stamp"
+        map_attribute "id", to: :id
         mixed_content
 
         map_content to: :content

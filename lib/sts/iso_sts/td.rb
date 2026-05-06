@@ -35,13 +35,13 @@ module Sts
                 collection: true
       attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
       attribute :brk, ::Sts::IsoSts::Break, collection: true
-      attribute :underline, ::Sts::NisoSts::Underline, collection: true
-      attribute :sub, ::Sts::NisoSts::Sub, collection: true
-      attribute :sup, ::Sts::NisoSts::Sup, collection: true
-      attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
-      attribute :monospace, ::Sts::NisoSts::Monospace, collection: true
-      attribute :sc, ::Sts::NisoSts::Sc, collection: true
-      attribute :strike, ::Sts::NisoSts::Strike, collection: true
+      attribute :underline, ::Sts::IsoSts::Underline, collection: true
+      attribute :sub, ::Sts::IsoSts::Sub, collection: true
+      attribute :sup, ::Sts::IsoSts::Sup, collection: true
+      attribute :ext_link, ::Sts::IsoSts::ExtLink, collection: true
+      attribute :monospace, ::Sts::IsoSts::Monospace, collection: true
+      attribute :sc, ::Sts::IsoSts::Sc, collection: true
+      attribute :strike, ::Sts::IsoSts::Strike, collection: true
 
       xml do # rubocop:disable Metrics/BlockLength
         element "td"

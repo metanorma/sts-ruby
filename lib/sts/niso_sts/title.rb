@@ -3,6 +3,9 @@
 module Sts
   module NisoSts
     class Title < Lutaml::Model::Serializable
+      attribute :content_type, :string
+      attribute :id, :string
+      attribute :specific_use, :string
       attribute :content, :string, collection: true
       attribute :inline_formula, Sts::NisoSts::InlineFormula, collection: true
       attribute :std, Sts::NisoSts::ReferenceStandard, collection: true
@@ -21,6 +24,9 @@ module Sts
         mixed_content
 
         map_content to: :content
+        map_attribute "content-type", to: :content_type
+        map_attribute "id", to: :id
+        map_attribute "specific-use", to: :specific_use
         map_element "inline-formula", to: :inline_formula
         map_element "std", to: :std
         map_element "xref", to: :xref

@@ -3,6 +3,7 @@
 module Sts
   module IsoSts
     class TableWrapFoot < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :title, ::Sts::IsoSts::Title
       attribute :paragraph, ::Sts::IsoSts::Paragraph, collection: true
       attribute :non_normative_note, ::Sts::IsoSts::NonNormativeNote
@@ -14,6 +15,7 @@ module Sts
 
       xml do
         element "table-wrap-foot"
+        map_attribute "id", to: :id
         ordered
 
         map_element "title", to: :title

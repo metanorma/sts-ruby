@@ -9,6 +9,7 @@ module Sts
       attribute :edition, :string
       attribute :version, :string
       attribute :part_number, :string
+      attribute :sub_part_number, :string, collection: true
       attribute :std_id_group, ::Sts::NisoSts::StdIdGroup
 
       xml do
@@ -23,6 +24,7 @@ module Sts
         map_element "version", to: :version,
                                value_map: { to: { empty: :empty } }
         map_element "part-number", to: :part_number
+        map_element "sub-part-number", to: :sub_part_number
         map_element "std-id-group", to: :std_id_group
       end
     end

@@ -3,6 +3,7 @@
 module Sts
   module NisoSts
     class Uri < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content, :string, collection: true
       attribute :xlink_type, :string
       attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
@@ -10,6 +11,7 @@ module Sts
 
       xml do
         element "uri"
+        map_attribute "id", to: :id
         mixed_content
 
         map_attribute "xlink:type", to: :xlink_type

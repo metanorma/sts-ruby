@@ -3,6 +3,7 @@
 module Sts
   module TbxIsoTml
     class Bold < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :value, :string, collection: true
       attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
       attribute :sub, ::Sts::NisoSts::Sub, collection: true
@@ -20,6 +21,7 @@ module Sts
 
       xml do
         element "bold"
+        map_attribute "id", to: :id
         mixed_content
 
         map_content to: :value

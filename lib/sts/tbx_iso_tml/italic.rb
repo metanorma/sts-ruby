@@ -3,6 +3,7 @@
 module Sts
   module TbxIsoTml
     class Italic < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :value, :string, collection: true
       attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
       attribute :sub, ::Sts::NisoSts::Sub, collection: true
@@ -20,6 +21,7 @@ module Sts
 
       xml do
         element "italic"
+        map_attribute "id", to: :id
         mixed_content
 
         map_content to: :value

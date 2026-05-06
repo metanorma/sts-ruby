@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
 module Sts
   module NisoSts
     class ReferenceStandard < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :type, :string
       attribute :std_id, :string
       attribute :content, :string, collection: true
@@ -19,6 +18,7 @@ module Sts
         element "std"
         mixed_content
 
+        map_attribute "id", to: :id
         map_attribute "type", to: :type
         map_attribute "std-id", to: :std_id
 

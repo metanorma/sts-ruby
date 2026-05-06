@@ -3,6 +3,7 @@
 module Sts
   module IsoSts
     class StandardIdentification < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :originator, ::Sts::NisoSts::Originator
       attribute :doc_type, ::Sts::NisoSts::DocType
       attribute :doc_number, ::Sts::NisoSts::DocNumber
@@ -15,6 +16,7 @@ module Sts
 
       xml do
         element "std-ident"
+        map_attribute "id", to: :id
         ordered
 
         map_element "originator", to: :originator

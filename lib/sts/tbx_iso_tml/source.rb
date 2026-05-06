@@ -3,6 +3,7 @@
 module Sts
   module TbxIsoTml
     class Source < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :value, :string, collection: true
       attribute :italic, ::Sts::TbxIsoTml::Italic
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
@@ -10,6 +11,7 @@ module Sts
 
       xml do
         element "source"
+        map_attribute "id", to: :id
         mixed_content
         namespace ::Sts::Namespaces::TbxNamespace
 

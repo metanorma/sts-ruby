@@ -3,6 +3,7 @@
 module Sts
   module TbxIsoTml
     class LangSet < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :lang, Lutaml::Xml::W3c::XmlLangType
       attribute :definition, ::Sts::TbxIsoTml::Definition, collection: true
       attribute :note, ::Sts::TbxIsoTml::Note, collection: true
@@ -18,6 +19,7 @@ module Sts
 
       xml do
         element "langSet"
+        map_attribute "id", to: :id
         mixed_content
         namespace ::Sts::Namespaces::TbxNamespace
 

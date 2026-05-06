@@ -3,6 +3,7 @@
 module Sts
   module TbxIsoTml
     class Msup < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :mstyle, ::Sts::TbxIsoTml::Mstyle
       attribute :mrow, ::Sts::TbxIsoTml::Mrow, collection: true
       attribute :mi, :string
@@ -10,6 +11,7 @@ module Sts
 
       xml do
         element "msup"
+        map_attribute "id", to: :id
         ordered
         namespace ::Sts::Namespaces::MathmlNamespace
 

@@ -3,10 +3,12 @@
 module Sts
   module NisoSts
     class Sig < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :graphic, ::Sts::NisoSts::Graphic
       attribute :content, :string, collection: true
       xml do
         element "sig"
+        map_attribute "id", to: :id
         mixed_content
 
         map_element "graphic", to: :graphic

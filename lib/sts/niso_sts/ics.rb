@@ -3,11 +3,14 @@
 module Sts
   module NisoSts
     class Ics < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content, :string
       attribute :ics_desc, ::Sts::NisoSts::IcsDesc
 
       xml do
         element "ics"
+
+        map_attribute "id", to: :id
 
         map_content to: :content
         map_element "ics-desc", to: :ics_desc

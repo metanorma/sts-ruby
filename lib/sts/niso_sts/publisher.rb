@@ -3,11 +3,13 @@
 module Sts
   module NisoSts
     class Publisher < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :publisher_name, ::Sts::NisoSts::PublisherName, collection: true
       attribute :publisher_loc, ::Sts::NisoSts::PublisherLoc, collection: true
 
       xml do
         element "publisher"
+        map_attribute "id", to: :id
         ordered
 
         map_element "publisher-name", to: :publisher_name

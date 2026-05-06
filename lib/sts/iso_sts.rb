@@ -35,6 +35,9 @@ module Sts
     autoload :ReleaseDate, "#{__dir__}/iso_sts/release_date"
     autoload :CommRef, "#{__dir__}/iso_sts/comm_ref"
     autoload :Secretariat, "#{__dir__}/iso_sts/secretariat"
+    autoload :MetaDate, "#{__dir__}/iso_sts/meta_date"
+    autoload :ContentLanguage, "#{__dir__}/iso_sts/content_language"
+    autoload :StandardRef, "#{__dir__}/iso_sts/standard_ref"
 
     # Section elements
     autoload :Sec, "#{__dir__}/iso_sts/sec"
@@ -59,6 +62,12 @@ module Sts
     autoload :Title, "#{__dir__}/iso_sts/title"
     autoload :Bold, "#{__dir__}/iso_sts/bold"
     autoload :Italic, "#{__dir__}/iso_sts/italic"
+    autoload :Monospace, "#{__dir__}/iso_sts/monospace"
+    autoload :NamedContent, "#{__dir__}/iso_sts/named_content"
+    autoload :Sc, "#{__dir__}/iso_sts/sc"
+    autoload :Strike, "#{__dir__}/iso_sts/strike"
+    autoload :Underline, "#{__dir__}/iso_sts/underline"
+    autoload :Uri, "#{__dir__}/iso_sts/uri"
 
     # List elements
     autoload :List, "#{__dir__}/iso_sts/list"

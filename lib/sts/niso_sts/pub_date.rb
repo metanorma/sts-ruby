@@ -3,6 +3,7 @@
 module Sts
   module NisoSts
     class PubDate < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :day, :string
       attribute :month, :string
       attribute :year, :string
@@ -16,6 +17,7 @@ module Sts
       xml do
         element "pub-date"
 
+        map_attribute "id", to: :id
         map_attribute "date-type", to: :date_type
         map_content to: :content
         map_attribute "iso-8601-date", to: :iso_8601_date

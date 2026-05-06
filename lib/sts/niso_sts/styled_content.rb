@@ -3,6 +3,7 @@
 module Sts
   module NisoSts
     class StyledContent < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :style, :string
       attribute :style_type, :string
       attribute :toggle, :string
@@ -30,6 +31,7 @@ module Sts
 
       xml do
         element "styled-content"
+        map_attribute "id", to: :id
         mixed_content
 
         map_attribute "style", to: :style

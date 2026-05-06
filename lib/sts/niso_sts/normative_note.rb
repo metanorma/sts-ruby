@@ -5,6 +5,7 @@ module Sts
     class NormativeNote < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :content_type, :string
+      attribute :originator, :string
       attribute :xml_lang, :string
       attribute :specific_use, :string
       attribute :symbol, :string
@@ -17,6 +18,7 @@ module Sts
 
         map_attribute "id", to: :id
         map_attribute "content-type", to: :content_type
+        map_attribute "originator", to: :originator
         map_attribute "xml:lang", to: :xml_lang
         map_attribute "specific-use", to: :specific_use
         map_attribute "symbol", to: :symbol

@@ -3,6 +3,7 @@
 module Sts
   module IsoSts
     class TitleIntro < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold
       attribute :italic, ::Sts::IsoSts::Italic
@@ -10,6 +11,7 @@ module Sts
 
       xml do
         element "intro"
+        map_attribute "id", to: :id
         mixed_content
 
         map_content to: :content

@@ -3,6 +3,7 @@
 module Sts
   module NisoSts
     class Address < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :addr_line, ::Sts::NisoSts::AddrLine, collection: true
       attribute :city, ::Sts::NisoSts::City
       attribute :state, ::Sts::NisoSts::State
@@ -14,6 +15,7 @@ module Sts
 
       xml do
         element "address"
+        map_attribute "id", to: :id
         ordered
 
         map_element "addr-line", to: :addr_line

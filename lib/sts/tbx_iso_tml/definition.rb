@@ -3,6 +3,7 @@
 module Sts
   module TbxIsoTml
     class Definition < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :entailed_term, ::Sts::TbxIsoTml::EntailedTerm, collection: true
       attribute :note, ::Sts::TbxIsoTml::Note
       attribute :value, :string, collection: true
@@ -21,6 +22,7 @@ module Sts
 
       xml do
         element "definition"
+        map_attribute "id", to: :id
         mixed_content
         namespace ::Sts::Namespaces::TbxNamespace
 

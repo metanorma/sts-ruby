@@ -4,6 +4,7 @@ module Sts
   module NisoSts
     class Paragraph < Lutaml::Model::Serializable
       attribute :id, :string
+      attribute :originator, :string
       attribute :style_type, :string
       attribute :specific_use, :string
       attribute :text, :string, collection: true
@@ -40,6 +41,7 @@ module Sts
         mixed_content
 
         map_attribute "id", to: :id
+        map_attribute "originator", to: :originator
         map_attribute "style-type", to: :style_type
         map_attribute "specific-use", to: :specific_use
         map_content to: :text

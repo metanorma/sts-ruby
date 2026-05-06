@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
 module Sts
   module TbxIsoTml
     class Mrow < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content, :string, collection: true
       attribute :mo, :string, collection: true
       attribute :mi, :string, collection: true
@@ -20,6 +19,7 @@ module Sts
 
       xml do
         element "mrow"
+        map_attribute "id", to: :id
         mixed_content
         namespace ::Sts::Namespaces::MathmlNamespace
 

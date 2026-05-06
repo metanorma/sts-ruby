@@ -3,6 +3,7 @@
 module Sts
   module NisoSts
     class StringName < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :name_style, :string
       attribute :content_type, :string
       attribute :content, :string, collection: true
@@ -11,6 +12,7 @@ module Sts
 
       xml do
         element "string-name"
+        map_attribute "id", to: :id
         mixed_content
 
         map_attribute "name-style", to: :name_style

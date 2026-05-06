@@ -3,12 +3,14 @@
 module Sts
   module NisoSts
     class VolumeId < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content_type, :string
       attribute :specific_use, :string
       attribute :pub_id_type, :string
       attribute :content, :string, collection: true
       xml do
         element "volume-id"
+        map_attribute "id", to: :id
         mixed_content
 
         map_attribute "content-type", to: :content_type

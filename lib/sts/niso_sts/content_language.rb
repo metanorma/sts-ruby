@@ -3,12 +3,14 @@
 module Sts
   module NisoSts
     class ContentLanguage < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content, :string, collection: true
       attribute :lang, :string
       attribute :specific_use, :string
 
       xml do
         element "content-language"
+        map_attribute "id", to: :id
         mixed_content
 
         map_content to: :content

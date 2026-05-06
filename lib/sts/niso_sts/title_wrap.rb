@@ -3,11 +3,13 @@
 module Sts
   module NisoSts
     class TitleFull < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content, :string, collection: true
       attribute :std, ::Sts::NisoSts::ReferenceStandard
 
       xml do
         element "full"
+        map_attribute "id", to: :id
         mixed_content
 
         map_content to: :content

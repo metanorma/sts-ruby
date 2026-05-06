@@ -3,6 +3,7 @@
 module Sts
   module NisoSts
     class MetaDate < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content, :string
       attribute :type, :string
 
@@ -11,6 +12,7 @@ module Sts
 
         map_content to: :content
 
+        map_attribute "id", to: :id
         map_attribute :type, to: :type
       end
     end

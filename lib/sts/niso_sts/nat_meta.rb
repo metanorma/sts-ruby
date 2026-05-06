@@ -3,6 +3,7 @@
 module Sts
   module NisoSts
     class NatMeta < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :title_wrap, ::Sts::NisoSts::TitleWrap, collection: true
       attribute :std_ident, ::Sts::NisoSts::StandardIdentification
       attribute :doc_ident, ::Sts::NisoSts::DocumentIdentification
@@ -22,6 +23,7 @@ module Sts
 
       xml do
         element "nat-meta"
+        map_attribute "id", to: :id
         ordered
 
         map_element "title-wrap", to: :title_wrap
