@@ -3,6 +3,7 @@
 module Sts
   module TbxIsoTml
     class Semantics < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :mrow, ::Sts::TbxIsoTml::Mrow, collection: true
       attribute :mo, :string
       attribute :mtext, :string
@@ -10,6 +11,7 @@ module Sts
       attribute :content, :string, collection: true
       xml do
         element "semantics"
+        map_attribute "id", to: :id
         mixed_content
         namespace ::Sts::Namespaces::MathmlNamespace
 

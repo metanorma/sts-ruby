@@ -3,14 +3,16 @@
 module Sts
   module IsoSts
     class CopyrightStatement < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold
       attribute :italic, ::Sts::IsoSts::Italic
-      attribute :ext_link, ::Sts::NisoSts::ExtLink
-      attribute :uri, ::Sts::NisoSts::Uri
+      attribute :ext_link, ::Sts::IsoSts::ExtLink
+      attribute :uri, ::Sts::IsoSts::Uri
 
       xml do
         element "copyright-statement"
+        map_attribute "id", to: :id
         mixed_content
 
         map_content to: :content

@@ -3,12 +3,14 @@
 module Sts
   module NisoSts
     class NestedKwd < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :kwd, ::Sts::NisoSts::Kwd
       attribute :kwd_group, ::Sts::NisoSts::KwdGroup, collection: true
       attribute :nested_kwd, ::Sts::NisoSts::NestedKwd, collection: true
 
       xml do
         element "nested-kwd"
+        map_attribute "id", to: :id
         ordered
 
         map_element "kwd", to: :kwd

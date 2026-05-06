@@ -3,9 +3,11 @@
 module Sts
   module IsoSts
     class ReleaseDate < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content, :string, collection: true
       xml do
         element "release-date"
+        map_attribute "id", to: :id
         mixed_content
 
         map_content to: :content

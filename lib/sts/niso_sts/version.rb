@@ -3,9 +3,11 @@
 module Sts
   module NisoSts
     class Version < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content, :string, collection: true
       xml do
         element "version"
+        map_attribute "id", to: :id
         mixed_content
 
         map_content to: :content

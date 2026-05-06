@@ -3,9 +3,11 @@
 module Sts
   module NisoSts
     class Season < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content, :string, collection: true
       xml do
         element "season"
+        map_attribute "id", to: :id
         mixed_content
 
         map_content to: :content

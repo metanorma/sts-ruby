@@ -3,6 +3,7 @@
 module Sts
   module IsoSts
     class StyledContent < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :style, :string
       attribute :style_type, :string
       attribute :alt, :string
@@ -11,25 +12,26 @@ module Sts
       attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold, collection: true
       attribute :italic, ::Sts::IsoSts::Italic, collection: true
-      attribute :sub, ::Sts::NisoSts::Sub, collection: true
-      attribute :sup, ::Sts::NisoSts::Sup, collection: true
+      attribute :sub, ::Sts::IsoSts::Sub, collection: true
+      attribute :sup, ::Sts::IsoSts::Sup, collection: true
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
-      attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
-      attribute :uri, ::Sts::NisoSts::Uri, collection: true
+      attribute :ext_link, ::Sts::IsoSts::ExtLink, collection: true
+      attribute :uri, ::Sts::IsoSts::Uri, collection: true
       attribute :inline_formula, ::Sts::IsoSts::InlineFormula, collection: true
       attribute :disp_formula, ::Sts::IsoSts::DispFormula, collection: true
       attribute :std, ::Sts::IsoSts::Std, collection: true
-      attribute :named_content, ::Sts::NisoSts::NamedContent, collection: true
-      attribute :monospace, ::Sts::NisoSts::Monospace, collection: true
-      attribute :sc, ::Sts::NisoSts::Sc, collection: true
-      attribute :strike, ::Sts::NisoSts::Strike, collection: true
-      attribute :underline, ::Sts::NisoSts::Underline, collection: true
+      attribute :named_content, ::Sts::IsoSts::NamedContent, collection: true
+      attribute :monospace, ::Sts::IsoSts::Monospace, collection: true
+      attribute :sc, ::Sts::IsoSts::Sc, collection: true
+      attribute :strike, ::Sts::IsoSts::Strike, collection: true
+      attribute :underline, ::Sts::IsoSts::Underline, collection: true
       attribute :ruby, ::Sts::NisoSts::Ruby, collection: true
       attribute :break, ::Sts::IsoSts::Break, collection: true
       attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
 
       xml do
         element "styled-content"
+        map_attribute "id", to: :id
         mixed_content
 
         map_attribute "style", to: :style

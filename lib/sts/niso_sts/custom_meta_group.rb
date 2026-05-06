@@ -3,10 +3,13 @@
 module Sts
   module NisoSts
     class CustomMetaGroup < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :custom_meta, ::Sts::NisoSts::CustomMeta, collection: true
 
       xml do
         element "custom-meta-group"
+
+        map_attribute "id", to: :id
 
         map_element "custom-meta", to: :custom_meta
       end

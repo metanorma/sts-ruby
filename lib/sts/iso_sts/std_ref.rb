@@ -3,6 +3,7 @@
 module Sts
   module IsoSts
     class StdRef < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :type, :string
       attribute :originator, ::Sts::NisoSts::Originator
       attribute :doc_type, ::Sts::NisoSts::DocType
@@ -15,6 +16,7 @@ module Sts
       attribute :content, :string, collection: true
       xml do
         element "std-ref"
+        map_attribute "id", to: :id
         mixed_content
 
         map_attribute "type", to: :type

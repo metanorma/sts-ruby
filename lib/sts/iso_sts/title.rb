@@ -3,21 +3,23 @@
 module Sts
   module IsoSts
     class Title < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold, collection: true
       attribute :italic, ::Sts::IsoSts::Italic, collection: true
-      attribute :sub, ::Sts::NisoSts::Sub, collection: true
-      attribute :sup, ::Sts::NisoSts::Sup, collection: true
+      attribute :sub, ::Sts::IsoSts::Sub, collection: true
+      attribute :sup, ::Sts::IsoSts::Sup, collection: true
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
       attribute :break, ::Sts::IsoSts::Break, collection: true
       attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
-      attribute :monospace, ::Sts::NisoSts::Monospace, collection: true
-      attribute :sc, ::Sts::NisoSts::Sc, collection: true
+      attribute :monospace, ::Sts::IsoSts::Monospace, collection: true
+      attribute :sc, ::Sts::IsoSts::Sc, collection: true
       attribute :inline_formula, ::Sts::IsoSts::InlineFormula, collection: true
       attribute :std, ::Sts::IsoSts::Std, collection: true
 
       xml do
         element "title"
+        map_attribute "id", to: :id
         mixed_content
 
         map_content to: :content

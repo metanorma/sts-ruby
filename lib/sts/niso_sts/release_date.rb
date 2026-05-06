@@ -3,6 +3,7 @@
 module Sts
   module NisoSts
     class ReleaseDate < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content, :string, collection: true
       attribute :date_type, :string
       attribute :iso_8601_date, :string
@@ -10,6 +11,7 @@ module Sts
 
       xml do
         element "release-date"
+        map_attribute "id", to: :id
         mixed_content
 
         map_content to: :content

@@ -5,6 +5,7 @@ module Sts
     class App < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :content_type, :string
+      attribute :originator, :string
       attribute :label, ::Sts::NisoSts::Label
       attribute :annex_type, :string
       attribute :title, ::Sts::NisoSts::Title
@@ -29,6 +30,7 @@ module Sts
 
         map_attribute "id", to: :id
         map_attribute "content-type", to: :content_type
+        map_attribute "originator", to: :originator
 
         map_element "label", to: :label
         map_element "annex-type", to: :annex_type

@@ -4,7 +4,10 @@ module Sts
   module NisoSts
     class Section < Lutaml::Model::Serializable
       attribute :id, :string
+      attribute :originator, :string
       attribute :specific_use, :string
+      attribute :xml_lang, :string
+      attribute :sec_meta, ::Sts::NisoSts::SecMeta
       attribute :label, ::Sts::NisoSts::Label
       attribute :title, ::Sts::NisoSts::Title
       attribute :type, :string
@@ -42,14 +45,18 @@ module Sts
                 collection: true
       attribute :fn, ::Sts::NisoSts::Fn, collection: true
 
+      # rubocop:disable Metrics/BlockLength
       xml do
         element "sec"
         ordered
 
         map_attribute "id", to: :id
+        map_attribute "originator", to: :originator
         map_attribute "sec-type", to: :type
         map_attribute "specific-use", to: :specific_use
+        map_attribute "xml:lang", to: :xml_lang
 
+        map_element "sec-meta", to: :sec_meta
         map_element "label", to: :label
         map_element "title", to: :title
         map_element "p", to: :paragraphs
@@ -80,6 +87,7 @@ module Sts
         map_element "non-normative-note", to: :non_normative_note
         map_element "non-normative-example", to: :non_normative_example
       end
+      # rubocop:enable Metrics/BlockLength
     end
   end
 end

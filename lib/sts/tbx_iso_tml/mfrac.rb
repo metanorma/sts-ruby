@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
 module Sts
   module TbxIsoTml
     class Mfrac < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :mrow, ::Sts::TbxIsoTml::Mrow, collection: true
       attribute :mstyle, ::Sts::TbxIsoTml::Mstyle, collection: true
       attribute :bevelled, :string
@@ -14,6 +13,7 @@ module Sts
 
       xml do
         element "mfrac"
+        map_attribute "id", to: :id
         mixed_content
         namespace ::Sts::Namespaces::MathmlNamespace
 

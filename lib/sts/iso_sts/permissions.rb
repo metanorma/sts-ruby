@@ -3,6 +3,7 @@
 module Sts
   module IsoSts
     class Permissions < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :copyright_statement, ::Sts::IsoSts::CopyrightStatement,
                 collection: true
       attribute :copyright_year, ::Sts::IsoSts::CopyrightYear, collection: true
@@ -12,6 +13,7 @@ module Sts
 
       xml do
         element "permissions"
+        map_attribute "id", to: :id
         ordered
 
         map_element "copyright-statement", to: :copyright_statement

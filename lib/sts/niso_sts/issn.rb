@@ -3,6 +3,7 @@
 module Sts
   module NisoSts
     class Issn < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :pub_type, :string
       attribute :content, :string, collection: true
       attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
@@ -10,6 +11,7 @@ module Sts
 
       xml do
         element "issn"
+        map_attribute "id", to: :id
         mixed_content
 
         map_attribute "pub-type", to: :pub_type

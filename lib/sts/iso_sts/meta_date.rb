@@ -1,0 +1,20 @@
+# frozen_string_literal: true
+
+module Sts
+  module IsoSts
+    class MetaDate < Lutaml::Model::Serializable
+      attribute :id, :string
+      attribute :content, :string
+      attribute :type, :string
+
+      xml do
+        element "meta-date"
+
+        map_content to: :content
+
+        map_attribute "id", to: :id
+        map_attribute :type, to: :type
+      end
+    end
+  end
+end

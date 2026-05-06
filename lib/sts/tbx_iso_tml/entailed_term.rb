@@ -3,6 +3,7 @@
 module Sts
   module TbxIsoTml
     class EntailedTerm < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :target, :string
       attribute :xtarget, :string
       attribute :lang, Lutaml::Xml::W3c::XmlLangType
@@ -12,6 +13,7 @@ module Sts
         element "entailedTerm"
         namespace ::Sts::Namespaces::TbxNamespace
 
+        map_attribute "id", to: :id
         map_attribute "target", to: :target
         map_attribute "xtarget", to: :xtarget
         map_attribute "lang", to: :lang

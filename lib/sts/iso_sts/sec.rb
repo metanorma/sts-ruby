@@ -29,8 +29,8 @@ module Sts
       attribute :ref_list, ::Sts::IsoSts::RefList, collection: true
       attribute :fn_group, ::Sts::IsoSts::FnGroup, collection: true
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
-      attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
-      attribute :uri, ::Sts::NisoSts::Uri, collection: true
+      attribute :ext_link, ::Sts::IsoSts::ExtLink, collection: true
+      attribute :uri, ::Sts::IsoSts::Uri, collection: true
       attribute :sec, ::Sts::IsoSts::Sec, collection: true
       attribute :term_sec, ::Sts::IsoSts::TermSec, collection: true
       attribute :disp_quote, ::Sts::NisoSts::DispQuote, collection: true

@@ -3,20 +3,22 @@
 module Sts
   module IsoSts
     class Label < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold
       attribute :italic, ::Sts::IsoSts::Italic
-      attribute :sub, ::Sts::NisoSts::Sub
-      attribute :sup, ::Sts::NisoSts::Sup
+      attribute :sub, ::Sts::IsoSts::Sub
+      attribute :sup, ::Sts::IsoSts::Sup
       attribute :inline_formula, ::Sts::IsoSts::InlineFormula
       attribute :break, ::Sts::IsoSts::Break
       attribute :styled_content, ::Sts::IsoSts::StyledContent
-      attribute :ext_link, ::Sts::NisoSts::ExtLink
-      attribute :uri, ::Sts::NisoSts::Uri
-      attribute :named_content, ::Sts::NisoSts::NamedContent
+      attribute :ext_link, ::Sts::IsoSts::ExtLink
+      attribute :uri, ::Sts::IsoSts::Uri
+      attribute :named_content, ::Sts::IsoSts::NamedContent
 
       xml do
         element "label"
+        map_attribute "id", to: :id
         mixed_content
 
         map_content to: :content

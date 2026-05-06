@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-require "lutaml/model"
-
 module Sts
   module TbxIsoTml
     class Mstyle < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :mathvariant, :string
       attribute :mstyle, ::Sts::TbxIsoTml::Mstyle
       attribute :mspace, ::Sts::TbxIsoTml::Mspace, collection: true
@@ -14,6 +13,7 @@ module Sts
 
       xml do
         element "mstyle"
+        map_attribute "id", to: :id
         mixed_content
         namespace ::Sts::Namespaces::MathmlNamespace
 

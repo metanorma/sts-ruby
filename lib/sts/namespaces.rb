@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Sts
   module Namespaces
     class MathmlNamespace < Lutaml::Xml::Namespace

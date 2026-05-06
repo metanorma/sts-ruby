@@ -3,11 +3,13 @@
 module Sts
   module NisoSts
     class ContribId < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :contrib_id_type, :string
       attribute :authenticated, :string
       attribute :content, :string, collection: true
       xml do
         element "contrib-id"
+        map_attribute "id", to: :id
         mixed_content
 
         map_attribute "contrib-id-type", to: :contrib_id_type

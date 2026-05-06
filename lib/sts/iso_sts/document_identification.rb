@@ -3,6 +3,7 @@
 module Sts
   module IsoSts
     class DocumentIdentification < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :sdo, ::Sts::NisoSts::Sdo
       attribute :proj_id, ::Sts::NisoSts::ProjId
       attribute :language, ::Sts::IsoSts::Language
@@ -11,6 +12,7 @@ module Sts
 
       xml do
         element "doc-ident"
+        map_attribute "id", to: :id
         ordered
 
         map_element "sdo", to: :sdo

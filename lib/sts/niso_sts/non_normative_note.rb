@@ -5,6 +5,7 @@ module Sts
     class NonNormativeNote < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :content_type, :string
+      attribute :originator, :string
       attribute :p, ::Sts::NisoSts::Paragraph, collection: true
       attribute :label, ::Sts::NisoSts::Label
       attribute :list, ::Sts::NisoSts::List, collection: true
@@ -19,6 +20,7 @@ module Sts
 
         map_attribute "content-type", to: :content_type
         map_attribute "id", to: :id
+        map_attribute "originator", to: :originator
 
         map_element "p", to: :p
         map_element "label", to: :label

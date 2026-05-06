@@ -15,7 +15,6 @@ module Sts
       attribute :graphic, ::Sts::NisoSts::Graphic, collection: true
       attribute :table_wrap_foot, ::Sts::TbxIsoTml::TableWrapFoot
 
-      # TODO: This require will cause a loop when defined in header
       attribute :caption, ::Sts::NisoSts::Caption
 
       xml do

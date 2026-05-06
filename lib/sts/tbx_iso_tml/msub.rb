@@ -3,6 +3,7 @@
 module Sts
   module TbxIsoTml
     class Msub < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :mstyle, ::Sts::TbxIsoTml::Mstyle, collection: true
       attribute :mrow, ::Sts::TbxIsoTml::Mrow
       attribute :mspace, ::Sts::TbxIsoTml::Mspace
@@ -13,6 +14,7 @@ module Sts
 
       xml do
         element "msub"
+        map_attribute "id", to: :id
         mixed_content
         namespace ::Sts::Namespaces::MathmlNamespace
 

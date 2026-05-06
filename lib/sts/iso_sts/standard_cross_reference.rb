@@ -3,13 +3,15 @@
 module Sts
   module IsoSts
     class StandardCrossReference < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :type, :string
       attribute :std_ident, ::Sts::IsoSts::StandardIdentification
-      attribute :std_ref, ::Sts::NisoSts::StandardRef
-      attribute :release_date, ::Sts::NisoSts::ReleaseDate
+      attribute :std_ref, ::Sts::IsoSts::StandardRef
+      attribute :release_date, ::Sts::IsoSts::ReleaseDate
 
       xml do
         element "std-xref"
+        map_attribute "id", to: :id
         ordered
 
         map_attribute "type", to: :type

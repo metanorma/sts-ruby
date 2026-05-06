@@ -13,8 +13,8 @@ module Sts
       attribute :bold, ::Sts::IsoSts::Bold, collection: true
       attribute :italic, ::Sts::IsoSts::Italic, collection: true
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
-      attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
-      attribute :uri, ::Sts::NisoSts::Uri, collection: true
+      attribute :ext_link, ::Sts::IsoSts::ExtLink, collection: true
+      attribute :uri, ::Sts::IsoSts::Uri, collection: true
       attribute :inline_formula, ::Sts::IsoSts::InlineFormula, collection: true
       attribute :disp_formula, ::Sts::IsoSts::DispFormula, collection: true
       attribute :std, ::Sts::IsoSts::Std, collection: true
@@ -29,12 +29,12 @@ module Sts
       attribute :graphic, ::Sts::IsoSts::Graphic, collection: true
       attribute :math, Mml::V3::Math, collection: true
       attribute :break, ::Sts::IsoSts::Break, collection: true
-      attribute :sub, ::Sts::NisoSts::Sub, collection: true
-      attribute :sup, ::Sts::NisoSts::Sup, collection: true
-      attribute :monospace, ::Sts::NisoSts::Monospace, collection: true
-      attribute :sc, ::Sts::NisoSts::Sc, collection: true
-      attribute :strike, ::Sts::NisoSts::Strike, collection: true
-      attribute :underline, ::Sts::NisoSts::Underline, collection: true
+      attribute :sub, ::Sts::IsoSts::Sub, collection: true
+      attribute :sup, ::Sts::IsoSts::Sup, collection: true
+      attribute :monospace, ::Sts::IsoSts::Monospace, collection: true
+      attribute :sc, ::Sts::IsoSts::Sc, collection: true
+      attribute :strike, ::Sts::IsoSts::Strike, collection: true
+      attribute :underline, ::Sts::IsoSts::Underline, collection: true
       attribute :array, ::Sts::IsoSts::Array, collection: true
       attribute :fig, ::Sts::IsoSts::Fig, collection: true
       attribute :table_wrap, ::Sts::TbxIsoTml::TableWrap, collection: true

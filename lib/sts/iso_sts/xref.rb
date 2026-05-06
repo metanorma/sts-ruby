@@ -12,10 +12,10 @@ module Sts
       attribute :content, :string
       attribute :bold, ::Sts::IsoSts::Bold
       attribute :italic, ::Sts::IsoSts::Italic
-      attribute :named_content, ::Sts::NisoSts::NamedContent
+      attribute :named_content, ::Sts::IsoSts::NamedContent
       attribute :styled_content, ::Sts::IsoSts::StyledContent
-      attribute :sub, ::Sts::NisoSts::Sub
-      attribute :sup, ::Sts::NisoSts::Sup
+      attribute :sub, ::Sts::IsoSts::Sub
+      attribute :sup, ::Sts::IsoSts::Sup
 
       xml do
         element "xref"

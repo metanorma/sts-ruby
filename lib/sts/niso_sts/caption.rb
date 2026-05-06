@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # rubocop:disable Layout/LineLength
 # <caption>
 #   <title>Overview of risk assessment/risk reduction</title>
@@ -25,6 +27,9 @@
 module Sts
   module NisoSts
     class Caption < Lutaml::Model::Serializable
+      attribute :id, :string
+      attribute :specific_use, :string
+      attribute :xml_lang, :string
       attribute :title, ::Sts::NisoSts::Title
       attribute :paragraphs, ::Sts::NisoSts::Paragraph, collection: true
       attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote,
@@ -37,6 +42,9 @@ module Sts
         element "caption"
         ordered
 
+        map_attribute "id", to: :id
+        map_attribute "specific-use", to: :specific_use
+        map_attribute "xml:lang", to: :xml_lang
         map_element "p", to: :paragraphs
         map_element "non-normative-note", to: :non_normative_note
         map_element "title", to: :title

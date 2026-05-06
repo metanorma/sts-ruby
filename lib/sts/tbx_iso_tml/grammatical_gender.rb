@@ -3,6 +3,7 @@
 module Sts
   module TbxIsoTml
     class GrammaticalGender < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :value, :string,
                 values: %w[masculine feminine neuter]
 
@@ -10,6 +11,7 @@ module Sts
         element "grammaticalGender"
         namespace ::Sts::Namespaces::TbxNamespace
 
+        map_attribute "id", to: :id
         map_attribute "value", to: :value
       end
     end

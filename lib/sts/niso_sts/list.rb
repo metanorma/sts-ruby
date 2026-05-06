@@ -6,6 +6,7 @@ module Sts
       attribute :id, :string
       attribute :list_type, :string
       attribute :content_type, :string
+      attribute :originator, :string
       attribute :specific_use, :string
       attribute :list_item, ::Sts::NisoSts::ListItem, collection: true
 
@@ -16,6 +17,7 @@ module Sts
         map_attribute "id", to: :id
         map_attribute "list-type", to: :list_type
         map_attribute "content-type", to: :content_type
+        map_attribute "originator", to: :originator
         map_attribute "specific-use", to: :specific_use
         map_element "list-item", to: :list_item
       end

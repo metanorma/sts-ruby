@@ -3,6 +3,7 @@
 module Sts
   module NisoSts
     class Counts < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :fig_count, ::Sts::NisoSts::FigCount
       attribute :table_count, ::Sts::NisoSts::TableCount
       attribute :equation_count, ::Sts::NisoSts::EquationCount
@@ -12,6 +13,7 @@ module Sts
 
       xml do
         element "counts"
+        map_attribute "id", to: :id
         ordered
 
         map_element "fig-count", to: :fig_count

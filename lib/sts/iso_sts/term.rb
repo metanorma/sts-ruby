@@ -10,12 +10,12 @@ module Sts
       attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold
       attribute :italic, ::Sts::IsoSts::Italic
-      attribute :sub, ::Sts::NisoSts::Sub
-      attribute :sup, ::Sts::NisoSts::Sup
+      attribute :sub, ::Sts::IsoSts::Sub
+      attribute :sup, ::Sts::IsoSts::Sup
       attribute :xref, ::Sts::TbxIsoTml::Xref
-      attribute :ext_link, ::Sts::NisoSts::ExtLink
-      attribute :uri, ::Sts::NisoSts::Uri
-      attribute :named_content, ::Sts::NisoSts::NamedContent
+      attribute :ext_link, ::Sts::IsoSts::ExtLink
+      attribute :uri, ::Sts::IsoSts::Uri
+      attribute :named_content, ::Sts::IsoSts::NamedContent
       attribute :styled_content, ::Sts::IsoSts::StyledContent
       attribute :math, Mml::V3::Math
 

@@ -11,7 +11,7 @@ module Sts
       attribute :content, :string
       attribute :bold, ::Sts::IsoSts::Bold
       attribute :italic, ::Sts::IsoSts::Italic
-      attribute :named_content, ::Sts::NisoSts::NamedContent
+      attribute :named_content, ::Sts::IsoSts::NamedContent
 
       xml do
         element "ext-link"

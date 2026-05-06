@@ -3,10 +3,12 @@
 module Sts
   module NisoSts
     class RefCount < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :count, :integer
 
       xml do
         element "ref-count"
+        map_attribute "id", to: :id
         map_attribute "count", to: :count
       end
     end

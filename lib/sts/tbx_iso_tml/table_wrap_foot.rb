@@ -3,6 +3,7 @@
 module Sts
   module TbxIsoTml
     class TableWrapFoot < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :fn_group, ::Sts::TbxIsoTml::FnGroup
       attribute :attrib, ::Sts::NisoSts::Attrib
       attribute :permissions, ::Sts::NisoSts::Permissions
@@ -15,6 +16,7 @@ module Sts
         element "table-wrap-foot"
         ordered
 
+        map_attribute "id", to: :id
         map_element "fn-group", to: :fn_group
         map_element "attrib", to: :attrib
         map_element "permissions", to: :permissions

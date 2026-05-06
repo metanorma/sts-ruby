@@ -3,6 +3,7 @@
 module Sts
   module NisoSts
     class DateInCitation < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content_type, :string
       attribute :day, :string
       attribute :month, :string
@@ -13,6 +14,7 @@ module Sts
       xml do
         element "date-in-citation"
 
+        map_attribute "id", to: :id
         map_attribute "content-type", to: :content_type
         map_element "day", to: :day
         map_element "month", to: :month

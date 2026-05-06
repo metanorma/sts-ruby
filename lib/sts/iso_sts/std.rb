@@ -3,6 +3,7 @@
 module Sts
   module IsoSts
     class Std < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :type, :string
       attribute :std_id, :string
       attribute :content_type, :string
@@ -14,10 +15,11 @@ module Sts
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
       attribute :bold, ::Sts::IsoSts::Bold, collection: true
       attribute :italic, ::Sts::IsoSts::Italic, collection: true
-      attribute :named_content, ::Sts::NisoSts::NamedContent
+      attribute :named_content, ::Sts::IsoSts::NamedContent
       attribute :content, :string, collection: true
       xml do
         element "std"
+        map_attribute "id", to: :id
         mixed_content
 
         map_attribute "type", to: :type

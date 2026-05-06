@@ -3,10 +3,13 @@
 module Sts
   module NisoSts
     class AffAlternatives < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :aff, ::Sts::NisoSts::Aff, collection: true
 
       xml do
         element "aff-alternatives"
+
+        map_attribute "id", to: :id
 
         map_element "aff", to: :aff
       end

@@ -3,6 +3,7 @@
 module Sts
   module NisoSts
     class Body < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :sec, ::Sts::NisoSts::Section, collection: true
       attribute :term_sec, ::Sts::NisoSts::TermSection, collection: true
       attribute :paragraph, ::Sts::NisoSts::Paragraph, collection: true
@@ -26,6 +27,7 @@ module Sts
 
       xml do
         element "body"
+        map_attribute "id", to: :id
         ordered
 
         map_element "sec", to: :sec

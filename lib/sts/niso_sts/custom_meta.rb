@@ -3,12 +3,14 @@
 module Sts
   module NisoSts
     class CustomMeta < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :lang, Lutaml::Xml::W3c::XmlLangType
       attribute :meta_name, :string
       attribute :meta_value, :string
 
       xml do
         element "custom-meta"
+        map_attribute "id", to: :id
         ordered
 
         map_attribute "lang", to: :lang

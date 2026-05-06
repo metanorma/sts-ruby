@@ -3,9 +3,11 @@
 module Sts
   module NisoSts
     class ConfNum < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :content, :string, collection: true
       xml do
         element "conf-num"
+        map_attribute "id", to: :id
         mixed_content
 
         map_content to: :content
