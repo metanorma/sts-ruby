@@ -5,6 +5,9 @@ inherit_from:
 # local repo-specific modifications
 # ...
 
+Metrics/BlockLength:
+  Max: 35
+
 AllCops:
   TargetRubyVersion: 2.6
   NewCops: enable
