@@ -9,7 +9,7 @@ module Sts
       attribute :xml_lang, :string
       attribute :originator, :string
       attribute :label, ::Sts::IsoSts::Label
-      attribute :math, ::Sts::IsoSts::Mathml2::Math
+      attribute :math, Mml::V3::Math
       attribute :bold, ::Sts::IsoSts::Bold
       attribute :italic, ::Sts::IsoSts::Italic
       attribute :non_normative_note, ::Sts::IsoSts::NonNormativeNote

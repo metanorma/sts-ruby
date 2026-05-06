@@ -10,7 +10,6 @@ REFERENCE_DOCS_PATH = File.expand_path(
 
 # Files that currently fail round-trip due to model gaps
 PENDING_FILES = %w[
-  C070908e.xml
   iso_std_iso_10303-22_ed-1_v1_en.xml
 ].freeze
 
