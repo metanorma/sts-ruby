@@ -23,7 +23,7 @@ module Sts
       attribute :disp_formula, ::Sts::IsoSts::DispFormula, collection: true
       attribute :list, ::Sts::IsoSts::List, collection: true
       attribute :def_list, ::Sts::IsoSts::DefList, collection: true
-      attribute :math, ::Sts::IsoSts::Mathml2::Math, collection: true
+      attribute :math, Mml::V3::Math, collection: true
       attribute :std, ::Sts::IsoSts::Std, collection: true
       attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true

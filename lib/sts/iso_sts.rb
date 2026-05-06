@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "mml"
+
 module Sts
   module IsoSts
     autoload :Standard, "#{__dir__}/iso_sts/standard"

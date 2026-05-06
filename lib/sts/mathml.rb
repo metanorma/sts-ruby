@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require "lutaml/model"
+require "mml"
 
 module Sts
   module Mathml
     class Math < Lutaml::Model::Serializable
-      # Delegate to Mml::V3::Math for actual MathML handling
       attribute :id, :string
       attribute :display, :string
       attribute :math, Mml::V3::Math
@@ -38,7 +38,6 @@ module Sts
         math.display = value if math
       end
 
-      # Forward missing methods to the underlying math object
       def method_missing(method_name, *args, &block)
         if math.respond_to?(method_name)
           math.send(method_name, *args, &block)
@@ -56,7 +55,6 @@ module Sts
       end
 
       def self.from_xml(input)
-        # Parse the inner math element and wrap it
         parsed = Mml::V3::Math.from_xml(input)
         math = new
         math.instance_variable_set(:@math, parsed)

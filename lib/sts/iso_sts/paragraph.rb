@@ -27,7 +27,7 @@ module Sts
       attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
       attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
       attribute :graphic, ::Sts::IsoSts::Graphic, collection: true
-      attribute :math, ::Sts::IsoSts::Mathml2::Math, collection: true
+      attribute :math, Mml::V3::Math, collection: true
       attribute :break, ::Sts::IsoSts::Break, collection: true
       attribute :sub, ::Sts::NisoSts::Sub, collection: true
       attribute :sup, ::Sts::NisoSts::Sup, collection: true
