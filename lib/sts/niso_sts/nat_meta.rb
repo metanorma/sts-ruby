@@ -15,8 +15,8 @@ module Sts
       attribute :comm_ref, :string
       attribute :secretariat, :string
       attribute :ics, :string
-      attribute :std_xref, ::Sts::NisoSts::StdCrossReference
-      attribute :permissions, ::Sts::NisoSts::Permissions
+      attribute :std_xref, ::Sts::NisoSts::StdCrossReference, collection: true
+      attribute :permissions, ::Sts::NisoSts::Permissions, collection: true
       attribute :meta_note, ::Sts::NisoSts::MetaNote, collection: true
       attribute :custom_meta_group, ::Sts::NisoSts::CustomMetaGroup,
                 collection: true

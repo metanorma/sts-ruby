@@ -22,7 +22,7 @@ module Sts
       attribute :ics, :string, collection: true
       attribute :page_count, ::Sts::NisoSts::PageCount
       attribute :std_xref, ::Sts::NisoSts::StdCrossReference, collection: true
-      attribute :permissions, ::Sts::NisoSts::Permissions
+      attribute :permissions, ::Sts::NisoSts::Permissions, collection: true
       attribute :self_uri, ::Sts::NisoSts::SelfUri
       attribute :meta_note, ::Sts::NisoSts::MetaNote, collection: true
       attribute :custom_meta_group, ::Sts::NisoSts::CustomMetaGroup,

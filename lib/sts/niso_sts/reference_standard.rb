@@ -7,7 +7,7 @@ module Sts
       attribute :type, :string
       attribute :std_id, :string
       attribute :content, :string, collection: true
-      attribute :std_ref, ::Sts::NisoSts::StandardRef
+      attribute :std_ref, ::Sts::NisoSts::StandardRef, collection: true
       attribute :title, :string
       attribute :fn, ::Sts::NisoSts::Fn, collection: true
       attribute :std_id_group, ::Sts::NisoSts::StdIdGroup, collection: true

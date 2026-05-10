@@ -7,8 +7,8 @@ module Sts
       attribute :std_org_type, :string
       attribute :std_org_role, :string
       attribute :std_org_name, ::Sts::NisoSts::StdOrgName
-      attribute :std_org_abbrev, ::Sts::NisoSts::StdOrgAbbrev
-      attribute :std_org_loc, ::Sts::NisoSts::StdOrgLoc
+      attribute :std_org_abbrev, ::Sts::NisoSts::StdOrgAbbrev, collection: true
+      attribute :std_org_loc, ::Sts::NisoSts::StdOrgLoc, collection: true
 
       xml do
         element "std-org"

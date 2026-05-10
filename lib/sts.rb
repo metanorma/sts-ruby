@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "lutaml/model"
+
 module Sts
   autoload :IsoSts, "#{__dir__}/sts/iso_sts"
   autoload :Mathml, "#{__dir__}/sts/mathml"
