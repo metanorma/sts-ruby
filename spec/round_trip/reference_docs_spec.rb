@@ -9,9 +9,7 @@ REFERENCE_DOCS_PATH = File.expand_path(
 )
 
 # Files that currently fail round-trip due to model gaps
-PENDING_FILES = %w[
-  iso_std_iso_10303-22_ed-1_v1_en.xml
-].freeze
+PENDING_FILES = %w[].freeze
 
 RSpec.describe "Reference document round-trips" do
   reference_docs = Dir.glob(File.join(REFERENCE_DOCS_PATH, "**", "*.xml"))

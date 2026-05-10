@@ -30,7 +30,7 @@ module Sts
       attribute :non_normative_example, ::Sts::NisoSts::NonNormativeExample,
                 collection: true
       attribute :attrib, ::Sts::NisoSts::Attrib, collection: true
-      attribute :permissions, ::Sts::NisoSts::Permissions
+      attribute :permissions, ::Sts::NisoSts::Permissions, collection: true
 
       xml do
         element "boxed-text"

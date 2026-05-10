@@ -10,7 +10,7 @@ module Sts
       attribute :version, :string
       attribute :part_number, :string
       attribute :sub_part_number, :string, collection: true
-      attribute :std_id_group, ::Sts::NisoSts::StdIdGroup
+      attribute :std_id_group, ::Sts::NisoSts::StdIdGroup, collection: true
 
       xml do
         element "std-ident"

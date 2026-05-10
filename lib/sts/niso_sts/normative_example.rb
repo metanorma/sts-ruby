@@ -7,8 +7,11 @@ module Sts
       attribute :xml_lang, :string
       attribute :specific_use, :string
       attribute :symbol, :string
-      attribute :p, ::Sts::NisoSts::Paragraph
+      attribute :p, ::Sts::NisoSts::Paragraph, collection: true
       attribute :label, ::Sts::NisoSts::Label
+      attribute :list, ::Sts::NisoSts::List, collection: true
+      attribute :non_normative_example, ::Sts::NisoSts::NonNormativeExample,
+                collection: true
 
       xml do
         element "normative-example"
@@ -21,6 +24,8 @@ module Sts
 
         map_element "p", to: :p
         map_element "label", to: :label
+        map_element "list", to: :list
+        map_element "non-normative-example", to: :non_normative_example
       end
     end
   end

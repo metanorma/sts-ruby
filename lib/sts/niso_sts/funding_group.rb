@@ -6,7 +6,8 @@ module Sts
       attribute :id, :string
       attribute :funding_source, ::Sts::NisoSts::FundingSource, collection: true
       attribute :award_group, ::Sts::NisoSts::AwardGroup, collection: true
-      attribute :funding_statement, ::Sts::NisoSts::FundingStatement
+      attribute :funding_statement, ::Sts::NisoSts::FundingStatement,
+                collection: true
 
       xml do
         element "funding-group"
