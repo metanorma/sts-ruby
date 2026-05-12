@@ -163,4 +163,53 @@ RSpec.describe "New element models" do
       expect(parsed.to_xml).to be_xml_equivalent_to(xml)
     end
   end
+
+  describe Sts::TbxIsoTml::Note do
+    it "round-trips simple text content" do
+      xml = '<tbx:note xmlns:tbx="urn:iso:std:iso:30042:ed-1">The term "time" is often used in common language.</tbx:note>'
+      parsed = described_class.from_xml(xml)
+      expect(parsed.value).to include('The term "time" is often used in common language.')
+      expect(parsed.to_xml).to be_xml_equivalent_to(xml)
+    end
+
+    it "round-trips mixed content with entailedTerm" do
+      xml = <<~XML
+        <tbx:note xmlns:tbx="urn:iso:std:iso:30042:ed-1">Common forms of date include <tbx:entailedTerm target="term_7.8">calendar date (7.8)</tbx:entailedTerm>, <tbx:entailedTerm target="term_7.9">ordinal date (7.9)</tbx:entailedTerm> and <tbx:entailedTerm target="term_7.10">week date (7.10)</tbx:entailedTerm>.</tbx:note>
+      XML
+
+      parsed = described_class.from_xml(xml)
+      expect(parsed.entailed_term.size).to eq(3)
+      expect(parsed.entailed_term[0].target).to eq("term_7.8")
+      expect(parsed.value.join).to include("Common forms of date include")
+      expect(parsed.value.join).to include(",")
+      expect(parsed.value.join).to include("and")
+      expect(parsed.value.join).to include(".")
+
+      generated = parsed.to_xml
+      expect(generated).to be_xml_equivalent_to(xml)
+    end
+
+    it "round-trips mixed content with id and italic" do
+      xml = '<tbx:note xmlns:tbx="urn:iso:std:iso:30042:ed-1" id="not_3.1.3_2">NOTE 2 In this part of ISO 13849, "fault" means <italic>random fault</italic>.</tbx:note>'
+      parsed = described_class.from_xml(xml)
+      expect(parsed.id).to eq("not_3.1.3_2")
+      expect(parsed.italic.size).to eq(1)
+      expect(parsed.value.join).to include('NOTE 2 In this part of ISO 13849, "fault" means')
+      expect(parsed.value.join).to include(".")
+
+      generated = parsed.to_xml
+      expect(generated).to be_xml_equivalent_to(xml)
+    end
+
+    it "round-trips mixed content with std" do
+      xml = '<tbx:note xmlns:tbx="urn:iso:std:iso:30042:ed-1">This definition corresponds with the definition of the term "date" in <std><std-ref>IEC 60050-113:2011</std-ref>, 113-01-12</std>.</tbx:note>'
+      parsed = described_class.from_xml(xml)
+      expect(parsed.std.size).to eq(1)
+      expect(parsed.value.join).to include("This definition corresponds")
+      expect(parsed.value.join).to include(".")
+
+      generated = parsed.to_xml
+      expect(generated).to be_xml_equivalent_to(xml)
+    end
+  end
 end

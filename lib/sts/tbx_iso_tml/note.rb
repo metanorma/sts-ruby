@@ -4,6 +4,7 @@ module Sts
   module TbxIsoTml
     class Note < Lutaml::Model::Serializable
       attribute :id, :string
+      attribute :value, :string, collection: true
       attribute :table_wrap, ::Sts::TbxIsoTml::TableWrap
       attribute :entailed_term, ::Sts::TbxIsoTml::EntailedTerm, collection: true
       attribute :math, ::Sts::TbxIsoTml::Math, collection: true
@@ -18,10 +19,11 @@ module Sts
 
       xml do
         element "note"
-        ordered
         namespace ::Sts::Namespaces::TbxNamespace
+        mixed_content
 
         map_attribute "id", to: :id
+        map_content to: :value
         map_element "entailedTerm", to: :entailed_term
         map_element "list", to: :list
         map_element "table-wrap", to: :table_wrap
