@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.summary = "Library to work with NISO STS and ISOSTS."
   spec.homepage      = "https://github.com/metanorma/sts-ruby"
   spec.license       = "BSD-2-Clause"
-  spec.required_ruby_version = Gem::Requirement.new(">= 2.6.0")
+  spec.required_ruby_version = Gem::Requirement.new(">= 3.3.0")
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
