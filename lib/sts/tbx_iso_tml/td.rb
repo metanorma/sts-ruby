@@ -100,7 +100,7 @@ module Sts
       attribute :sup, ::Sts::NisoSts::Sup, collection: true
 
       # break.class
-      attribute :break, ::Sts::TbxIsoTml::TableBreak
+      attribute :break, ::Sts::TbxIsoTml::TableBreak, collection: true
 
       # citation.class (std)
       attribute :std, ::Sts::NisoSts::ReferenceStandard, collection: true
