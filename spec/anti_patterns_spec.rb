@@ -28,7 +28,7 @@ RSpec.describe "Anti-patterns" do
 
       it "has no .send()" do
         msg = "#{rel}: .send() forbidden"
-        expect(source).not_to match(/\.send\(/), msg
+        expect(source).not_to include(".send("), msg
       end
     end
   end

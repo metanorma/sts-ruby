@@ -120,3 +120,5 @@ RSpec/SpecFilePathFormat:
     - '**/spec/routing/**/*'
     - 'spec/sts_element_spec.rb'
     - 'spec/sts_table_spec.rb'
+    - 'spec/iso_sts/iso_sts_spec.rb'
+    - 'spec/iso_sts/iso_sts_element_spec.rb'
