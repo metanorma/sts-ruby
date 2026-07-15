@@ -1,24 +1,21 @@
 # frozen_string_literal: true
 
 RSpec.describe Sts do
-  it "has a version number" do
-    expect(Sts::VERSION).not_to be nil
+  let(:din_iso_sts_example_file_formatted) do
+    File.join(fixtures_path, "DIN_EN_ISO_13849-1_2008-12_en_TBX.c14n.xml")
   end
-
+  let(:iso_sts_example_file_formatted) do
+    File.join(fixtures_path, "ISO_13849-1_2008-12_en_TBX.xml")
+  end
+  let(:tbx_example_file_formatted) do
+    File.join(fixtures_path, "tbx-nisosts-0.2-formatted.xml")
+  end
   let(:tbx_example_file) do
     File.join(fixtures_path, "tbx-nisosts-0.2.xml")
   end
 
-  let(:tbx_example_file_formatted) do
-    File.join(fixtures_path, "tbx-nisosts-0.2-formatted.xml")
-  end
-
-  let(:iso_sts_example_file_formatted) do
-    File.join(fixtures_path, "ISO_13849-1_2008-12_en_TBX.xml")
-  end
-
-  let(:din_iso_sts_example_file_formatted) do
-    File.join(fixtures_path, "DIN_EN_ISO_13849-1_2008-12_en_TBX.c14n.xml")
+  it "has a version number" do
+    expect(Sts::VERSION).not_to be_nil
   end
 
   it "parses TBX-ISO-TML example file" do
