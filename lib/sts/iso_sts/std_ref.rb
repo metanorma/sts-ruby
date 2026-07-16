@@ -5,13 +5,13 @@ module Sts
     class StdRef < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :type, :string
-      attribute :originator, ::Sts::NisoSts::Originator
-      attribute :doc_type, ::Sts::NisoSts::DocType
-      attribute :doc_number, ::Sts::NisoSts::DocNumber
-      attribute :part_number, ::Sts::NisoSts::PartNumber
+      attribute :originator, ::Sts::IsoSts::Originator
+      attribute :doc_type, ::Sts::IsoSts::DocType
+      attribute :doc_number, ::Sts::IsoSts::DocNumber
+      attribute :part_number, ::Sts::IsoSts::PartNumber
       attribute :edition, ::Sts::IsoSts::Edition
-      attribute :suppl_type, ::Sts::NisoSts::SupplType
-      attribute :suppl_number, ::Sts::NisoSts::SupplNumber
+      attribute :suppl_type, ::Sts::IsoSts::SupplType
+      attribute :suppl_number, ::Sts::IsoSts::SupplNumber
       attribute :year, ::Sts::NisoSts::Year
       attribute :content, :string, collection: true
       xml do

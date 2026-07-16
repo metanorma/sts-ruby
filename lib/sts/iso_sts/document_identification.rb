@@ -4,11 +4,11 @@ module Sts
   module IsoSts
     class DocumentIdentification < Lutaml::Model::Serializable
       attribute :id, :string
-      attribute :sdo, ::Sts::NisoSts::Sdo
-      attribute :proj_id, ::Sts::NisoSts::ProjId
+      attribute :sdo, ::Sts::IsoSts::Sdo
+      attribute :proj_id, ::Sts::IsoSts::ProjId
       attribute :language, ::Sts::IsoSts::Language
-      attribute :release_version, ::Sts::NisoSts::ReleaseVersion
-      attribute :urn, ::Sts::NisoSts::Urn
+      attribute :release_version, ::Sts::IsoSts::ReleaseVersion
+      attribute :urn, ::Sts::IsoSts::Urn
 
       xml do
         element "doc-ident"

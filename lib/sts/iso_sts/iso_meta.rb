@@ -14,7 +14,7 @@ module Sts
       attribute :release_date, ::Sts::IsoSts::ReleaseDate, collection: true
       attribute :comm_ref, ::Sts::IsoSts::CommRef
       attribute :secretariat, ::Sts::IsoSts::Secretariat, collection: true
-      attribute :ics, ::Sts::NisoSts::Ics, collection: true
+      attribute :ics, ::Sts::IsoSts::Ics, collection: true
       attribute :page_count, ::Sts::IsoSts::PageCount
       attribute :permissions, ::Sts::IsoSts::Permissions, collection: true
       attribute :std_xref, ::Sts::IsoSts::StandardCrossReference,

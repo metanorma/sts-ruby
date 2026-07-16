@@ -2,12 +2,12 @@
 
 module Sts
   module IsoSts
-    # ISOSTS declares <secretariat> as type="xs:string" -- no attributes.
-    class Secretariat < Lutaml::Model::Serializable
+    # ISOSTS declares <suppl-version> as type="xs:string" -- no attributes.
+    class SupplVersion < Lutaml::Model::Serializable
       attribute :content, :string
 
       xml do
-        element "secretariat"
+        element "suppl-version"
 
         map_content to: :content
       end
