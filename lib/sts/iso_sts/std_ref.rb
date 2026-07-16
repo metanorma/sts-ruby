@@ -12,7 +12,7 @@ module Sts
       attribute :edition, ::Sts::IsoSts::Edition
       attribute :suppl_type, ::Sts::IsoSts::SupplType
       attribute :suppl_number, ::Sts::IsoSts::SupplNumber
-      attribute :year, ::Sts::NisoSts::Year
+      attribute :year, ::Sts::IsoSts::Year
       attribute :content, :string, collection: true
       xml do
         element "std-ref"

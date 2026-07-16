@@ -497,6 +497,77 @@ RSpec.describe Sts::IsoSts do
     end
   end
 
+  # Attribute sets below are transcribed from ISOSTS.xsd. Round-tripping does
+  # not prove them: a model that invents or drops an attribute still parses and
+  # serialises symmetrically. Asserting the exact set is what catches that.
+  describe "ISOSTS-modelled element classes" do
+    {
+      Year: %i[content content_type specific_use xml_lang],
+      PubDate: %i[content pub_type],
+      ReleaseVersionId: %i[content id],
+      AltText: %i[content id content_type specific_use xml_lang],
+      LongDesc: %i[content id content_type specific_use xml_lang],
+      TexMath: %i[content id content_type notation version],
+      PubId: %i[content pub_id_type specific_use],
+      Volume: %i[content content_type seq specific_use xml_lang],
+      Issue: %i[content content_type seq specific_use xml_lang],
+      Fpage: %i[content content_type seq specific_use xml_lang],
+      Lpage: %i[content content_type specific_use xml_lang],
+      PageRange: %i[content content_type specific_use xml_lang],
+    }.each do |klass, expected|
+      it "IsoSts::#{klass} models exactly the ISOSTS attribute set" do
+        expect(described_class.const_get(klass).attributes.keys)
+          .to match_array(expected)
+      end
+    end
+
+    it "IsoSts::Year has no id, which ISOSTS does not define" do
+      expect(described_class::Year.attributes).not_to have_key(:id)
+    end
+
+    it "IsoSts::Fpage carries seq but IsoSts::Lpage does not" do
+      expect(described_class::Fpage.attributes).to have_key(:seq)
+      expect(described_class::Lpage.attributes).not_to have_key(:seq)
+    end
+
+    it "IsoSts::Fpage models no bold or italic children" do
+      expect(described_class::Fpage.attributes).not_to have_key(:bold)
+      expect(described_class::Fpage.attributes).not_to have_key(:italic)
+    end
+
+    it "IsoSts::IsProof is an empty element" do
+      expect(described_class::IsProof.attributes).to be_empty
+      round_tripped = described_class::IsProof
+        .to_xml(described_class::IsProof.new).strip
+      expect(round_tripped).to eq("<is-proof/>")
+    end
+  end
+
+  describe "IsoSts models that reference the ISOSTS-modelled classes" do
+    {
+      "StdRef" => { year: :Year },
+      "MixedCitation" => {
+        year: :Year, volume: :Volume, issue: :Issue, fpage: :Fpage,
+        lpage: :Lpage, page_range: :PageRange, pub_id: :PubId
+      },
+      "RegMeta" => {
+        pub_date: :PubDate, release_version_id: :ReleaseVersionId
+      },
+      "IsoMeta" => { pub_date: :PubDate, is_proof: :IsProof },
+      "NatMeta" => { pub_date: :PubDate },
+      "Graphic" => { alt_text: :AltText, long_desc: :LongDesc },
+      "DispFormula" => { tex_math: :TexMath },
+    }.each do |model_name, expectations|
+      expectations.each do |attr, klass|
+        it "#{model_name}##{attr} uses IsoSts::#{klass}" do
+          model = described_class.const_get(model_name)
+          expect(model.attributes[attr].type)
+            .to eq(described_class.const_get(klass))
+        end
+      end
+    end
+  end
+
   # ISOSTS <permissions> is copyright-statement*, copyright-year*,
   # copyright-holder*, license* -- exactly what IsoSts::Permissions models.
   describe "permissions uses the IsoSts model" do

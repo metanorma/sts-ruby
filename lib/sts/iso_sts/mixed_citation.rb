@@ -24,16 +24,16 @@ module Sts
       attribute :break, ::Sts::IsoSts::Break, collection: true
       attribute :person_group, ::Sts::NisoSts::PersonGroup, collection: true
       attribute :collab, ::Sts::NisoSts::Collab, collection: true
-      attribute :year, ::Sts::NisoSts::Year, collection: true
+      attribute :year, ::Sts::IsoSts::Year, collection: true
       attribute :source, ::Sts::NisoSts::Source
       attribute :article_title, ::Sts::NisoSts::ArticleTitle
-      attribute :volume, ::Sts::NisoSts::Volume
-      attribute :issue, ::Sts::NisoSts::Issue
-      attribute :fpage, ::Sts::NisoSts::Fpage
-      attribute :lpage, ::Sts::NisoSts::Lpage
-      attribute :page_range, ::Sts::NisoSts::PageRange
+      attribute :volume, ::Sts::IsoSts::Volume
+      attribute :issue, ::Sts::IsoSts::Issue
+      attribute :fpage, ::Sts::IsoSts::Fpage
+      attribute :lpage, ::Sts::IsoSts::Lpage
+      attribute :page_range, ::Sts::IsoSts::PageRange
       attribute :publisher, ::Sts::NisoSts::Publisher
-      attribute :pub_id, ::Sts::NisoSts::PubId, collection: true
+      attribute :pub_id, ::Sts::IsoSts::PubId, collection: true
 
       xml do
         element "mixed-citation"
