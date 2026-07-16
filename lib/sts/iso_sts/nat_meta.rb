@@ -23,7 +23,7 @@ module Sts
       attribute :custom_meta_group, ::Sts::NisoSts::CustomMetaGroup,
                 collection: true
       attribute :meta_date, ::Sts::IsoSts::MetaDate, collection: true
-      attribute :pub_date, ::Sts::NisoSts::PubDate
+      attribute :pub_date, ::Sts::IsoSts::PubDate
 
       xml do
         element "nat-meta"

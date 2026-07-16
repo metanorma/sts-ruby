@@ -16,8 +16,8 @@ module Sts
       attribute :graphic_type, :string
       attribute :label, ::Sts::IsoSts::Label
       attribute :caption, ::Sts::IsoSts::Caption
-      attribute :alt_text, ::Sts::NisoSts::AltText
-      attribute :long_desc, ::Sts::NisoSts::LongDesc
+      attribute :alt_text, ::Sts::IsoSts::AltText
+      attribute :long_desc, ::Sts::IsoSts::LongDesc
 
       xml do
         element "graphic"

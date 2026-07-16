@@ -22,8 +22,8 @@ module Sts
       attribute :custom_meta_group, ::Sts::NisoSts::CustomMetaGroup,
                 collection: true
       attribute :meta_date, ::Sts::IsoSts::MetaDate, collection: true
-      attribute :pub_date, ::Sts::NisoSts::PubDate
-      attribute :is_proof, ::Sts::NisoSts::IsProof
+      attribute :pub_date, ::Sts::IsoSts::PubDate
+      attribute :is_proof, ::Sts::IsoSts::IsProof
 
       xml do
         element "iso-meta"

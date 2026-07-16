@@ -17,7 +17,7 @@ module Sts
       attribute :styled_content, ::Sts::IsoSts::StyledContent
       attribute :preformat, ::Sts::IsoSts::Preformat
       attribute :graphic, ::Sts::IsoSts::Graphic, collection: true
-      attribute :tex_math, ::Sts::NisoSts::TexMath
+      attribute :tex_math, ::Sts::IsoSts::TexMath
 
       xml do
         element "disp-formula"
