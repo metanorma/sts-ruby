@@ -19,7 +19,7 @@
 |---|------|----------|----------|--------------|
 | 01 | `01-mathml-delegation.md` | Anti-Pattern Fix | DONE | — |
 | 02 | `02-type-resolution.md` | Anti-Pattern Fix | DONE | — |
-| 03 | `03-namespace-coupling.md` | Architecture | IN PROGRESS | 01, 02 |
+| 03 | `03-namespace-coupling.md` | Architecture | IN PROGRESS (63→20 refs) | 01, 02 |
 | 04 | `04-register-versioning.md` | Architecture | HIGH | 01, 02 |
 | 05 | `05-missing-elements.md` | Feature Gap | MOSTLY DONE | 04 |
 | 06 | `06-missing-attributes.md` | Feature Gap | DONE | 04 |
@@ -140,7 +140,9 @@ grep -r "method_missing|respond_to_missing|Object.const_get|\.send" lib/
 ```
 
 ### IsoSts Namespace Independence (2026-05-07)
-- ARCHITECTURE DECISION: IsoSts and NisoSts must remain fully independent
+- ARCHITECTURE DECISION: IsoSts must be independent **of NisoSts**. This is not
+  independence in general — `lib/sts/iso_sts/` still references `TbxIsoTml` and
+  MathML types directly, and those shared namespaces are outside this ADR.
 - ISOSTS is frozen legacy; NISO STS evolves — combining them violates OCP
 - Created 11 new IsoSts-specific types: Monospace, Sc, Strike, Underline, Uri,
   NamedContent, StandardRef, MetaDate, ContentLanguage (with autoloads)
@@ -164,9 +166,27 @@ grep -r "method_missing|respond_to_missing|Object.const_get|\.send" lib/
 - ~~Expand StringName usage (in contrib, element-citation, related-article — NISO STS 1.2)~~ → DONE: added to name-alternatives; already in person-group and mixed-citation
 
 ### Architectural Items (High Effort)
-- `03-namespace-coupling.md` — IN PROGRESS: 157→63 IsoSts→NisoSts cross-references remaining
+- `03-namespace-coupling.md` — IN PROGRESS: 63→20 IsoSts→NisoSts references
+  remaining (issue #40). Source of truth is `ISOSTS.xsd`, NOT the NisoSts
+  models — they disagree on nearly every element.
 - `04-register-versioning.md` — Version the models via lutaml-model Registers
 - `11-duplicate-models.md` — 44 overlapping element resolution (depends on 03)
 
+### Known bugs — schema conformance (separate from 03)
+The 2026-05-07 "@id added to all models (XSD-verified)" pass verified against
+the **NISO** XSD and applied the result to IsoSts. ISOSTS disagrees:
+- **16 IsoSts models silently drop ISOSTS attributes that exist** — real data
+  loss. `sub`/`sup` lose `arrange`+`specific-use`; `ext-link` loses 5 xlink
+  attrs; `mixed-citation` loses 6; `graphic`, `copyright-*`, `edition`,
+  `title`, `label`, `uri`, `named-content`, `underline`, `meta-date`, `body`
+  lose others.
+- **25 IsoSts models carry an `@id` ISOSTS does not define** — harmless (never
+  populated on parse, never emitted on serialise), but dead surface.
+
 ## Next Action
-Proceed with `03-namespace-coupling.md` — audit and resolve 157+ IsoSts→NisoSts cross-references.
+Two independent tracks:
+1. Finish `03` — the 20 remaining refs split into 11 deep-root refs (each
+   reaching a ~152-class recursive core) and 9 child-bearing refs whose closure
+   is unmeasured. Both need sizing before planning.
+2. File and fix the 16 lossy models above — real data loss, unrelated to
+   decoupling.
