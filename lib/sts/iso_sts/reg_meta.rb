@@ -14,8 +14,8 @@ module Sts
       attribute :doc_ref, :string
       attribute :release_date, ::Sts::IsoSts::ReleaseDate
       attribute :comm_ref, :string
-      attribute :secretariat, ::Sts::NisoSts::Secretariat, collection: true
-      attribute :ics, ::Sts::NisoSts::Ics, collection: true
+      attribute :secretariat, ::Sts::IsoSts::Secretariat, collection: true
+      attribute :ics, ::Sts::IsoSts::Ics, collection: true
       attribute :page_count, ::Sts::IsoSts::PageCount
       attribute :permissions, ::Sts::IsoSts::Permissions, collection: true
       attribute :std_xref, ::Sts::IsoSts::StandardCrossReference,
@@ -24,7 +24,7 @@ module Sts
                 collection: true
       attribute :meta_date, ::Sts::IsoSts::MetaDate, collection: true
       attribute :pub_date, ::Sts::NisoSts::PubDate
-      attribute :wi_number, :string
+      attribute :wi_number, ::Sts::IsoSts::WiNumber
       attribute :release_version_id, ::Sts::NisoSts::ReleaseVersionId
 
       xml do

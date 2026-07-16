@@ -4,15 +4,15 @@ module Sts
   module IsoSts
     class StandardIdentification < Lutaml::Model::Serializable
       attribute :id, :string
-      attribute :originator, ::Sts::NisoSts::Originator
-      attribute :doc_type, ::Sts::NisoSts::DocType
-      attribute :doc_number, ::Sts::NisoSts::DocNumber
-      attribute :part_number, ::Sts::NisoSts::PartNumber
+      attribute :originator, ::Sts::IsoSts::Originator
+      attribute :doc_type, ::Sts::IsoSts::DocType
+      attribute :doc_number, ::Sts::IsoSts::DocNumber
+      attribute :part_number, ::Sts::IsoSts::PartNumber
       attribute :edition, ::Sts::IsoSts::Edition
-      attribute :version, ::Sts::NisoSts::Version
-      attribute :suppl_type, ::Sts::NisoSts::SupplType
-      attribute :suppl_number, ::Sts::NisoSts::SupplNumber
-      attribute :suppl_version, ::Sts::NisoSts::SupplVersion
+      attribute :version, ::Sts::IsoSts::Version
+      attribute :suppl_type, ::Sts::IsoSts::SupplType
+      attribute :suppl_number, ::Sts::IsoSts::SupplNumber
+      attribute :suppl_version, ::Sts::IsoSts::SupplVersion
 
       xml do
         element "std-ident"

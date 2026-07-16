@@ -427,4 +427,93 @@ RSpec.describe Sts::IsoSts do
       expect(math).to be_a(Lutaml::Model::Serializable)
     end
   end
+
+  # ISOSTS declares these elements as type="xs:string": text content, no
+  # attributes. They are modelled as IsoSts classes rather than plain strings
+  # because an empty element (<sdo/>) does not survive a :string round-trip --
+  # for a collection it parses to [], losing the element entirely.
+  describe "ISOSTS xs:string elements" do
+    {
+      Originator: "originator",
+      DocType: "doc-type",
+      DocNumber: "doc-number",
+      PartNumber: "part-number",
+      Version: "version",
+      SupplType: "suppl-type",
+      SupplNumber: "suppl-number",
+      SupplVersion: "suppl-version",
+      Urn: "urn",
+      Sdo: "sdo",
+      ProjId: "proj-id",
+      ReleaseVersion: "release-version",
+      Ics: "ics",
+      Secretariat: "secretariat",
+    }.each do |klass, element|
+      it "IsoSts::#{klass} maps <#{element}>" do
+        model = described_class.const_get(klass)
+        expect(model.mappings_for(:xml).root_element).to eq(element)
+      end
+
+      it "IsoSts::#{klass} has only content, as ISOSTS defines no attributes" do
+        model = described_class.const_get(klass)
+        expect(model.attributes.keys).to eq(%i[content])
+      end
+
+      it "IsoSts::#{klass} round-trips an empty <#{element}/>" do
+        model = described_class.const_get(klass)
+        xml = "<#{element}/>"
+        expect(model.to_xml(model.from_xml(xml)).strip).to eq(xml)
+      end
+    end
+  end
+
+  describe "IsoSts models that reference the xs:string element classes" do
+    {
+      "StandardIdentification" => {
+        originator: :Originator, doc_type: :DocType, doc_number: :DocNumber,
+        part_number: :PartNumber, version: :Version, suppl_type: :SupplType,
+        suppl_number: :SupplNumber, suppl_version: :SupplVersion
+      },
+      "StdRef" => {
+        originator: :Originator, doc_type: :DocType, doc_number: :DocNumber,
+        part_number: :PartNumber, suppl_type: :SupplType,
+        suppl_number: :SupplNumber
+      },
+      "DocumentIdentification" => {
+        sdo: :Sdo, proj_id: :ProjId, release_version: :ReleaseVersion,
+        urn: :Urn
+      },
+      "RegMeta" => { secretariat: :Secretariat, ics: :Ics },
+      "NatMeta" => { secretariat: :Secretariat, ics: :Ics },
+      "IsoMeta" => { secretariat: :Secretariat, ics: :Ics },
+    }.each do |model_name, expectations|
+      expectations.each do |attr, klass|
+        it "#{model_name}##{attr} uses IsoSts::#{klass}" do
+          model = described_class.const_get(model_name)
+          expect(model.attributes[attr].type)
+            .to eq(described_class.const_get(klass))
+        end
+      end
+    end
+  end
+
+  # ISOSTS gives <wi-number> an @id; modelling it as a plain string dropped it.
+  describe "IsoSts::WiNumber" do
+    it "models the @id that ISOSTS defines" do
+      expect(described_class::WiNumber.attributes.keys)
+        .to match_array(%i[content id])
+    end
+
+    it "preserves @id through a round-trip" do
+      xml = '<wi-number id="wi-1">12345</wi-number>'
+      parsed = described_class::WiNumber.from_xml(xml)
+      expect(parsed.id).to eq("wi-1")
+      expect(described_class::WiNumber.to_xml(parsed).strip).to eq(xml)
+    end
+
+    it "is used by RegMeta rather than a plain string" do
+      expect(described_class::RegMeta.attributes[:wi_number].type)
+        .to eq(described_class::WiNumber)
+    end
+  end
 end
