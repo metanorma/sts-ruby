@@ -497,6 +497,25 @@ RSpec.describe Sts::IsoSts do
     end
   end
 
+  # ISOSTS <permissions> is copyright-statement*, copyright-year*,
+  # copyright-holder*, license* -- exactly what IsoSts::Permissions models.
+  describe "permissions uses the IsoSts model" do
+    %w[Array App TableWrapFoot].each do |model_name|
+      it "#{model_name}#permissions is IsoSts::Permissions" do
+        model = described_class.const_get(model_name)
+        expect(model.attributes[:permissions].type)
+          .to eq(described_class::Permissions)
+      end
+    end
+  end
+
+  # ISOSTS defines no <ruby> element; only NISO STS does.
+  describe "styled-content matches the ISOSTS content model" do
+    it "does not model <ruby>, which ISOSTS does not define" do
+      expect(described_class::StyledContent.attributes).not_to have_key(:ruby)
+    end
+  end
+
   # ISOSTS gives <wi-number> an @id; modelling it as a plain string dropped it.
   describe "IsoSts::WiNumber" do
     it "models the @id that ISOSTS defines" do
