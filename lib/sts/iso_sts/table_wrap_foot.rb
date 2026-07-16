@@ -11,7 +11,7 @@ module Sts
       attribute :fn_group, ::Sts::IsoSts::FnGroup
       attribute :fn, ::Sts::IsoSts::Fn
       attribute :attrib, ::Sts::NisoSts::Attrib
-      attribute :permissions, ::Sts::NisoSts::Permissions
+      attribute :permissions, ::Sts::IsoSts::Permissions
 
       xml do
         element "table-wrap-foot"

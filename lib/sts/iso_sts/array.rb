@@ -12,7 +12,7 @@ module Sts
       attribute :label, ::Sts::IsoSts::Label
       attribute :table, ::Sts::IsoSts::Table
       attribute :attrib, ::Sts::NisoSts::Attrib, collection: true
-      attribute :permissions, ::Sts::NisoSts::Permissions, collection: true
+      attribute :permissions, ::Sts::IsoSts::Permissions, collection: true
 
       xml do
         element "array"
