@@ -15,7 +15,7 @@ module Sts
       attribute :term_sec, ::Sts::IsoSts::TermSec, collection: true
       attribute :fn_group, ::Sts::IsoSts::FnGroup, collection: true
       attribute :ref_list, ::Sts::IsoSts::RefList, collection: true
-      attribute :permissions, ::Sts::NisoSts::Permissions
+      attribute :permissions, ::Sts::IsoSts::Permissions
       attribute :non_normative_note, ::Sts::IsoSts::NonNormativeNote,
                 collection: true
       attribute :non_normative_example, ::Sts::IsoSts::NonNormativeExample,
