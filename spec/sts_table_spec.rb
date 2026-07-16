@@ -89,14 +89,14 @@ RSpec.describe Sts::TbxIsoTml do
 
     it "supports paragraph element" do
       th = described_class::Th.new
-      th.paragraph = Sts::NisoSts::Paragraph.new
-      expect(th.paragraph).to be_a(Sts::NisoSts::Paragraph)
+      th.paragraph = [Sts::NisoSts::Paragraph.new]
+      expect(th.paragraph[0]).to be_a(Sts::NisoSts::Paragraph)
     end
 
     it "supports fn element" do
       th = described_class::Th.new
-      th.fn = described_class::Fn.new
-      expect(th.fn).to be_a(described_class::Fn)
+      th.fn = [described_class::Fn.new]
+      expect(th.fn[0]).to be_a(described_class::Fn)
     end
   end
 
@@ -132,8 +132,8 @@ RSpec.describe Sts::TbxIsoTml do
 
     it "supports fn element" do
       td = described_class::Td.new
-      td.fn = described_class::Fn.new
-      expect(td.fn).to be_a(described_class::Fn)
+      td.fn = [described_class::Fn.new]
+      expect(td.fn[0]).to be_a(described_class::Fn)
     end
   end
 
