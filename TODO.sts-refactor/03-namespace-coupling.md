@@ -3,156 +3,117 @@
 **Priority**: HIGH
 **Category**: Architecture
 **Estimated Effort**: High
-**Files Affected**: `lib/sts/iso_sts/content_groups/highlight_elements.rb` (194+ references)
+**Status**: Partially done — 63 → 20 references (GitHub issue #40)
 
 ## Problem
 
-`lib/sts/iso_sts/content_groups/highlight_elements.rb` contains 194+ references to `Sts::NisoSts::*` types:
+`lib/sts/iso_sts/` references `Sts::NisoSts::*` types directly. IsoSts must be
+independent of NisoSts (ADR 2026-05-07): ISOSTS is frozen legacy, NISO STS
+evolves, so coupling them violates OCP.
 
-```ruby
-# Examples from highlight_elements.rb
-[:sub, "Sts::NisoSts::Sub", "sub"]
-[:sup, "Sts::NisoSts::Sup", "sup"]
-[:italic, "Sts::NisoSts::Italic", "italic"]
-[:bold, "Sts::NisoSts::Bold", "bold"]
-# ... 190 more
-```
+PR #31 reduced this from 157 to 63 references. Issue #40 reduced it further,
+from 63 to 20.
 
-### Why This Is Wrong
+## Source of truth: ISOSTS.xsd, NOT the NisoSts models
 
-1. **Violation of namespace isolation**: IsoSts should not depend on NisoSts implementation
-2. **Shared-namespace ambiguity**: These elements appear in both ISOSTS and NISO STS but with different attribute sets
-3. **Tight coupling**: Changes to NisoSts can break IsoSts
-4. **Schema divergence ignored**: `<p>` in ISOSTS has different attributes than `<p>` in NISO STS Extended
+The obvious approach — duplicate each NisoSts class into IsoSts — produces
+**schema-incorrect models**. The NisoSts models disagree with
+`reference-docs/isosts-v1/xsd/ISOSTS.xsd` on nearly every element:
 
-### Root Cause
+| Element | ISOSTS says | NisoSts model |
+|---|---|---|
+| `year` (:948) | `content-type`, `specific-use`, `xml:lang` — no `@id` | `@id` only |
+| `doc-type` (:6378) | `type="xs:string"` — no attributes at all | `@id` + content |
+| `ics` (:6373) | `type="xs:string"` | `@id` + `ics-desc` child |
+| `fpage` | `content-type`, `seq`, `specific-use`, `xml:lang`; no children | `@id` + bold/italic |
+| `license` (:51) | `license-type`, `specific-use`, `xml:lang` | `@id`, `xlink:href` |
+| `ruby` | **not an ISOSTS element** | exists (NISO only) |
 
-The schemas ARE different:
-- ISOSTS `<p>`: `@content-type, @id, @specific-use, @xml:lang`
-- NISO STS Extended `<p>`: `@content-type, @id, @originator, @specific-use, @style-type, @xml:base, @xml:lang`
+`feature_doc.xml` declares `<!DOCTYPE standard SYSTEM ".../ISOSTS.dtd">`, and
+the ISOSTS DTD agrees with ISOSTS.xsd (both derive `bold`, `sub` etc. from the
+JATS 0.4 modules). ISOSTS.xsd is a faithful conversion and is the authority.
 
-## Solution: Three-Tier Architecture
+**Round-tripping does not prove correctness.** A model that invents or drops an
+attribute still parses and serialises symmetrically, so the suite stays green
+while the model is wrong. Assert the exact attribute set per element instead.
 
-### Tier 1: Shared Base Types
+Attribute lists must be **generated** from the XSD, never hand-read: `version`
+on `tex-math` and `specific-use` on `pub-id` sit after long `xs:enumeration`
+blocks and are invisible to a truncated read.
 
-Create shared types in `Sts::Base` that both namespaces inherit:
+## Done in issue #40 — 43 refs removed, 27 classes added
 
-```ruby
-# lib/sts/base/text/emphasis.rb
-module Sts
-  module Base
-    module Text
-      class Emphasis < Lutaml::Model::Serializable
-        # Shared attributes/methods
-        attribute :id, :string
-        attribute :base_fontsize, :string
-        attribute :baseline_shift, :string
-        attribute :color, :string
+- **14 `xs:string` elements** (`originator`, `doc-type`, `doc-number`,
+  `part-number`, `version`, `suppl-type`, `suppl-number`, `suppl-version`,
+  `urn`, `sdo`, `proj-id`, `release-version`, `ics`, `secretariat`) — modelled
+  as content-only IsoSts classes with no attributes. 23 refs.
+- **3 `permissions` refs** repointed to the existing `IsoSts::Permissions`.
+- **`ruby` deleted** from `StyledContent` — ISOSTS defines no such element.
+  Behaviour change: `<ruby>` in `<styled-content>` no longer round-trips.
+- **13 element classes** modelled from ISOSTS.xsd: `Year`, `PubDate`,
+  `ReleaseVersionId`, `IsProof`, `AltText`, `LongDesc`, `TexMath`, `PubId`,
+  `Volume`, `Issue`, `Fpage`, `Lpage`, `PageRange`. 16 refs.
+- **`WiNumber` added** — ISOSTS gives `wi-number` an `@id`; it was typed as a
+  plain string, silently discarding that `@id`.
 
-        xml do
-          map_attribute :id, to: :id
-          # ...
-        end
-      end
+### Why classes and not plain `:string`
 
-      class Bold < Emphasis
-        xml { element "bold" }
-      end
+`xs:string` elements look like they need no class. They do: an empty element
+(`<sdo/>`, which `feature_doc.xml` contains) does not survive a `:string`
+round-trip. For a scalar, `render_empty: :empty` recovers it; for a collection
+(`secretariat`, `ics` — both `maxOccurs="unbounded"`) an empty element parses
+to `[]`, destroying the information at parse time before any render option
+applies. Content-only classes round-trip every case.
 
-      class Italic < Emphasis
-        xml { element "italic" }
-      end
+## Remaining — 20 refs
 
-      class Sub < Emphasis
-        xml { element "sub" }
-      end
+**11 refs to 9 deep roots**: `MetadataStd`, `ElementCitation`, `PersonGroup`,
+`Collab`, `Source`, `DispQuote`, `EditingInstruction`, `TermDisplay`,
+`BoxedText`. Each reaches the same ~152-class mutually-recursive core
+(`Section` → `Paragraph` → `DispQuote` → `Paragraph`). `DispQuote` has 3 direct
+children but pulls all 152. No incremental path — needs its own decision.
 
-      class Sup < Emphasis
-        xml { element "sup" }
-      end
-    end
-  end
-end
-```
+**9 refs whose ISOSTS content models have real children**, closure not measured:
+`attrib` (:1082), `term-head` (:4308), `article-title`, `license` → `license-p`
+(:51), `publisher` → `publisher-loc`, `custom-meta-group` → `custom-meta`.
+`attrib` and `term-head` are **not** trivial leaves in ISOSTS despite what the
+NisoSts models suggest; `license-p` reaches `array`/`alternatives`, so these may
+not be cheap. Measure before planning.
 
-### Tier 2: IsoSts-Specific Extensions
+## Rejected: three-tier `Sts::Base` hierarchy
 
-```ruby
-# lib/sts/iso_sts/text/emphasis.rb
-module Sts
-  module IsoSts
-    module Text
-      class Bold < ::Sts::Base::Text::Bold
-        # Add IsoSts-specific attributes
-        attribute :content_type, :string
+An earlier draft of this document proposed shared base types in `Sts::Base` that
+both namespaces inherit. This contradicts the 2026-05-07 ADR, and the schemas
+genuinely diverge — `IsoSts::Fig` has `title`/`alternatives` that
+`NisoSts::Figure` lacks; `IsoSts::Ref` has `nlm-citation`/`citation-alternatives`
+that `NisoSts::Reference` lacks. A shared base would fight the schemas.
 
-        xml do
-          # Override/add IsoSts-specific mapping
-          map_attribute "content-type", to: :content_type
-        end
-      end
-    end
-  end
-end
-```
+That draft also targeted `lib/sts/iso_sts/content_groups/highlight_elements.rb`
+and "194+ references" to emphasis types. That file was deleted as dead code; the
+real work was metadata types, not highlight elements.
 
-### Tier 3: NisoSts-Specific Extensions
+## Naming trap (for the deferred work)
 
-```ruby
-# lib/sts/niso_sts/text/emphasis.rb
-module Sts
-  module NisoSts
-    module Text
-      class Bold < ::Sts::Base::Text::Bold
-        # Add NisoSts-specific attributes
-        attribute :originator, :string
-        attribute :style_type, :string
+A mechanical `s/NisoSts::/IsoSts::/` is wrong. Nine elements already have
+different class names per namespace, so a blind rename creates `IsoSts::Section`
+alongside the existing `IsoSts::Sec` — two classes for one `sec` element:
 
-        xml do
-          map_attribute "originator", to: :originator
-          map_attribute "style-type", to: :style_type
-        end
-      end
-    end
-  end
-end
-```
+`Section`/`Sec`, `Figure`/`Fig`, `Reference`/`Ref`, `ReferenceList`/`RefList`,
+`SectionArray`/`Array`, `StdCrossReference`/`StandardCrossReference`,
+`DisplayFormula`/`DispFormula`, `TermSection`/`TermSec`,
+`ReferenceStandard`/`Std`.
 
-## Implementation Strategy
+Remap child references by **XML element name**, not class name.
 
-1. **Phase 1**: Identify all shared element types (bold, italic, sub, sup, p, etc.)
-2. **Phase 2**: Create base types with MINIMAL shared attributes
-3. **Phase 3**: Refactor IsoSts to extend bases
-4. **Phase 4**: Refactor NisoSts to extend bases
-5. **Phase 5**: Delete `Sts::NisoSts::*` references from IsoSts content groups
+## Scope boundary
 
-## Files to Refactor
-
-Primary targets:
-- `lib/sts/iso_sts/content_groups/highlight_elements.rb`
-- `lib/sts/iso_sts/content_groups/emphasis_elements.rb` (if exists)
-- `lib/sts/niso_sts/content_groups/highlight_elements.rb`
+Independence from NisoSts is not independence in general: `lib/sts/iso_sts/`
+still references 6 `TbxIsoTml` types directly, and much of the deferred closure
+reaches `TbxIsoTml`/MathML. Those are shared namespaces, outside this ADR.
 
 ## Verification
 
-1. No `Sts::NisoSts` references in `lib/sts/iso_sts/`
-2. All round-trip tests pass
-3. Schema validation against both ISOSTS DTD and NISO STS XSD passes
-
-## Dependencies
-
-- `01-mathml-delegation.md` — uses similar patterns
-- `02-type-resolution.md` — must be clean first
-
-## TODO Checklist
-
-- [ ] Audit all IsoSts → NisoSts references
-- [ ] Categorize by shared vs. truly namespace-specific
-- [ ] Design base type hierarchy
-- [ ] Create `lib/sts/base/` directory structure
-- [ ] Implement base types for shared elements
-- [ ] Refactor IsoSts to use base types
-- [ ] Refactor NisoSts to use base types
-- [ ] Remove cross-namespace references
-- [ ] Verify no circular dependencies
-- [ ] Run full test suite
+1. `grep -rho "Sts::NisoSts::" lib/sts/iso_sts/ | wc -l` → `20`
+2. Every attribute on an IsoSts model traces to a line in `ISOSTS.xsd`
+3. Autoload registry 1:1 with the directory (112/112)
+4. `bundle exec rspec` green; `bundle exec rubocop` clean
