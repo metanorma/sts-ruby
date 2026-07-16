@@ -25,7 +25,6 @@ module Sts
       attribute :sc, ::Sts::IsoSts::Sc, collection: true
       attribute :strike, ::Sts::IsoSts::Strike, collection: true
       attribute :underline, ::Sts::IsoSts::Underline, collection: true
-      attribute :ruby, ::Sts::NisoSts::Ruby, collection: true
       attribute :break, ::Sts::IsoSts::Break, collection: true
       attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
 
@@ -57,7 +56,6 @@ module Sts
         map_element "sc", to: :sc
         map_element "strike", to: :strike
         map_element "underline", to: :underline
-        map_element "ruby", to: :ruby
         map_element "break", to: :break
         map_element "styled-content", to: :styled_content
       end
