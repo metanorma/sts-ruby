@@ -643,7 +643,8 @@ RSpec.describe Sts::IsoSts do
     }.each do |klass, element|
       it "IsoSts::#{klass} preserves xlink:type through a round-trip" do
         model = described_class.const_get(klass)
-        xml = %(<#{element} xlink:type="simple">text</#{element}>)
+        ns = 'xmlns:xlink="http://www.w3.org/1999/xlink"'
+        xml = %(<#{element} #{ns} xlink:type="simple">text</#{element}>)
         parsed = model.from_xml(xml)
         expect(parsed.xlink_type).to eq("simple")
         expect(model.to_xml(parsed)).to include('xlink:type="simple"')
