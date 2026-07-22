@@ -4,6 +4,8 @@ module Sts
   module IsoSts
     class Label < Lutaml::Model::Serializable
       attribute :id, :string
+      attribute :alt, :string
+      attribute :xml_lang, :string
       attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold
       attribute :italic, ::Sts::IsoSts::Italic
@@ -19,6 +21,8 @@ module Sts
       xml do
         element "label"
         map_attribute "id", to: :id
+        map_attribute "alt", to: :alt
+        map_attribute "xml:lang", to: :xml_lang
         mixed_content
 
         map_content to: :content

@@ -4,6 +4,8 @@ module Sts
   module IsoSts
     class Title < Lutaml::Model::Serializable
       attribute :id, :string
+      attribute :content_type, :string
+      attribute :specific_use, :string
       attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold, collection: true
       attribute :italic, ::Sts::IsoSts::Italic, collection: true
@@ -20,6 +22,8 @@ module Sts
       xml do
         element "title"
         map_attribute "id", to: :id
+        map_attribute "content-type", to: :content_type
+        map_attribute "specific-use", to: :specific_use
         mixed_content
 
         map_content to: :content
