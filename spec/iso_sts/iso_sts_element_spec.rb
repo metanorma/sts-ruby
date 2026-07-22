@@ -428,10 +428,10 @@ RSpec.describe Sts::IsoSts do
     end
   end
 
-  # ISOSTS declares these elements as type="xs:string": text content, no
-  # attributes. They are modelled as IsoSts classes rather than plain strings
-  # because an empty element (<sdo/>) does not survive a :string round-trip --
-  # for a collection it parses to [], losing the element entirely.
+  # ISOSTS declares these elements as type="xs:string": text content, plus the
+  # conventional @id (86948b9). They are modelled as IsoSts classes rather than
+  # plain strings because an empty element (<sdo/>) does not survive a :string
+  # round-trip -- for a collection it parses to [], losing the element entirely.
   describe "ISOSTS xs:string elements" do
     {
       Originator: "originator",
@@ -454,9 +454,9 @@ RSpec.describe Sts::IsoSts do
         expect(model.mappings_for(:xml).root_element).to eq(element)
       end
 
-      it "IsoSts::#{klass} has only content, as ISOSTS defines no attributes" do
+      it "IsoSts::#{klass} models content plus the conventional @id" do
         model = described_class.const_get(klass)
-        expect(model.attributes.keys).to eq(%i[content])
+        expect(model.attributes.keys).to eq(%i[content id])
       end
 
       it "IsoSts::#{klass} round-trips an empty <#{element}/>" do
@@ -497,32 +497,29 @@ RSpec.describe Sts::IsoSts do
     end
   end
 
-  # Attribute sets below are transcribed from ISOSTS.xsd. Round-tripping does
-  # not prove them: a model that invents or drops an attribute still parses and
-  # serialises symmetrically. Asserting the exact set is what catches that.
+  # Non-@id attribute sets below are transcribed from ISOSTS.xsd; the @id,
+  # where present, follows the 86948b9 convention. Round-tripping does not prove
+  # them: a model that invents or drops an attribute still parses and serialises
+  # symmetrically. Asserting the exact set is what catches that.
   describe "ISOSTS-modelled element classes" do
     {
-      Year: %i[content content_type specific_use xml_lang],
-      PubDate: %i[content pub_type],
+      Year: %i[content content_type specific_use xml_lang id],
+      PubDate: %i[content pub_type id],
       ReleaseVersionId: %i[content id],
       AltText: %i[content id content_type specific_use xml_lang],
       LongDesc: %i[content id content_type specific_use xml_lang],
       TexMath: %i[content id content_type notation version],
-      PubId: %i[content pub_id_type specific_use],
-      Volume: %i[content content_type seq specific_use xml_lang],
-      Issue: %i[content content_type seq specific_use xml_lang],
-      Fpage: %i[content content_type seq specific_use xml_lang],
-      Lpage: %i[content content_type specific_use xml_lang],
-      PageRange: %i[content content_type specific_use xml_lang],
+      PubId: %i[content pub_id_type specific_use id],
+      Volume: %i[content content_type seq specific_use xml_lang id],
+      Issue: %i[content content_type seq specific_use xml_lang id],
+      Fpage: %i[content content_type seq specific_use xml_lang id],
+      Lpage: %i[content content_type specific_use xml_lang id],
+      PageRange: %i[content content_type specific_use xml_lang id],
     }.each do |klass, expected|
-      it "IsoSts::#{klass} models exactly the ISOSTS attribute set" do
+      it "IsoSts::#{klass} models its configured attribute set" do
         expect(described_class.const_get(klass).attributes.keys)
           .to match_array(expected)
       end
-    end
-
-    it "IsoSts::Year has no id, which ISOSTS does not define" do
-      expect(described_class::Year.attributes).not_to have_key(:id)
     end
 
     it "IsoSts::Fpage carries seq but IsoSts::Lpage does not" do
@@ -535,8 +532,8 @@ RSpec.describe Sts::IsoSts do
       expect(described_class::Fpage.attributes).not_to have_key(:italic)
     end
 
-    it "IsoSts::IsProof is an empty element" do
-      expect(described_class::IsProof.attributes).to be_empty
+    it "IsoSts::IsProof carries only @id and has no content" do
+      expect(described_class::IsProof.attributes.keys).to eq(%i[id])
       round_tripped = described_class::IsProof
         .to_xml(described_class::IsProof.new).strip
       expect(round_tripped).to eq("<is-proof/>")
@@ -604,6 +601,31 @@ RSpec.describe Sts::IsoSts do
     it "is used by RegMeta rather than a plain string" do
       expect(described_class::RegMeta.attributes[:wi_number].type)
         .to eq(described_class::WiNumber)
+    end
+  end
+
+  # A model can declare `attribute :id` yet omit `map_attribute "id"`, which
+  # still satisfies the key-set assertions above while silently dropping @id on
+  # parse and omitting it on serialise. Every fixture is @id-free, so only an
+  # explicit round-trip proves the mapping exists.
+  describe "@id round-trips through parse and serialise" do
+    %i[
+      DocNumber DocType Fpage Ics IsProof Issue Lpage Originator PageRange
+      PartNumber ProjId PubDate PubId ReleaseVersion Sdo SupplNumber SupplType
+      SupplVersion Urn Version Volume Year Secretariat
+    ].each do |klass|
+      it "IsoSts::#{klass} preserves @id through a round-trip" do
+        model = described_class.const_get(klass)
+        element = model.mappings_for(:xml).root_element
+        xml = if klass == :IsProof
+                %(<#{element} id="x-1"/>)
+              else
+                %(<#{element} id="x-1">content</#{element}>)
+              end
+        parsed = model.from_xml(xml)
+        expect(parsed.id).to eq("x-1")
+        expect(model.to_xml(parsed)).to include('id="x-1"')
+      end
     end
   end
 end
