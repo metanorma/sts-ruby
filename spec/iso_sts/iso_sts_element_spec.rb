@@ -674,29 +674,46 @@ RSpec.describe Sts::IsoSts do
     end
   end
 
-  # The fixtures never carry these attributes, so a round-trip is the only proof
-  # the added mappings parse and serialise for their attribute shapes.
-  describe "ISOSTS attributes absent from fixtures still round-trip" do
-    it "IsoSts::CopyrightHolder preserves content-type" do
-      xml = %(<copyright-holder content-type="foo">ACME</copyright-holder>)
-      parsed = described_class::CopyrightHolder.from_xml(xml)
-      expect(parsed.content_type).to eq("foo")
-      expect(described_class::CopyrightHolder.to_xml(parsed))
-        .to include('content-type="foo"')
-    end
-
-    it "IsoSts::Label preserves alt" do
-      xml = %(<label alt="a">1</label>)
-      parsed = described_class::Label.from_xml(xml)
-      expect(parsed.alt).to eq("a")
-      expect(described_class::Label.to_xml(parsed)).to include('alt="a"')
-    end
-
-    it "IsoSts::Sub preserves arrange" do
-      xml = %(<sub arrange="stack">2</sub>)
-      parsed = described_class::Sub.from_xml(xml)
-      expect(parsed.arrange).to eq("stack")
-      expect(described_class::Sub.to_xml(parsed)).to include('arrange="stack"')
+  # Every attribute this change restored or remapped, proven to round-trip so a
+  # future edit cannot silently drop a mapping. The fixtures do not exercise
+  # most of these, so this is the only regression guard on the mappings. xlink
+  # attributes need xmlns:xlink for well-formed XML; xml:lang is predefined.
+  describe "restored ISOSTS attributes round-trip" do
+    {
+      Sub: %w[arrange specific-use],
+      Sup: %w[arrange specific-use],
+      ExtLink: %w[xlink:type xlink:role xlink:title xlink:show xlink:actuate],
+      MixedCitation: %w[xlink:type xlink:href xlink:role xlink:title xlink:show
+                        xlink:actuate],
+      CopyrightHolder: %w[content-type specific-use xml:lang],
+      CopyrightStatement: %w[content-type specific-use xml:lang],
+      CopyrightYear: %w[content-type specific-use],
+      Edition: %w[content-type specific-use xml:lang],
+      Title: %w[content-type specific-use],
+      Label: %w[alt xml:lang],
+      Uri: %w[xlink:type],
+      NamedContent: %w[xlink:type],
+      Graphic: %w[xlink:role xlink:title xlink:show xlink:actuate originator],
+      Underline: %w[underline-style],
+      Body: %w[specific-use],
+      Sec: %w[xml:lang],
+      Standard: %w[xml:lang],
+      TermSec: %w[xml:lang],
+    }.each do |klass, xml_attrs|
+      xml_attrs.each do |xml_attr|
+        it "IsoSts::#{klass} round-trips #{xml_attr}" do
+          model = described_class.const_get(klass)
+          element = model.mappings_for(:xml).root_element
+          ns = if xml_attr.start_with?("xlink:")
+                 ' xmlns:xlink="http://www.w3.org/1999/xlink"'
+               else
+                 ""
+               end
+          parsed = model.from_xml(%(<#{element}#{ns} #{xml_attr}="v-1"/>))
+          expect(parsed.public_send(xml_attr.tr(":-", "__"))).to eq("v-1")
+          expect(model.to_xml(parsed)).to include(%(#{xml_attr}="v-1"))
+        end
+      end
     end
   end
 

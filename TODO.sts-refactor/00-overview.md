@@ -196,5 +196,6 @@ Two independent tracks:
 1. Finish `03` — the 20 remaining refs split into 11 deep-root refs (each
    reaching a ~152-class recursive core) and 9 child-bearing refs whose closure
    is unmeasured. Both need sizing before planning.
-2. File and fix the 16 lossy models above — real data loss, unrelated to
-   decoupling.
+2. The remaining schema-conformance follow-up above — the 7 spurious attributes
+   on 5 models and the 6 classes without `@id`. (The dropped-attribute data loss
+   is now fixed.)
