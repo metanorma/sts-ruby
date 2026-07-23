@@ -16,7 +16,7 @@ module Sts
       attribute :private_char, ::Sts::NisoSts::PrivateChar, collection: true
       attribute :named_content, ::Sts::NisoSts::NamedContent, collection: true
       attribute :styled_content, ::Sts::NisoSts::StyledContent, collection: true
-      attribute :math, ::Sts::TbxIsoTml::Math
+      attribute :math, ::Mml::V3::Math
       attribute :inline_formula, ::Sts::NisoSts::InlineFormula, collection: true
       attribute :alternatives, ::Sts::NisoSts::Alternatives
       attribute :preformat, ::Sts::NisoSts::Preformat
@@ -25,14 +25,12 @@ module Sts
 
       xml do
         element "inline-formula"
-        mixed_content
 
         map_attribute "content-type", to: :content_type
         map_attribute "id", to: :id
         map_attribute "specific-use", to: :specific_use
         map_attribute "xml:lang", to: :xml_lang
 
-        map_content to: :content
         map_element "bold", to: :bold
         map_element "italic", to: :italic
         map_element "sub", to: :sub
