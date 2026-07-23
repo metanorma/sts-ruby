@@ -18,6 +18,7 @@ module Sts
         ordered
         namespace_scope [
           ::Sts::Namespaces::MathmlNamespace,
+          ::Mml::Namespace,
           ::Sts::Namespaces::TbxNamespace,
           ::Lutaml::Xml::W3c::XlinkNamespace,
         ]

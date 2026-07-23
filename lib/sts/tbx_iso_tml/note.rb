@@ -7,7 +7,7 @@ module Sts
       attribute :value, :string, collection: true
       attribute :table_wrap, ::Sts::TbxIsoTml::TableWrap
       attribute :entailed_term, ::Sts::TbxIsoTml::EntailedTerm, collection: true
-      attribute :math, ::Sts::TbxIsoTml::Math, collection: true
+      attribute :math, ::Mml::V3::Math, collection: true
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
       attribute :list, ::Sts::NisoSts::List, collection: true
       attribute :std, ::Sts::NisoSts::ReferenceStandard, collection: true

@@ -20,7 +20,7 @@ module Sts
       attribute :named_content, ::Sts::NisoSts::NamedContent, collection: true
       attribute :styled_content, ::Sts::NisoSts::StyledContent, collection: true
       attribute :label, ::Sts::NisoSts::Label
-      attribute :math, ::Sts::TbxIsoTml::Math
+      attribute :math, ::Mml::V3::Math
       attribute :inline_formula, ::Sts::NisoSts::InlineFormula, collection: true
       attribute :tex_math, ::Sts::NisoSts::TexMath
       attribute :graphic, ::Sts::NisoSts::Graphic, collection: true
@@ -32,7 +32,6 @@ module Sts
 
       xml do
         element "disp-formula"
-        mixed_content
 
         map_attribute "id", to: :id
         map_attribute "content-type", to: :content_type
@@ -40,7 +39,6 @@ module Sts
         map_attribute "specific-use", to: :specific_use
         map_attribute "xml:lang", to: :xml_lang
 
-        map_content to: :content
         map_element "bold", to: :bold
         map_element "italic", to: :italic
         map_element "sub", to: :sub
