@@ -10,7 +10,7 @@ module Sts
       attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
       attribute :sub, ::Sts::NisoSts::Sub, collection: true
       attribute :sup, ::Sts::NisoSts::Sup, collection: true
-      attribute :math, ::Mml::V3::Math, collection: true
+      attribute :math, ::Mml::V2::Math, collection: true
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
       attribute :inline_formula, ::Sts::NisoSts::InlineFormula, collection: true
       attribute :std, ::Sts::NisoSts::ReferenceStandard, collection: true

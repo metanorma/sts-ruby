@@ -70,6 +70,7 @@ RSpec/DescribeClass:
     - 'spec/elements/new_elements_spec.rb'
     - 'spec/elements/reference_models_spec.rb'
     - 'spec/elements/structural_models_spec.rb'
+    - 'spec/mathml_version_spec.rb'
     - 'spec/round_trip/reference_docs_spec.rb'
 
 # Offense count: 1

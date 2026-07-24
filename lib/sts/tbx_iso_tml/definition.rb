@@ -8,7 +8,7 @@ module Sts
       attribute :note, ::Sts::TbxIsoTml::Note
       attribute :value, :string, collection: true
       attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
-      attribute :math, ::Mml::V3::Math
+      attribute :math, ::Mml::V2::Math
       attribute :sub, ::Sts::NisoSts::Sub, collection: true
       attribute :list, ::Sts::NisoSts::List, collection: true
       attribute :std, ::Sts::NisoSts::ReferenceStandard, collection: true

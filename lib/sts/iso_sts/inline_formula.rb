@@ -7,7 +7,7 @@ module Sts
       attribute :content_type, :string
       attribute :specific_use, :string
       attribute :xml_lang, :string
-      attribute :math, Mml::V3::Math
+      attribute :math, Mml::V2::Math
       attribute :bold, ::Sts::IsoSts::Bold
       attribute :italic, ::Sts::IsoSts::Italic
       attribute :inline_formula, ::Sts::IsoSts::InlineFormula
