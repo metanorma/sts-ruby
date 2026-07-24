@@ -22,7 +22,7 @@ module Sts
       attribute :sc, ::Sts::IsoSts::Sc, collection: true
       attribute :strike, ::Sts::IsoSts::Strike, collection: true
       attribute :underline, ::Sts::IsoSts::Underline, collection: true
-      attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
+      attribute :fn, ::Sts::IsoSts::Fn, collection: true
 
       xml do
         element "bold"

@@ -34,7 +34,7 @@ module Sts
       attribute :sec, ::Sts::IsoSts::Sec, collection: true
       attribute :term_sec, ::Sts::IsoSts::TermSec, collection: true
       attribute :disp_quote, ::Sts::NisoSts::DispQuote, collection: true
-      attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
+      attribute :fn, ::Sts::IsoSts::Fn, collection: true
       attribute :editing_instruction, ::Sts::NisoSts::EditingInstruction,
                 collection: true
       attribute :boxed_text, ::Sts::NisoSts::BoxedText, collection: true

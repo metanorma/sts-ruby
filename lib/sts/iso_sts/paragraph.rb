@@ -24,7 +24,7 @@ module Sts
                 collection: true
       attribute :non_normative_example, ::Sts::IsoSts::NonNormativeExample,
                 collection: true
-      attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
+      attribute :fn, ::Sts::IsoSts::Fn, collection: true
       attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
       attribute :graphic, ::Sts::IsoSts::Graphic, collection: true
       attribute :math, Mml::V2::Math, collection: true

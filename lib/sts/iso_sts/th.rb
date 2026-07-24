@@ -25,7 +25,7 @@ module Sts
       attribute :def_list, ::Sts::IsoSts::DefList, collection: true
       attribute :math, Mml::V2::Math, collection: true
       attribute :std, ::Sts::IsoSts::Std, collection: true
-      attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
+      attribute :fn, ::Sts::IsoSts::Fn, collection: true
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
       attribute :bold, ::Sts::IsoSts::Bold, collection: true
       attribute :italic, ::Sts::IsoSts::Italic, collection: true
