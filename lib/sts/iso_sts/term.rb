@@ -17,7 +17,7 @@ module Sts
       attribute :uri, ::Sts::IsoSts::Uri
       attribute :named_content, ::Sts::IsoSts::NamedContent
       attribute :styled_content, ::Sts::IsoSts::StyledContent
-      attribute :math, Mml::V3::Math
+      attribute :math, Mml::V2::Math
 
       xml do
         element "term"
