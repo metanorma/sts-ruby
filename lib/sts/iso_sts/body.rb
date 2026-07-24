@@ -23,8 +23,6 @@ module Sts
       attribute :array, ::Sts::IsoSts::Array, collection: true
       attribute :ref_list, ::Sts::IsoSts::RefList, collection: true
       attribute :disp_quote, ::Sts::NisoSts::DispQuote, collection: true
-      attribute :editing_instruction, ::Sts::NisoSts::EditingInstruction,
-                collection: true
 
       xml do
         element "body"
@@ -49,7 +47,6 @@ module Sts
         map_element "array", to: :array
         map_element "ref-list", to: :ref_list
         map_element "disp-quote", to: :disp_quote
-        map_element "editing-instruction", to: :editing_instruction
       end
     end
   end

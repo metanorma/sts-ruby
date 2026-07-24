@@ -19,7 +19,7 @@
 |---|------|----------|----------|--------------|
 | 01 | `01-mathml-delegation.md` | Anti-Pattern Fix | DONE | — |
 | 02 | `02-type-resolution.md` | Anti-Pattern Fix | DONE | — |
-| 03 | `03-namespace-coupling.md` | Architecture | IN PROGRESS (63→20 refs) | 01, 02 |
+| 03 | `03-namespace-coupling.md` | Architecture | IN PROGRESS (63→16 refs) | 01, 02 |
 | 04 | `04-register-versioning.md` | Architecture | HIGH | 01, 02 |
 | 05 | `05-missing-elements.md` | Feature Gap | MOSTLY DONE | 04 |
 | 06 | `06-missing-attributes.md` | Feature Gap | DONE | 04 |
@@ -166,7 +166,7 @@ grep -r "method_missing|respond_to_missing|Object.const_get|\.send" lib/
 - ~~Expand StringName usage (in contrib, element-citation, related-article — NISO STS 1.2)~~ → DONE: added to name-alternatives; already in person-group and mixed-citation
 
 ### Architectural Items (High Effort)
-- `03-namespace-coupling.md` — IN PROGRESS: 63→20 IsoSts→NisoSts references
+- `03-namespace-coupling.md` — IN PROGRESS: 63→16 IsoSts→NisoSts references
   remaining (issue #40). ISOSTS.xsd governs content models and all non-`@id`
   attributes; the `@id` follows the 86948b9 convention.
 - `04-register-versioning.md` — Version the models via lutaml-model Registers
@@ -193,9 +193,12 @@ the **NISO** XSD and applied the result to IsoSts.
 
 ## Next Action
 Two independent tracks:
-1. Finish `03` — the 20 remaining refs split into 11 deep-root refs (each
-   reaching a ~152-class recursive core) and 9 child-bearing refs whose closure
-   is unmeasured. Both need sizing before planning.
+1. Finish `03` — the 16 remaining refs split evenly between seven recursive
+   roots and five child-bearing roots. The first 15 high-reuse dependency
+   leaves are now modelled, reducing the unresolved closures to 78–84
+   not-yet-modelled ISOSTS elements before existing IsoSts boundaries. The
+   remaining work still needs an architecture decision for the recursive
+   content core.
 2. The remaining schema-conformance follow-up above — the 7 spurious attributes
    on 5 models and the 6 classes without `@id`. (The dropped-attribute data loss
    is now fixed.)

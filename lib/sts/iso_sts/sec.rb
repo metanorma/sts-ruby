@@ -35,8 +35,6 @@ module Sts
       attribute :term_sec, ::Sts::IsoSts::TermSec, collection: true
       attribute :disp_quote, ::Sts::NisoSts::DispQuote, collection: true
       attribute :fn, ::Sts::IsoSts::Fn, collection: true
-      attribute :editing_instruction, ::Sts::NisoSts::EditingInstruction,
-                collection: true
       attribute :boxed_text, ::Sts::NisoSts::BoxedText, collection: true
 
       xml do # rubocop:disable Metrics/BlockLength
@@ -74,7 +72,6 @@ module Sts
         map_element "term-sec", to: :term_sec
         map_element "disp-quote", to: :disp_quote
         map_element "fn", to: :fn
-        map_element "editing-instruction", to: :editing_instruction
         map_element "boxed-text", to: :boxed_text
       end
     end

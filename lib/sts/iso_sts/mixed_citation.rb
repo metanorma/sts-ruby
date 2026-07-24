@@ -38,7 +38,7 @@ module Sts
       attribute :fpage, ::Sts::IsoSts::Fpage
       attribute :lpage, ::Sts::IsoSts::Lpage
       attribute :page_range, ::Sts::IsoSts::PageRange
-      attribute :publisher, ::Sts::NisoSts::Publisher
+      attribute :publisher, ::Sts::IsoSts::Publisher
       attribute :pub_id, ::Sts::IsoSts::PubId, collection: true
 
       xml do # rubocop:disable Metrics/BlockLength

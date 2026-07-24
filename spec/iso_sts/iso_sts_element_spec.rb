@@ -541,6 +541,181 @@ RSpec.describe Sts::IsoSts do
     end
   end
 
+  # Every non-@id field below comes from ISOSTS.xsd. The project-mandated @id
+  # remains part of every model even though ISOSTS.xsd does not declare it.
+  describe "ISOSTS model foundation" do
+    {
+      Abbrev: %i[
+        id content def content_type specific_use alt xml_lang xlink_type
+        xlink_href xlink_role xlink_title xlink_show xlink_actuate
+      ],
+      Annotation: %i[
+        id content_type specific_use xml_lang paragraph non_normative_note
+        non_normative_example
+      ],
+      Country: %i[id content content_type country specific_use xml_lang],
+      Day: %i[id content content_type specific_use xml_lang],
+      Email: %i[
+        id content_type specific_use xml_lang xlink_type xlink_href xlink_role
+        xlink_title xlink_show xlink_actuate content
+      ],
+      Etal: %i[id content specific_use xml_lang],
+      Fax: %i[id content content_type specific_use],
+      InlineGraphic: %i[
+        id content_type baseline_shift mimetype mime_subtype specific_use
+        xml_lang xlink_type xlink_href xlink_role xlink_title xlink_show
+        xlink_actuate alt_text
+      ],
+      Institution: %i[
+        id content content_type specific_use xml_lang xlink_type xlink_href
+        xlink_role xlink_title xlink_show xlink_actuate sub sup
+      ],
+      MilestoneEnd: %i[id rid content_type rationale specific_use xml_lang],
+      MilestoneStart: %i[id rid content_type rationale specific_use xml_lang],
+      Month: %i[id content content_type specific_use xml_lang],
+      Num: %i[id content dsep gsep specific_use],
+      ObjectId: %i[id content pub_id_type content_type specific_use],
+      Phone: %i[id content content_type specific_use],
+      Publisher: %i[id content_type publisher_name publisher_loc],
+      PublisherLoc: %i[
+        id specific_use xml_lang content email ext_link uri
+      ],
+      PublisherName: %i[id specific_use xml_lang content],
+      Season: %i[id content content_type specific_use xml_lang],
+    }.each do |klass, expected|
+      it "IsoSts::#{klass} models its configured attribute set" do
+        model = described_class.const_get(klass, false)
+        expect(model.attributes.keys).to match_array(expected)
+      end
+    end
+
+    it "preserves the project-mandated @id mapping on every model" do
+      %i[
+        Abbrev Annotation Country Day Email Etal Fax InlineGraphic Institution
+        MilestoneEnd MilestoneStart Month Num ObjectId Phone Publisher
+        PublisherLoc PublisherName Season
+      ].each do |klass|
+        model = described_class.const_get(klass, false)
+        element = model.mappings_for(:xml).root_element
+        parsed = model.from_xml(%(<#{element} id="foundation-1"/>))
+
+        expect(parsed.id).to eq("foundation-1")
+        expect(model.to_xml(parsed)).to include('id="foundation-1"')
+      end
+    end
+
+    {
+      Abbrev: { def: :Def },
+      Annotation: {
+        paragraph: :Paragraph,
+        non_normative_note: :NonNormativeNote,
+        non_normative_example: :NonNormativeExample,
+      },
+      InlineGraphic: { alt_text: :AltText },
+      Institution: { sub: :Sub, sup: :Sup },
+    }.each do |klass, children|
+      children.each do |attribute, child_class|
+        it "IsoSts::#{klass}##{attribute} uses IsoSts::#{child_class}" do
+          model = described_class.const_get(klass, false)
+          expected = described_class.const_get(child_class, false)
+          expect(model.attributes[attribute].type).to eq(expected)
+        end
+      end
+    end
+
+    {
+      Abbrev: %w[
+        content-type specific-use alt xml:lang xlink:type xlink:href xlink:role
+        xlink:title xlink:show xlink:actuate
+      ],
+      Annotation: %w[content-type specific-use xml:lang],
+      Country: %w[content-type country specific-use xml:lang],
+      Day: %w[content-type specific-use xml:lang],
+      Etal: %w[specific-use xml:lang],
+      Fax: %w[content-type specific-use],
+      InlineGraphic: %w[
+        content-type baseline-shift mimetype mime-subtype specific-use xml:lang
+        xlink:type xlink:href xlink:role xlink:title xlink:show xlink:actuate
+      ],
+      Institution: %w[
+        content-type specific-use xml:lang xlink:type xlink:href xlink:role
+        xlink:title xlink:show xlink:actuate
+      ],
+      MilestoneEnd: %w[rid content-type rationale specific-use xml:lang],
+      MilestoneStart: %w[rid content-type rationale specific-use xml:lang],
+      Month: %w[content-type specific-use xml:lang],
+      Num: %w[dsep gsep specific-use],
+      ObjectId: %w[pub-id-type content-type specific-use],
+      Phone: %w[content-type specific-use],
+      Season: %w[content-type specific-use xml:lang],
+    }.each do |klass, xml_attributes|
+      it "IsoSts::#{klass} round-trips every ISOSTS attribute" do
+        model = described_class.const_get(klass, false)
+        element = model.mappings_for(:xml).root_element
+        namespace = if xml_attributes.any? { |name| name.start_with?("xlink:") }
+                      ' xmlns:xlink="http://www.w3.org/1999/xlink"'
+                    else
+                      ""
+                    end
+        attributes = xml_attributes.map { |name| %(#{name}="v-1") }.join(" ")
+        parsed = model.from_xml(%(<#{element}#{namespace} #{attributes}/>))
+        serialized = model.to_xml(parsed)
+
+        xml_attributes.each do |xml_attribute|
+          ruby_attribute = xml_attribute.tr(":-", "__")
+          expect(parsed.public_send(ruby_attribute)).to eq("v-1")
+          expect(serialized).to include(%(#{xml_attribute}="v-1"))
+        end
+      end
+    end
+
+    it "uses IsoSts models throughout the publisher closure" do
+      publisher = described_class.const_get(:Publisher, false)
+      publisher_loc = described_class.const_get(:PublisherLoc, false)
+
+      expect(publisher.attributes[:publisher_name].type)
+        .to eq(described_class.const_get(:PublisherName, false))
+      expect(publisher.attributes[:publisher_loc].type).to eq(publisher_loc)
+      expect(publisher_loc.attributes[:email].type)
+        .to eq(described_class.const_get(:Email, false))
+      expect(publisher_loc.attributes[:ext_link].type)
+        .to eq(described_class::ExtLink)
+      expect(publisher_loc.attributes[:uri].type).to eq(described_class::Uri)
+    end
+
+    it "uses IsoSts::Publisher from MixedCitation" do
+      expect(described_class::MixedCitation.attributes[:publisher].type)
+        .to eq(described_class.const_get(:Publisher, false))
+    end
+
+    it "round-trips ordered publisher pairs and email attributes" do
+      xml = <<~XML
+        <publisher xmlns:xlink="http://www.w3.org/1999/xlink"
+                   id="publisher-1" content-type="standard">
+          <publisher-name id="name-1" specific-use="primary"
+                          xml:lang="en">First Publisher</publisher-name>
+          <publisher-loc id="loc-1" specific-use="office" xml:lang="en">
+            First City
+            <email id="email-1" content-type="work" specific-use="primary"
+                   xml:lang="en" xlink:type="simple"
+                   xlink:href="mailto:first@example.com" xlink:role="contact"
+                   xlink:title="Email" xlink:show="new"
+                   xlink:actuate="onRequest">first@example.com</email>
+          </publisher-loc>
+          <publisher-name id="name-2">Second Publisher</publisher-name>
+          <publisher-loc id="loc-2">
+            Second City
+            <ext-link xlink:href="https://example.com">Website</ext-link>
+            <uri xlink:href="https://example.com/contact">Contact</uri>
+          </publisher-loc>
+        </publisher>
+      XML
+
+      model = described_class.const_get(:Publisher, false)
+      expect(model.to_xml(model.from_xml(xml))).to be_xml_equivalent_to(xml)
+    end
+  end
+
   describe "IsoSts models that reference the ISOSTS-modelled classes" do
     {
       "StdRef" => { year: :Year },
@@ -582,6 +757,16 @@ RSpec.describe Sts::IsoSts do
   describe "styled-content matches the ISOSTS content model" do
     it "does not model <ruby>, which ISOSTS does not define" do
       expect(described_class::StyledContent.attributes).not_to have_key(:ruby)
+    end
+  end
+
+  describe "IsoSts parents omit Niso-only children" do
+    it "does not model <std-meta> or <editing-instruction>" do
+      expect(described_class::Front.attributes).not_to have_key(:std_meta)
+      expect(described_class::Body.attributes)
+        .not_to have_key(:editing_instruction)
+      expect(described_class::Sec.attributes)
+        .not_to have_key(:editing_instruction)
     end
   end
 
@@ -770,7 +955,7 @@ RSpec.describe Sts::IsoSts do
       Body: %i[
         id content_type specific_use paragraph sec term_sec list def_list
         disp_formula table_wrap fig non_normative_note non_normative_example
-        preformat styled_content array ref_list disp_quote editing_instruction
+        preformat styled_content array ref_list disp_quote
       ],
     }.each do |klass, expected|
       it "IsoSts::#{klass} models its configured attribute set" do

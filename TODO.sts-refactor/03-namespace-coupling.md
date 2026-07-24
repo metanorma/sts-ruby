@@ -3,7 +3,7 @@
 **Priority**: HIGH
 **Category**: Architecture
 **Estimated Effort**: High
-**Status**: Partially done — 63 → 20 references (GitHub issue #40)
+**Status**: Partially done — 63 → 16 references (GitHub issue #40)
 
 ## Problem
 
@@ -12,7 +12,7 @@ independent of NisoSts (ADR 2026-05-07): ISOSTS is frozen legacy, NISO STS
 evolves, so coupling them violates OCP.
 
 PR #31 reduced this from 157 to 63 references. Issue #40 reduced it further,
-from 63 to 20.
+from 63 to 16.
 
 ## Content models from ISOSTS.xsd; `@id` from the 86948b9 convention
 
@@ -40,7 +40,7 @@ Non-`@id` attribute lists must be **generated** from the XSD, never hand-read:
 `version` on `tex-math` and `specific-use` on `pub-id` sit after long
 `xs:enumeration` blocks and are invisible to a truncated read.
 
-## Done in issue #40 — 43 refs removed, 27 classes added
+## Done in issue #40 — 47 refs removed, 46 classes added
 
 - **14 `xs:string` elements** (`originator`, `doc-type`, `doc-number`,
   `part-number`, `version`, `suppl-type`, `suppl-number`, `suppl-version`,
@@ -56,6 +56,19 @@ Non-`@id` attribute lists must be **generated** from the XSD, never hand-read:
   `Volume`, `Issue`, `Fpage`, `Lpage`, `PageRange`. 16 refs.
 - **`WiNumber` added** — ISOSTS gives `wi-number` an `@id`; it was typed as a
   plain string, silently discarding that `@id`.
+- **`Publisher` closure added** — `Publisher`, `PublisherName`, `PublisherLoc`,
+  and `Email` are modelled from ISOSTS.xsd; `PublisherLoc` reuses the existing
+  IsoSts `ExtLink` and `Uri` boundary models. All four retain the
+  project-mandated `@id` model surface. 1 ref.
+- **15 reusable dependency leaves added** — `Abbrev`, `Annotation`, `Country`,
+  `Day`, `Etal`, `Fax`, `InlineGraphic`, `Institution`, `MilestoneEnd`,
+  `MilestoneStart`, `Month`, `Num`, `ObjectId`, `Phone`, and `Season` are
+  modelled from ISOSTS.xsd and close entirely on existing IsoSts types. They
+  remove no direct reference yet, but establish the first shared dependency
+  layer for the remaining recursive roots.
+- **3 Niso-only child refs deleted** — `std-meta` from `Front` and
+  `editing-instruction` from `Body` and `Sec`. Neither element exists in
+  ISOSTS.xsd, so adding IsoSts equivalents would incorrectly expand the schema.
 
 ### Why classes and not plain `:string`
 
@@ -66,20 +79,23 @@ round-trip. For a scalar, `render_empty: :empty` recovers it; for a collection
 to `[]`, destroying the information at parse time before any render option
 applies. Content-only classes round-trip every case.
 
-## Remaining — 20 refs
+## Remaining — 16 refs
 
-**11 refs to 9 deep roots**: `MetadataStd`, `ElementCitation`, `PersonGroup`,
-`Collab`, `Source`, `DispQuote`, `EditingInstruction`, `TermDisplay`,
-`BoxedText`. Each reaches the same ~152-class mutually-recursive core
-(`Section` → `Paragraph` → `DispQuote` → `Paragraph`). `DispQuote` has 3 direct
-children but pulls all 152. No incremental path — needs its own decision.
+**8 refs to 7 recursive roots**: `ElementCitation`, `PersonGroup`, `Collab`,
+`Source`, `DispQuote`, `TermDisplay`, and `BoxedText`. Each reaches the same
+78–79-element mutually-recursive core before existing IsoSts boundaries
+(`sec` → `p` → `disp-quote` → `p`). No direct one-file path remains.
 
-**9 refs whose ISOSTS content models have real children**, closure not measured:
-`attrib` (:1082), `term-head` (:4308), `article-title`, `license` → `license-p`
-(:51), `publisher` → `publisher-loc`, `custom-meta-group` → `custom-meta`.
-`attrib` and `term-head` are **not** trivial leaves in ISOSTS despite what the
-NisoSts models suggest; `license-p` reaches `array`/`alternatives`, so these may
-not be cheap. Measure before planning.
+**8 refs to 5 child-bearing roots**, now measured after the first dependency
+layer: `attrib` (:1082) reaches 78 not-yet-modelled ISOSTS elements before
+existing IsoSts boundaries, `term-head` (:4308) reaches 79, `article-title`
+reaches 78, `license` → `license-p` (:51) reaches 84, and
+`custom-meta-group` → `custom-meta` reaches 82. They converge on the same
+recursive content core as the deep roots, so none is another bounded model
+batch. `publisher` was the only exception: its four-element closure
+(`publisher`, `publisher-name`, `publisher-loc`, `email`) is complete.
+The Niso `Attrib` class is only 17 lines because it omits all 37 ISOSTS child
+types; copying it would silently drop valid ISO content rather than decouple it.
 
 ## Rejected: three-tier `Sts::Base` hierarchy
 
@@ -114,8 +130,8 @@ reaches `TbxIsoTml`/MathML. Those are shared namespaces, outside this ADR.
 
 ## Verification
 
-1. `grep -rho "Sts::NisoSts::" lib/sts/iso_sts/ | wc -l` → `20`
+1. `grep -rho "Sts::NisoSts::" lib/sts/iso_sts/ | wc -l` → `16`
 2. Every *non-`@id`* attribute on an IsoSts model traces to a line in
    `ISOSTS.xsd`; `@id` follows the 86948b9 convention
-3. Autoload registry 1:1 with the directory (112/112)
+3. Autoload registry 1:1 with the directory (131/131)
 4. `bundle exec rspec` green; `bundle exec rubocop` clean
