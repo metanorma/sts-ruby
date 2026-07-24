@@ -96,6 +96,23 @@ module Sts
     autoload :Underline, "#{__dir__}/iso_sts/underline"
     autoload :Uri, "#{__dir__}/iso_sts/uri"
 
+    # Shared model foundations
+    autoload :Abbrev, "#{__dir__}/iso_sts/abbrev"
+    autoload :Annotation, "#{__dir__}/iso_sts/annotation"
+    autoload :Country, "#{__dir__}/iso_sts/country"
+    autoload :Day, "#{__dir__}/iso_sts/day"
+    autoload :Etal, "#{__dir__}/iso_sts/etal"
+    autoload :Fax, "#{__dir__}/iso_sts/fax"
+    autoload :InlineGraphic, "#{__dir__}/iso_sts/inline_graphic"
+    autoload :Institution, "#{__dir__}/iso_sts/institution"
+    autoload :MilestoneEnd, "#{__dir__}/iso_sts/milestone_end"
+    autoload :MilestoneStart, "#{__dir__}/iso_sts/milestone_start"
+    autoload :Month, "#{__dir__}/iso_sts/month"
+    autoload :Num, "#{__dir__}/iso_sts/num"
+    autoload :ObjectId, "#{__dir__}/iso_sts/object_id"
+    autoload :Phone, "#{__dir__}/iso_sts/phone"
+    autoload :Season, "#{__dir__}/iso_sts/season"
+
     # List elements
     autoload :List, "#{__dir__}/iso_sts/list"
     autoload :ListItem, "#{__dir__}/iso_sts/list_item"
@@ -124,9 +141,13 @@ module Sts
     autoload :Graphic, "#{__dir__}/iso_sts/graphic"
 
     # Reference elements
-    autoload :RefList, "#{__dir__}/iso_sts/ref_list"
-    autoload :Ref, "#{__dir__}/iso_sts/ref"
+    autoload :Email, "#{__dir__}/iso_sts/email"
     autoload :MixedCitation, "#{__dir__}/iso_sts/mixed_citation"
+    autoload :Publisher, "#{__dir__}/iso_sts/publisher"
+    autoload :PublisherLoc, "#{__dir__}/iso_sts/publisher_loc"
+    autoload :PublisherName, "#{__dir__}/iso_sts/publisher_name"
+    autoload :Ref, "#{__dir__}/iso_sts/ref"
+    autoload :RefList, "#{__dir__}/iso_sts/ref_list"
 
     # Back matter
     autoload :AppGroup, "#{__dir__}/iso_sts/app_group"
