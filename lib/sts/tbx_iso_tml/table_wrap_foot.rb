@@ -4,13 +4,13 @@ module Sts
   module TbxIsoTml
     class TableWrapFoot < Lutaml::Model::Serializable
       attribute :id, :string
-      attribute :fn_group, ::Sts::TbxIsoTml::FnGroup
+      attribute :fn_group, ::Sts::NisoSts::FnGroup
       attribute :attrib, ::Sts::NisoSts::Attrib
       attribute :permissions, ::Sts::NisoSts::Permissions
       attribute :paragraph, ::Sts::NisoSts::Paragraph
       attribute :non_normative_note, ::Sts::NisoSts::NonNormativeNote
       attribute :non_normative_example, ::Sts::NisoSts::NonNormativeExample
-      attribute :fn, ::Sts::TbxIsoTml::Fn
+      attribute :fn, ::Sts::NisoSts::Fn
 
       xml do
         element "table-wrap-foot"

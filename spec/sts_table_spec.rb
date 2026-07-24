@@ -95,8 +95,8 @@ RSpec.describe Sts::TbxIsoTml do
 
     it "supports fn element" do
       th = described_class::Th.new
-      th.fn = [described_class::Fn.new]
-      expect(th.fn[0]).to be_a(described_class::Fn)
+      th.fn = [Sts::NisoSts::Fn.new]
+      expect(th.fn[0]).to be_a(Sts::NisoSts::Fn)
     end
   end
 
@@ -132,8 +132,8 @@ RSpec.describe Sts::TbxIsoTml do
 
     it "supports fn element" do
       td = described_class::Td.new
-      td.fn = [described_class::Fn.new]
-      expect(td.fn[0]).to be_a(described_class::Fn)
+      td.fn = [Sts::NisoSts::Fn.new]
+      expect(td.fn[0]).to be_a(Sts::NisoSts::Fn)
     end
   end
 
@@ -175,8 +175,8 @@ RSpec.describe Sts::TbxIsoTml do
 
     it "supports fn element" do
       table_wrap_foot = described_class::TableWrapFoot.new
-      table_wrap_foot.fn = described_class::Fn.new
-      expect(table_wrap_foot.fn).to be_a(described_class::Fn)
+      table_wrap_foot.fn = Sts::NisoSts::Fn.new
+      expect(table_wrap_foot.fn).to be_a(Sts::NisoSts::Fn)
     end
   end
 

@@ -11,8 +11,6 @@ module Sts
     autoload :Example, "#{__dir__}/tbx_iso_tml/example"
     autoload :ExternalGraphic, "#{__dir__}/tbx_iso_tml/external_graphic"
     autoload :ExternalSource, "#{__dir__}/tbx_iso_tml/external_source"
-    autoload :Fn, "#{__dir__}/tbx_iso_tml/fn"
-    autoload :FnGroup, "#{__dir__}/tbx_iso_tml/fn_group"
     autoload :GeographicalUsage, "#{__dir__}/tbx_iso_tml/geographical_usage"
     autoload :GrammaticalGender, "#{__dir__}/tbx_iso_tml/grammatical_gender"
     autoload :GrammaticalNumber, "#{__dir__}/tbx_iso_tml/grammatical_number"

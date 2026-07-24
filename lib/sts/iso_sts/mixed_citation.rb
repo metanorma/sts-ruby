@@ -25,7 +25,7 @@ module Sts
       attribute :uri, ::Sts::IsoSts::Uri, collection: true
       attribute :named_content, ::Sts::IsoSts::NamedContent, collection: true
       attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
-      attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
+      attribute :fn, ::Sts::IsoSts::Fn, collection: true
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
       attribute :break, ::Sts::IsoSts::Break, collection: true
       attribute :person_group, ::Sts::NisoSts::PersonGroup, collection: true

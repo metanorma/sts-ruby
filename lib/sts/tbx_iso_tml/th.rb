@@ -92,7 +92,7 @@ module Sts
       attribute :preformat, ::Sts::NisoSts::Preformat, collection: true
 
       # simple-link.class
-      attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
+      attribute :fn, ::Sts::NisoSts::Fn, collection: true
       attribute :target, ::Sts::NisoSts::Target, collection: true
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
 

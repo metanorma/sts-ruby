@@ -11,7 +11,7 @@ module Sts
       attribute :xml_lang, :string
       attribute :std_ref, ::Sts::IsoSts::StdRef, collection: true
       attribute :title, ::Sts::IsoSts::Title
-      attribute :fn, ::Sts::TbxIsoTml::Fn, collection: true
+      attribute :fn, ::Sts::IsoSts::Fn, collection: true
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
       attribute :bold, ::Sts::IsoSts::Bold, collection: true
       attribute :italic, ::Sts::IsoSts::Italic, collection: true
