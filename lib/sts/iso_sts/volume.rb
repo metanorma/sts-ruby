@@ -8,6 +8,7 @@ module Sts
       attribute :seq, :string
       attribute :specific_use, :string
       attribute :xml_lang, :string
+      attribute :id, :string
 
       xml do
         element "volume"
@@ -17,6 +18,7 @@ module Sts
         map_attribute "seq", to: :seq
         map_attribute "specific-use", to: :specific_use
         map_attribute "xml:lang", to: :xml_lang
+        map_attribute "id", to: :id
       end
     end
   end

@@ -3,6 +3,7 @@
 module Sts
   module IsoSts
     class Underline < Lutaml::Model::Serializable
+      attribute :underline_style, :string
       attribute :specific_use, :string
       attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold, collection: true
@@ -14,6 +15,7 @@ module Sts
         element "underline"
         mixed_content
 
+        map_attribute "underline-style", to: :underline_style
         map_attribute "specific-use", to: :specific_use
         map_content to: :content
         map_element "bold", to: :bold

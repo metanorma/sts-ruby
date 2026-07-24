@@ -5,6 +5,7 @@ module Sts
     class Body < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :content_type, :string
+      attribute :specific_use, :string
       attribute :paragraph, ::Sts::IsoSts::Paragraph, collection: true
       attribute :sec, ::Sts::IsoSts::Sec, collection: true
       attribute :term_sec, ::Sts::IsoSts::TermSec, collection: true
@@ -31,6 +32,7 @@ module Sts
 
         map_attribute "id", to: :id
         map_attribute "content-type", to: :content_type
+        map_attribute "specific-use", to: :specific_use
 
         map_element "p", to: :paragraph
         map_element "sec", to: :sec

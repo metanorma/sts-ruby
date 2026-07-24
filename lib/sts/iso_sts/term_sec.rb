@@ -27,7 +27,7 @@ module Sts
         ordered
 
         map_attribute "id", to: :id
-        map_attribute "lang", to: :xml_lang
+        map_attribute "xml:lang", to: :xml_lang
         map_attribute "sec-type", to: :sec_type
         map_attribute "specific-use", to: :specific_use
         map_attribute "originator", to: :originator

@@ -167,26 +167,35 @@ grep -r "method_missing|respond_to_missing|Object.const_get|\.send" lib/
 
 ### Architectural Items (High Effort)
 - `03-namespace-coupling.md` — IN PROGRESS: 63→20 IsoSts→NisoSts references
-  remaining (issue #40). Source of truth is `ISOSTS.xsd`, NOT the NisoSts
-  models — they disagree on nearly every element.
+  remaining (issue #40). ISOSTS.xsd governs content models and all non-`@id`
+  attributes; the `@id` follows the 86948b9 convention.
 - `04-register-versioning.md` — Version the models via lutaml-model Registers
 - `11-duplicate-models.md` — 44 overlapping element resolution (depends on 03)
 
-### Known bugs — schema conformance (separate from 03)
+### Schema conformance — dropped ISOSTS attributes
 The 2026-05-07 "@id added to all models (XSD-verified)" pass verified against
-the **NISO** XSD and applied the result to IsoSts. ISOSTS disagrees:
-- **16 IsoSts models silently drop ISOSTS attributes that exist** — real data
-  loss. `sub`/`sup` lose `arrange`+`specific-use`; `ext-link` loses 5 xlink
-  attrs; `mixed-citation` loses 6; `graphic`, `copyright-*`, `edition`,
-  `title`, `label`, `uri`, `named-content`, `underline`, `meta-date`, `body`
-  lose others.
-- **25 IsoSts models carry an `@id` ISOSTS does not define** — harmless (never
-  populated on parse, never emitted on serialise), but dead surface.
+the **NISO** XSD and applied the result to IsoSts.
+- **Fixed — dropped ISOSTS attributes restored.** 15 IsoSts models were
+  silently dropping ISOSTS attributes present in real documents (data loss):
+  `sub`/`sup` (`arrange`+`specific-use`), `ext-link`/`mixed-citation`/`uri`/
+  `named-content` (`xlink:*`), `graphic` (`xlink:*`+`originator`), `copyright-*`,
+  `edition`, `title`, `label`, `underline`, `body`. This change adds them and
+  fixes `sec`/`standard`/`term-sec`, which mapped `xml:lang` under the wrong XML
+  name. (`meta-date` was NOT lossy — it already maps `type`.)
+- **Not a bug — the conventional `@id`.** IsoSts models carry an `@id` that
+  ISOSTS does not itself define; this is the deliberate 86948b9 convention
+  (NISO-XSD-verified), not dead surface.
+- **Remaining follow-up (separate change).** 7 spurious attributes on 5 models
+  (model carries an attr ISOSTS does not define: `graphic` `type`, `body`/`back`
+  `content-type`, `content-language`/`language` extras), and the 6 classes left
+  without `@id` in 86948b9 (`monospace`, `sc`, `strike`, `underline`, `uri`,
+  `standard_ref`).
 
 ## Next Action
 Two independent tracks:
 1. Finish `03` — the 20 remaining refs split into 11 deep-root refs (each
    reaching a ~152-class recursive core) and 9 child-bearing refs whose closure
    is unmeasured. Both need sizing before planning.
-2. File and fix the 16 lossy models above — real data loss, unrelated to
-   decoupling.
+2. The remaining schema-conformance follow-up above — the 7 spurious attributes
+   on 5 models and the 6 classes without `@id`. (The dropped-attribute data loss
+   is now fixed.)

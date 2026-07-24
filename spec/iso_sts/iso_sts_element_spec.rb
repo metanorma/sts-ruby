@@ -428,10 +428,11 @@ RSpec.describe Sts::IsoSts do
     end
   end
 
-  # ISOSTS declares these elements as type="xs:string": text content, no
-  # attributes. They are modelled as IsoSts classes rather than plain strings
-  # because an empty element (<sdo/>) does not survive a :string round-trip --
-  # for a collection it parses to [], losing the element entirely.
+  # ISOSTS declares these elements as type="xs:string" (text content, no
+  # attributes). The @id they carry is the 86948b9 convention, not declared by
+  # ISOSTS. They are modelled as IsoSts classes, not plain strings, because an
+  # empty element (<sdo/>) does not survive a :string round-trip -- for a
+  # collection it parses to [], losing the element entirely.
   describe "ISOSTS xs:string elements" do
     {
       Originator: "originator",
@@ -454,9 +455,9 @@ RSpec.describe Sts::IsoSts do
         expect(model.mappings_for(:xml).root_element).to eq(element)
       end
 
-      it "IsoSts::#{klass} has only content, as ISOSTS defines no attributes" do
+      it "IsoSts::#{klass} models content plus the conventional @id" do
         model = described_class.const_get(klass)
-        expect(model.attributes.keys).to eq(%i[content])
+        expect(model.attributes.keys).to eq(%i[content id])
       end
 
       it "IsoSts::#{klass} round-trips an empty <#{element}/>" do
@@ -497,32 +498,29 @@ RSpec.describe Sts::IsoSts do
     end
   end
 
-  # Attribute sets below are transcribed from ISOSTS.xsd. Round-tripping does
-  # not prove them: a model that invents or drops an attribute still parses and
-  # serialises symmetrically. Asserting the exact set is what catches that.
+  # Non-@id attribute sets below are transcribed from ISOSTS.xsd; the @id,
+  # where present, follows the 86948b9 convention. Round-tripping does not prove
+  # them: a model that invents or drops an attribute still parses and serialises
+  # symmetrically. Asserting the exact set is what catches that.
   describe "ISOSTS-modelled element classes" do
     {
-      Year: %i[content content_type specific_use xml_lang],
-      PubDate: %i[content pub_type],
+      Year: %i[content content_type specific_use xml_lang id],
+      PubDate: %i[content pub_type id],
       ReleaseVersionId: %i[content id],
       AltText: %i[content id content_type specific_use xml_lang],
       LongDesc: %i[content id content_type specific_use xml_lang],
       TexMath: %i[content id content_type notation version],
-      PubId: %i[content pub_id_type specific_use],
-      Volume: %i[content content_type seq specific_use xml_lang],
-      Issue: %i[content content_type seq specific_use xml_lang],
-      Fpage: %i[content content_type seq specific_use xml_lang],
-      Lpage: %i[content content_type specific_use xml_lang],
-      PageRange: %i[content content_type specific_use xml_lang],
+      PubId: %i[content pub_id_type specific_use id],
+      Volume: %i[content content_type seq specific_use xml_lang id],
+      Issue: %i[content content_type seq specific_use xml_lang id],
+      Fpage: %i[content content_type seq specific_use xml_lang id],
+      Lpage: %i[content content_type specific_use xml_lang id],
+      PageRange: %i[content content_type specific_use xml_lang id],
     }.each do |klass, expected|
-      it "IsoSts::#{klass} models exactly the ISOSTS attribute set" do
+      it "IsoSts::#{klass} models its configured attribute set" do
         expect(described_class.const_get(klass).attributes.keys)
           .to match_array(expected)
       end
-    end
-
-    it "IsoSts::Year has no id, which ISOSTS does not define" do
-      expect(described_class::Year.attributes).not_to have_key(:id)
     end
 
     it "IsoSts::Fpage carries seq but IsoSts::Lpage does not" do
@@ -535,8 +533,8 @@ RSpec.describe Sts::IsoSts do
       expect(described_class::Fpage.attributes).not_to have_key(:italic)
     end
 
-    it "IsoSts::IsProof is an empty element" do
-      expect(described_class::IsProof.attributes).to be_empty
+    it "IsoSts::IsProof carries only @id and has no content" do
+      expect(described_class::IsProof.attributes.keys).to eq(%i[id])
       round_tripped = described_class::IsProof
         .to_xml(described_class::IsProof.new).strip
       expect(round_tripped).to eq("<is-proof/>")
@@ -604,6 +602,181 @@ RSpec.describe Sts::IsoSts do
     it "is used by RegMeta rather than a plain string" do
       expect(described_class::RegMeta.attributes[:wi_number].type)
         .to eq(described_class::WiNumber)
+    end
+  end
+
+  # A model can declare `attribute :id` yet omit `map_attribute "id"`, which
+  # still satisfies the key-set assertions above while silently dropping @id on
+  # parse and omitting it on serialise. Every fixture is @id-free, so only an
+  # explicit round-trip proves the mapping exists.
+  describe "@id round-trips through parse and serialise" do
+    %i[
+      DocNumber DocType Fpage Ics IsProof Issue Lpage Originator PageRange
+      PartNumber ProjId PubDate PubId ReleaseVersion Sdo SupplNumber SupplType
+      SupplVersion Urn Version Volume Year Secretariat
+    ].each do |klass|
+      it "IsoSts::#{klass} preserves @id through a round-trip" do
+        model = described_class.const_get(klass)
+        element = model.mappings_for(:xml).root_element
+        xml = if klass == :IsProof
+                %(<#{element} id="x-1"/>)
+              else
+                %(<#{element} id="x-1">content</#{element}>)
+              end
+        parsed = model.from_xml(xml)
+        expect(parsed.id).to eq("x-1")
+        expect(model.to_xml(parsed)).to include('id="x-1"')
+      end
+    end
+  end
+
+  # xlink:type is dropped on parse and omitted on serialise when unmapped. A
+  # round-trip on inline XML proves the mapping exists rather than merely
+  # asserting an accessor. These four models gained the xlink:type mapping in
+  # this change (ext-link/mixed-citation/uri also carry it in the fixtures).
+  describe "xlink:type round-trips through parse and serialise" do
+    {
+      ExtLink: "ext-link",
+      MixedCitation: "mixed-citation",
+      Uri: "uri",
+      NamedContent: "named-content",
+    }.each do |klass, element|
+      it "IsoSts::#{klass} preserves xlink:type through a round-trip" do
+        model = described_class.const_get(klass)
+        ns = 'xmlns:xlink="http://www.w3.org/1999/xlink"'
+        xml = %(<#{element} #{ns} xlink:type="simple">text</#{element}>)
+        parsed = model.from_xml(xml)
+        expect(parsed.xlink_type).to eq("simple")
+        expect(model.to_xml(parsed)).to include('xlink:type="simple"')
+      end
+    end
+  end
+
+  # These three previously mapped ISOSTS xml:lang under the wrong XML name (bare
+  # lang), losing xml:lang on parse and emitting bare lang on serialise. This
+  # round-trip guards the corrected mapping; exact-set key assertions cannot,
+  # because all three expose :xml_lang either way.
+  describe "xml:lang round-trips through parse and serialise" do
+    {
+      Standard: "standard",
+      Sec: "sec",
+      TermSec: "term-sec",
+    }.each do |klass, element|
+      it "IsoSts::#{klass} preserves xml:lang and emits xml:lang not lang" do
+        model = described_class.const_get(klass)
+        xml = %(<#{element} xml:lang="en"/>)
+        parsed = model.from_xml(xml)
+        expect(parsed.xml_lang).to eq("en")
+        serialised = model.to_xml(parsed)
+        expect(serialised).to include('xml:lang="en"')
+        expect(serialised).not_to match(/\slang=/)
+      end
+    end
+  end
+
+  # Every attribute this change restored or remapped, proven to round-trip so a
+  # future edit cannot silently drop a mapping. The fixtures do not exercise
+  # most of these, so this is the only regression guard on the mappings. xlink
+  # attributes need xmlns:xlink for well-formed XML; xml:lang is predefined.
+  describe "restored ISOSTS attributes round-trip" do
+    {
+      Sub: %w[arrange specific-use],
+      Sup: %w[arrange specific-use],
+      ExtLink: %w[xlink:type xlink:role xlink:title xlink:show xlink:actuate],
+      MixedCitation: %w[xlink:type xlink:href xlink:role xlink:title xlink:show
+                        xlink:actuate],
+      CopyrightHolder: %w[content-type specific-use xml:lang],
+      CopyrightStatement: %w[content-type specific-use xml:lang],
+      CopyrightYear: %w[content-type specific-use],
+      Edition: %w[content-type specific-use xml:lang],
+      Title: %w[content-type specific-use],
+      Label: %w[alt xml:lang],
+      Uri: %w[xlink:type],
+      NamedContent: %w[xlink:type],
+      Graphic: %w[xlink:role xlink:title xlink:show xlink:actuate originator],
+      Underline: %w[underline-style],
+      Body: %w[specific-use],
+      Sec: %w[xml:lang],
+      Standard: %w[xml:lang],
+      TermSec: %w[xml:lang],
+    }.each do |klass, xml_attrs|
+      xml_attrs.each do |xml_attr|
+        it "IsoSts::#{klass} round-trips #{xml_attr}" do
+          model = described_class.const_get(klass)
+          element = model.mappings_for(:xml).root_element
+          ns = if xml_attr.start_with?("xlink:")
+                 ' xmlns:xlink="http://www.w3.org/1999/xlink"'
+               else
+                 ""
+               end
+          parsed = model.from_xml(%(<#{element}#{ns} #{xml_attr}="v-1"/>))
+          expect(parsed.public_send(xml_attr.tr(":-", "__"))).to eq("v-1")
+          expect(model.to_xml(parsed)).to include(%(#{xml_attr}="v-1"))
+        end
+      end
+    end
+  end
+
+  # Exact attribute-key sets after restoring the ISOSTS attributes these models
+  # silently dropped. Round-tripping cannot prove the set: a model that invents
+  # or drops an attribute still parses and serialises symmetrically. Asserting
+  # the exact set is what catches that.
+  describe "IsoSts element classes model their full ISOSTS attribute set" do
+    {
+      Sub: %i[id arrange specific_use content],
+      Sup: %i[id arrange specific_use content],
+      ExtLink: %i[
+        id ext_link_type specific_use xml_lang xlink_href xlink_type xlink_role
+        xlink_title xlink_show xlink_actuate content bold italic named_content
+      ],
+      MixedCitation: %i[
+        id publication_type publisher_type publication_format specific_use
+        xml_lang xlink_type xlink_href xlink_role xlink_title xlink_show
+        xlink_actuate content bold italic sub sup std ext_link uri named_content
+        styled_content fn xref break person_group collab year source
+        article_title volume issue fpage lpage page_range publisher pub_id
+      ],
+      CopyrightHolder: %i[
+        id content_type specific_use xml_lang content sub sup
+      ],
+      CopyrightStatement: %i[
+        id content_type specific_use xml_lang content bold italic ext_link uri
+      ],
+      CopyrightYear: %i[id content_type specific_use content],
+      Edition: %i[id content_type specific_use xml_lang content],
+      Title: %i[
+        id content_type specific_use content bold italic sub sup xref break
+        styled_content monospace sc inline_formula std
+      ],
+      Label: %i[
+        id alt xml_lang content bold italic sub sup inline_formula break
+        styled_content ext_link uri named_content
+      ],
+      Uri: %i[
+        content_type specific_use xml_lang xlink_href xlink_type xlink_role
+        xlink_title xlink_show xlink_actuate content
+      ],
+      NamedContent: %i[
+        id alt content_type specific_use xml_lang xlink_href xlink_type
+        xlink_role xlink_title xlink_show xlink_actuate content bold italic
+        sub sup
+      ],
+      Graphic: %i[
+        id position orientation specific_use xml_lang content_type mimetype
+        mime_subtype xlink_href xlink_type xlink_role xlink_title xlink_show
+        xlink_actuate graphic_type originator label caption alt_text long_desc
+      ],
+      Underline: %i[underline_style specific_use content bold italic sub sup],
+      Body: %i[
+        id content_type specific_use paragraph sec term_sec list def_list
+        disp_formula table_wrap fig non_normative_note non_normative_example
+        preformat styled_content array ref_list disp_quote editing_instruction
+      ],
+    }.each do |klass, expected|
+      it "IsoSts::#{klass} models its configured attribute set" do
+        expect(described_class.const_get(klass).attributes.keys)
+          .to match_array(expected)
+      end
     end
   end
 end

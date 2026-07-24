@@ -14,41 +14,42 @@ evolves, so coupling them violates OCP.
 PR #31 reduced this from 157 to 63 references. Issue #40 reduced it further,
 from 63 to 20.
 
-## Source of truth: ISOSTS.xsd, NOT the NisoSts models
+## Content models from ISOSTS.xsd; `@id` from the 86948b9 convention
 
-The obvious approach — duplicate each NisoSts class into IsoSts — produces
-**schema-incorrect models**. The NisoSts models disagree with
-`reference-docs/isosts-v1/xsd/ISOSTS.xsd` on nearly every element:
+IsoSts models carry `@id` following the compatibility convention established in
+86948b9 (NISO-XSD-verified). ISOSTS.xsd governs element content
+models and all non-`@id` attributes; it is not an authority that forbids the
+conventional `@id`. So the two schemas can legitimately differ per element:
 
-| Element | ISOSTS says | NisoSts model |
+| Element | ISOSTS content/attrs | NisoSts model |
 |---|---|---|
-| `year` (:948) | `content-type`, `specific-use`, `xml:lang` — no `@id` | `@id` only |
-| `doc-type` (:6378) | `type="xs:string"` — no attributes at all | `@id` + content |
+| `doc-type` (:6378) | `type="xs:string"` | `@id` + content |
 | `ics` (:6373) | `type="xs:string"` | `@id` + `ics-desc` child |
 | `fpage` | `content-type`, `seq`, `specific-use`, `xml:lang`; no children | `@id` + bold/italic |
 | `license` (:51) | `license-type`, `specific-use`, `xml:lang` | `@id`, `xlink:href` |
-| `ruby` | **not an ISOSTS element** | exists (NISO only) |
 
 `feature_doc.xml` declares `<!DOCTYPE standard SYSTEM ".../ISOSTS.dtd">`, and
 the ISOSTS DTD agrees with ISOSTS.xsd (both derive `bold`, `sub` etc. from the
-JATS 0.4 modules). ISOSTS.xsd is a faithful conversion and is the authority.
+JATS 0.4 modules) on content models.
 
 **Round-tripping does not prove correctness.** A model that invents or drops an
 attribute still parses and serialises symmetrically, so the suite stays green
 while the model is wrong. Assert the exact attribute set per element instead.
 
-Attribute lists must be **generated** from the XSD, never hand-read: `version`
-on `tex-math` and `specific-use` on `pub-id` sit after long `xs:enumeration`
-blocks and are invisible to a truncated read.
+Non-`@id` attribute lists must be **generated** from the XSD, never hand-read:
+`version` on `tex-math` and `specific-use` on `pub-id` sit after long
+`xs:enumeration` blocks and are invisible to a truncated read.
 
 ## Done in issue #40 — 43 refs removed, 27 classes added
 
 - **14 `xs:string` elements** (`originator`, `doc-type`, `doc-number`,
   `part-number`, `version`, `suppl-type`, `suppl-number`, `suppl-version`,
   `urn`, `sdo`, `proj-id`, `release-version`, `ics`, `secretariat`) — modelled
-  as content-only IsoSts classes with no attributes. 23 refs.
+  as content IsoSts classes that also carry the conventional `@id` (86948b9);
+  `secretariat` is content plus `@id`, not content-only. 23 refs.
 - **3 `permissions` refs** repointed to the existing `IsoSts::Permissions`.
-- **`ruby` deleted** from `StyledContent` — ISOSTS defines no such element.
+- **`ruby` deleted** from `StyledContent` — ISOSTS's `styled-content` content
+  model omits `<ruby>` (NISO permits it transitively via the emphasis group).
   Behaviour change: `<ruby>` in `<styled-content>` no longer round-trips.
 - **13 element classes** modelled from ISOSTS.xsd: `Year`, `PubDate`,
   `ReleaseVersionId`, `IsProof`, `AltText`, `LongDesc`, `TexMath`, `PubId`,
@@ -114,6 +115,7 @@ reaches `TbxIsoTml`/MathML. Those are shared namespaces, outside this ADR.
 ## Verification
 
 1. `grep -rho "Sts::NisoSts::" lib/sts/iso_sts/ | wc -l` → `20`
-2. Every attribute on an IsoSts model traces to a line in `ISOSTS.xsd`
+2. Every *non-`@id`* attribute on an IsoSts model traces to a line in
+   `ISOSTS.xsd`; `@id` follows the 86948b9 convention
 3. Autoload registry 1:1 with the directory (112/112)
 4. `bundle exec rspec` green; `bundle exec rubocop` clean
