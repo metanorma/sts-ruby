@@ -1032,7 +1032,7 @@ RSpec.describe Sts::IsoSts do
       files = %w[disp_quote boxed_text].map { |n| "lib/sts/iso_sts/#{n}.rb" }
       files.each do |path|
         msg = "#{path} must not reference Sts::NisoSts (namespace independence)"
-        expect(File.read(path)).not_to match(/Sts::NisoSts/), msg
+        expect(File.read(path)).not_to include("Sts::NisoSts"), msg
       end
     end
   end
