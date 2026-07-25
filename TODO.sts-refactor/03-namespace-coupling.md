@@ -3,7 +3,7 @@
 **Priority**: HIGH
 **Category**: Architecture
 **Estimated Effort**: High
-**Status**: Partially done — 63 → 16 references (GitHub issue #40)
+**Status**: Partially done — 63 → 13 references (GitHub issue #40)
 
 ## Problem
 
@@ -12,7 +12,8 @@ independent of NisoSts (ADR 2026-05-07): ISOSTS is frozen legacy, NISO STS
 evolves, so coupling them violates OCP.
 
 PR #31 reduced this from 157 to 63 references. Issue #40 reduced it further,
-from 63 to 16.
+from 63 to 16. The `IsoSts::DispQuote` / `IsoSts::BoxedText` addition then
+reduced it from 16 to 13 (Body#disp_quote, Sec#disp_quote, Sec#boxed_text).
 
 ## Content models from ISOSTS.xsd; `@id` from the 86948b9 convention
 
@@ -69,6 +70,16 @@ Non-`@id` attribute lists must be **generated** from the XSD, never hand-read:
 - **3 Niso-only child refs deleted** — `std-meta` from `Front` and
   `editing-instruction` from `Body` and `Sec`. Neither element exists in
   ISOSTS.xsd, so adding IsoSts equivalents would incorrectly expand the schema.
+- **`DispQuote` and `BoxedText` added** — modelled from ISOSTS.xsd (not copied
+  from NisoSts, which disagrees: `NisoSts::DispQuote` lacks `xml_lang` and
+  `title`; `NisoSts::BoxedText` carries `form_type`/`is_form` that ISOSTS does
+  not define). Children limited to existing IsoSts types; omitted children
+  (`attrib`, `speech`, `statement`, `verse-group`, `address`, `alternatives`,
+  `array`, `chem-struct-wrap`, `fig-group`, `media`, `supplementary-material`,
+  `table-wrap`, `table-wrap-group`, `disp-formula-group`, `mml:math`,
+  `related-article`, `related-object`, `glossary`) are tracked below.
+  `BoxedText#sts_object_id` (not `:object_id`) follows the `NisoSts::Graphic`
+  convention to avoid clashing with `Object#object_id`. 3 refs.
 
 ### Why classes and not plain `:string`
 
@@ -79,12 +90,13 @@ round-trip. For a scalar, `render_empty: :empty` recovers it; for a collection
 to `[]`, destroying the information at parse time before any render option
 applies. Content-only classes round-trip every case.
 
-## Remaining — 16 refs
+## Remaining — 13 refs
 
-**8 refs to 7 recursive roots**: `ElementCitation`, `PersonGroup`, `Collab`,
-`Source`, `DispQuote`, `TermDisplay`, and `BoxedText`. Each reaches the same
-78–79-element mutually-recursive core before existing IsoSts boundaries
-(`sec` → `p` → `disp-quote` → `p`). No direct one-file path remains.
+**5 refs to 5 recursive roots**: `ElementCitation`, `PersonGroup`, `Collab`,
+`Source`, `TermDisplay`. Each reaches the same 78–79-element
+mutually-recursive core before existing IsoSts boundaries (`sec` → `p` →
+`disp-quote` → `p`). `DispQuote` and `BoxedText` themselves are now IsoSts
+classes and no longer in this list.
 
 **8 refs to 5 child-bearing roots**, now measured after the first dependency
 layer: `attrib` (:1082) reaches 78 not-yet-modelled ISOSTS elements before

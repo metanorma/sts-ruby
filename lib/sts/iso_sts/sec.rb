@@ -33,9 +33,9 @@ module Sts
       attribute :uri, ::Sts::IsoSts::Uri, collection: true
       attribute :sec, ::Sts::IsoSts::Sec, collection: true
       attribute :term_sec, ::Sts::IsoSts::TermSec, collection: true
-      attribute :disp_quote, ::Sts::NisoSts::DispQuote, collection: true
+      attribute :disp_quote, ::Sts::IsoSts::DispQuote, collection: true
       attribute :fn, ::Sts::IsoSts::Fn, collection: true
-      attribute :boxed_text, ::Sts::NisoSts::BoxedText, collection: true
+      attribute :boxed_text, ::Sts::IsoSts::BoxedText, collection: true
 
       xml do # rubocop:disable Metrics/BlockLength
         element "sec"

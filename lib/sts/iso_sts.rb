@@ -88,6 +88,8 @@ module Sts
     autoload :Label, "#{__dir__}/iso_sts/label"
     autoload :Title, "#{__dir__}/iso_sts/title"
     autoload :Bold, "#{__dir__}/iso_sts/bold"
+    autoload :BoxedText, "#{__dir__}/iso_sts/boxed_text"
+    autoload :DispQuote, "#{__dir__}/iso_sts/disp_quote"
     autoload :Italic, "#{__dir__}/iso_sts/italic"
     autoload :Monospace, "#{__dir__}/iso_sts/monospace"
     autoload :NamedContent, "#{__dir__}/iso_sts/named_content"

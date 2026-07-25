@@ -964,4 +964,93 @@ RSpec.describe Sts::IsoSts do
       end
     end
   end
+
+  # ISOSTS <disp-quote> and <boxed-text> are modelled from ISOSTS.xsd, not
+  # copied from NisoSts (which disagrees — NisoSts::DispQuote lacks xml_lang
+  # and title; NisoSts::BoxedText has form_type/is_form that ISOSTS does not
+  # define). Children limited to the IsoSts classes that currently exist;
+  # omitted children (attrib, speech, statement, verse-group, etc.) are
+  # tracked in TODO.sts-refactor/03-namespace-coupling.md.
+  describe "IsoSts::DispQuote and BoxedText are modelled from ISOSTS.xsd" do
+    it "DispQuote models its configured attribute set" do
+      expect(described_class::DispQuote.attributes.keys)
+        .to match_array(%i[
+                          id content_type specific_use xml_lang originator
+                          label title paragraph list def_list non_normative_note
+                          non_normative_example preformat fig graphic
+                          disp_formula disp_quote permissions
+                        ])
+    end
+
+    it "BoxedText models its configured attribute set" do
+      expect(described_class::BoxedText.attributes.keys)
+        .to match_array(%i[
+                          id position orientation specific_use xml_lang
+                          content_type originator sts_object_id label caption
+                          paragraph list def_list non_normative_note
+                          non_normative_example preformat fig graphic
+                          disp_formula disp_quote boxed_text sec term_sec
+                          fn_group ref_list permissions
+                        ])
+    end
+
+    it "BoxedText exposes :sts_object_id, not :object_id" do
+      # Object#object_id is Ruby's built-in; redefining it via lutaml-model
+      # accessor clashes. Follow the NisoSts::Graphic precedent.
+      expect(described_class::BoxedText.attributes).to have_key(:sts_object_id)
+      expect(described_class::BoxedText.attributes).not_to have_key(:object_id)
+    end
+
+    {
+      DispQuote: {
+        paragraph: :Paragraph, list: :List, def_list: :DefList,
+        non_normative_note: :NonNormativeNote,
+        non_normative_example: :NonNormativeExample, preformat: :Preformat,
+        fig: :Fig, graphic: :Graphic, disp_formula: :DispFormula,
+        disp_quote: :DispQuote, permissions: :Permissions
+      },
+      BoxedText: {
+        sts_object_id: :ObjectId, paragraph: :Paragraph, list: :List,
+        def_list: :DefList, non_normative_note: :NonNormativeNote,
+        non_normative_example: :NonNormativeExample, preformat: :Preformat,
+        fig: :Fig, graphic: :Graphic, disp_formula: :DispFormula,
+        disp_quote: :DispQuote, boxed_text: :BoxedText, sec: :Sec,
+        term_sec: :TermSec, fn_group: :FnGroup, ref_list: :RefList,
+        permissions: :Permissions
+      },
+    }.each do |klass, children|
+      children.each do |attr, child_class|
+        it "IsoSts::#{klass}##{attr} uses IsoSts::#{child_class}" do
+          parent = described_class.const_get(klass)
+          expect(parent.attributes[attr].type)
+            .to eq(described_class.const_get(child_class))
+        end
+      end
+    end
+
+    it "no IsoSts::DispQuote or BoxedText child references NisoSts" do
+      files = %w[disp_quote boxed_text].map { |n| "lib/sts/iso_sts/#{n}.rb" }
+      files.each do |path|
+        msg = "#{path} must not reference Sts::NisoSts (namespace independence)"
+        expect(File.read(path)).not_to match(/Sts::NisoSts/), msg
+      end
+    end
+  end
+
+  describe "IsoSts::Body and Sec repoint to IsoSts::DispQuote / BoxedText" do
+    it "Body#disp_quote is IsoSts::DispQuote" do
+      expect(described_class::Body.attributes[:disp_quote].type)
+        .to eq(described_class::DispQuote)
+    end
+
+    it "Sec#disp_quote is IsoSts::DispQuote" do
+      expect(described_class::Sec.attributes[:disp_quote].type)
+        .to eq(described_class::DispQuote)
+    end
+
+    it "Sec#boxed_text is IsoSts::BoxedText" do
+      expect(described_class::Sec.attributes[:boxed_text].type)
+        .to eq(described_class::BoxedText)
+    end
+  end
 end
