@@ -3,7 +3,7 @@
 **Priority**: HIGH
 **Category**: Architecture
 **Estimated Effort**: High
-**Status**: Partially done — 63 → 11 references (GitHub issue #40)
+**Status**: Partially done — 63 → 6 references (GitHub issue #40)
 
 ## Problem
 
@@ -16,7 +16,9 @@ from 63 to 16. The `IsoSts::DispQuote` / `IsoSts::BoxedText` addition then
 reduced it from 16 to 13 (Body#disp_quote, Sec#disp_quote, Sec#boxed_text).
 The `IsoSts::Attrib` addition then reduced it from 13 to 11
 (Array#attrib, TableWrapFoot#attrib) and filled the omission in DispQuote /
-BoxedText from PR #48.
+BoxedText from PR #48. The License/TermHead/CustomMetaGroup closure then
+reduced it from 11 to 6 (Permissions#license, DefList#term_head, and
+IsoMeta/RegMeta/NatMeta#custom_meta_group).
 
 ## Content models from ISOSTS.xsd; `@id` from the 86948b9 convention
 
@@ -91,6 +93,10 @@ Non-`@id` attribute lists must be **generated** from the XSD, never hand-read:
   `element-citation`, `overline`, `roman`, `sans-serif`, `alternatives`,
   `private-char`, `chem-struct`, `mml:math`, `target`, `tbx:entailedTerm`)
   tracked below.
+- **License / TermHead / CustomMetaGroup closure added** — `License`,
+  `LicenseP`, `TermHead`, `CustomMetaGroup`, `CustomMeta`, `MetaName`, and
+  `MetaValue` modelled from ISOSTS.xsd. 5 refs (`Permissions#license`,
+  `DefList#term_head`, `IsoMeta/RegMeta/NatMeta#custom_meta_group`).
 
 ### Why classes and not plain `:string`
 
@@ -101,13 +107,15 @@ round-trip. For a scalar, `render_empty: :empty` recovers it; for a collection
 to `[]`, destroying the information at parse time before any render option
 applies. Content-only classes round-trip every case.
 
-## Remaining — 11 refs
+## Remaining — 6 refs
 
 **5 refs to 5 recursive roots**: `ElementCitation`, `PersonGroup`, `Collab`,
 `Source`, `TermDisplay`. Each reaches the same 78–79-element
 mutually-recursive core before existing IsoSts boundaries (`sec` → `p` →
-`disp-quote` → `p`). `DispQuote`, `BoxedText`, and `Attrib` are now IsoSts
-classes and no longer in this list.
+`disp-quote` → `p`). `DispQuote`, `BoxedText`, `Attrib`, `License`,
+`TermHead`, and `CustomMetaGroup` are now IsoSts classes and no longer in
+this list. The remaining 6 are the recursive roots — see
+`TODO.roadmap/04-issue-40-recursive-roots.md` for the strategy.
 
 **8 refs to 5 child-bearing roots**, now measured after the first dependency
 layer: `attrib` (:1082) reaches 78 not-yet-modelled ISOSTS elements before

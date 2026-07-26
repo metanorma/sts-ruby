@@ -13,7 +13,7 @@ module Sts
       attribute :originator, :string
       attribute :label, ::Sts::IsoSts::Label
       attribute :title, ::Sts::IsoSts::Title
-      attribute :term_head, ::Sts::NisoSts::TermHead
+      attribute :term_head, ::Sts::IsoSts::TermHead
       attribute :def_head, ::Sts::TbxIsoTml::Definition
       attribute :def_item, ::Sts::IsoSts::DefItem, collection: true
       attribute :def_list, ::Sts::IsoSts::DefList, collection: true

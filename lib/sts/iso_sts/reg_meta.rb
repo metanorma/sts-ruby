@@ -20,7 +20,7 @@ module Sts
       attribute :permissions, ::Sts::IsoSts::Permissions, collection: true
       attribute :std_xref, ::Sts::IsoSts::StandardCrossReference,
                 collection: true
-      attribute :custom_meta_group, ::Sts::NisoSts::CustomMetaGroup,
+      attribute :custom_meta_group, ::Sts::IsoSts::CustomMetaGroup,
                 collection: true
       attribute :meta_date, ::Sts::IsoSts::MetaDate, collection: true
       attribute :pub_date, ::Sts::IsoSts::PubDate

@@ -1101,4 +1101,149 @@ RSpec.describe Sts::IsoSts do
         .to be_xml_equivalent_to(xml)
     end
   end
+
+  # Issue #40 child-bearing roots: License, TermHead, CustomMetaGroup.
+  # Each modelled from ISOSTS.xsd; closes 5 IsoSts->NisoSts refs.
+  describe "IsoSts::License closure" do
+    it "License models its configured attribute set" do
+      expect(described_class::License.attributes.keys)
+        .to match_array(%i[
+                          license_type specific_use xml_lang xlink_type
+                          xlink_href xlink_role xlink_title xlink_show
+                          xlink_actuate license_p
+                        ])
+    end
+
+    it "LicenseP models its configured attribute set" do
+      expect(described_class::LicenseP.attributes.keys)
+        .to match_array(%i[
+                          id specific_use xml_lang content_type content email
+                          ext_link uri mixed_citation std bold italic
+                          monospace num sc strike underline inline_graphic
+                          inline_formula abbrev milestone_end milestone_start
+                          named_content styled_content list def_list
+                          non_normative_note non_normative_example preformat
+                          fig graphic disp_formula disp_quote boxed_text fn
+                          xref std_ref sub sup
+                        ])
+    end
+
+    it "License#license_p uses IsoSts::LicenseP" do
+      expect(described_class::License.attributes[:license_p].type)
+        .to eq(described_class::LicenseP)
+    end
+
+    it "Permissions#license is IsoSts::License" do
+      expect(described_class::Permissions.attributes[:license].type)
+        .to eq(described_class::License)
+    end
+
+    it "License#license_p children use IsoSts types" do
+      lp = described_class::LicenseP
+      expect(lp.attributes[:bold].type).to eq(described_class::Bold)
+      expect(lp.attributes[:list].type).to eq(described_class::List)
+      expect(lp.attributes[:disp_quote].type).to eq(described_class::DispQuote)
+      expect(lp.attributes[:boxed_text].type).to eq(described_class::BoxedText)
+    end
+
+    it "round-trips a license with license-p content" do
+      xml = <<~XML
+        <license license-type="open-access" specific-use="cc-by" xml:lang="en">
+          <license-p>Released under <bold>Creative Commons</bold>.</license-p>
+        </license>
+      XML
+      parsed = described_class::License.from_xml(xml)
+      expect(parsed.license_type).to eq("open-access")
+      expect(parsed.license_p.size).to eq(1)
+      expect(parsed.license_p.first.bold.size).to eq(1)
+      expect(described_class::License.to_xml(parsed))
+        .to be_xml_equivalent_to(xml)
+    end
+  end
+
+  describe "IsoSts::TermHead" do
+    it "models its configured attribute set" do
+      expect(described_class::TermHead.attributes.keys)
+        .to match_array(%i[
+                          id content_type specific_use xml_lang content email
+                          ext_link uri mixed_citation std bold italic
+                          monospace num sc strike underline inline_graphic
+                          inline_formula abbrev milestone_end milestone_start
+                          named_content styled_content fn xref std_ref sub sup
+                        ])
+    end
+
+    it "DefList#term_head is IsoSts::TermHead" do
+      expect(described_class::DefList.attributes[:term_head].type)
+        .to eq(described_class::TermHead)
+    end
+  end
+
+  describe "IsoSts::CustomMetaGroup closure" do
+    it "CustomMetaGroup models its configured attribute set" do
+      expect(described_class::CustomMetaGroup.attributes.keys)
+        .to match_array(%i[custom_meta])
+    end
+
+    it "CustomMeta models its configured attribute set" do
+      expect(described_class::CustomMeta.attributes.keys)
+        .to match_array(%i[
+                          id specific_use xml_lang xlink_type xlink_href
+                          xlink_role xlink_title xlink_show xlink_actuate
+                          meta_name meta_value
+                        ])
+    end
+
+    it "MetaName models its configured attribute set" do
+      expect(described_class::MetaName.attributes.keys)
+        .to match_array(%i[content])
+    end
+
+    it "MetaValue models its configured attribute set" do
+      expect(described_class::MetaValue.attributes.keys)
+        .to match_array(%i[
+                          id specific_use xml_lang content bold italic
+                          monospace num sc strike underline sub sup
+                        ])
+    end
+
+    it "CustomMetaGroup#custom_meta uses IsoSts::CustomMeta" do
+      expect(described_class::CustomMetaGroup.attributes[:custom_meta].type)
+        .to eq(described_class::CustomMeta)
+    end
+
+    it "CustomMeta#meta_name and #meta_value use IsoSts types" do
+      expect(described_class::CustomMeta.attributes[:meta_name].type)
+        .to eq(described_class::MetaName)
+      expect(described_class::CustomMeta.attributes[:meta_value].type)
+        .to eq(described_class::MetaValue)
+    end
+
+    it "IsoMeta/RegMeta/NatMeta#custom_meta_group is IsoSts::CustomMetaGroup" do
+      expect(described_class::IsoMeta.attributes[:custom_meta_group].type)
+        .to eq(described_class::CustomMetaGroup)
+      expect(described_class::RegMeta.attributes[:custom_meta_group].type)
+        .to eq(described_class::CustomMetaGroup)
+      expect(described_class::NatMeta.attributes[:custom_meta_group].type)
+        .to eq(described_class::CustomMetaGroup)
+    end
+
+    it "round-trips a custom-meta-group with one custom-meta" do
+      xml = <<~XML
+        <custom-meta-group>
+          <custom-meta id="cm-1" specific-use="testing">
+            <meta-name>key</meta-name>
+            <meta-value>value</meta-value>
+          </custom-meta>
+        </custom-meta-group>
+      XML
+      parsed = described_class::CustomMetaGroup.from_xml(xml)
+      expect(parsed.custom_meta.size).to eq(1)
+      expect(parsed.custom_meta.first.id).to eq("cm-1")
+      expect(parsed.custom_meta.first.meta_name.content).to eq("key")
+      expect(parsed.custom_meta.first.meta_value.content).to eq(["value"])
+      expect(described_class::CustomMetaGroup.to_xml(parsed))
+        .to be_xml_equivalent_to(xml)
+    end
+  end
 end
