@@ -3,7 +3,7 @@
 **Priority**: HIGH
 **Category**: Architecture
 **Estimated Effort**: High
-**Status**: Partially done — 63 → 13 references (GitHub issue #40)
+**Status**: Partially done — 63 → 11 references (GitHub issue #40)
 
 ## Problem
 
@@ -14,6 +14,9 @@ evolves, so coupling them violates OCP.
 PR #31 reduced this from 157 to 63 references. Issue #40 reduced it further,
 from 63 to 16. The `IsoSts::DispQuote` / `IsoSts::BoxedText` addition then
 reduced it from 16 to 13 (Body#disp_quote, Sec#disp_quote, Sec#boxed_text).
+The `IsoSts::Attrib` addition then reduced it from 13 to 11
+(Array#attrib, TableWrapFoot#attrib) and filled the omission in DispQuote /
+BoxedText from PR #48.
 
 ## Content models from ISOSTS.xsd; `@id` from the 86948b9 convention
 
@@ -74,12 +77,20 @@ Non-`@id` attribute lists must be **generated** from the XSD, never hand-read:
   from NisoSts, which disagrees: `NisoSts::DispQuote` lacks `xml_lang` and
   `title`; `NisoSts::BoxedText` carries `form_type`/`is_form` that ISOSTS does
   not define). Children limited to existing IsoSts types; omitted children
-  (`attrib`, `speech`, `statement`, `verse-group`, `address`, `alternatives`,
+  (`speech`, `statement`, `verse-group`, `address`, `alternatives`,
   `array`, `chem-struct-wrap`, `fig-group`, `media`, `supplementary-material`,
   `table-wrap`, `table-wrap-group`, `disp-formula-group`, `mml:math`,
   `related-article`, `related-object`, `glossary`) are tracked below.
   `BoxedText#sts_object_id` (not `:object_id`) follows the `NisoSts::Graphic`
   convention to avoid clashing with `Object#object_id`. 3 refs.
+- **`Attrib` added** — mixed-content class modelled from ISOSTS.xsd with the
+  25 inline-element children that have IsoSts types today. Fills the
+  `attrib` gap left in `DispQuote` and `BoxedText` from the prior bullet.
+  2 refs (`Array#attrib`, `TableWrapFoot#attrib`). Omitted inline children
+  (`inline-supplementary-material`, `related-article`, `related-object`,
+  `element-citation`, `overline`, `roman`, `sans-serif`, `alternatives`,
+  `private-char`, `chem-struct`, `mml:math`, `target`, `tbx:entailedTerm`)
+  tracked below.
 
 ### Why classes and not plain `:string`
 
@@ -90,12 +101,12 @@ round-trip. For a scalar, `render_empty: :empty` recovers it; for a collection
 to `[]`, destroying the information at parse time before any render option
 applies. Content-only classes round-trip every case.
 
-## Remaining — 13 refs
+## Remaining — 11 refs
 
 **5 refs to 5 recursive roots**: `ElementCitation`, `PersonGroup`, `Collab`,
 `Source`, `TermDisplay`. Each reaches the same 78–79-element
 mutually-recursive core before existing IsoSts boundaries (`sec` → `p` →
-`disp-quote` → `p`). `DispQuote` and `BoxedText` themselves are now IsoSts
+`disp-quote` → `p`). `DispQuote`, `BoxedText`, and `Attrib` are now IsoSts
 classes and no longer in this list.
 
 **8 refs to 5 child-bearing roots**, now measured after the first dependency

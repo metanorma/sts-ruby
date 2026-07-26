@@ -971,7 +971,7 @@ RSpec.describe Sts::IsoSts do
                           id content_type specific_use xml_lang originator
                           label title paragraph list def_list non_normative_note
                           non_normative_example preformat fig graphic
-                          disp_formula disp_quote permissions
+                          disp_formula disp_quote attrib permissions
                         ])
     end
 
@@ -983,7 +983,7 @@ RSpec.describe Sts::IsoSts do
                           paragraph list def_list non_normative_note
                           non_normative_example preformat fig graphic
                           disp_formula disp_quote boxed_text sec term_sec
-                          fn_group ref_list permissions
+                          fn_group ref_list attrib permissions
                         ])
     end
 
@@ -1000,7 +1000,7 @@ RSpec.describe Sts::IsoSts do
         non_normative_note: :NonNormativeNote,
         non_normative_example: :NonNormativeExample, preformat: :Preformat,
         fig: :Fig, graphic: :Graphic, disp_formula: :DispFormula,
-        disp_quote: :DispQuote, permissions: :Permissions
+        disp_quote: :DispQuote, attrib: :Attrib, permissions: :Permissions
       },
       BoxedText: {
         sts_object_id: :ObjectId, paragraph: :Paragraph, list: :List,
@@ -1009,7 +1009,7 @@ RSpec.describe Sts::IsoSts do
         fig: :Fig, graphic: :Graphic, disp_formula: :DispFormula,
         disp_quote: :DispQuote, boxed_text: :BoxedText, sec: :Sec,
         term_sec: :TermSec, fn_group: :FnGroup, ref_list: :RefList,
-        permissions: :Permissions
+        attrib: :Attrib, permissions: :Permissions
       },
     }.each do |klass, children|
       children.each do |attr, child_class|
@@ -1044,6 +1044,61 @@ RSpec.describe Sts::IsoSts do
     it "Sec#boxed_text is IsoSts::BoxedText" do
       expect(described_class::Sec.attributes[:boxed_text].type)
         .to eq(described_class::BoxedText)
+    end
+  end
+
+  # ISOSTS <attrib> is mixed content with many inline children. Modelled from
+  # ISOSTS.xsd with the subset of inline-element children that have IsoSts
+  # classes today; omitted children (inline-supplementary-material,
+  # related-article, related-object, element-citation, overline, roman,
+  # sans-serif, alternatives, private-char, chem-struct, mml:math, target,
+  # tbx:entailedTerm) tracked in TODO.sts-refactor/03-namespace-coupling.md.
+  describe "IsoSts::Attrib is modelled from ISOSTS.xsd" do
+    it "models its configured attribute set" do
+      expect(described_class::Attrib.attributes.keys)
+        .to match_array(%i[
+                          id specific_use xml_lang content email ext_link uri
+                          mixed_citation std bold italic monospace num sc
+                          strike underline inline_graphic inline_formula abbrev
+                          milestone_end milestone_start named_content
+                          styled_content fn xref std_ref sub sup
+                        ])
+    end
+
+    it "Array#attrib is IsoSts::Attrib" do
+      expect(described_class::Array.attributes[:attrib].type)
+        .to eq(described_class::Attrib)
+    end
+
+    it "TableWrapFoot#attrib is IsoSts::Attrib" do
+      expect(described_class::TableWrapFoot.attributes[:attrib].type)
+        .to eq(described_class::Attrib)
+    end
+
+    it "DispQuote#attrib is IsoSts::Attrib (was omitted in PR #48)" do
+      expect(described_class::DispQuote.attributes[:attrib].type)
+        .to eq(described_class::Attrib)
+    end
+
+    it "BoxedText#attrib is IsoSts::Attrib (was omitted in PR #48)" do
+      expect(described_class::BoxedText.attributes[:attrib].type)
+        .to eq(described_class::Attrib)
+    end
+
+    it "round-trips a typical attrib with mixed content" do
+      xml = '<attrib id="attr-1" specific-use="source" xml:lang="en">' \
+            "Adapted from <std><std-ref>ISO 9001</std-ref></std> " \
+            "by <bold>the committee</bold>.</attrib>"
+      parsed = described_class::Attrib.from_xml(xml)
+      expect(parsed.id).to eq("attr-1")
+      expect(parsed.specific_use).to eq("source")
+      expect(parsed.xml_lang).to eq("en")
+      expect(parsed.std.size).to eq(1)
+      expect(parsed.bold.size).to eq(1)
+      expect(parsed.content.join).to include("Adapted from")
+      expect(parsed.content.join).to include("by")
+      expect(described_class::Attrib.to_xml(parsed))
+        .to be_xml_equivalent_to(xml)
     end
   end
 end
