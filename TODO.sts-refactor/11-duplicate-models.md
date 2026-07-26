@@ -1,9 +1,39 @@
 # 11: Duplicate Model Resolution
 
-**Priority**: MEDIUM
+**Status**: REJECTED (2026-07-26) — kept for historical context.
+**Priority**: N/A
 **Category**: Architecture
-**Estimated Effort**: High
+**Estimated Effort**: N/A
 **Files Affected**: `lib/sts/iso_sts/`, `lib/sts/niso_sts/`
+
+## Why rejected
+
+The "Resolution Strategy" below proposes a `Sts::Base::*` three-tier class
+hierarchy that both `IsoSts` and `NisoSts` inherit from. This contradicts:
+
+- The 2026-05-07 ADR on namespace independence.
+- `TODO.sts-refactor/03-namespace-coupling.md` "Rejected" section.
+- The project-global memory `architecture-namespace-independence`:
+  "NEVER create shared `Sts::Base` classes that both namespaces inherit from".
+
+The schemas genuinely diverge — `IsoSts::Fig` has `title`/`alternatives` that
+`NisoSts::Figure` lacks; `IsoSts::Ref` has `nlm-citation`/`citation-alternatives`
+that `NisoSts::Reference` lacks. A shared base would fight the schemas and
+violate the Open/Closed Principle.
+
+The "duplicate" classes between IsoSts and NisoSts are intentional: each
+namespace must have its own complete, independent set of model classes
+modelled from its own schema (ISOSTS.xsd vs NISO-STS-extended-1.xsd). The
+correct way to reduce the duplication appearance is to finish TODO 03
+(model IsoSts classes from ISOSTS.xsd, replacing NisoSts references),
+not to share base types.
+
+The rest of this document is preserved for reference only. **Do not implement
+the proposals below.**
+
+---
+
+## Original problem statement (rejected)
 
 ## Problem
 

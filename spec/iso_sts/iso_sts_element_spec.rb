@@ -421,13 +421,6 @@ RSpec.describe Sts::IsoSts do
     end
   end
 
-  describe "Mathml2::Math" do
-    it "can be instantiated" do
-      math = described_class::Mathml2::Math.new
-      expect(math).to be_a(Lutaml::Model::Serializable)
-    end
-  end
-
   # ISOSTS declares these elements as type="xs:string" (text content, no
   # attributes). The @id they carry is the 86948b9 convention, not declared by
   # ISOSTS. They are modelled as IsoSts classes, not plain strings, because an

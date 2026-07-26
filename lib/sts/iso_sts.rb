@@ -157,8 +157,5 @@ module Sts
     autoload :AnnexType, "#{__dir__}/iso_sts/annex_type"
     autoload :FnGroup, "#{__dir__}/iso_sts/fn_group"
     autoload :Fn, "#{__dir__}/iso_sts/fn"
-
-    # MathML2 wrapper
-    autoload :Mathml2, "#{__dir__}/iso_sts/mathml2"
   end
 end
