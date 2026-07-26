@@ -9,7 +9,7 @@ module Sts
       attribute :copyright_year, ::Sts::IsoSts::CopyrightYear, collection: true
       attribute :copyright_holder, ::Sts::IsoSts::CopyrightHolder,
                 collection: true
-      attribute :license, ::Sts::NisoSts::License, collection: true
+      attribute :license, ::Sts::IsoSts::License, collection: true
 
       xml do
         element "permissions"
