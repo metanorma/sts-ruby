@@ -30,6 +30,7 @@ module Sts
       attribute :term_sec, ::Sts::IsoSts::TermSec, collection: true
       attribute :fn_group, ::Sts::IsoSts::FnGroup, collection: true
       attribute :ref_list, ::Sts::IsoSts::RefList, collection: true
+      attribute :attrib, ::Sts::IsoSts::Attrib, collection: true
       attribute :permissions, ::Sts::IsoSts::Permissions, collection: true
 
       xml do # rubocop:disable Metrics/BlockLength
@@ -62,6 +63,7 @@ module Sts
         map_element "term-sec", to: :term_sec
         map_element "fn-group", to: :fn_group
         map_element "ref-list", to: :ref_list
+        map_element "attrib", to: :attrib
         map_element "permissions", to: :permissions
       end
     end

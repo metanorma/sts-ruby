@@ -19,7 +19,7 @@
 |---|------|----------|----------|--------------|
 | 01 | `01-mathml-delegation.md` | Anti-Pattern Fix | DONE | — |
 | 02 | `02-type-resolution.md` | Anti-Pattern Fix | DONE | — |
-| 03 | `03-namespace-coupling.md` | Architecture | IN PROGRESS (63→13 refs) | 01, 02 |
+| 03 | `03-namespace-coupling.md` | Architecture | IN PROGRESS (63→11 refs) | 01, 02 |
 | 04 | `04-register-versioning.md` | Architecture | HIGH | 01, 02 |
 | 05 | `05-missing-elements.md` | Feature Gap | MOSTLY DONE | 04 |
 | 06 | `06-missing-attributes.md` | Feature Gap | DONE | 04 |
@@ -166,7 +166,7 @@ grep -r "method_missing|respond_to_missing|Object.const_get|\.send" lib/
 - ~~Expand StringName usage (in contrib, element-citation, related-article — NISO STS 1.2)~~ → DONE: added to name-alternatives; already in person-group and mixed-citation
 
 ### Architectural Items (High Effort)
-- `03-namespace-coupling.md` — IN PROGRESS: 63→13 IsoSts→NisoSts references
+- `03-namespace-coupling.md` — IN PROGRESS: 63→11 IsoSts→NisoSts references
   remaining (issue #40). ISOSTS.xsd governs content models and all non-`@id`
   attributes; the `@id` follows the 86948b9 convention.
 - `04-register-versioning.md` — Version the models via lutaml-model Registers
@@ -193,7 +193,7 @@ the **NISO** XSD and applied the result to IsoSts.
 
 ## Next Action
 Two independent tracks:
-1. Finish `03` — the 13 remaining refs split across five recursive roots
+1. Finish `03` — the 11 remaining refs split across five recursive roots
    (`ElementCitation`, `PersonGroup`, `Collab`, `Source`, `TermDisplay`) and
    five child-bearing roots. `DispQuote` and `BoxedText` themselves are now
    IsoSts classes. The first 15 high-reuse dependency leaves are modelled,

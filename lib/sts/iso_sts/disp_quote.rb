@@ -22,6 +22,7 @@ module Sts
       attribute :graphic, ::Sts::IsoSts::Graphic, collection: true
       attribute :disp_formula, ::Sts::IsoSts::DispFormula, collection: true
       attribute :disp_quote, ::Sts::IsoSts::DispQuote, collection: true
+      attribute :attrib, ::Sts::IsoSts::Attrib, collection: true
       attribute :permissions, ::Sts::IsoSts::Permissions, collection: true
 
       xml do
@@ -46,6 +47,7 @@ module Sts
         map_element "graphic", to: :graphic
         map_element "disp-formula", to: :disp_formula
         map_element "disp-quote", to: :disp_quote
+        map_element "attrib", to: :attrib
         map_element "permissions", to: :permissions
       end
     end

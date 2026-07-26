@@ -10,7 +10,7 @@ module Sts
       attribute :non_normative_example, ::Sts::IsoSts::NonNormativeExample
       attribute :fn_group, ::Sts::IsoSts::FnGroup
       attribute :fn, ::Sts::IsoSts::Fn
-      attribute :attrib, ::Sts::NisoSts::Attrib
+      attribute :attrib, ::Sts::IsoSts::Attrib
       attribute :permissions, ::Sts::IsoSts::Permissions
 
       xml do

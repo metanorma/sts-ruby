@@ -11,7 +11,7 @@ module Sts
       attribute :originator, :string
       attribute :label, ::Sts::IsoSts::Label
       attribute :table, ::Sts::IsoSts::Table
-      attribute :attrib, ::Sts::NisoSts::Attrib, collection: true
+      attribute :attrib, ::Sts::IsoSts::Attrib, collection: true
       attribute :permissions, ::Sts::IsoSts::Permissions, collection: true
 
       xml do

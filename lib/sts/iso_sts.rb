@@ -101,6 +101,7 @@ module Sts
     # Shared model foundations
     autoload :Abbrev, "#{__dir__}/iso_sts/abbrev"
     autoload :Annotation, "#{__dir__}/iso_sts/annotation"
+    autoload :Attrib, "#{__dir__}/iso_sts/attrib"
     autoload :Country, "#{__dir__}/iso_sts/country"
     autoload :Day, "#{__dir__}/iso_sts/day"
     autoload :Etal, "#{__dir__}/iso_sts/etal"
