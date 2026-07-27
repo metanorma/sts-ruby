@@ -980,7 +980,7 @@ RSpec.describe Sts::IsoSts do
   # copied from NisoSts (which disagrees — NisoSts::DispQuote lacks xml_lang
   # and title; NisoSts::BoxedText has form_type/is_form that ISOSTS does not
   # define). Their exhaustive XSD surfaces and round-trips are covered in
-  # iso_sts_recursive_content_closure_spec.rb.
+  # spec/sts/iso_sts_recursive_content_closure_spec.rb.
   describe "IsoSts::DispQuote and BoxedText are modelled from ISOSTS.xsd" do
     it "BoxedText exposes :sts_object_id, not :object_id" do
       # Object#object_id is Ruby's built-in; redefining it via lutaml-model
@@ -1044,7 +1044,7 @@ RSpec.describe Sts::IsoSts do
 
   # ISOSTS <attrib> is mixed content with the complete XSD inline child set.
   # Its exhaustive XSD surface and round-trips are covered in
-  # iso_sts_recursive_content_closure_spec.rb.
+  # spec/sts/iso_sts_recursive_content_closure_spec.rb.
   describe "IsoSts::Attrib is modelled from ISOSTS.xsd" do
     it "Array#attrib is IsoSts::Attrib" do
       expect(described_class::Array.attributes[:attrib].type)
@@ -1085,7 +1085,8 @@ RSpec.describe Sts::IsoSts do
 
   # Issue #40 child-bearing roots: License, TermHead, CustomMetaGroup.
   # Each is modelled from ISOSTS.xsd; their exhaustive XSD surfaces and
-  # round-trips are covered in iso_sts_recursive_content_closure_spec.rb.
+  # round-trips are covered in
+  # spec/sts/iso_sts_recursive_content_closure_spec.rb.
   describe "IsoSts::License closure" do
     it "License#license_p uses IsoSts::LicenseP" do
       expect(described_class::License.attributes[:license_p].type)
