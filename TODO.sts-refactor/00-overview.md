@@ -184,15 +184,14 @@ the **NISO** XSD and applied the result to IsoSts.
   name. (`meta-date` was NOT lossy — it already maps `type`.)
 - **Not a bug — the conventional `@id`.** IsoSts models carry an `@id` that
   ISOSTS does not itself define; this is the deliberate 86948b9 convention
-  (NISO-XSD-verified), not dead surface.
+  (NISO-XSD-verified), not dead surface. All 220 registered IsoSts models now
+  expose and map it.
 - **Remaining follow-up (separate change).** 7 spurious attributes on 5 models
   (model carries an attr ISOSTS does not define: `graphic` `type`, `body`/`back`
-  `content-type`, `content-language`/`language` extras), and the 6 classes left
-  without `@id` in 86948b9 (`monospace`, `sc`, `strike`, `underline`, `uri`,
-  `standard_ref`).
+  `content-type`, `content-language`/`language` extras).
 
 ## Next Action
 `03` is complete: the 90-model closure removes every IsoSts→NisoSts reference.
-Continue with the remaining schema-conformance follow-up above — the 7 spurious
-attributes on 5 models and the 6 classes without `@id`. (The dropped-attribute
-data loss is now fixed.)
+Continue with the remaining schema-conformance follow-up above: the 7 spurious
+attributes on 5 models. (The dropped-attribute data loss and mandatory `@id`
+surface are now fixed.)

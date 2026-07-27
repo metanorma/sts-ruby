@@ -790,8 +790,9 @@ RSpec.describe Sts::IsoSts do
   describe "@id round-trips through parse and serialise" do
     %i[
       DocNumber DocType Fpage Ics IsProof Issue Lpage Originator PageRange
-      PartNumber ProjId PubDate PubId ReleaseVersion Sdo SupplNumber SupplType
-      SupplVersion Urn Version Volume Year Secretariat
+      Monospace PartNumber ProjId PubDate PubId ReleaseVersion Sc Sdo
+      Secretariat StandardRef Strike SupplNumber SupplType SupplVersion
+      Underline Uri Urn Version Volume Year
     ].each do |klass|
       it "IsoSts::#{klass} preserves @id through a round-trip" do
         model = described_class.const_get(klass)
@@ -804,6 +805,21 @@ RSpec.describe Sts::IsoSts do
         parsed = model.from_xml(xml)
         expect(parsed.id).to eq("x-1")
         expect(model.to_xml(parsed)).to include('id="x-1"')
+      end
+    end
+
+    it "maps @id on every registered IsoSts model" do
+      registry = described_class.constants(false)
+      expect(registry.size).to eq(220)
+
+      registry.each do |class_name|
+        model = described_class.const_get(class_name, false)
+        mapping = model.mappings_for(:xml)
+
+        aggregate_failures(class_name) do
+          expect(model.attributes).to have_key(:id)
+          expect(mapping.attributes.map(&:name)).to include("id")
+        end
       end
     end
   end
@@ -931,7 +947,7 @@ RSpec.describe Sts::IsoSts do
         styled_content ext_link uri named_content
       ],
       Uri: %i[
-        content_type specific_use xml_lang xlink_href xlink_type xlink_role
+        id content_type specific_use xml_lang xlink_href xlink_type xlink_role
         xlink_title xlink_show xlink_actuate content
       ],
       NamedContent: %i[
@@ -944,7 +960,9 @@ RSpec.describe Sts::IsoSts do
         mime_subtype xlink_href xlink_type xlink_role xlink_title xlink_show
         xlink_actuate graphic_type originator label caption alt_text long_desc
       ],
-      Underline: %i[underline_style specific_use content bold italic sub sup],
+      Underline: %i[
+        id underline_style specific_use content bold italic sub sup
+      ],
       Body: %i[
         id content_type specific_use paragraph sec term_sec list def_list
         disp_formula table_wrap fig non_normative_note non_normative_example
