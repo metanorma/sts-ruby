@@ -4,21 +4,22 @@ module Sts
   module NisoSts
     class MetadataIso < Lutaml::Model::Serializable
       attribute :comm_ref, :string
-      attribute :content_language, :string
-      attribute :custom_meta_group, ::Sts::NisoSts::CustomMetaGroup
+      attribute :content_language, :string, collection: true
+      attribute :custom_meta_group, ::Sts::NisoSts::CustomMetaGroup,
+                collection: true
       attribute :doc_ident, ::Sts::NisoSts::DocumentIdentification
       attribute :doc_ref, :string
-      attribute :ics, :string
-      attribute :meta_date, ::Sts::NisoSts::MetaDate
+      attribute :ics, :string, collection: true
+      attribute :meta_date, ::Sts::NisoSts::MetaDate, collection: true
       attribute :page_count, ::Sts::NisoSts::PageCount
-      attribute :permissions, ::Sts::NisoSts::Permissions
+      attribute :permissions, ::Sts::NisoSts::Permissions, collection: true
       attribute :pub_date, :string
-      attribute :release_date, :string
+      attribute :release_date, :string, collection: true
       attribute :secretariat, :string
       attribute :std_ident, ::Sts::NisoSts::StandardIdentification
-      attribute :std_ref, ::Sts::NisoSts::StandardRef
-      attribute :std_xref, ::Sts::NisoSts::StdCrossReference
-      attribute :title_wrap, ::Sts::NisoSts::TitleWrap
+      attribute :std_ref, ::Sts::NisoSts::StandardRef, collection: true
+      attribute :std_xref, ::Sts::NisoSts::StdCrossReference, collection: true
+      attribute :title_wrap, ::Sts::NisoSts::TitleWrap, collection: true
 
       xml do
         element "iso-meta"

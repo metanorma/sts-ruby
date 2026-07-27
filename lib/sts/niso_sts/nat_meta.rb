@@ -10,11 +10,11 @@ module Sts
       attribute :std_ref, ::Sts::NisoSts::StandardRef, collection: true
       attribute :doc_ref, :string
       attribute :pub_date, :string
-      attribute :release_date, :string
+      attribute :release_date, ::Sts::NisoSts::ReleaseDate, collection: true
       attribute :release_version, :string
       attribute :comm_ref, :string
       attribute :secretariat, :string
-      attribute :ics, :string
+      attribute :ics, :string, collection: true
       attribute :std_xref, ::Sts::NisoSts::StdCrossReference, collection: true
       attribute :permissions, ::Sts::NisoSts::Permissions, collection: true
       attribute :meta_note, ::Sts::NisoSts::MetaNote, collection: true
