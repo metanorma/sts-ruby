@@ -10,7 +10,7 @@ module Sts
       attribute :originator, :string
       attribute :label, ::Sts::IsoSts::Label
       attribute :term_entry, ::Sts::TbxIsoTml::TermEntry
-      attribute :term_display, ::Sts::NisoSts::TermDisplay, collection: true
+      attribute :term_display, ::Sts::IsoSts::TermDisplay, collection: true
       attribute :paragraph, ::Sts::IsoSts::Paragraph, collection: true
       attribute :list, ::Sts::IsoSts::List, collection: true
       attribute :def_list, ::Sts::IsoSts::DefList, collection: true

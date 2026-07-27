@@ -28,11 +28,11 @@ module Sts
       attribute :fn, ::Sts::IsoSts::Fn, collection: true
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
       attribute :break, ::Sts::IsoSts::Break, collection: true
-      attribute :person_group, ::Sts::NisoSts::PersonGroup, collection: true
-      attribute :collab, ::Sts::NisoSts::Collab, collection: true
+      attribute :person_group, ::Sts::IsoSts::PersonGroup, collection: true
+      attribute :collab, ::Sts::IsoSts::Collab, collection: true
       attribute :year, ::Sts::IsoSts::Year, collection: true
-      attribute :source, ::Sts::NisoSts::Source
-      attribute :article_title, ::Sts::NisoSts::ArticleTitle
+      attribute :source, ::Sts::IsoSts::Source
+      attribute :article_title, ::Sts::IsoSts::ArticleTitle
       attribute :volume, ::Sts::IsoSts::Volume
       attribute :issue, ::Sts::IsoSts::Issue
       attribute :fpage, ::Sts::IsoSts::Fpage

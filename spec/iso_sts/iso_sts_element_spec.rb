@@ -961,32 +961,9 @@ RSpec.describe Sts::IsoSts do
   # ISOSTS <disp-quote> and <boxed-text> are modelled from ISOSTS.xsd, not
   # copied from NisoSts (which disagrees — NisoSts::DispQuote lacks xml_lang
   # and title; NisoSts::BoxedText has form_type/is_form that ISOSTS does not
-  # define). Children limited to the IsoSts classes that currently exist;
-  # omitted children (attrib, speech, statement, verse-group, etc.) are
-  # tracked in TODO.sts-refactor/03-namespace-coupling.md.
+  # define). Their exhaustive XSD surfaces and round-trips are covered in
+  # iso_sts_recursive_content_closure_spec.rb.
   describe "IsoSts::DispQuote and BoxedText are modelled from ISOSTS.xsd" do
-    it "DispQuote models its configured attribute set" do
-      expect(described_class::DispQuote.attributes.keys)
-        .to match_array(%i[
-                          id content_type specific_use xml_lang originator
-                          label title paragraph list def_list non_normative_note
-                          non_normative_example preformat fig graphic
-                          disp_formula disp_quote attrib permissions
-                        ])
-    end
-
-    it "BoxedText models its configured attribute set" do
-      expect(described_class::BoxedText.attributes.keys)
-        .to match_array(%i[
-                          id position orientation specific_use xml_lang
-                          content_type originator sts_object_id label caption
-                          paragraph list def_list non_normative_note
-                          non_normative_example preformat fig graphic
-                          disp_formula disp_quote boxed_text sec term_sec
-                          fn_group ref_list attrib permissions
-                        ])
-    end
-
     it "BoxedText exposes :sts_object_id, not :object_id" do
       # Object#object_id is Ruby's built-in; redefining it via lutaml-model
       # accessor clashes. Follow the NisoSts::Graphic precedent.
@@ -1047,24 +1024,10 @@ RSpec.describe Sts::IsoSts do
     end
   end
 
-  # ISOSTS <attrib> is mixed content with many inline children. Modelled from
-  # ISOSTS.xsd with the subset of inline-element children that have IsoSts
-  # classes today; omitted children (inline-supplementary-material,
-  # related-article, related-object, element-citation, overline, roman,
-  # sans-serif, alternatives, private-char, chem-struct, mml:math, target,
-  # tbx:entailedTerm) tracked in TODO.sts-refactor/03-namespace-coupling.md.
+  # ISOSTS <attrib> is mixed content with the complete XSD inline child set.
+  # Its exhaustive XSD surface and round-trips are covered in
+  # iso_sts_recursive_content_closure_spec.rb.
   describe "IsoSts::Attrib is modelled from ISOSTS.xsd" do
-    it "models its configured attribute set" do
-      expect(described_class::Attrib.attributes.keys)
-        .to match_array(%i[
-                          id specific_use xml_lang content email ext_link uri
-                          mixed_citation std bold italic monospace num sc
-                          strike underline inline_graphic inline_formula abbrev
-                          milestone_end milestone_start named_content
-                          styled_content fn xref std_ref sub sup
-                        ])
-    end
-
     it "Array#attrib is IsoSts::Attrib" do
       expect(described_class::Array.attributes[:attrib].type)
         .to eq(described_class::Attrib)
@@ -1103,31 +1066,9 @@ RSpec.describe Sts::IsoSts do
   end
 
   # Issue #40 child-bearing roots: License, TermHead, CustomMetaGroup.
-  # Each modelled from ISOSTS.xsd; closes 5 IsoSts->NisoSts refs.
+  # Each is modelled from ISOSTS.xsd; their exhaustive XSD surfaces and
+  # round-trips are covered in iso_sts_recursive_content_closure_spec.rb.
   describe "IsoSts::License closure" do
-    it "License models its configured attribute set" do
-      expect(described_class::License.attributes.keys)
-        .to match_array(%i[
-                          license_type specific_use xml_lang xlink_type
-                          xlink_href xlink_role xlink_title xlink_show
-                          xlink_actuate license_p
-                        ])
-    end
-
-    it "LicenseP models its configured attribute set" do
-      expect(described_class::LicenseP.attributes.keys)
-        .to match_array(%i[
-                          id specific_use xml_lang content_type content email
-                          ext_link uri mixed_citation std bold italic
-                          monospace num sc strike underline inline_graphic
-                          inline_formula abbrev milestone_end milestone_start
-                          named_content styled_content list def_list
-                          non_normative_note non_normative_example preformat
-                          fig graphic disp_formula disp_quote boxed_text fn
-                          xref std_ref sub sup
-                        ])
-    end
-
     it "License#license_p uses IsoSts::LicenseP" do
       expect(described_class::License.attributes[:license_p].type)
         .to eq(described_class::LicenseP)
@@ -1162,17 +1103,6 @@ RSpec.describe Sts::IsoSts do
   end
 
   describe "IsoSts::TermHead" do
-    it "models its configured attribute set" do
-      expect(described_class::TermHead.attributes.keys)
-        .to match_array(%i[
-                          id content_type specific_use xml_lang content email
-                          ext_link uri mixed_citation std bold italic
-                          monospace num sc strike underline inline_graphic
-                          inline_formula abbrev milestone_end milestone_start
-                          named_content styled_content fn xref std_ref sub sup
-                        ])
-    end
-
     it "DefList#term_head is IsoSts::TermHead" do
       expect(described_class::DefList.attributes[:term_head].type)
         .to eq(described_class::TermHead)
@@ -1180,30 +1110,12 @@ RSpec.describe Sts::IsoSts do
   end
 
   describe "IsoSts::CustomMetaGroup closure" do
-    it "CustomMetaGroup models its configured attribute set" do
-      expect(described_class::CustomMetaGroup.attributes.keys)
-        .to match_array(%i[custom_meta])
-    end
-
     it "CustomMeta models its configured attribute set" do
       expect(described_class::CustomMeta.attributes.keys)
         .to match_array(%i[
                           id specific_use xml_lang xlink_type xlink_href
                           xlink_role xlink_title xlink_show xlink_actuate
                           meta_name meta_value
-                        ])
-    end
-
-    it "MetaName models its configured attribute set" do
-      expect(described_class::MetaName.attributes.keys)
-        .to match_array(%i[content])
-    end
-
-    it "MetaValue models its configured attribute set" do
-      expect(described_class::MetaValue.attributes.keys)
-        .to match_array(%i[
-                          id specific_use xml_lang content bold italic
-                          monospace num sc strike underline sub sup
                         ])
     end
 

@@ -9,7 +9,7 @@ module Sts
       attribute :xml_lang, :string
       attribute :label, ::Sts::IsoSts::Label
       attribute :mixed_citation, ::Sts::IsoSts::MixedCitation
-      attribute :element_citation, ::Sts::NisoSts::ElementCitation
+      attribute :element_citation, ::Sts::IsoSts::ElementCitation
       attribute :std, ::Sts::IsoSts::Std
       attribute :non_normative_note, ::Sts::IsoSts::NonNormativeNote
       attribute :non_normative_example, ::Sts::IsoSts::NonNormativeExample
