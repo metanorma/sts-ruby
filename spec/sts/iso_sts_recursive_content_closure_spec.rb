@@ -347,6 +347,27 @@ RSpec.describe Sts::IsoSts do
     expect(source).not_to include("Sts::NisoSts::")
   end
 
+  # mixed-citation and ref sit outside the recursive_registry, so their children
+  # escaped the cardinality check above. Their content is an unbounded choice,
+  # so every child must be a collection or repeated nodes are silently dropped.
+  it "models mixed-citation and ref unbounded children as collections" do
+    {
+      Sts::IsoSts::MixedCitation => %i[
+        source article_title volume issue fpage lpage page_range
+        person_group collab year
+      ],
+      Sts::IsoSts::Ref => %i[
+        mixed_citation element_citation std non_normative_note
+        non_normative_example
+      ],
+    }.each do |model, attrs|
+      attrs.each do |attr|
+        expect(model.attributes[attr].collection?)
+          .to be(true), "#{model}##{attr} must be a collection"
+      end
+    end
+  end
+
   it "round-trips a nested recursive citation closure" do
     xml = <<~XML
       <disp-quote id="dq1" content-type="quotation" xml:lang="en">

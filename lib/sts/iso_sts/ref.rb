@@ -8,11 +8,14 @@ module Sts
       attribute :specific_use, :string
       attribute :xml_lang, :string
       attribute :label, ::Sts::IsoSts::Label
-      attribute :mixed_citation, ::Sts::IsoSts::MixedCitation
-      attribute :element_citation, ::Sts::IsoSts::ElementCitation
-      attribute :std, ::Sts::IsoSts::Std
-      attribute :non_normative_note, ::Sts::IsoSts::NonNormativeNote
-      attribute :non_normative_example, ::Sts::IsoSts::NonNormativeExample
+      attribute :mixed_citation, ::Sts::IsoSts::MixedCitation, collection: true
+      attribute :element_citation, ::Sts::IsoSts::ElementCitation,
+                collection: true
+      attribute :std, ::Sts::IsoSts::Std, collection: true
+      attribute :non_normative_note, ::Sts::IsoSts::NonNormativeNote,
+                collection: true
+      attribute :non_normative_example, ::Sts::IsoSts::NonNormativeExample,
+                collection: true
 
       xml do
         element "ref"

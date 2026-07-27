@@ -31,13 +31,13 @@ module Sts
       attribute :person_group, ::Sts::IsoSts::PersonGroup, collection: true
       attribute :collab, ::Sts::IsoSts::Collab, collection: true
       attribute :year, ::Sts::IsoSts::Year, collection: true
-      attribute :source, ::Sts::IsoSts::Source
-      attribute :article_title, ::Sts::IsoSts::ArticleTitle
-      attribute :volume, ::Sts::IsoSts::Volume
-      attribute :issue, ::Sts::IsoSts::Issue
-      attribute :fpage, ::Sts::IsoSts::Fpage
-      attribute :lpage, ::Sts::IsoSts::Lpage
-      attribute :page_range, ::Sts::IsoSts::PageRange
+      attribute :source, ::Sts::IsoSts::Source, collection: true
+      attribute :article_title, ::Sts::IsoSts::ArticleTitle, collection: true
+      attribute :volume, ::Sts::IsoSts::Volume, collection: true
+      attribute :issue, ::Sts::IsoSts::Issue, collection: true
+      attribute :fpage, ::Sts::IsoSts::Fpage, collection: true
+      attribute :lpage, ::Sts::IsoSts::Lpage, collection: true
+      attribute :page_range, ::Sts::IsoSts::PageRange, collection: true
       attribute :publisher, ::Sts::IsoSts::Publisher
       attribute :pub_id, ::Sts::IsoSts::PubId, collection: true
 
