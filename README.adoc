@@ -140,23 +140,26 @@ sts.class.name # => "Sts::IsoSts::Standard"
 
 ==== ISOSTS MathML 2
 
-ISOSTS uses MathML 2 (not MathML 3+ like NISO STS). A custom Ruby implementation is provided in `Sts::IsoSts::Mathml2::*`:
+ISOSTS uses MathML 2 (not MathML 3 like NISO STS). All MathML is provided
+by the mml gem, bound per host:
+
+* `IsoSts::*` math attributes → `Mml::V2::Math`
+* `TbxIsoTml::*` math attributes → `Mml::V2::Math` (TBX-in-ISOSTS only)
+* `NisoSts::*` math attributes → `Mml::V3::Math`
 
 [source,ruby]
 ----
-# Access MathML 2 content
 disp_formula = sts.body.sec.first.disp_formula
-math = disp_formula.math  # => Sts::IsoSts::Mathml2::Math
+math = disp_formula.math  # => Mml::V2::Math
 
-# MathML 2 elements
-math.id          # => "mml_1"
-math.display     # => "block" or "inline"
-
-# Serialized as mml:math
-math.to_xml      # => <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" ...>
+# Round-trip preserves mml: prefix
+disp_formula.to_xml       # => <disp-formula><mml:math ...>...</mml:math></disp-formula>
 ----
 
-Available MathML 2 elements: `Math`, `Mrow`, `Mi`, `Mn`, `Mo`, `Mtext`, `Mspace`, `Msub`, `Msup`, `Msubsup`, `Mfrac`, `Msqrt`, `Mroot`, `Mstyle`, `Menclose`, `Mpadded`, `Mphantom`, `Mtable`, `Mtr`, `Mtd`, `Mlabeledtr`, `Mfenced`, `Semantics`, `Annotation`, `AnnotationXml`
+MathML 2 and 3 share the same XML namespace (`http://www.w3.org/1998/Math/MathML`),
+so `Mml::Namespace` (the mml gem's top-level namespace class) is used
+directly in both `IsoSts::Standard#namespace_scope` and
+`NisoSts::Standard#namespace_scope`.
 
 ==== ISOSTS TBX Terminology
 
@@ -190,6 +193,42 @@ sts = Sts::NisoSts::Standard.from_xml(xml_with_tbx)
 # ISOSTS with TBX
 sts = Sts::IsoSts::Standard.from_xml(xml_with_tbx)
 ----
+
+== Architecture principles
+
+=== Namespace independence
+
+`IsoSts`, `NisoSts`, and `TbxIsoTml` are independent schemas that
+genuinely diverge. Each `Sts::<Namespace>::<Class>` is modelled from its
+own schema source — never aliased across namespaces, never sharing base
+classes. The schemas disagree on most elements (e.g., `IsoSts::Fig` has
+`title`/`alternatives` that `NisoSts::Figure` lacks), so sharing types
+would fight the schemas and violate the Open/Closed principle.
+
+=== Anti-pattern enforcement
+
+`spec/anti_patterns_spec.rb` runs 9 per-file checks across `lib/` to
+forbid: `method_missing`, `respond_to_missing?`, `Object.const_get`,
+`.send(`, `instance_variable_set`/`get`, `respond_to?` type-checks,
+hand-rolled serialization methods on `Serializable` subclasses
+(`to_h`, `to_xml`, `from_xml`, etc.), `require_relative`, and
+internal `require`. See `CLAUDE.md` for the rationale.
+
+=== Schema validation
+
+`spec/schema_validation_spec.rb` validates IsoSts output against the
+canonical `reference-docs/isosts-v1/xsd/ISOSTS.xsd` via
+`Nokogiri::XML::Schema`. Round-tripping alone cannot prove schema
+conformance (a model that invents or drops an attribute still
+round-trips symmetrically); the XSD is the only authoritative check.
+
+=== Autoload convention
+
+`lib/sts.rb` autoloads top-level namespaces. Each namespace's
+`lib/sts/<namespace>.rb` autoloads every class in alphabetical order
+within category groups. External gems (`lutaml/model`, `mml`) are
+eager-required at the top of `lib/sts.rb`; internal code uses autoload
+only — no `require_relative`, no `require "sts/..."`.
 
 == Credits
 
