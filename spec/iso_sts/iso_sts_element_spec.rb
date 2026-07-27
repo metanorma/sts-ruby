@@ -1246,4 +1246,32 @@ RSpec.describe Sts::IsoSts do
         .to be_xml_equivalent_to(xml)
     end
   end
+
+  # Sts::Namespaces::MathmlNamespace used to duplicate Mml::Namespace's
+  # URI/prefix. A namespace IS its URI (Namespaces in XML 1.0); two Ruby
+  # classes for one XML namespace is a DRY violation. The duplication has
+  # been removed — Mml::Namespace is used directly. These specs lock that in.
+  describe "Mml::Namespace is used directly" do
+    it "Sts::Namespaces does not define MathmlNamespace" do
+      expect(Sts::Namespaces).not_to be_const_defined(:MathmlNamespace)
+    end
+
+    it "IsoSts::Standard namespace_scope uses Mml::Namespace" do
+      scope = described_class::Standard.mappings_for(:xml).namespace_scope
+      expect(scope).to include(Mml::Namespace)
+    end
+
+    it "NisoSts::Standard namespace_scope uses Mml::Namespace" do
+      scope = Sts::NisoSts::Standard.mappings_for(:xml).namespace_scope
+      expect(scope).to include(Mml::Namespace)
+    end
+
+    it "no lib/ file references Sts::Namespaces::MathmlNamespace" do
+      lib_dir = File.expand_path("../../lib", __dir__)
+      grep_output = `grep -rl "MathmlNamespace" #{lib_dir}`.strip
+      msg = "MathmlNamespace must not be referenced in lib/; " \
+            "found: #{grep_output}"
+      expect(grep_output).to be_empty, msg
+    end
+  end
 end

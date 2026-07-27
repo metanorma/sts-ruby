@@ -23,32 +23,37 @@ noted.
 
 | Track | Subject | Items |
 |---|---|---|
-| A | lutaml-model upstream fixes (file BUGREPORTs, propose patches) | 01, 02 |
-| B | Issue #40 namespace coupling completion | 03, 04 |
-| C | Architectural improvements (DRY, versioning, audit) | 05, 06, 07, 08 |
+| A | lutaml-model upstream analysis (filed as robustness suggestions) | 02 |
+| B | Issue #40 namespace coupling completion | 01 (done), 03 (done), 04 |
+| C | Architectural improvements (DRY, versioning, audit) | 05, 07, 08 |
 | D | Quality, specs, and coverage | 09, 10, 11 |
 
 ## Priority order
 
 The priority is "highest leverage per unit of risk" first:
 
-1. **B.03** (child-bearing roots): model `IsoSts::License`, `IsoSts::TermHead`,
-   `IsoSts::CustomMetaGroup` — closes 5 of 11 issue #40 refs in one PR. Low
-   risk, schema-correct, no recursion.
-2. **A.01, A.02** (lutaml-model BUGREPORTs): pure documentation, zero risk.
-   Unblocks C.06 (MathmlNamespace deduplication).
-3. **C.07** (TbxIsoTml misclassification audit): documents a deferred audit
+1. **B.01** (MathmlNamespace deduplication): DONE 2026-07-27. sts-ruby had
+   two Ruby classes for one XML namespace; deleted one, use `Mml::Namespace`
+   directly. Originally misdiagnosed as a lutaml-model bug — see
+   `01-mathml-namespace-deduplication.md` for the lesson.
+2. **B.03** (child-bearing roots): DONE 2026-07-27. Modelled License,
+   TermHead, CustomMetaGroup closures. Closed 5 of 11 issue #40 refs.
+3. **A.02** (lutaml-model ElementBuilder dispatch): filed as
+   `BUGREPORT.element-builder-dispatch-on-value-class.md` in lutaml-model.
+   Pure documentation; zero risk. **Reframed as a robustness suggestion,
+   not a bug** — sts-ruby's responsibility to use correct types was the
+   actual fix (PR #47 deleted duplicate Fn classes).
+4. **C.07** (TbxIsoTml misclassification audit): documents a deferred audit
    (Xref, TableWrap, etc.) — pattern is already proven by Fn/FnGroup and
    Math removals.
-4. **C.05** (Content MathML unification): 148 parallel classes in
+5. **C.05** (Content MathML unification): 148 parallel classes in
    `lib/sts/niso_sts/mml_content/` — same DRY argument as Presentation
    MathML unification (commit 9e977a5).
-5. **B.04** (recursive roots): the heavy lift. Each root pulls a ~78-element
+6. **B.04** (recursive roots): the heavy lift. Each root pulls a ~78-element
    mutually-recursive core. Requires per-element planning. Most architecturally
    significant.
-6. **C.08** (register versioning): lets ISOSTS v1.1, NISO STS 1.0, NISO STS 1.2
+7. **C.08** (register versioning): lets ISOSTS v1.1, NISO STS 1.0, NISO STS 1.2
    coexist without class-name clashes.
-7. **C.06** (MathmlNamespace deduplication): blocked on A.01.
 8. **D.09, D.10, D.11** (quality, coverage, docs): ongoing.
 
 ## Architectural principles (enforced on all new work)

@@ -7,7 +7,7 @@ module Sts
       # Content MathML elements share the MathML namespace
       class Object < Lutaml::Model::Serializable
         xml do
-          namespace ::Sts::Namespaces::MathmlNamespace
+          namespace ::Mml::Namespace
         end
       end
 

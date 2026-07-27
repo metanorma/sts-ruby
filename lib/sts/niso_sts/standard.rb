@@ -17,7 +17,7 @@ module Sts
         element "standard"
         ordered
         namespace_scope [
-          ::Sts::Namespaces::MathmlNamespace,
+          ::Mml::Namespace,
           ::Mml::Namespace,
           ::Sts::Namespaces::TbxNamespace,
           ::Lutaml::Xml::W3c::XlinkNamespace,
