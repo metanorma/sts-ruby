@@ -34,8 +34,10 @@ module Sts
         map_element "pub-date", to: :pub_date
         map_element "release-date", to: :release_date
         map_element "release-version", to: :release_version
-        map_element "comm-ref", to: :comm_ref
-        map_element "secretariat", to: :secretariat
+        map_element "comm-ref", to: :comm_ref,
+                                value_map: { to: { empty: :empty } }
+        map_element "secretariat", to: :secretariat,
+                                   value_map: { to: { empty: :empty } }
         map_element "ics", to: :ics
         map_element "std-xref", to: :std_xref
         map_element "permissions", to: :permissions

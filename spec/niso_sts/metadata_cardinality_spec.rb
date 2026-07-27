@@ -93,4 +93,28 @@ RSpec.describe Sts::NisoSts do
       expect(xml).to include("ISO 8601-1")
     end
   end
+
+  # <comm-ref/> and <secretariat/> commonly appear as empty elements in
+  # real fixtures. PR #55 made the attributes singular with value_map on
+  # the mapping to preserve empty elements through round-trip. The
+  # value_map was applied correctly in MetadataStd but missed in three
+  # sibling classes (MetadataIso partially, RegMeta, NatMeta entirely).
+  # This spec asserts the trade-off applies uniformly across all four.
+  describe "empty-element preservation across all four metadata classes" do
+    {
+      "iso-meta" => Sts::NisoSts::MetadataIso,
+      "reg-meta" => Sts::NisoSts::RegMeta,
+      "nat-meta" => Sts::NisoSts::NatMeta,
+      "std-meta" => Sts::NisoSts::MetadataStd,
+    }.each do |element, klass|
+      it "<#{element}> preserves empty <comm-ref/> and <secretariat/>" do
+        xml = %(<#{element} id="t"><comm-ref/><secretariat/></#{element}>)
+        round_trip = klass.to_xml(klass.from_xml(xml))
+        expect(round_trip).to include("<comm-ref"),
+                              "#{element} lost <comm-ref/> on round-trip"
+        expect(round_trip).to include("<secretariat"),
+                              "#{element} lost <secretariat/> on round-trip"
+      end
+    end
+  end
 end
