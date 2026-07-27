@@ -25,6 +25,7 @@ Layout/LineLength:
     - 'lib/sts/tbx_iso_tml/term_type.rb'
     - 'spec/elements/new_elements_spec.rb'
     - 'spec/iso_sts/schema_validation_spec.rb'
+    - 'spec/niso_sts/metadata_cardinality_spec.rb'
     - 'spec/round_trip/reference_docs_spec.rb'
     - 'spec/spec_helper.rb'
 
@@ -127,3 +128,4 @@ RSpec/SpecFilePathFormat:
     - 'spec/iso_sts/iso_sts_spec.rb'
     - 'spec/iso_sts/iso_sts_element_spec.rb'
     - 'spec/iso_sts/schema_validation_spec.rb'
+    - 'spec/niso_sts/metadata_cardinality_spec.rb'
