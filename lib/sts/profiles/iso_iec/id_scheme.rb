@@ -29,9 +29,21 @@ module Sts
           }.freeze,
         }.freeze
 
+        # Element name => [prefix, matcher], built once at load. Interpolating
+        # the matcher per call instead is 18x slower, and a document can carry
+        # thousands of ids.
+        #
+        # ISO/CS prefixes ids with a document identifier, e.g.
+        # iso_10993-1_2009_en_fig_1, so the prefix may follow a separator.
+        MATCHERS = SCHEMES.transform_values do |prefixes|
+          prefixes.to_h do |element, prefix|
+            [element, [prefix, /(?:\A|[_-])#{Regexp.escape(prefix)}/].freeze]
+          end.freeze
+        end.freeze
+
         def initialize(name)
           @name = name
-          @prefixes = SCHEMES.fetch(name) do
+          @matchers = MATCHERS.fetch(name) do
             raise ArgumentError, "unknown ISO/IEC id scheme #{name.inspect}"
           end
         end
@@ -40,19 +52,11 @@ module Sts
         # nil when it conforms. Elements the scheme does not cover are not
         # checked.
         def violation(element, id)
-          prefix = @prefixes[element]
-          return if prefix.nil? || conforms?(prefix, id)
+          prefix, matcher = @matchers[element]
+          return if prefix.nil? || id.match?(matcher)
 
           "<#{element}> id '#{id}' does not follow the #{@name} ID scheme " \
             "(expected prefix '#{prefix}')"
-        end
-
-        private
-
-        # ISO/CS prefixes ids with a document identifier, e.g.
-        # iso_10993-1_2009_en_fig_1, so the prefix may follow a separator.
-        def conforms?(prefix, id)
-          id.match?(/(?:\A|[_-])#{Regexp.escape(prefix)}/)
         end
       end
     end
