@@ -157,7 +157,8 @@ All other TODOs feed into this — add tests as features are implemented.
 - [x] Add unit tests for new elements (ProcessingMeta, Code, Legend, InlineMedia, TableWrapGroup, DefHead)
 - [x] Add unit tests for attribute additions (Title, Caption, Label, ExtLink, AwardId, DefItem)
 - [x] Add unit tests for Index and TOC hierarchy elements
-- [ ] Add schema validation tests
+- [x] Add schema validation tests (whole-document, NISO Extended XSD + ISOSTS.xsd;
+      Interchange and NISO STS 1.2 not covered — neither schema is vendored)
 - [ ] Add versioning tests (after TODO 04)
 - [x] Add profile validation tests (after TODO 08)
 - [x] Set up coverage tracking
