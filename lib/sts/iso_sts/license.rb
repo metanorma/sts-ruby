@@ -3,6 +3,7 @@
 module Sts
   module IsoSts
     class License < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :license_type, :string
       attribute :specific_use, :string
       attribute :xml_lang, :string
@@ -18,6 +19,7 @@ module Sts
         element "license"
         ordered
 
+        map_attribute "id", to: :id
         map_attribute "license-type", to: :license_type
         map_attribute "specific-use", to: :specific_use
         map_attribute "xml:lang", to: :xml_lang
@@ -27,7 +29,6 @@ module Sts
         map_attribute "xlink:title", to: :xlink_title
         map_attribute "xlink:show", to: :xlink_show
         map_attribute "xlink:actuate", to: :xlink_actuate
-
         map_element "license-p", to: :license_p
       end
     end

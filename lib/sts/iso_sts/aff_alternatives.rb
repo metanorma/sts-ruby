@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+module Sts
+  module IsoSts
+    class AffAlternatives < Lutaml::Model::Serializable
+      attribute :id, :string
+      attribute :aff, ::Sts::IsoSts::Aff, collection: true
+
+      xml do
+        element "aff-alternatives"
+        ordered
+
+        map_attribute "id", to: :id
+        map_element "aff", to: :aff
+      end
+    end
+  end
+end

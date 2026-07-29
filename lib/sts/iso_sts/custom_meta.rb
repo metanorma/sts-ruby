@@ -28,7 +28,6 @@ module Sts
         map_attribute "xlink:title", to: :xlink_title
         map_attribute "xlink:show", to: :xlink_show
         map_attribute "xlink:actuate", to: :xlink_actuate
-
         map_element "meta-name", to: :meta_name
         map_element "meta-value", to: :meta_value
       end
