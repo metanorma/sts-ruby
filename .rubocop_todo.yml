@@ -129,3 +129,5 @@ RSpec/SpecFilePathFormat:
     - 'spec/iso_sts/iso_sts_element_spec.rb'
     - 'spec/iso_sts/schema_validation_spec.rb'
     - 'spec/niso_sts/metadata_cardinality_spec.rb'
+    - 'spec/profiles/id_scheme_spec.rb'
+    - 'spec/profiles/profiles_spec.rb'

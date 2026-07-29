@@ -194,6 +194,48 @@ sts = Sts::NisoSts::Standard.from_xml(xml_with_tbx)
 sts = Sts::IsoSts::Standard.from_xml(xml_with_tbx)
 ----
 
+=== ISO/IEC usage profile
+
+ISO/IEC NISO STS is not a separate schema. It is a usage profile -- a constraint layer on top of NISO STS covering which elements are required, which attribute values are allowed, and the conventions ISO and IEC follow.
+
+So profiles do not change parsing. Parse the document first, then validate it against a profile:
+
+[source,ruby]
+----
+require 'sts'
+
+doc = Sts::NisoSts::Standard.from_xml(xml)
+errors = Sts::Profiles.validator(:iso_iec).validate(doc)
+# => ["ISO/IEC profile requires <body>"]
+----
+
+`validate` returns an array of message strings, empty when the document satisfies the profile. It checks document structure and `<std-meta>`/`<std-ident>` metadata. The validator targets NISO STS documents (`Sts::NisoSts::Standard`).
+
+==== Checking the semantic ID scheme
+
+Annex F of the NISO STS 1.2 IEC/ISO Coding Guidelines tabulates two ID schemes, one for ISO and one for IEC. Pass `id_scheme` to check ids against one of them:
+
+[source,ruby]
+----
+Sts::Profiles.validator(:iso_iec, id_scheme: :iso).validate(doc)
+# => ["<fig> id 'fig-1' does not follow the iso ID scheme (expected prefix 'fig_')"]
+----
+
+[cols="1,1,1"]
+|===
+| Element | ISO (Annex F.2) | IEC (Annex F.1)
+
+| `sec` | `sec_` | `sec-`
+| `term-sec` | `sec_` | `con-`
+| `fig` | `fig_` | `fig-`
+| `table-wrap` | `tab_` | `tab-`
+| `disp-formula` | `formula_` | `for-`
+|===
+
+This check is off by default, and deliberately so. Annex F warns that "IDs generated in OSD are arbitrary" and that it is "not recommended to base any exploitation of ISO or IEC XML on semantic IDs". The schemes describe legacy content and the traditional publication chain, not a rule every document follows. Real documents bear this out -- `ISO_13849-1_2008-12_en_TBX.xml` matches the IEC scheme for figures, tables and formulae but uses a `sub-` prefix for sections. Turn the check on only when you know your documents come from a chain that uses semantic ids.
+
+Elements outside the table are never checked. Passing an unknown profile raises `Sts::Profiles::UnknownProfileError`; an unknown `id_scheme` raises `ArgumentError`.
+
 == Architecture principles
 
 === Namespace independence

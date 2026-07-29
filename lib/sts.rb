@@ -2,6 +2,10 @@
 
 require "lutaml/model"
 require "mml"
+# The ISO/IEC profile validator reads ids back off a serialized document.
+# lutaml-model already pulls Moxml in, but naming a constant we only get
+# transitively is how a dependency bump breaks us later.
+require "moxml"
 
 module Sts
   autoload :IsoSts, "#{__dir__}/sts/iso_sts"
