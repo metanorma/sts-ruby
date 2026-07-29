@@ -4,9 +4,14 @@ module Sts
   module Profiles
     module IsoIec
       module Constraints
+        # Annex F.2 of the Guidelines rules ids out on several elements a wider
+        # list would sweep in: "No ids or other attributes used for <p>", "No id
+        # attribute in any <list> or <list-item>", "No id attribute in
+        # <non-normative-note>". The elements below are the ones both Annex F
+        # and the reference documents in this repository consistently carry an
+        # id on.
         REQUIRED_ID_ELEMENTS = %w[
-          sec app fig table-wrap disp-formula ref-list ref p term-sec
-          graphic boxed-text list def-list non-normative-note
+          sec app fig table-wrap disp-formula term-sec ref
         ].freeze
 
         REQUIRED_FRONT_CHILDREN = %w[
@@ -21,15 +26,13 @@ module Sts
           originator doc-type doc-number
         ].freeze
 
-        ID_PATTERNS = {
-          "sec" => /\Asec_\d+(\.\d+)*\z/,
-          "app" => /\A(app|annex)_[A-Z]\z/,
-          "fig" => /\Afig_[A-Z\d]+\z/,
-          "table-wrap" => /\Atab_[A-Z\d]+\z/,
-          "disp-formula" => /\Afor_[A-Z\d]+\z/,
-          "ref" => /\Aref_\d+\z/,
-          "term-sec" => /\Aterm_\d+(\.\d+)*\z/,
-          "p" => /\Ap_[\w.]+\z/,
+        # <comm-ref> spells out the organization at ISO but not at IEC. These
+        # are the literal examples given in the Guidelines, not patterns -- no
+        # document in this repository carries a non-empty <comm-ref>, so there
+        # is nothing to validate a pattern against.
+        COMM_REF_EXAMPLES = {
+          "ISO" => "ISO/TC 126/SC 1",
+          "IEC" => "TC 25",
         }.freeze
 
         STD_ID_TYPES = %w[dated undated isbn doi].freeze

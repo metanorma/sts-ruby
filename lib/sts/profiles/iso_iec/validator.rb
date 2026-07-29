@@ -4,14 +4,39 @@ module Sts
   module Profiles
     module IsoIec
       class Validator
+        # Pass +id_scheme+ (+:iso+ or +:iec+) to check ids against one of the
+        # semantic ID schemes in Annex F of the Coding Guidelines. Left out,
+        # ids are not checked -- the Guidelines call OSD ids arbitrary.
+        def initialize(id_scheme: nil)
+          @id_scheme = id_scheme.nil? ? nil : IdScheme.new(id_scheme)
+        end
+
         def validate(document)
           errors = []
           errors.concat(validate_structure(document))
           errors.concat(validate_metadata(document))
+          errors.concat(validate_ids(document))
           errors
         end
 
         private
+
+        def validate_ids(doc)
+          return [] unless @id_scheme
+
+          element_ids(doc).filter_map do |element, id|
+            @id_scheme.violation(element, id)
+          end
+        end
+
+        # Every id in the document, as [element name, id] pairs. Reading them
+        # back off the serialized document covers the whole tree, which walking
+        # the model's accessors by hand would not.
+        def element_ids(doc)
+          Moxml.new.parse(doc.to_xml).xpath("//*[@id]").map do |node|
+            [node.name, node["id"]]
+          end
+        end
 
         def validate_structure(doc)
           errors = []
