@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "nokogiri"
+
 RSpec.describe Sts::IsoSts do
   describe "Standard" do
     it "can be instantiated" do
@@ -895,10 +897,11 @@ RSpec.describe Sts::IsoSts do
     end
   end
 
-  # Exact attribute-key sets after restoring the ISOSTS attributes these models
-  # silently dropped. Round-tripping cannot prove the set: a model that invents
-  # or drops an attribute still parses and serialises symmetrically. Asserting
-  # the exact set is what catches that.
+  # Exact attribute-key sets: the ISOSTS attributes these models had silently
+  # dropped, minus the ones they carried but ISOSTS never defined.
+  # Round-tripping cannot prove the set: a model that invents or drops an
+  # attribute still parses and serialises symmetrically. Asserting the exact
+  # set is what catches that.
   describe "IsoSts element classes model their full ISOSTS attribute set" do
     {
       Sub: %i[id arrange specific_use content],
@@ -942,18 +945,51 @@ RSpec.describe Sts::IsoSts do
       Graphic: %i[
         id position orientation specific_use xml_lang content_type mimetype
         mime_subtype xlink_href xlink_type xlink_role xlink_title xlink_show
-        xlink_actuate graphic_type originator label caption alt_text long_desc
+        xlink_actuate originator label caption alt_text long_desc
       ],
       Underline: %i[underline_style specific_use content bold italic sub sup],
       Body: %i[
-        id content_type specific_use paragraph sec term_sec list def_list
+        id specific_use paragraph sec term_sec list def_list
         disp_formula table_wrap fig non_normative_note non_normative_example
         preformat styled_content array ref_list disp_quote
       ],
+      Back: %i[id app_group ref_list fn_group sec],
+      Language: %i[id content],
+      ContentLanguage: %i[id content],
     }.each do |klass, expected|
       it "IsoSts::#{klass} models its configured attribute set" do
         expect(described_class.const_get(klass).attributes.keys)
           .to match_array(expected)
+      end
+    end
+  end
+
+  # Attributes these models used to carry that ISOSTS never defined. The sets
+  # above prove the Ruby attribute is gone; these prove the XML behaviour, which
+  # depends on lutaml-model silently ignoring undeclared attributes rather than
+  # raising. A dependency upgrade could change that without touching our code.
+  #
+  # Checked namespace-aware: an unprefixed attribute still falls back to a
+  # same-local-name prefixed mapping (an unprefixed type= lands in xlink:type).
+  # That is pre-existing lutaml-model behaviour, shared with Uri, NamedContent
+  # and ExtLink, so what matters here is that no unprefixed attribute survives.
+  describe "IsoSts element classes drop attributes ISOSTS does not define" do
+    {
+      Graphic: %w[type],
+      Body: %w[content-type],
+      Back: %w[content-type],
+      Language: %w[lang specific-use],
+      ContentLanguage: %w[lang specific-use],
+    }.each do |klass, xml_attrs|
+      xml_attrs.each do |xml_attr|
+        it "IsoSts::#{klass} ignores #{xml_attr}" do
+          model = described_class.const_get(klass)
+          element = model.mappings_for(:xml).root_element
+          parsed = model.from_xml(%(<#{element} #{xml_attr}="v-1"/>))
+          root = Nokogiri::XML(model.to_xml(parsed)).root
+          unprefixed = root.attribute_nodes.reject(&:namespace).map(&:name)
+          expect(unprefixed).not_to include(xml_attr)
+        end
       end
     end
   end
