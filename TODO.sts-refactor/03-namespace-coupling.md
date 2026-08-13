@@ -3,7 +3,7 @@
 **Priority**: HIGH
 **Category**: Architecture
 **Estimated Effort**: High
-**Status**: Partially done — 63 → 6 references (GitHub issue #40)
+**Status**: Complete — 63 → 0 references (GitHub issue #40)
 
 ## Problem
 
@@ -18,7 +18,8 @@ The `IsoSts::Attrib` addition then reduced it from 13 to 11
 (Array#attrib, TableWrapFoot#attrib) and filled the omission in DispQuote /
 BoxedText from PR #48. The License/TermHead/CustomMetaGroup closure then
 reduced it from 11 to 6 (Permissions#license, DefList#term_head, and
-IsoMeta/RegMeta/NatMeta#custom_meta_group).
+IsoMeta/RegMeta/NatMeta#custom_meta_group). The full recursive closure then
+removed the final 6 references.
 
 ## Content models from ISOSTS.xsd; `@id` from the 86948b9 convention
 
@@ -46,7 +47,7 @@ Non-`@id` attribute lists must be **generated** from the XSD, never hand-read:
 `version` on `tex-math` and `specific-use` on `pub-id` sit after long
 `xs:enumeration` blocks and are invisible to a truncated read.
 
-## Done in issue #40 — 47 refs removed, 46 classes added
+## Done in issue #40 — 63 refs removed, 136 classes added
 
 - **14 `xs:string` elements** (`originator`, `doc-type`, `doc-number`,
   `part-number`, `version`, `suppl-type`, `suppl-number`, `suppl-version`,
@@ -78,25 +79,25 @@ Non-`@id` attribute lists must be **generated** from the XSD, never hand-read:
 - **`DispQuote` and `BoxedText` added** — modelled from ISOSTS.xsd (not copied
   from NisoSts, which disagrees: `NisoSts::DispQuote` lacks `xml_lang` and
   `title`; `NisoSts::BoxedText` carries `form_type`/`is_form` that ISOSTS does
-  not define). Children limited to existing IsoSts types; omitted children
-  (`speech`, `statement`, `verse-group`, `address`, `alternatives`,
-  `array`, `chem-struct-wrap`, `fig-group`, `media`, `supplementary-material`,
-  `table-wrap`, `table-wrap-group`, `disp-formula-group`, `mml:math`,
-  `related-article`, `related-object`, `glossary`) are tracked below.
+  not define). Their first pass was limited to existing IsoSts child types.
   `BoxedText#sts_object_id` (not `:object_id`) follows the `NisoSts::Graphic`
   convention to avoid clashing with `Object#object_id`. 3 refs.
 - **`Attrib` added** — mixed-content class modelled from ISOSTS.xsd with the
-  25 inline-element children that have IsoSts types today. Fills the
+  25 inline-element children that had IsoSts types at the time. It fills the
   `attrib` gap left in `DispQuote` and `BoxedText` from the prior bullet.
-  2 refs (`Array#attrib`, `TableWrapFoot#attrib`). Omitted inline children
-  (`inline-supplementary-material`, `related-article`, `related-object`,
-  `element-citation`, `overline`, `roman`, `sans-serif`, `alternatives`,
-  `private-char`, `chem-struct`, `mml:math`, `target`, `tbx:entailedTerm`)
-  tracked below.
+  2 refs (`Array#attrib`, `TableWrapFoot#attrib`).
 - **License / TermHead / CustomMetaGroup closure added** — `License`,
   `LicenseP`, `TermHead`, `CustomMetaGroup`, `CustomMeta`, `MetaName`, and
   `MetaValue` modelled from ISOSTS.xsd. 5 refs (`Permissions#license`,
   `DefList#term_head`, `IsoMeta/RegMeta/NatMeta#custom_meta_group`).
+- **90-model full closure completed** — 80 models are new and 10 earlier
+  bounded models are expanded to their complete content models. All direct
+  and transitive ISOSTS elements needed by `disp-quote`, `boxed-text`,
+  `person-group`, `collab`, `source`, `article-title`, and the bounded
+  metadata roots now close through IsoSts, TBX, and MathML types. Every model
+  uses the exact ISOSTS attributes and child cardinalities plus the mandatory
+  project `@id` surface; none uses `required: true`. This removes the final
+  6 refs from `MixedCitation`, `Ref`, and `TermSec`.
 
 ### Why classes and not plain `:string`
 
@@ -107,26 +108,26 @@ round-trip. For a scalar, `render_empty: :empty` recovers it; for a collection
 to `[]`, destroying the information at parse time before any render option
 applies. Content-only classes round-trip every case.
 
-## Remaining — 6 refs
+## Complete — 0 refs
 
-**5 refs to 5 recursive roots**: `ElementCitation`, `PersonGroup`, `Collab`,
-`Source`, `TermDisplay`. Each reaches the same 78–79-element
-mutually-recursive core before existing IsoSts boundaries (`sec` → `p` →
-`disp-quote` → `p`). `DispQuote`, `BoxedText`, `Attrib`, `License`,
-`TermHead`, and `CustomMetaGroup` are now IsoSts classes and no longer in
-this list. The remaining 6 are the recursive roots — see
-`TODO.roadmap/04-issue-40-recursive-roots.md` for the strategy.
+The final 6 references were `Ref#element_citation`, four `MixedCitation`
+children (`person_group`, `collab`, `source`, and `article_title`), and
+`TermSec#term_display`. Their complete recursive and bounded closures are now
+modelled in IsoSts.
 
-**8 refs to 5 child-bearing roots**, now measured after the first dependency
-layer: `attrib` (:1082) reaches 78 not-yet-modelled ISOSTS elements before
-existing IsoSts boundaries, `term-head` (:4308) reaches 79, `article-title`
-reaches 78, `license` → `license-p` (:51) reaches 84, and
-`custom-meta-group` → `custom-meta` reaches 82. They converge on the same
-recursive content core as the deep roots, so none is another bounded model
-batch. `publisher` was the only exception: its four-element closure
-(`publisher`, `publisher-name`, `publisher-loc`, `email`) is complete.
-The Niso `Attrib` class is only 17 lines because it omits all 37 ISOSTS child
-types; copying it would silently drop valid ISO content rather than decouple it.
+The earlier four bounded roots had a combined 12-element closure before
+existing IsoSts boundaries:
+
+- `TermHead` — 1 ref in `DefList`; only `term-head` was needed.
+- `CustomMetaGroup` — 3 refs in `IsoMeta`, `NatMeta`, and `RegMeta`; its
+  4-element closure is `custom-meta-group`, `custom-meta`, `meta-name`, and
+  `meta-value`.
+- `License` — 1 ref in `Permissions`; its 6-element closure is `license`,
+  `license-p`, `award-id`, `funding-source`, `open-access`, and `price`.
+- `TermDisplay` — 1 ref in `TermSec`; only `term-display` was needed.
+
+All four closures are now modelled in IsoSts and all six host references point
+to their IsoSts types.
 
 ## Rejected: three-tier `Sts::Base` hierarchy
 
@@ -140,7 +141,7 @@ That draft also targeted `lib/sts/iso_sts/content_groups/highlight_elements.rb`
 and "194+ references" to emphasis types. That file was deleted as dead code; the
 real work was metadata types, not highlight elements.
 
-## Naming trap (for the deferred work)
+## Naming trap
 
 A mechanical `s/NisoSts::/IsoSts::/` is wrong. Nine elements already have
 different class names per namespace, so a blind rename creates `IsoSts::Section`
@@ -156,13 +157,13 @@ Remap child references by **XML element name**, not class name.
 ## Scope boundary
 
 Independence from NisoSts is not independence in general: `lib/sts/iso_sts/`
-still references 6 `TbxIsoTml` types directly, and much of the deferred closure
-reaches `TbxIsoTml`/MathML. Those are shared namespaces, outside this ADR.
+still references 6 `TbxIsoTml` types directly, and the completed closure reaches
+`TbxIsoTml`/MathML. Those are shared namespaces, outside this ADR.
 
 ## Verification
 
-1. `grep -rho "Sts::NisoSts::" lib/sts/iso_sts/ | wc -l` → `16`
+1. `grep -rho "Sts::NisoSts::" lib/sts/iso_sts/ | wc -l` → `0`
 2. Every *non-`@id`* attribute on an IsoSts model traces to a line in
    `ISOSTS.xsd`; `@id` follows the 86948b9 convention
-3. Autoload registry 1:1 with the directory (131/131)
+3. Autoload registry 1:1 with the directory (220/220)
 4. `bundle exec rspec` green; `bundle exec rubocop` clean
