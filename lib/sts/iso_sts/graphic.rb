@@ -17,7 +17,6 @@ module Sts
       attribute :xlink_title, :string
       attribute :xlink_show, :string
       attribute :xlink_actuate, :string
-      attribute :graphic_type, :string
       attribute :originator, :string
       attribute :label, ::Sts::IsoSts::Label
       attribute :caption, ::Sts::IsoSts::Caption
@@ -42,7 +41,6 @@ module Sts
         map_attribute "xlink:title", to: :xlink_title
         map_attribute "xlink:show", to: :xlink_show
         map_attribute "xlink:actuate", to: :xlink_actuate
-        map_attribute "type", to: :graphic_type
         map_attribute "originator", to: :originator
 
         map_element "label", to: :label
