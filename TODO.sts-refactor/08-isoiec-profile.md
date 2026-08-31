@@ -158,12 +158,12 @@ lib/sts/profiles/
 ## TODO Checklist
 
 - [x] Extract ISO/IEC constraints from Guidelines ed.2.1
-- [ ] Extract IEC-specific constraints
+- [x] Extract IEC-specific constraints
 - [x] Design validator architecture
 - [x] Implement constraint constants module
 - [x] Implement basic structural validator
-- [ ] Implement ID scheme validator
+- [x] Implement ID scheme validator
 - [x] Implement metadata validator (originator, doc-type validation)
-- [ ] Add profile selection to parsing API
+- [x] Add profile selection to parsing API
 - [x] Write specs for validation
-- [ ] Document usage
+- [x] Document usage
