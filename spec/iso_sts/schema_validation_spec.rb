@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-require "nokogiri"
 
 # Validates IsoSts model output against the canonical ISOSTS.xsd. Round-trip
 # specs alone cannot catch attribute-set drift (a model that invents or
@@ -21,17 +20,8 @@ module SchemaValidationFixtures
 end
 
 RSpec.describe Sts::IsoSts do
-  let(:project_root) { File.expand_path("../..", __dir__) }
-  let(:xsd_dir) { File.join(project_root, "reference-docs/isosts-v1/xsd") }
-  # Nokogiri resolves xs:import schemaLocation relative to the cwd at load
-  # time, not to the .xsd file. chdir into the schema directory so the
-  # ncbi-mathml2/, xlink.xsd, xml.xsd, tbx.xsd imports all resolve.
-  let(:xsd) do
-    Dir.chdir(xsd_dir) { Nokogiri::XML::Schema(File.read("ISOSTS.xsd")) }
-  end
-
   def validate(xml_fragment)
-    xsd.validate(Nokogiri::XML(xml_fragment))
+    StsSchemas.errors(StsSchemas.isosts, xml_fragment)
   end
 
   describe "simple text-with-attrs elements validate against ISOSTS.xsd" do
