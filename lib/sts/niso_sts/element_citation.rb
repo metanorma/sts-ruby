@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength, Metrics/MethodLength
+# rubocop:disable-next Metrics/BlockLength, Metrics/MethodLength
 module Sts
   module NisoSts
     class ElementCitation < Lutaml::Model::Serializable
@@ -100,4 +100,3 @@ module Sts
     end
   end
 end
-# rubocop:enable Metrics/BlockLength, Metrics/MethodLength
