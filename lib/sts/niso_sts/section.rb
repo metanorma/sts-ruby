@@ -45,7 +45,7 @@ module Sts
                 collection: true
       attribute :fn, ::Sts::NisoSts::Fn, collection: true
 
-      # rubocop:disable Metrics/BlockLength
+      # rubocop:disable-next Metrics/BlockLength
       xml do
         element "sec"
         ordered
@@ -87,7 +87,6 @@ module Sts
         map_element "non-normative-note", to: :non_normative_note
         map_element "non-normative-example", to: :non_normative_example
       end
-      # rubocop:enable Metrics/BlockLength
     end
   end
 end
