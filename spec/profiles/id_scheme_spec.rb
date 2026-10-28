@@ -29,6 +29,29 @@ RSpec.describe Sts::Profiles::IsoIec::IdScheme do
       expect(scheme.violation("term-sec", "sec-3.1.3")).not_to be_nil
     end
 
+    # The Annex F table, written out literally so a changed prefix cannot
+    # pass by being compared with itself.
+    {
+      iso: {
+        "sec" => "sec_", "term-sec" => "sec_", "fig" => "fig_",
+        "table-wrap" => "tab_", "disp-formula" => "formula_"
+      },
+      iec: {
+        "sec" => "sec-", "term-sec" => "con-", "fig" => "fig-",
+        "table-wrap" => "tab-", "disp-formula" => "for-"
+      },
+    }.each do |name, prefixes|
+      prefixes.each do |element, prefix|
+        it "pins the #{name} prefix #{prefix.inspect} for <#{element}>" do
+          scheme = described_class.new(name)
+
+          expect(scheme.violation(element, "#{prefix}1")).to be_nil
+          expect(scheme.violation(element, "zz9-1"))
+            .to include("expected prefix '#{prefix}'")
+        end
+      end
+    end
+
     it "does not check elements the scheme does not cover" do
       expect(described_class.new(:iso).violation("p", "par-1-1")).to be_nil
     end
