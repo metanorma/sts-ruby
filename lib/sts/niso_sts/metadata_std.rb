@@ -6,7 +6,7 @@ module Sts
       attribute :id, :string
       attribute :std_meta_type, :string
       attribute :title_wrap, ::Sts::NisoSts::TitleWrap, collection: true
-      attribute :content_language, :string
+      attribute :content_language, :string, collection: true
       attribute :std_ident, ::Sts::NisoSts::StandardIdentification
       attribute :doc_ident, ::Sts::NisoSts::DocumentIdentification
       attribute :std_ref, ::Sts::NisoSts::StandardRef, collection: true
@@ -16,14 +16,14 @@ module Sts
       attribute :release_date, ::Sts::NisoSts::ReleaseDate, collection: true
       attribute :release_version, ::Sts::NisoSts::ReleaseVersion
       attribute :std_org, ::Sts::NisoSts::StdOrg, collection: true
-      attribute :std_org_group, ::Sts::NisoSts::StdOrgGroup
+      attribute :std_org_group, ::Sts::NisoSts::StdOrgGroup, collection: true
       attribute :comm_ref, :string
       attribute :secretariat, :string
       attribute :ics, :string, collection: true
       attribute :page_count, ::Sts::NisoSts::PageCount
       attribute :std_xref, ::Sts::NisoSts::StdCrossReference, collection: true
       attribute :permissions, ::Sts::NisoSts::Permissions, collection: true
-      attribute :self_uri, ::Sts::NisoSts::SelfUri
+      attribute :self_uri, ::Sts::NisoSts::SelfUri, collection: true
       attribute :meta_note, ::Sts::NisoSts::MetaNote, collection: true
       attribute :custom_meta_group, ::Sts::NisoSts::CustomMetaGroup,
                 collection: true

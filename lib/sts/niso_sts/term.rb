@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
+# rubocop:disable-next Metrics/BlockLength
 module Sts
   module NisoSts
     class Term < Lutaml::Model::Serializable
@@ -67,4 +67,3 @@ module Sts
     end
   end
 end
-# rubocop:enable Metrics/BlockLength

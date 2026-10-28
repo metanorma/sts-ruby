@@ -10,11 +10,11 @@ module Sts
       attribute :std_ref, ::Sts::NisoSts::StandardRef, collection: true
       attribute :doc_ref, :string
       attribute :pub_date, :string
-      attribute :release_date, :string
+      attribute :release_date, ::Sts::NisoSts::ReleaseDate, collection: true
       attribute :release_version, :string
       attribute :comm_ref, :string
       attribute :secretariat, :string
-      attribute :ics, :string
+      attribute :ics, :string, collection: true
       attribute :std_xref, ::Sts::NisoSts::StdCrossReference, collection: true
       attribute :permissions, ::Sts::NisoSts::Permissions, collection: true
       attribute :meta_note, ::Sts::NisoSts::MetaNote, collection: true
@@ -34,8 +34,10 @@ module Sts
         map_element "pub-date", to: :pub_date
         map_element "release-date", to: :release_date
         map_element "release-version", to: :release_version
-        map_element "comm-ref", to: :comm_ref
-        map_element "secretariat", to: :secretariat
+        map_element "comm-ref", to: :comm_ref,
+                                value_map: { to: { empty: :empty } }
+        map_element "secretariat", to: :secretariat,
+                                   value_map: { to: { empty: :empty } }
         map_element "ics", to: :ics
         map_element "std-xref", to: :std_xref
         map_element "permissions", to: :permissions
