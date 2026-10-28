@@ -148,18 +148,87 @@ RSpec.describe Sts::Profiles::IsoIec::Validator do
       )
     end
   end
+
+  describe "#validate with an id scheme" do
+    let(:xml) do
+      <<~XML
+        <standard>
+          <front>
+            <std-meta>
+              <std-ident>
+                <originator>ISO</originator>
+                <doc-type>is</doc-type>
+                <doc-number>9001</doc-number>
+              </std-ident>
+            </std-meta>
+          </front>
+          <body>
+            <sec id="sec_1">
+              <title>Scope</title>
+              <fig id="fig_1"><label>1</label></fig>
+            </sec>
+          </body>
+        </standard>
+      XML
+    end
+
+    it "accepts ids following the selected scheme" do
+      doc = Sts::NisoSts::Standard.from_xml(xml)
+      errors = described_class.new(id_scheme: :iso).validate(doc)
+      expect(errors).to be_empty
+    end
+
+    it "reports ids following the other organization's scheme" do
+      doc = Sts::NisoSts::Standard.from_xml(xml)
+      errors = described_class.new(id_scheme: :iec).validate(doc)
+
+      expect(errors).to include(
+        a_string_matching(/<sec> id 'sec_1' does not follow the iec/),
+        a_string_matching(/<fig> id 'fig_1' does not follow the iec/),
+      )
+    end
+
+    it "reaches ids nested below the top-level sections" do
+      nested = <<~XML
+        <standard>
+          <front/>
+          <body>
+            <sec id="sec_1">
+              <sec id="sec_1.1">
+                <fig id="wrong-1"><label>1</label></fig>
+              </sec>
+            </sec>
+          </body>
+        </standard>
+      XML
+
+      doc = Sts::NisoSts::Standard.from_xml(nested)
+      errors = described_class.new(id_scheme: :iso).validate(doc)
+
+      expect(errors).to include(a_string_matching(/<fig> id 'wrong-1'/))
+    end
+
+    it "checks no ids when no scheme is selected" do
+      doc = Sts::NisoSts::Standard.from_xml(xml)
+      expect(described_class.new.validate(doc)).to be_empty
+    end
+  end
 end
 
 RSpec.describe Sts::Profiles::IsoIec::Constraints do
   it "defines required ID elements" do
     expect(described_class::REQUIRED_ID_ELEMENTS)
-      .to include("sec", "fig", "p")
+      .to include("sec", "fig", "app")
   end
 
-  it "defines ID patterns" do
-    expect(described_class::ID_PATTERNS).to be_a(Hash)
-    expect(described_class::ID_PATTERNS.keys)
-      .to include("sec", "fig", "app")
+  it "excludes the elements Annex F.2 says carry no id" do
+    expect(described_class::REQUIRED_ID_ELEMENTS)
+      .not_to include("p", "list", "graphic", "non-normative-note")
+  end
+
+  it "documents the committee reference formats" do
+    expect(described_class::COMM_REF_EXAMPLES)
+      .to eq("ISO" => "ISO/TC 126/SC 1", "IEC" => "TC 25")
   end
 
   it "defines standard originators" do

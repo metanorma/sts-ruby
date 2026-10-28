@@ -98,7 +98,8 @@ RSpec.describe "Anti-patterns" do
         # `require "sts/iso_sts/foo"` (internal path) is not — use autoload.
         matches = source.scan(/^\s*require\s+["']([^"']+)["']/m)
         internal = matches.flatten.reject do |req|
-          req.start_with?("lutaml", "mml", "nokogiri", "forwardable") ||
+          req.start_with?("lutaml", "mml", "moxml", "nokogiri",
+                          "forwardable") ||
             req == "json" || req == "set"
         end
         msg = "#{rel}: internal require forbidden (use autoload); " \
