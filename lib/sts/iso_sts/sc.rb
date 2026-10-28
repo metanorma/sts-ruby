@@ -3,6 +3,7 @@
 module Sts
   module IsoSts
     class Sc < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :specific_use, :string
       attribute :content, :string, collection: true
       attribute :bold, ::Sts::IsoSts::Bold, collection: true
@@ -14,6 +15,7 @@ module Sts
         element "sc"
         mixed_content
 
+        map_attribute "id", to: :id
         map_attribute "specific-use", to: :specific_use
         map_content to: :content
         map_element "bold", to: :bold
