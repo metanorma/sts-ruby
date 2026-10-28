@@ -19,7 +19,7 @@
 |---|------|----------|----------|--------------|
 | 01 | `01-mathml-delegation.md` | Anti-Pattern Fix | DONE | — |
 | 02 | `02-type-resolution.md` | Anti-Pattern Fix | DONE | — |
-| 03 | `03-namespace-coupling.md` | Architecture | IN PROGRESS (63→6 refs) | 01, 02 |
+| 03 | `03-namespace-coupling.md` | Architecture | DONE (63→0 refs) | 01, 02 |
 | 04 | `04-register-versioning.md` | Architecture | HIGH | 01, 02 |
 | 05 | `05-missing-elements.md` | Feature Gap | MOSTLY DONE | 04 |
 | 06 | `06-missing-attributes.md` | Feature Gap | DONE | 04 |
@@ -166,9 +166,9 @@ grep -r "method_missing|respond_to_missing|Object.const_get|\.send" lib/
 - ~~Expand StringName usage (in contrib, element-citation, related-article — NISO STS 1.2)~~ → DONE: added to name-alternatives; already in person-group and mixed-citation
 
 ### Architectural Items (High Effort)
-- `03-namespace-coupling.md` — IN PROGRESS: 63→6 IsoSts→NisoSts references
-  remaining (issue #40). ISOSTS.xsd governs content models and all non-`@id`
-  attributes; the `@id` follows the 86948b9 convention.
+- `03-namespace-coupling.md` — DONE: 63→0 IsoSts→NisoSts references
+  (issue #40). ISOSTS.xsd governs content models and all non-`@id` attributes;
+  the `@id` follows the 86948b9 convention.
 - `04-register-versioning.md` — Version the models via lutaml-model Registers
 - `11-duplicate-models.md` — 44 overlapping element resolution (depends on 03)
 
@@ -184,22 +184,14 @@ the **NISO** XSD and applied the result to IsoSts.
   name. (`meta-date` was NOT lossy — it already maps `type`.)
 - **Not a bug — the conventional `@id`.** IsoSts models carry an `@id` that
   ISOSTS does not itself define; this is the deliberate 86948b9 convention
-  (NISO-XSD-verified), not dead surface.
+  (NISO-XSD-verified), not dead surface. All 220 registered IsoSts models now
+  expose and map it.
 - **Remaining follow-up (separate change).** 7 spurious attributes on 5 models
   (model carries an attr ISOSTS does not define: `graphic` `type`, `body`/`back`
-  `content-type`, `content-language`/`language` extras), and the 6 classes left
-  without `@id` in 86948b9 (`monospace`, `sc`, `strike`, `underline`, `uri`,
-  `standard_ref`).
+  `content-type`, `content-language`/`language` extras).
 
 ## Next Action
-Two independent tracks:
-1. Finish `03` — the 6 remaining refs split across five recursive roots
-   (`ElementCitation`, `PersonGroup`, `Collab`, `Source`, `TermDisplay`) and
-   five child-bearing roots. `DispQuote` and `BoxedText` themselves are now
-   IsoSts classes. The first 15 high-reuse dependency leaves are modelled,
-   reducing the unresolved closures to 78–84 not-yet-modelled ISOSTS elements
-   before existing IsoSts boundaries. The remaining work still needs an
-   architecture decision for the recursive content core.
-2. The remaining schema-conformance follow-up above — the 7 spurious attributes
-   on 5 models and the 6 classes without `@id`. (The dropped-attribute data loss
-   is now fixed.)
+`03` is complete: the 90-model closure removes every IsoSts→NisoSts reference.
+Continue with the remaining schema-conformance follow-up above: the 7 spurious
+attributes on 5 models. (The dropped-attribute data loss and mandatory `@id`
+surface are now fixed.)

@@ -3,6 +3,7 @@
 module Sts
   module IsoSts
     class Underline < Lutaml::Model::Serializable
+      attribute :id, :string
       attribute :underline_style, :string
       attribute :specific_use, :string
       attribute :content, :string, collection: true
@@ -15,6 +16,7 @@ module Sts
         element "underline"
         mixed_content
 
+        map_attribute "id", to: :id
         map_attribute "underline-style", to: :underline_style
         map_attribute "specific-use", to: :specific_use
         map_content to: :content
