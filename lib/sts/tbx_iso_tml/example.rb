@@ -11,6 +11,13 @@ module Sts
       attribute :std, ::Sts::NisoSts::ReferenceStandard, collection: true
       attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
       attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
+      attribute :sub, ::Sts::NisoSts::Sub, collection: true
+      attribute :sup, ::Sts::NisoSts::Sup, collection: true
+      attribute :monospace, ::Sts::NisoSts::Monospace, collection: true
+      attribute :sc, ::Sts::NisoSts::Sc, collection: true
+      attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
+      attribute :styled_content, ::Sts::NisoSts::StyledContent, collection: true
+      attribute :break, ::Sts::NisoSts::Break, collection: true
 
       xml do
         element "example"
@@ -27,6 +34,13 @@ module Sts
         map_element "std", to: :std
         map_element "italic", to: :italic
         map_element "bold", to: :bold
+        map_element "sub", to: :sub
+        map_element "sup", to: :sup
+        map_element "monospace", to: :monospace
+        map_element "sc", to: :sc
+        map_element "ext-link", to: :ext_link
+        map_element "styled-content", to: :styled_content
+        map_element "break", to: :break
       end
     end
   end

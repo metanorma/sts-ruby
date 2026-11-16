@@ -16,6 +16,14 @@ module Sts
       attribute :underline, ::Sts::NisoSts::Underline, collection: true
       attribute :styled_content, ::Sts::NisoSts::StyledContent, collection: true
       attribute :std, ::Sts::NisoSts::ReferenceStandard, collection: true
+      attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
+      attribute :sub, ::Sts::NisoSts::Sub, collection: true
+      attribute :sup, ::Sts::NisoSts::Sup, collection: true
+      attribute :sc, ::Sts::NisoSts::Sc, collection: true
+      attribute :monospace, ::Sts::NisoSts::Monospace, collection: true
+      attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
+      attribute :inline_formula, ::Sts::NisoSts::InlineFormula, collection: true
+      attribute :break, ::Sts::NisoSts::Break, collection: true
 
       xml do
         element "preformat"
@@ -34,6 +42,14 @@ module Sts
         map_element "underline", to: :underline
         map_element "styled-content", to: :styled_content
         map_element "std", to: :std
+        map_element "xref", to: :xref
+        map_element "sub", to: :sub
+        map_element "sup", to: :sup
+        map_element "sc", to: :sc
+        map_element "monospace", to: :monospace
+        map_element "ext-link", to: :ext_link
+        map_element "inline-formula", to: :inline_formula
+        map_element "break", to: :break
       end
     end
   end

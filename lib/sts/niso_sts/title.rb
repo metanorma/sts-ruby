@@ -18,6 +18,7 @@ module Sts
       attribute :styled_content, Sts::NisoSts::StyledContent, collection: true
       attribute :monospace, Sts::NisoSts::Monospace, collection: true
       attribute :sc, Sts::NisoSts::Sc, collection: true
+      attribute :ext_link, Sts::NisoSts::ExtLink, collection: true
 
       xml do
         element "title"
@@ -38,6 +39,7 @@ module Sts
         map_element "styled-content", to: :styled_content
         map_element "monospace", to: :monospace
         map_element "sc", to: :sc
+        map_element "ext-link", to: :ext_link
       end
     end
   end
