@@ -16,6 +16,11 @@ module Sts
       attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
       attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
       attribute :inline_formula, ::Sts::NisoSts::InlineFormula, collection: true
+      attribute :monospace, ::Sts::NisoSts::Monospace, collection: true
+      attribute :sc, ::Sts::NisoSts::Sc, collection: true
+      attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
+      attribute :styled_content, ::Sts::NisoSts::StyledContent, collection: true
+      attribute :break, ::Sts::NisoSts::Break, collection: true
 
       xml do
         element "note"
@@ -35,6 +40,11 @@ module Sts
         map_element "xref", to: :xref
         map_element "math", to: :math
         map_element "inline-formula", to: :inline_formula
+        map_element "monospace", to: :monospace
+        map_element "sc", to: :sc
+        map_element "ext-link", to: :ext_link
+        map_element "styled-content", to: :styled_content
+        map_element "break", to: :break
       end
     end
   end

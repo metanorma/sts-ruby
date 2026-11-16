@@ -20,6 +20,13 @@ module Sts
       attribute :std, ::Sts::NisoSts::ReferenceStandard, collection: true
       attribute :ext_link, ::Sts::NisoSts::ExtLink
       attribute :entailed_term, ::Sts::TbxIsoTml::EntailedTerm
+      attribute :sub, ::Sts::NisoSts::Sub, collection: true
+      attribute :sup, ::Sts::NisoSts::Sup, collection: true
+      attribute :sc, ::Sts::NisoSts::Sc, collection: true
+      attribute :monospace, ::Sts::NisoSts::Monospace, collection: true
+      attribute :underline, ::Sts::NisoSts::Underline, collection: true
+      attribute :styled_content, ::Sts::NisoSts::StyledContent, collection: true
+      attribute :break, ::Sts::NisoSts::Break, collection: true
       attribute :specific_use, :string,
                 values: ["abbreviation", "acronym", "equation", "formula", "fullForm", "symbol", "variant"]
       attribute :term_status, :string,
@@ -63,6 +70,13 @@ module Sts
         map_element "uri", to: :uri
         map_element "std", to: :std
         map_element "xref", to: :xref
+        map_element "sub", to: :sub
+        map_element "sup", to: :sup
+        map_element "sc", to: :sc
+        map_element "monospace", to: :monospace
+        map_element "underline", to: :underline
+        map_element "styled-content", to: :styled_content
+        map_element "break", to: :break
       end
     end
   end

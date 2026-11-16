@@ -18,6 +18,9 @@ module Sts
       attribute :fn, ::Sts::NisoSts::Fn, collection: true
       attribute :styled_content, ::Sts::NisoSts::StyledContent, collection: true
       attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
+      attribute :std, ::Sts::NisoSts::ReferenceStandard, collection: true
+      attribute :inline_formula, ::Sts::NisoSts::InlineFormula, collection: true
+      attribute :break, ::Sts::NisoSts::Break, collection: true
 
       xml do
         element "italic"
@@ -38,6 +41,9 @@ module Sts
         map_element "fn", to: :fn
         map_element "styled-content", to: :styled_content
         map_element "italic", to: :italic
+        map_element "std", to: :std
+        map_element "inline-formula", to: :inline_formula
+        map_element "break", to: :break
       end
     end
   end
