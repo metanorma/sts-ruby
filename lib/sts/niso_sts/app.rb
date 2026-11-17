@@ -19,6 +19,9 @@ module Sts
                 collection: true
       attribute :table_wrap, ::Sts::TbxIsoTml::TableWrap, collection: true
       attribute :list, ::Sts::NisoSts::List, collection: true
+      attribute :def_list, ::Sts::NisoSts::DefList, collection: true
+      attribute :disp_formula, ::Sts::NisoSts::DisplayFormula, collection: true
+      attribute :disp_quote, ::Sts::NisoSts::DispQuote, collection: true
       attribute :array, ::Sts::NisoSts::SectionArray, collection: true
       attribute :preformat, ::Sts::NisoSts::Preformat, collection: true
       attribute :boxed_text, ::Sts::NisoSts::BoxedText, collection: true
@@ -43,6 +46,9 @@ module Sts
         map_element "non-normative-example", to: :non_normative_example
         map_element "table-wrap", to: :table_wrap
         map_element "list", to: :list
+        map_element "def-list", to: :def_list
+        map_element "disp-formula", to: :disp_formula
+        map_element "disp-quote", to: :disp_quote
         map_element "array", to: :array
         map_element "preformat", to: :preformat
         map_element "boxed-text", to: :boxed_text

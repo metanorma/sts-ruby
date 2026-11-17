@@ -24,6 +24,9 @@ module Sts
         namespace ::Sts::Namespaces::TbxNamespace
 
         map_attribute "lang", to: :lang
+        # Declaration order drives built-model serialization: the NISO STS
+        # langSet content model puts subjectField BEFORE the tig sequence.
+        map_element "subjectField", to: :subject_field
         map_element "definition", to: :definition
         map_element "source", to: :source
         map_element "example", to: :example
@@ -32,7 +35,6 @@ module Sts
         map_element "tig", to: :tig
         map_element "xSource", to: :x_source
         map_element "crossReference", to: :cross_reference
-        map_element "subjectField", to: :subject_field
         # map_element 'xGraphic', to: :x_graphic
       end
     end
