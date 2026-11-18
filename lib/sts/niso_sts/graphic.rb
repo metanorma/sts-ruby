@@ -14,6 +14,8 @@ module Sts
       attribute :id, :string
       attribute :href, :xlink_href
       attribute :xlink_type, :string
+      attribute :alt_text, ::Sts::NisoSts::AltText, collection: true
+      attribute :long_desc, ::Sts::NisoSts::LongDesc, collection: true
       attribute :sts_object_id, ::Sts::NisoSts::ObjectId, collection: true
 
       xml do
@@ -22,6 +24,8 @@ module Sts
         map_attribute "id", to: :id
         map_attribute "href", to: :href
         map_attribute "xlink:type", to: :xlink_type
+        map_element "alt-text", to: :alt_text
+        map_element "long-desc", to: :long_desc
         map_element "object-id", to: :sts_object_id
       end
     end
