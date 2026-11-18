@@ -9,7 +9,8 @@ RSpec.describe Sts::NisoSts::Graphic do
   # renderer reads <alt-text> for the <img alt> attribute.
   it "parses the alt-text child element" do
     xml = '<graphic xmlns:xlink="http://www.w3.org/1999/xlink" ' \
-          'xlink:href="figure-1.png"><alt-text>Overall schematic</alt-text></graphic>'
+          'xlink:href="figure-1.png">' \
+          "<alt-text>Overall schematic</alt-text></graphic>"
     graphic = described_class.from_xml(xml)
 
     expect(graphic.href.to_s).to eq("figure-1.png")
@@ -18,7 +19,8 @@ RSpec.describe Sts::NisoSts::Graphic do
 
   it "round-trips the alt-text child element" do
     xml = '<graphic xmlns:xlink="http://www.w3.org/1999/xlink" ' \
-          'xlink:href="figure-1.png"><alt-text>Overall schematic</alt-text></graphic>'
+          'xlink:href="figure-1.png">' \
+          "<alt-text>Overall schematic</alt-text></graphic>"
     graphic = described_class.from_xml(xml)
 
     expect(graphic.to_xml).to include("figure-1.png")
