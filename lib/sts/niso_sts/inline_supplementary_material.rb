@@ -15,6 +15,10 @@ module Sts
       attribute :xlink_show, :string
       attribute :xlink_title, :string
       attribute :content, :string, collection: true
+      attribute :named_content, ::Sts::NisoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::NisoSts::Target,
+                collection: true
       xml do
         element "inline-supplementary-material"
         mixed_content
@@ -31,6 +35,8 @@ module Sts
         map_attribute "xlink:show", to: :xlink_show
         map_attribute "xlink:title", to: :xlink_title
         map_content to: :content
+        map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end

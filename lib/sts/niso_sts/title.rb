@@ -19,6 +19,10 @@ module Sts
       attribute :monospace, Sts::NisoSts::Monospace, collection: true
       attribute :sc, Sts::NisoSts::Sc, collection: true
       attribute :ext_link, Sts::NisoSts::ExtLink, collection: true
+      attribute :named_content, ::Sts::NisoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::NisoSts::Target,
+                collection: true
 
       xml do
         element "title"
@@ -40,6 +44,8 @@ module Sts
         map_element "monospace", to: :monospace
         map_element "sc", to: :sc
         map_element "ext-link", to: :ext_link
+        map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end

@@ -14,6 +14,10 @@ module Sts
       attribute :bold, ::Sts::TbxIsoTml::Bold, collection: true
       attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
       attribute :underline, ::Sts::NisoSts::Underline, collection: true
+      attribute :named_content, ::Sts::NisoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::NisoSts::Target,
+                collection: true
 
       xml do
         element "collab"
@@ -30,6 +34,8 @@ module Sts
         map_element "italic", to: :italic
         map_element "underline", to: :underline
         map_content to: :content
+        map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end

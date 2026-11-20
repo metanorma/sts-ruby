@@ -35,6 +35,9 @@ module Sts
       attribute :preformat, ::Sts::NisoSts::Preformat, collection: true
       attribute :array, ::Sts::NisoSts::SectionArray, collection: true
       attribute :overline, ::Sts::NisoSts::Overline, collection: true
+      attribute :target, ::Sts::NisoSts::Target, collection: true
+      attribute :named_content, ::Sts::NisoSts::NamedContent,
+                collection: true
 
       xml do
         element "p"
@@ -70,6 +73,8 @@ module Sts
         map_element "preformat", to: :preformat
         map_element "array", to: :array
         map_element "overline", to: :overline
+        map_element "target", to: :target
+        map_element "named-content", to: :named_content
       end
     end
   end

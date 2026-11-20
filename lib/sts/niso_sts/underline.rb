@@ -9,6 +9,10 @@ module Sts
       attribute :content, :string, collection: true
       attribute :std, ::Sts::NisoSts::ReferenceStandard, collection: true
       attribute :underline, ::Sts::NisoSts::Underline, collection: true
+      attribute :named_content, ::Sts::NisoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::NisoSts::Target,
+                collection: true
 
       xml do
         element "underline"
@@ -20,6 +24,8 @@ module Sts
         map_content to: :content
         map_element "std", to: :std
         map_element "underline", to: :underline
+        map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end

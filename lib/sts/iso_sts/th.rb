@@ -42,6 +42,10 @@ module Sts
       attribute :monospace, ::Sts::IsoSts::Monospace, collection: true
       attribute :sc, ::Sts::IsoSts::Sc, collection: true
       attribute :strike, ::Sts::IsoSts::Strike, collection: true
+      attribute :named_content, ::Sts::IsoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::IsoSts::Target,
+                collection: true
 
       xml do # rubocop:disable Metrics/BlockLength
         element "th"
@@ -86,6 +90,8 @@ module Sts
         map_element "monospace", to: :monospace
         map_element "sc", to: :sc
         map_element "strike", to: :strike
+        map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end

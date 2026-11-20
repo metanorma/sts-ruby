@@ -40,6 +40,8 @@ module Sts
       attribute :page_range, ::Sts::IsoSts::PageRange, collection: true
       attribute :publisher, ::Sts::IsoSts::Publisher
       attribute :pub_id, ::Sts::IsoSts::PubId, collection: true
+      attribute :target, ::Sts::IsoSts::Target,
+                collection: true
 
       xml do # rubocop:disable Metrics/BlockLength
         element "mixed-citation"
@@ -84,6 +86,7 @@ module Sts
         map_element "page-range", to: :page_range
         map_element "publisher", to: :publisher
         map_element "pub-id", to: :pub_id
+        map_element "target", to: :target
       end
     end
   end

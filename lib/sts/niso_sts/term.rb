@@ -39,6 +39,8 @@ module Sts
       attribute :vocab_term_identifier, :string
       # attribute :lang, :string
       attribute :named_content, ::Sts::NisoSts::NamedContent, collection: true
+      attribute :target, ::Sts::NisoSts::Target,
+                collection: true
 
       xml do
         element "term"
@@ -77,6 +79,7 @@ module Sts
         map_element "underline", to: :underline
         map_element "styled-content", to: :styled_content
         map_element "break", to: :break
+        map_element "target", to: :target
       end
     end
   end

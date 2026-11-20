@@ -11,6 +11,10 @@ module Sts
       attribute :italic, ::Sts::TbxIsoTml::Italic, collection: true
       attribute :underline, ::Sts::NisoSts::Underline, collection: true
       attribute :styled_content, ::Sts::NisoSts::StyledContent, collection: true
+      attribute :named_content, ::Sts::NisoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::NisoSts::Target,
+                collection: true
 
       xml do
         element "monospace"
@@ -24,6 +28,8 @@ module Sts
         map_element "italic", to: :italic
         map_element "underline", to: :underline
         map_element "styled-content", to: :styled_content
+        map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end

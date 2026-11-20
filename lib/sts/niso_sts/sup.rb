@@ -19,6 +19,10 @@ module Sts
       attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
       attribute :inline_formula, ::Sts::NisoSts::InlineFormula, collection: true
       attribute :break, ::Sts::NisoSts::Break, collection: true
+      attribute :named_content, ::Sts::NisoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::NisoSts::Target,
+                collection: true
 
       xml do
         element "sup"
@@ -40,6 +44,8 @@ module Sts
         map_element "ext-link", to: :ext_link
         map_element "inline-formula", to: :inline_formula
         map_element "break", to: :break
+        map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end

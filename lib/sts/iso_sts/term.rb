@@ -15,9 +15,12 @@ module Sts
       attribute :xref, ::Sts::TbxIsoTml::Xref
       attribute :ext_link, ::Sts::IsoSts::ExtLink
       attribute :uri, ::Sts::IsoSts::Uri
-      attribute :named_content, ::Sts::IsoSts::NamedContent
+      attribute :named_content, ::Sts::IsoSts::NamedContent,
+                collection: true
       attribute :styled_content, ::Sts::IsoSts::StyledContent
       attribute :math, Mml::V2::Math
+      attribute :target, ::Sts::IsoSts::Target,
+                collection: true
 
       xml do
         element "term"
@@ -40,6 +43,7 @@ module Sts
         map_element "named-content", to: :named_content
         map_element "styled-content", to: :styled_content
         map_element "math", to: :math
+        map_element "target", to: :target
       end
     end
   end

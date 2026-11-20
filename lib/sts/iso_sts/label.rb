@@ -16,7 +16,10 @@ module Sts
       attribute :styled_content, ::Sts::IsoSts::StyledContent
       attribute :ext_link, ::Sts::IsoSts::ExtLink
       attribute :uri, ::Sts::IsoSts::Uri
-      attribute :named_content, ::Sts::IsoSts::NamedContent
+      attribute :named_content, ::Sts::IsoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::IsoSts::Target,
+                collection: true
 
       xml do
         element "label"
@@ -36,6 +39,7 @@ module Sts
         map_element "ext-link", to: :ext_link
         map_element "uri", to: :uri
         map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end

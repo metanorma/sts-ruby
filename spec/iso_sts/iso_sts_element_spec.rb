@@ -920,8 +920,8 @@ RSpec.describe Sts::IsoSts do
   # set is what catches that.
   describe "IsoSts element classes model their full ISOSTS attribute set" do
     {
-      Sub: %i[id arrange specific_use content],
-      Sup: %i[id arrange specific_use content],
+      Sub: %i[id arrange specific_use content named_content target],
+      Sup: %i[id arrange specific_use content named_content target],
       ExtLink: %i[
         id ext_link_type specific_use xml_lang xlink_href xlink_type xlink_role
         xlink_title xlink_show xlink_actuate content bold italic named_content
@@ -932,22 +932,24 @@ RSpec.describe Sts::IsoSts do
         xlink_actuate content bold italic sub sup std ext_link uri named_content
         styled_content fn xref break person_group collab year source
         article_title volume issue fpage lpage page_range publisher pub_id
+        target
       ],
       CopyrightHolder: %i[
         id content_type specific_use xml_lang content sub sup
       ],
       CopyrightStatement: %i[
         id content_type specific_use xml_lang content bold italic ext_link uri
+        named_content target
       ],
       CopyrightYear: %i[id content_type specific_use content],
       Edition: %i[id content_type specific_use xml_lang content],
       Title: %i[
         id content_type specific_use content bold italic sub sup xref break
-        styled_content monospace sc inline_formula std
+        styled_content monospace sc inline_formula std named_content target
       ],
       Label: %i[
         id alt xml_lang content bold italic sub sup inline_formula break
-        styled_content ext_link uri named_content
+        styled_content ext_link uri named_content target
       ],
       Uri: %i[
         id content_type specific_use xml_lang xlink_href xlink_type xlink_role
@@ -956,7 +958,8 @@ RSpec.describe Sts::IsoSts do
       NamedContent: %i[
         id alt content_type specific_use xml_lang xlink_href xlink_type
         xlink_role xlink_title xlink_show xlink_actuate content bold italic
-        sub sup
+        sub sup target named_content xref styled_content std ext_link
+        monospace sc strike underline
       ],
       Graphic: %i[
         id position orientation specific_use xml_lang content_type mimetype
@@ -965,6 +968,7 @@ RSpec.describe Sts::IsoSts do
       ],
       Underline: %i[
         id underline_style specific_use content bold italic sub sup
+        named_content target
       ],
       Body: %i[
         id specific_use paragraph sec term_sec list def_list

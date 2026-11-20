@@ -8,6 +8,10 @@ module Sts
       attribute :href, :xlink_href
       attribute :id, :string
       attribute :related_article_type, :string
+      attribute :named_content, ::Sts::NisoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::NisoSts::Target,
+                collection: true
 
       xml do
         element "related-article"
@@ -18,6 +22,8 @@ module Sts
         map_attribute "xlink:href", to: :href
         map_attribute "id", to: :id
         map_attribute "related-article-type", to: :related_article_type
+        map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end
