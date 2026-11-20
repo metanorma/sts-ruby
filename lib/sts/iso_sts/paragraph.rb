@@ -40,6 +40,9 @@ module Sts
       attribute :table_wrap, ::Sts::TbxIsoTml::TableWrap, collection: true
       attribute :preformat, ::Sts::IsoSts::Preformat, collection: true
       attribute :term, ::Sts::TbxIsoTml::Term, collection: true
+      attribute :target, ::Sts::IsoSts::Target, collection: true
+      attribute :named_content, ::Sts::IsoSts::NamedContent,
+                collection: true
 
       xml do # rubocop:disable Metrics/BlockLength
         element "p"
@@ -82,6 +85,8 @@ module Sts
         map_element "table-wrap", to: :table_wrap
         map_element "preformat", to: :preformat
         map_element "term", to: :term
+        map_element "target", to: :target
+        map_element "named-content", to: :named_content
       end
     end
   end
