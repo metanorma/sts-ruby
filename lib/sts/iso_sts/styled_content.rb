@@ -27,6 +27,8 @@ module Sts
       attribute :underline, ::Sts::IsoSts::Underline, collection: true
       attribute :break, ::Sts::IsoSts::Break, collection: true
       attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
+      attribute :target, ::Sts::IsoSts::Target,
+                collection: true
 
       xml do
         element "styled-content"
@@ -58,6 +60,7 @@ module Sts
         map_element "underline", to: :underline
         map_element "break", to: :break
         map_element "styled-content", to: :styled_content
+        map_element "target", to: :target
       end
     end
   end

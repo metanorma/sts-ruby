@@ -29,6 +29,18 @@ module Sts
       attribute :fn, ::Sts::NisoSts::Fn, collection: true
       attribute :target, ::Sts::NisoSts::Target, collection: true
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
+      attribute :named_content, ::Sts::NisoSts::NamedContent,
+                collection: true
+      attribute :std, ::Sts::NisoSts::ReferenceStandard,
+                collection: true
+      attribute :monospace, ::Sts::NisoSts::Monospace,
+                collection: true
+      attribute :sc, ::Sts::NisoSts::Sc,
+                collection: true
+      attribute :strike, ::Sts::NisoSts::Strike,
+                collection: true
+      attribute :underline, ::Sts::NisoSts::Underline,
+                collection: true
 
       xml do
         element "named-content"
@@ -61,6 +73,12 @@ module Sts
         map_element "fn", to: :fn
         map_element "target", to: :target
         map_element "xref", to: :xref
+        map_element "named-content", to: :named_content
+        map_element "std", to: :std
+        map_element "monospace", to: :monospace
+        map_element "sc", to: :sc
+        map_element "strike", to: :strike
+        map_element "underline", to: :underline
       end
     end
   end

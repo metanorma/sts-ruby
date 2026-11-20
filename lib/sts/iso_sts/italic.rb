@@ -23,6 +23,8 @@ module Sts
       attribute :strike, ::Sts::IsoSts::Strike, collection: true
       attribute :underline, ::Sts::IsoSts::Underline, collection: true
       attribute :fn, ::Sts::IsoSts::Fn, collection: true
+      attribute :target, ::Sts::IsoSts::Target,
+                collection: true
 
       xml do
         element "italic"
@@ -50,6 +52,7 @@ module Sts
         map_element "strike", to: :strike
         map_element "underline", to: :underline
         map_element "fn", to: :fn
+        map_element "target", to: :target
       end
     end
   end

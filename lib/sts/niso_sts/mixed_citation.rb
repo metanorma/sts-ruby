@@ -67,6 +67,10 @@ module Sts
       attribute :uri, ::Sts::NisoSts::Uri, collection: true
       attribute :underline, ::Sts::NisoSts::Underline, collection: true
       attribute :break, ::Sts::NisoSts::Break, collection: true
+      attribute :named_content, ::Sts::NisoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::NisoSts::Target,
+                collection: true
 
       xml do
         element "mixed-citation"
@@ -136,6 +140,8 @@ module Sts
         map_element "uri", to: :uri
         map_element "underline", to: :underline
         map_element "break", to: :break
+        map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end

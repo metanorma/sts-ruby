@@ -18,6 +18,10 @@ module Sts
       attribute :ext_link, ::Sts::IsoSts::ExtLink, collection: true
       attribute :uri, ::Sts::IsoSts::Uri, collection: true
       attribute :styled_content, ::Sts::IsoSts::StyledContent, collection: true
+      attribute :named_content, ::Sts::IsoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::IsoSts::Target,
+                collection: true
 
       xml do
         element "preformat"
@@ -39,6 +43,8 @@ module Sts
         map_element "ext-link", to: :ext_link
         map_element "uri", to: :uri
         map_element "styled-content", to: :styled_content
+        map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end

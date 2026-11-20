@@ -10,6 +10,10 @@ module Sts
       attribute :italic, ::Sts::IsoSts::Italic, collection: true
       attribute :sub, ::Sts::IsoSts::Sub, collection: true
       attribute :sup, ::Sts::IsoSts::Sup, collection: true
+      attribute :named_content, ::Sts::IsoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::IsoSts::Target,
+                collection: true
 
       xml do
         element "monospace"
@@ -22,6 +26,8 @@ module Sts
         map_element "italic", to: :italic
         map_element "sub", to: :sub
         map_element "sup", to: :sup
+        map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end

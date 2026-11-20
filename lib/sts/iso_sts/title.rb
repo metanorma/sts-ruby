@@ -18,6 +18,10 @@ module Sts
       attribute :sc, ::Sts::IsoSts::Sc, collection: true
       attribute :inline_formula, ::Sts::IsoSts::InlineFormula, collection: true
       attribute :std, ::Sts::IsoSts::Std, collection: true
+      attribute :named_content, ::Sts::IsoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::IsoSts::Target,
+                collection: true
 
       xml do
         element "title"
@@ -38,6 +42,8 @@ module Sts
         map_element "sc", to: :sc
         map_element "inline-formula", to: :inline_formula
         map_element "std", to: :std
+        map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end

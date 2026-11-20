@@ -21,6 +21,10 @@ module Sts
       attribute :fax, ::Sts::NisoSts::Fax
       attribute :email, ::Sts::NisoSts::Email
       attribute :ext_link, ::Sts::NisoSts::ExtLink
+      attribute :named_content, ::Sts::NisoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::NisoSts::Target,
+                collection: true
 
       xml do
         element "aff"
@@ -45,6 +49,8 @@ module Sts
         map_element "fax", to: :fax
         map_element "email", to: :email
         map_element "ext-link", to: :ext_link
+        map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end

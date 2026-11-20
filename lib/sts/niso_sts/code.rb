@@ -26,6 +26,8 @@ module Sts
       attribute :xref, ::Sts::TbxIsoTml::Xref, collection: true
       attribute :ext_link, ::Sts::NisoSts::ExtLink, collection: true
       attribute :uri, ::Sts::NisoSts::Uri, collection: true
+      attribute :target, ::Sts::NisoSts::Target,
+                collection: true
 
       xml do
         element "code"
@@ -55,6 +57,7 @@ module Sts
         map_element "xref", to: :xref
         map_element "ext-link", to: :ext_link
         map_element "uri", to: :uri
+        map_element "target", to: :target
       end
     end
 

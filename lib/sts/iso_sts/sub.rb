@@ -7,6 +7,10 @@ module Sts
       attribute :arrange, :string
       attribute :specific_use, :string
       attribute :content, :string, collection: true
+      attribute :named_content, ::Sts::IsoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::IsoSts::Target,
+                collection: true
       xml do
         element "sub"
         map_attribute "id", to: :id
@@ -15,6 +19,8 @@ module Sts
         mixed_content
 
         map_content to: :content
+        map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end

@@ -5,6 +5,10 @@ module Sts
     class DefHead < Lutaml::Model::Serializable
       attribute :id, :string
       attribute :content, :string, collection: true
+      attribute :named_content, ::Sts::NisoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::NisoSts::Target,
+                collection: true
 
       xml do
         element "def-head"
@@ -12,6 +16,8 @@ module Sts
 
         map_attribute "id", to: :id
         map_content to: :content
+        map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end

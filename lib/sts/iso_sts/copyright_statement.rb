@@ -12,6 +12,10 @@ module Sts
       attribute :italic, ::Sts::IsoSts::Italic
       attribute :ext_link, ::Sts::IsoSts::ExtLink
       attribute :uri, ::Sts::IsoSts::Uri
+      attribute :named_content, ::Sts::IsoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::IsoSts::Target,
+                collection: true
 
       xml do
         element "copyright-statement"
@@ -26,6 +30,8 @@ module Sts
         map_element "italic", to: :italic
         map_element "ext-link", to: :ext_link
         map_element "uri", to: :uri
+        map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end

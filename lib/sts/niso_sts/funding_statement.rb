@@ -6,6 +6,10 @@ module Sts
       attribute :id, :string
       attribute :rid, :string
       attribute :content, :string, collection: true
+      attribute :named_content, ::Sts::NisoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::NisoSts::Target,
+                collection: true
       xml do
         element "funding-statement"
         mixed_content
@@ -13,6 +17,8 @@ module Sts
         map_attribute "id", to: :id
         map_attribute "rid", to: :rid
         map_content to: :content
+        map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end

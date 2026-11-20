@@ -10,6 +10,10 @@ module Sts
       attribute :institution_id_type, :string
       attribute :xlink_href, :string
       attribute :content, :string, collection: true
+      attribute :named_content, ::Sts::NisoSts::NamedContent,
+                collection: true
+      attribute :target, ::Sts::NisoSts::Target,
+                collection: true
       xml do
         element "funding-source"
         map_attribute "id", to: :id
@@ -21,6 +25,8 @@ module Sts
         map_attribute "institution-id-type", to: :institution_id_type
         map_attribute "xlink:href", to: :xlink_href
         map_content to: :content
+        map_element "named-content", to: :named_content
+        map_element "target", to: :target
       end
     end
   end

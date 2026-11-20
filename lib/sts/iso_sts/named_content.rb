@@ -19,6 +19,26 @@ module Sts
       attribute :italic, ::Sts::IsoSts::Italic, collection: true
       attribute :sub, ::Sts::IsoSts::Sub, collection: true
       attribute :sup, ::Sts::IsoSts::Sup, collection: true
+      attribute :target, ::Sts::IsoSts::Target,
+                collection: true
+      attribute :named_content, ::Sts::IsoSts::NamedContent,
+                collection: true
+      attribute :xref, ::Sts::TbxIsoTml::Xref,
+                collection: true
+      attribute :styled_content, ::Sts::IsoSts::StyledContent,
+                collection: true
+      attribute :std, ::Sts::IsoSts::Std,
+                collection: true
+      attribute :ext_link, ::Sts::IsoSts::ExtLink,
+                collection: true
+      attribute :monospace, ::Sts::IsoSts::Monospace,
+                collection: true
+      attribute :sc, ::Sts::IsoSts::Sc,
+                collection: true
+      attribute :strike, ::Sts::IsoSts::Strike,
+                collection: true
+      attribute :underline, ::Sts::IsoSts::Underline,
+                collection: true
 
       xml do
         element "named-content"
@@ -40,6 +60,16 @@ module Sts
         map_element "italic", to: :italic
         map_element "sub", to: :sub
         map_element "sup", to: :sup
+        map_element "target", to: :target
+        map_element "named-content", to: :named_content
+        map_element "xref", to: :xref
+        map_element "styled-content", to: :styled_content
+        map_element "std", to: :std
+        map_element "ext-link", to: :ext_link
+        map_element "monospace", to: :monospace
+        map_element "sc", to: :sc
+        map_element "strike", to: :strike
+        map_element "underline", to: :underline
       end
     end
   end
