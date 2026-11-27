@@ -6,9 +6,9 @@ require "spec_helper"
 # must serialize in model order, or the output fails XSD validation. The
 # IEC 616 conformance run found part-number after version (std-ident) and
 # attribution where the model carries attrib (disp-quote).
-RSpec.describe "NISO STS 1.2 model order" do
+RSpec.describe Sts::NisoSts::StandardIdentification do
   it "serializes std-ident as doc-number, part-number, edition, version" do
-    std_ident = Sts::NisoSts::StandardIdentification.new(
+    std_ident = described_class.new(
       doc_number: "616", part_number: "1", edition: "2", version: "3",
     )
 
@@ -16,15 +16,17 @@ RSpec.describe "NISO STS 1.2 model order" do
     expect(names).to eq(%w[doc-number part-number edition version])
   end
 
-  it "serializes disp-quote's source as attrib after the paragraphs" do
-    quote = Sts::NisoSts::DispQuote.new(
-      paragraphs: [Sts::NisoSts::Paragraph.new(text: ["Quoted"])],
-      attrib: [Sts::NisoSts::Attrib.new(specific_use: "source",
-                                        content: ["ISO 7301"])],
-    )
+  describe Sts::NisoSts::DispQuote do
+    it "serializes disp-quote's source as attrib after the paragraphs" do
+      quote = described_class.new(
+        paragraphs: [Sts::NisoSts::Paragraph.new(text: ["Quoted"])],
+        attrib: [Sts::NisoSts::Attrib.new(specific_use: "source",
+                                          content: ["ISO 7301"])],
+      )
 
-    doc = Nokogiri::XML(quote.to_xml)
-    expect(doc.root.element_children.map(&:name)).to eq(%w[p attrib])
-    expect(doc.at_xpath("//attrib")["specific-use"]).to eq("source")
+      doc = Nokogiri::XML(quote.to_xml)
+      expect(doc.root.element_children.map(&:name)).to eq(%w[p attrib])
+      expect(doc.at_xpath("//attrib")["specific-use"]).to eq("source")
+    end
   end
 end
