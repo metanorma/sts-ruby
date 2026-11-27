@@ -10,6 +10,7 @@ module Sts
       attribute :label, ::Sts::NisoSts::Label
       attribute :attribution, ::Sts::NisoSts::Attribution
       attribute :paragraphs, ::Sts::NisoSts::Paragraph, collection: true
+      attribute :attrib, ::Sts::NisoSts::Attrib, collection: true
 
       xml do
         element "disp-quote"
@@ -23,6 +24,7 @@ module Sts
         map_element "label", to: :label
         map_element "attribution", to: :attribution
         map_element "p", to: :paragraphs
+        map_element "attrib", to: :attrib
       end
     end
   end

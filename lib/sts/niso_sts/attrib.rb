@@ -4,6 +4,7 @@ module Sts
   module NisoSts
     class Attrib < Lutaml::Model::Serializable
       attribute :id, :string
+      attribute :specific_use, :string
       attribute :content, :string, collection: true
       attribute :named_content, ::Sts::NisoSts::NamedContent,
                 collection: true
@@ -12,6 +13,7 @@ module Sts
       xml do
         element "attrib"
         map_attribute "id", to: :id
+        map_attribute "specific-use", to: :specific_use
         mixed_content
 
         map_content to: :content
